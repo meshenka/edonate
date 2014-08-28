@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="4d3d769b812b6faa6b76e1a8abaece2d" resname="Active">
+        <source>Active</source>
+        <target>Actif</target>
+      </trans-unit>
+      <trans-unit id="98a82700b643e2688bf6855f9a946a40" resname="Add user">
+        <source>Add user</source>
+        <target>Ajouter un utilisateur</target>
+      </trans-unit>
+      <trans-unit id="062533fb1af5a2f09cfd09a78de85545" resname="Adress">
+        <source>Adress</source>
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="e8b2ff9737f7e1bd5844c27915ef49c3" resname="Adress Living">
+        <source>Adress Living</source>
+        <target>Habitant chez</target>
+      </trans-unit>
+      <trans-unit id="871351d26308dd1125eb4929b13b141e" resname="Adress extended">
+        <source>Adress extended</source>
+        <target>Complément d'adresse</target>
+      </trans-unit>
+      <trans-unit id="b2f40690858b404ed10e62bdf422c704" resname="Amount">
+        <source>Amount</source>
+        <target>Montant</target>
+      </trans-unit>
+      <trans-unit id="a5b712bca973c961948a602c08979398" resname="An inactive user will not access to dashboard.">
+        <source>An inactive user will not access to dashboard.</source>
+        <target>Un utilisateur inactif ne pourra plus s'authentifier pour accéder au tableau de bord</target>
+      </trans-unit>
+      <trans-unit id="9b89ea44e11300aedd79bbb1a1c33aa4" resname="Authorization Id">
+        <source>Authorization Id</source>
+        <target>N° d'autorisation</target>
+      </trans-unit>
+      <trans-unit id="7f83df9cd29577d544efd9ff66d7118a" resname="Authorize">
+        <source>Authorize</source>
+        <target>Autoriser</target>
+      </trans-unit>
+      <trans-unit id="8da715c02c91f915245ccdfde5467e82" resname="Back Office - Donate to Ecedi">
+        <source>Back Office - Donate to Ecedi</source>
+        <target>Tableau de bord - Don Ecedi</target>
+      </trans-unit>
+      <trans-unit id="aac772216aecbeca0e86d06671fe985a" resname="Birthday">
+        <source>Birthday</source>
+        <target>Date de naissance</target>
+      </trans-unit>
+      <trans-unit id="f00a1d99f6f47917006e88a803ecde1f" resname="Campaign">
+        <source>Campaign</source>
+        <target>Campagne</target>
+      </trans-unit>
+      <trans-unit id="ea4788705e6873b424c65e91c2846b19" resname="Cancel">
+        <source>Cancel</source>
+        <target>Annuler</target>
+      </trans-unit>
+      <trans-unit id="57d056ed0984166336b7879c2af3657f" resname="City">
+        <source>City</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit id="1c76cbfe21c6f44c1d1e59d54f3e4420" resname="Company">
+        <source>Company</source>
+        <target>Société</target>
+      </trans-unit>
+      <trans-unit id="8bf910bb9ffa608d4c7fd6504667d62f" resname="Connected as">
+        <source>Connected as</source>
+        <target>Connecté en tant que</target>
+      </trans-unit>
+      <trans-unit id="02d4482d332e1aef3437cd61c9bcc624" resname="Contact us">
+        <source>Contact us</source>
+        <target>Contactez-nous</target>
+      </trans-unit>
+      <trans-unit id="59716c97497eb9694541f7c3d37b1a4d" resname="Country">
+        <source>Country</source>
+        <target>Pays</target>
+      </trans-unit>
+      <trans-unit id="5f2b9345f9bbd74079b99d6fcf461408" resname="Created at">
+        <source>Created at</source>
+        <target>Créé le</target>
+      </trans-unit>
+      <trans-unit id="b3b60b7a5e7f9977461d42a94bf2c761" resname="Created date">
+        <source>Created date</source>
+        <target>Créé le</target>
+      </trans-unit>
+      <trans-unit id="57a3485b368ee09e9f0306ececdca9df" resname="Current Donations">
+        <source>Current Donations</source>
+        <target>Dons en cours</target>
+      </trans-unit>
+      <trans-unit id="2938c7f7e560ed972f8a4f68e80ff834" resname="Dashboard">
+        <source>Dashboard</source>
+        <target>Tableau de bord</target>
+      </trans-unit>
+      <trans-unit id="44749712dbec183e983dcd78a7736c41" resname="Date">
+        <source>Date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="42ae25231906c83927831e0ef7c317ac" resname="Disconnect">
+        <source>Disconnect</source>
+        <target>Déconnexion</target>
+      </trans-unit>
+      <trans-unit id="7a361b7868811a797c0d0c93ac3c60a6" resname="Donation of">
+        <source>Donation of</source>
+        <target>Don de</target>
+      </trans-unit>
+      <trans-unit id="09f93b31485972455dddc993de7b5004" resname="Donations distributions">
+        <source>Donations distributions</source>
+        <target>Répartitions des dons</target>
+      </trans-unit>
+      <trans-unit id="729d4d86db6ee7fa7faea22fa2339c5c" resname="Donator">
+        <source>Donator</source>
+        <target>Donateur</target>
+      </trans-unit>
+      <trans-unit id="9f0c7eac6036993c3c2d0e0d25bb8fb0" resname="Donator has already given!">
+        <source>Donator has already given!</source>
+        <target>Ce donateur à déja donné!</target>
+      </trans-unit>
+      <trans-unit id="b76fc8e1e2accf8db05109691164c4f6" resname="Donator's detail">
+        <source>Donator's detail</source>
+        <target>Détail donateur</target>
+      </trans-unit>
+      <trans-unit id="7dedbc1e5b7e09bb6c20e5a21c4c7864" resname="Donator's info!">
+        <source>Donator's info!</source>
+        <target>Infos donateur</target>
+      </trans-unit>
+      <trans-unit id="374394bbabc149a354ed6feb882290e2" resname="Donators">
+        <source>Donators</source>
+        <target>Donateurs</target>
+      </trans-unit>
+      <trans-unit id="7dce122004969d56ae2e0245cb754d35" resname="Edit">
+        <source>Edit</source>
+        <target>Editer</target>
+      </trans-unit>
+      <trans-unit id="ce8ae9da5b7cd6c3df2929543a9af92d" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="f7621265d9f56f19c66c262d79b149b8" resname="Export is disabled for more than 5000 results. Thank you for refining your search.">
+        <source>Export is disabled for more than 5000 results. Thank you for refining your search.</source>
+        <target>L'export est déactiver pour plus de 5000 résultats. Merci d'affiner votre recherche.</target>
+      </trans-unit>
+      <trans-unit id="9024a027453834593b29a84941ee04ed" resname="Fiscal receipt">
+        <source>Fiscal receipt</source>
+        <target>Reçu fiscal</target>
+      </trans-unit>
+      <trans-unit id="5759dc618a9baaf898a27d0b1be4a7d3" resname="Fiscal receipt ">
+        <source>Fiscal receipt </source>
+        <target>Reçu fiscal </target>
+      </trans-unit>
+      <trans-unit id="5da618e8e4b89c66fe86e32cdafde142" resname="From">
+        <source>From</source>
+        <target>Du</target>
+      </trans-unit>
+      <trans-unit id="339f7a2e087a159e6a31501649027a77" resname="Homepage">
+        <source>Homepage</source>
+        <target>Accueil</target>
+      </trans-unit>
+      <trans-unit id="6d96172fc3344856419e7f1f5b713d6c" resname="Last connexion">
+        <source>Last connexion</source>
+        <target>Dernière connexion</target>
+      </trans-unit>
+      <trans-unit id="1400f219a6caf30ca071462b5e03eace" resname="Last donations">
+        <source>Last donations</source>
+        <target>Derniers dons</target>
+      </trans-unit>
+      <trans-unit id="63ce96e8f68fa039f807fc2ff47adb03" resname="Last donations in error">
+        <source>Last donations in error</source>
+        <target>Derniers dons en erreur</target>
+      </trans-unit>
+      <trans-unit id="236d0eb7130ba05580fa0cb21f6b968d" resname="Last update">
+        <source>Last update</source>
+        <target>Dernière MAJ</target>
+      </trans-unit>
+      <trans-unit id="d95cf4ab2cbf1dfb63f066b50558b07d" resname="My account">
+        <source>My account</source>
+        <target>Mon compte</target>
+      </trans-unit>
+      <trans-unit id="49ee3087348e8d44e1feda1917443987" resname="Name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="bafd7322c6e97d25b6299b5d6fe8920b" resname="No">
+        <source>No</source>
+        <target>Non</target>
+      </trans-unit>
+      <trans-unit id="8a4cc7358e390ea90e97fe993cc0bdfa" resname="None donation in base">
+        <source>None donation in base</source>
+        <target>Aucun dons en base</target>
+      </trans-unit>
+      <trans-unit id="93ecdfa3d684758a274a81e5f959ea8e" resname="None result match your search">
+        <source>None result match your search</source>
+        <target>Aucun résultat ne correspond à votre recherche</target>
+      </trans-unit>
+      <trans-unit id="b6ef57d002c6d9e8041accb0069f0b84" resname="Number of results">
+        <source>Number of results</source>
+        <target>Nombre de résultats</target>
+      </trans-unit>
+      <trans-unit id="0352bea18aa52c2db2c8ca6fa9121b73" resname="Password forgot">
+        <source>Password forgot</source>
+        <target>Mot de passe oublié</target>
+      </trans-unit>
+      <trans-unit id="f0aaaae189e9c7711931a65ffcd22543" resname="Payment method">
+        <source>Payment method</source>
+        <target>Méthode de paiement</target>
+      </trans-unit>
+      <trans-unit id="bcc254b55c4a1babdf1dcb82c207506b" resname="Phone">
+        <source>Phone</source>
+        <target>Téléphone</target>
+      </trans-unit>
+      <trans-unit id="03d947a2158373c3b9d74325850cb8b9" resname="Post">
+        <source>Post</source>
+        <target>Postal</target>
+      </trans-unit>
+      <trans-unit id="3a5651a6f9882014fa6db485646468f8" resname="Postal box">
+        <source>Postal box</source>
+        <target>Boite postale</target>
+      </trans-unit>
+      <trans-unit id="d44edfb11d160d1a69431208bb5e9394" resname="Recuring">
+        <source>Recuring</source>
+        <target>Récurrent</target>
+      </trans-unit>
+      <trans-unit id="9b61d83cce82349f154b47131680be37" resname="RemoteId">
+        <source>RemoteId</source>
+        <target>Id distant</target>
+      </trans-unit>
+      <trans-unit id="268d1dca05a4dd6c3d647a4de01bf9d5" resname="Reset filters">
+        <source>Reset filters</source>
+        <target>Réinitialiser les filtres</target>
+      </trans-unit>
+      <trans-unit id="fd69c5cf902969e6fb71d043085ddee6" resname="Results">
+        <source>Results</source>
+        <target>Résultats</target>
+      </trans-unit>
+      <trans-unit id="a4a02e33dfc72a14b52f469ea02c5e31" resname="Results number">
+        <source>Results number</source>
+        <target>Nombre de résultats</target>
+      </trans-unit>
+      <trans-unit id="13348442cc6a27032d2b4aa28b75a5d3" resname="Search">
+        <source>Search</source>
+        <target>Rechercher</target>
+      </trans-unit>
+      <trans-unit id="1a6da9c7d5a9e4fe7ea0dc285c922124" resname="See all donations">
+        <source>See all donations</source>
+        <target>Voir tous les dons</target>
+      </trans-unit>
+      <trans-unit id="89f24b277712d2a08d67442ebd75ff26" resname="See all donations error">
+        <source>See all donations error</source>
+        <target>Voir tous les dons en erreur</target>
+      </trans-unit>
+      <trans-unit id="06c1443d3466c9a1e5ec2d9ab7486fac" resname="See all donations of this donator">
+        <source>See all donations of this donator</source>
+        <target>Voir tous les dons de ce donateur</target>
+      </trans-unit>
+      <trans-unit id="b810734ca60bf96a99610ca239a25a6d" resname="See all recurring donations">
+        <source>See all recurring donations</source>
+        <target>Voir tous les dons récurrents</target>
+      </trans-unit>
+      <trans-unit id="e167cd747fd76e1fd8f50db46d7a8437" resname="See all spot donations">
+        <source>See all spot donations</source>
+        <target>Voir tous les dons ponctuels</target>
+      </trans-unit>
+      <trans-unit id="f2c4151b485e623b069d4e48e1f3de5a" resname="See donator's detail">
+        <source>See donator's detail</source>
+        <target>Voir le détail donateur</target>
+      </trans-unit>
+      <trans-unit id="5921f1eb0730f0a15516d223235da31b" resname="See donators's list">
+        <source>See donators's list</source>
+        <target>Voir la liste des donateurs</target>
+      </trans-unit>
+      <trans-unit id="6c9d6b8aea6f3d16847bdebe05878a2d" resname="Spot">
+        <source>Spot</source>
+        <target>Ponctuel</target>
+      </trans-unit>
+      <trans-unit id="ec53a8c4f07baed5d8825072c89799be" resname="Status">
+        <source>Status</source>
+        <target>Statut</target>
+      </trans-unit>
+      <trans-unit id="3b9d79d57a1116d99b6aeae9af14bcb5" resname="The Visits block require javascript enabled on your web browser">
+        <source>The Visits block require javascript enabled on your web browser</source>
+        <target>Le bloc Fréquentation requière l'activation du Javascript sur votre navigateur</target>
+      </trans-unit>
+      <trans-unit id="b71836ea00b9aaea8856dfb8f81e583a" resname="The donations">
+        <source>The donations</source>
+        <target>Les dons</target>
+      </trans-unit>
+      <trans-unit id="e12167aa0a7698e6ebc92b4ce3909b53" resname="To">
+        <source>To</source>
+        <target>Au</target>
+      </trans-unit>
+      <trans-unit id="0a71d638686dc7719e8f466631c5899a" resname="Top five donators">
+        <source>Top five donators</source>
+        <target>Top five des donateurs</target>
+      </trans-unit>
+      <trans-unit id="424809d8441c5e12f47cf4820d844e8b" resname="Top five recurring donators">
+        <source>Top five recurring donators</source>
+        <target>Top 5 des donateurs récurrents</target>
+      </trans-unit>
+      <trans-unit id="b69b8c0cba2c3959c742564ddc26f304" resname="Top five spot donators">
+        <source>Top five spot donators</source>
+        <target>Top 5 des donateurs réguliers</target>
+      </trans-unit>
+      <trans-unit id="232f4b53f1b82ae84b71b38eb70958e1" resname="Transaction Id">
+        <source>Transaction Id</source>
+        <target>Transaction Id</target>
+      </trans-unit>
+      <trans-unit id="a1fa27779242b4902f7ae3bdd5c6d508" resname="Type">
+        <source>Type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="44a92e29701f68b75327ac688324efd4" resname="User's detail">
+        <source>User's detail</source>
+        <target>Détail utilisateur</target>
+      </trans-unit>
+      <trans-unit id="f6039d44b29456b20f8f373155ae4973" resname="Username">
+        <source>Username</source>
+        <target>Nom d'utilisateur</target>
+      </trans-unit>
+      <trans-unit id="f9aae5fda8d810a29f12d1e61b4ab25f" resname="Users">
+        <source>Users</source>
+        <target>Utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="d7e637a6e9ff116de2fa89551240a94d" resname="Visits">
+        <source>Visits</source>
+        <target>Fréquentations</target>
+      </trans-unit>
+      <trans-unit id="15bbb9d0bbf25e8d2978de1168c749dc" resname="Website">
+        <source>Website</source>
+        <target>Site web</target>
+      </trans-unit>
+      <trans-unit id="93cba07454f06a4a960172bbd6e2a435" resname="Yes">
+        <source>Yes</source>
+        <target>Oui</target>
+      </trans-unit>
+      <trans-unit id="34455374a6324844fa950652e287045f" resname="You are not authorized to access the user dashboard">
+        <source>You are not authorized to access the user dashboard</source>
+        <target>Vous n'êtes pas autorisé à accéder à la gestions des utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="e30ff58ce5d25674613ed10174506c19" resname="Your E-collecte application is not configured to get the Google Analytics stats">
+        <source>Your E-collecte application is not configured to get the Google Analytics stats</source>
+        <target>Votre application ECollecte n'est pas configurer pour obtenir les statistiques Google Analytics</target>
+      </trans-unit>
+      <trans-unit id="e0ed8e71dbd22a1e91cb570b52443fd5" resname="Zipcode">
+        <source>Zipcode</source>
+        <target>Code postal</target>
+      </trans-unit>
+      <trans-unit id="10aec35353f9c4096a71c38654c3d402" resname="cancel">
+        <source>cancel</source>
+        <target>Annulé</target>
+      </trans-unit>
+      <trans-unit id="6b2ded51d81a4403d8a4bd25fa1e57ee" resname="done">
+        <source>done</source>
+        <target>Terminé</target>
+      </trans-unit>
+      <trans-unit id="cb5e100e5a9a3e7f6d1fd97512215282" resname="error">
+        <source>error</source>
+        <target>Erreur</target>
+      </trans-unit>
+      <trans-unit id="22af645d1859cb5ca6da0c484f1f37ea" resname="new">
+        <source>new</source>
+        <target>Nouveau</target>
+      </trans-unit>
+      <trans-unit id="7c6c2e5d48ab37a007cbf70d3ea25fa4" resname="pending">
+        <source>pending</source>
+        <target>En cours</target>
+      </trans-unit>
+      <trans-unit id="8fc42c6ddf9966db3b09e84365034357" resname="the">
+        <source>the</source>
+        <target>Le</target>
+      </trans-unit>
+      <trans-unit id="599dcce2998a6b40b1e38e8c6006cb0a" resname="type">
+        <source>type</source>
+        <target>type</target>
+      </trans-unit>
+      <trans-unit id="3393ec4b25a62e89bffc01991cac654f" resname="Donator has been updated">
+        <source>Donator has been updated</source>
+        <target>Le donateur a été mis à jour</target>
+      </trans-unit>
+      <trans-unit id="1bb05d9ebccff748873604e531de9257" resname="pager-next">
+        <source>pager-next</source>
+        <target>Suivant</target>
+      </trans-unit>
+      <trans-unit id="9fe4623f5db9f2581021ebc3858fc2c8" resname="pager-previous">
+        <source>pager-previous</source>
+        <target>Précédent</target>
+      </trans-unit>
+      <trans-unit id="faf98e7251fdcbf642202e319f256403" resname="Machine name">
+        <source>Machine name</source>
+        <target>Nom machine</target>
+      </trans-unit>
+      <trans-unit id="99fb48ddce014d8ad24810eeb3bfde68" resname="Titre">
+        <source>Titre</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="00d23a76e43b46dae9ec7aa9dcbebb32" resname="Enabled">
+        <source>Enabled</source>
+        <target>Activé</target>
+      </trans-unit>
+      <trans-unit id="52f5e0bc3859bc5f5e25130b6c7e8881" resname="Position">
+        <source>Position</source>
+        <target>Position</target>
+      </trans-unit>
+      <trans-unit id="c84d397250976ab0a82516436bbe7ed3" resname="No block initialised, contact your webmaster">
+        <source>No block initialised, contact your webmaster</source>
+        <target>Aucun block initialisé, contacter votre webmaster</target>
+      </trans-unit>
+      <trans-unit id="1505d1a1150a205036d9ffe803aa495b" resname="New layout">
+        <source>New layout</source>
+        <target>Nouveau layout</target>
+      </trans-unit>
+      <trans-unit id="8c2857a9ad1d8f31659e35e904e20fa6" resname="Logo">
+        <source>Logo</source>
+        <target>Logo</target>
+      </trans-unit>
+      <trans-unit id="4994a8ffeba4ac3140beb89e8d41f174" resname="Language">
+        <source>Language</source>
+        <target>Langue</target>
+      </trans-unit>
+      <trans-unit id="d721757161f7f70c5b0949fdb6ec2c30" resname="Theme">
+        <source>Theme</source>
+        <target>Theme</target>
+      </trans-unit>
+      <trans-unit id="81f176e44a37be226478e2f66f677b27" resname="Edit blocks">
+        <source>Edit blocks</source>
+        <target>Editer les blocs</target>
+      </trans-unit>
+      <trans-unit id="195a8106bcb998b48a86acb2fee032c5" resname="View blocks">
+        <source>View blocks</source>
+        <target>Voir les blocs</target>
+      </trans-unit>
+
+      <trans-unit id="test-syg-01" resname="Homepage">
+        <source>Homepage</source>
+        <target>Acceuil</target>
+      </trans-unit>
+      
+    </body>
+  </file>
+</xliff>

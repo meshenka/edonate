@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="57d056ed0984166336b7879c2af3657f" resname="City">
+        <source>City</source>
+        <target>City</target>
+      </trans-unit>
+      <trans-unit id="f2a6c498fb90ee345d997f888fce3b18" resname="Delete">
+        <source>Delete</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="9686b1329f95dfee7c4a72f01d847882" resname="Donation submitted">
+        <source>Donation submitted</source>
+        <target>Donation submitted</target>
+      </trans-unit>
+      <trans-unit id="06d19596a801108a59aa83e01bf51339" resname="Donation types">
+        <source>Donation types</source>
+        <target>Donation types</target>
+      </trans-unit>
+      <trans-unit id="ce8ae9da5b7cd6c3df2929543a9af92d" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="00d23a76e43b46dae9ec7aa9dcbebb32" resname="Enabled">
+        <source>Enabled</source>
+        <target>Enabled</target>
+      </trans-unit>
+      <trans-unit id="0095a9fa74d1713e43e370a7d7846224" resname="Export">
+        <source>Export</source>
+        <target>Export</target>
+      </trans-unit>
+      <trans-unit id="d7778d0c64b6ba21494c97f77a66885a" resname="Filter">
+        <source>Filter</source>
+        <target>Filter</target>
+      </trans-unit>
+      <trans-unit id="7d48ddaff550ef9e47ed788f50d860e7" resname="Max amount">
+        <source>Max amount</source>
+        <target>Max amount</target>
+      </trans-unit>
+      <trans-unit id="80a2645c681d607705f5baab7cf7d2cb" resname="Min amount">
+        <source>Min amount</source>
+        <target>Min amount</target>
+      </trans-unit>
+      <trans-unit id="49ee3087348e8d44e1feda1917443987" resname="Name">
+        <source>Name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="bafd7322c6e97d25b6299b5d6fe8920b" resname="No">
+        <source>No</source>
+        <target>No</target>
+      </trans-unit>
+      <trans-unit id="ec53a8c4f07baed5d8825072c89799be" resname="Status">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="a4d3b161ce1309df1c4e25df28694b7b" resname="Submit">
+        <source>Submit</source>
+        <target>Submit</target>
+      </trans-unit>
+      <trans-unit id="f6039d44b29456b20f8f373155ae4973" resname="Username">
+        <source>Username</source>
+        <target>Username</target>
+      </trans-unit>
+      <trans-unit id="93cba07454f06a4a960172bbd6e2a435" resname="Yes">
+        <source>Yes</source>
+        <target>Yes</target>
+      </trans-unit>
+      <trans-unit id="8c5b92b97d91daa08ebe014e20543eaf" resname="ZipCode">
+        <source>ZipCode</source>
+        <target>ZipCode</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

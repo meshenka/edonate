@@ -1,0 +1,16 @@
+{% extends "DonateAdminBundle::Dashboard/block.html.twig" %}
+{% trans_default_domain 'messages' %}
+
+{% block content %}
+<ul class="item-list">
+{% for intent in lastIntents %}
+	<li>{{ macros.intentInfo(intent) }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+{% block footer %}
+	<div class="panel-footer">
+		<a href="{{ path('donate_admin_reporting_intents') }}" title="Voir tous les dons">{{ "See all donations" | trans }}</a>
+	</div>
+{% endblock %}

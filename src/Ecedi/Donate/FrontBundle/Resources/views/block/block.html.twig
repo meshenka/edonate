@@ -1,0 +1,28 @@
+{#
+@param block
+#}
+<div id="cmsblock-{{block.id}}">
+	{% if block.title %}
+    <h2>
+        {% if block.titleUrl %}
+            <a href="{{ block.titleUrl }}" title="{{ block.titleUrlTitle }}">{{ block.title }}</a>
+        {% else  %}
+            {{ block.title }}
+        {% endif %}
+    </h2>
+	{% endif %}
+    {% if block.format == 'html'%}
+    	{% autoescape false %}
+    	{{ block.body}}
+    	{% endautoescape %}
+    {% endif %}
+    {% if block.format == 'raw'%}
+        {{ block.body}}
+    {% endif %}
+    {% if block.format == 'md'%}
+        {% autoescape false %}
+        {{ block.body|markdown }}
+        {% endautoescape %}
+    {% endif %}
+
+</div>

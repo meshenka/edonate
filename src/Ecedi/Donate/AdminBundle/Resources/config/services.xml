@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="donate_admin.export.customer.class">Ecedi\Donate\AdminBundle\Exporter\CustomerExporter</parameter>
+        <parameter key="donate_admin.export.intent.class">Ecedi\Donate\AdminBundle\Exporter\IntentExporter</parameter>
+        <parameter key="donate_admin.analytics.client_id"></parameter>
+        <parameter key="donate_admin.analytics.data_ids"></parameter>
+        <parameter key="donate_admin.analytics.api_key"></parameter>
+        <parameter key="donate_admin.form.type.customer.class">Ecedi\Donate\AdminBundle\Form\CustomerType</parameter>
+    </parameters>
+
+    <services>
+        <service id="donate_admin.form.customer" class="%donate_admin.form.type.customer.class%">
+            <argument type="service" id="service_container" />
+            <tag name="form.type" alias="customer" />
+        </service>
+        <service id="donate_admin.export.customer" class="%donate_admin.export.customer.class%">
+            <argument type="service" id="translator" />
+        </service>
+        <service id="donate_admin.export.intent" class="%donate_admin.export.intent.class%">
+            <argument type="service" id="translator" />
+        </service>
+        <service id="donate_admin.form.type.layout" class="Ecedi\Donate\AdminBundle\Form\LayoutType">
+            <tag name="form.type" alias="layout" />
+            <argument>%donate_front.i18n%</argument>
+        </service>
+        <service id="donate_admin.form.type.block" class="Ecedi\Donate\AdminBundle\Form\BlockType">
+            <tag name="form.type" alias="block" />
+        </service>
+        <!--<service id="donate_admin.form.registration" class="Ecedi\Donate\AdminBundle\Form\RegistrationType">
+            <tag name="form.type" alias="donate_admin_user_registration" />
+            <argument>%fos_user.model.user.class%</argument>
+            <argument>%security.role_hierarchy.roles%</argument>
+        </service>-->
+    </services>
+</container>

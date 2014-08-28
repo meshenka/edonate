@@ -1,0 +1,53 @@
+/* 
+------------------------------------------------------------------------------------------------
+= BOOTSTRAP
+------------------------------------------------------------------------------------------------
+*/ 
+  .col-md-3{ width:25%; float:left;}
+  .col-md-4{ width: 33.33333333333333%; float:left;}
+  .col-md-5 { width: 41.66666666666667%; float:left;}
+  .col-md-6{ width:50%; float:left;}
+  .col-md-7{ width: 58.333333333333336%; float:left;}
+  .col-md-8{ width: 66.6667%; float:left;}
+  .col-md-9{ width: 75%; float:left;}  
+  .col-md-12 { width: 100%;}
+  
+/* 
+------------------------------------------------------------------------------------------------
+= CSS3
+------------------------------------------------------------------------------------------------
+*/   
+#cartouche,
+.control-group label, /*.form-control,
+.chosen-container-single .chosen-single, .chosen-container-active.chosen-with-drop .chosen-single,.chosen-container .chosen-drop,*/
+#montant .control-group.manual, 
+#calculator,
+.panel
+{
+  position:relative;
+  zoom:1;
+  behavior: url(pie.htc);
+}
+
+#i18n, #cartoucheDr,#autreMtt, #autreMtt .control-group, #autreMtt input,
+{ 
+  zoom:1;
+  behavior: url(pie.htc);
+}
+
+/* 
+------------------------------------------------------------------------------------------------
+= SURCHARGE
+------------------------------------------------------------------------------------------------
+*/ 
+
+#sidebar {width:30%;}
+#cartoucheDr {right:-10px}
+
+#montant .control-group {margin-left: -24px;}
+#montant .control-group label {min-height:45px; margin-left:24px;}
+#montant .control-group label.manual {margin-left:20px; min-height: 48px;}
+
+#calculator { min-height: 140px;}
+#autreMtt {min-height: 58px;}
+

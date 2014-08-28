@@ -1,0 +1,12 @@
+{% extends "DonateFrontBundle::layout.html.twig" %}
+{#
+@param intent
+#}
+{% block title%}{{'Donation canceled'|trans }} | {{ parent() }} {% endblock %}
+
+{% block main_content %}
+<h1>{{ 'You canceled your donation'|trans }}</h1>
+<p class="lead">
+{{ 'Your donation has been canceled. You will not be charged'|trans }}
+</p>
+{% endblock %}

@@ -1,0 +1,7 @@
+<div class="col-md-12 col-sm-6">
+{% block cms_blocks %}
+  {% for b in blocks %}
+    {% include 'DonateFrontBundle::block/block.html.twig' with {'block': b } %}
+  {% endfor %}
+{% endblock %}
+</div>

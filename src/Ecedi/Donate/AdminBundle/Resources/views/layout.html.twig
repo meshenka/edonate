@@ -1,0 +1,131 @@
+{% import "DonateAdminBundle::macros.html.twig" as macros %}
+{% set route = app.request.get('_route') %}
+
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <!-- meta -->
+        <meta http-equiv="Content-Type" content="text/html; charset={{ _charset }}"/>
+        <meta name="robots" content="index, nofollow" />
+        <meta name="description" content="Back Office Formualire de don" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block metas %}{% endblock %}
+
+        <!-- title -->
+        <title>{% block title %}{{'Back Office - Donate to Ecedi'|trans }}{% endblock %}</title>
+
+        <!-- js -->
+        {% javascripts
+            '@jquery_js'
+            '@DonateCoreBundle/Resources/public/components/modernizr/modernizr.js'
+            '@bootstrap_js'
+            '@jquery_ui_js'
+            '@DonateCoreBundle/Resources/public/components/jquery-ui/ui/jquery.ui.datepicker.js'
+            '@DonateCoreBundle/Resources/public/components/jquery-ui/ui/i18n/jquery.ui.datepicker-fr.js'
+            '@DonateAdminBundle/Resources/public/js/admin.js'
+         output='js/admin.js' filter='uglifyjs2' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        {% javascripts
+            '@html5shiv_js'
+            '@respond_js'
+         output='js/admin-ie.js' combine=true filter='uglifyjs2' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <![endif]-->
+
+        <!-- head css -->
+        {% stylesheets
+            '@fix_bootstrap_css'
+            'bundles/donateadmin/css/datepicker.css'
+            'bundles/donateadmin/css/admin.css'
+         filter='cssrewrite,uglifycss' output='css/admin.css' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        <!-- extra head markup -->
+        {% block head %}
+        <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+        {% endblock %}
+    </head>
+    <body>
+
+        <div class="container">
+
+            <header class="row page-header">
+                {% block header_nav %}{% endblock %}
+                <div class="col-md-12">
+                    {% block header %}
+                        {% include "DonateAdminBundle::header.html.twig" %}
+                    {% endblock %}
+                    {% block header_extra %}{% endblock %}
+                </div>
+            </header>
+
+            <div class="row main-content">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-info fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            {{ flashMessage }}
+                        </div>
+                        {% endfor %}
+
+                        {% block content_header %}
+
+                            {% block primary_nav %}
+                                {% include "DonateAdminBundle::nav.html.twig" %}
+                            {% endblock %}
+                            {% block content_header_more %}{% endblock %}
+                        {% endblock %}
+                    </div>
+                </div>
+                {# On affiche pas le fil d'ariane sur l'accueil BO et la page de login #}
+                {% if route != 'donate_admin_dashboard' and route != 'fos_user_security_login' %}
+                    <div class="row">
+                        <div id="breadcrumb" class="col-md-12">
+                            {% block breadcrumb %}
+                                <ol class="breadcrumb">
+                                    {% include "DonateAdminBundle::breadcrumb.html.twig" %}
+                                </ol>
+                            {% endblock %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    {% block main %}
+                    <div class="col-md-12">
+                        {% block main_content %}{% endblock %}
+                    </div>
+                    {% endblock  %}
+                </div>
+
+            </div>
+
+            <footer class="row">
+                <div class="col-md-12">
+                {% block footer %}
+                    {% include "DonateAdminBundle::footer.html.twig" %}
+                {% endblock %}
+                {% block footer_extra %}
+                {% endblock %}
+                </div>
+            </footer>
+
+
+        </div> <!-- //.container -->
+
+        <!-- js -->
+        {% block footer_js %}
+        {% endblock %}
+
+    </body>
+</html>

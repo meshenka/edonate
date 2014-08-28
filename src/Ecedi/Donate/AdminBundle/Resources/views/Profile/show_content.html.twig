@@ -1,0 +1,7 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<h2>{{ "Your profile" | trans }}</h2>
+<div class="fos_user_user_show">
+    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <a href="{{ path('donate_admin_dashboard') }}" class="btn btn-primary">{{ "Back to homepage" | trans }}</a>
+</div>

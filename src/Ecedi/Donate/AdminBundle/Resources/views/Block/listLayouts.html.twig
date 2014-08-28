@@ -1,0 +1,130 @@
+{% extends "DonateAdminBundle::layout2Cols.html.twig" %}
+
+{% block main_content_title %}Layouts{% endblock %}
+
+{% block footer_js %}
+    {{ parent() }}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+<script  type="text/javascript">
+$(function() {
+    $('.switch-layout').click(function() {
+        var _this = $(this);
+        var id = _this.parents('tr').data('id');
+        console.log('id : ' + id);
+        if(id) {
+            var jqxhr = $.post(
+                Routing.generate('donate_admin_layout_switch', {'id': id}),
+                function() {},
+                'json'
+            )
+            .done(function(data) {
+                //mise à jour des glyphicoon
+                if(data.result == 'ok') {
+                    data.state.forEach(function(value) {
+                        $('tr').filter('[data-id="' + value.id +'"]').each(function() {
+                            if(value.value == false ) {
+                                var label = $(this).find('span.glyphicon-star');
+                                label.removeClass('glyphicon-star');
+                                label.addClass('glyphicon-star-empty');
+                            } else {
+                                var label = $(this).find('span.glyphicon-star-empty');
+                                label.removeClass('glyphicon-star-empty');
+                                label.addClass('glyphicon-star');
+                            }
+                        });
+                    });
+                }
+
+                //add label
+                var markup = $('<span class="label label-success">Success</span>');
+                _this.prepend(markup);
+                //fade out label
+                setTimeout(function() { markup.fadeOut('slow'); }, 2000);
+            })
+            .fail(function( jqXHR, textStatus, errorThrown ) { 
+                var markup = $('<span class="label label-danger">Echec!</span>');
+                _this.prepend(markup);
+                setTimeout(function() { markup.fadeOut('slow'); }, 2000);
+            });
+        }
+    });
+});
+</script>
+{% endblock %}
+
+
+{% block main_content %}
+
+<div class="main-actions">
+    <a  role="button" class="btn btn-primary" title="{{ 'New layout'|trans }}" href="{{ path('donate_admin_layout_new') }}">
+    {{ macros.icon('plus') }} {{ 'New layout'|trans }}
+    </a>
+</div>
+
+<div id="table" class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="layout-logo">{{ 'Logo'|trans }}</th>
+                <th class="layout-name">{{ knp_pagination_sortable(layouts, 'Name'| trans, 'l.name') }}</th>
+                <th class="layout-language">{{ knp_pagination_sortable(layouts, 'Language' | trans, 'l.language') }}</th>
+                <th class="layout-skin">{{ knp_pagination_sortable(layouts, 'Theme' | trans, 'l.skin') }}</th>
+                <th class="layout-action">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for layout in layouts %}
+            <tr data-entity="layout" data-id="{{layout.id}}" data-changed="{{ layout.changedAt | date('U') }}">
+                <td>
+
+                    <a title="Editer" href="{{ path('donate_admin_layout_edit', { id : layout.id }) }}">
+                        {% if layout.logoName is not null %}
+                        <img  class="img-thumbnail" alt="" src="{{ layout.logoName | imagine_filter('layout_logo_thumb') }}" />
+                        {% endif %}
+                    </a>
+
+                    <div class="switch-layout pull-right">
+                        {% if layout.isDefault == 1 %}
+                            {{ macros.icon('star') }} 
+                        {% else %}
+                            {{ macros.icon('star-empty') }} 
+                        {% endif %}
+                    </div>                    
+                </td>
+                
+                <td><a title="Editer" href="{{ path('donate_admin_layout_edit', { id : layout.id }) }}">
+                    {{ macros.icon('edit') }} {{ layout.name }}
+                </a></td>
+                <td> {{ layout.language }}</td>
+                <td>{{ layout.skin }}</td>
+                <td>
+                    <a title="Blocks" href="{{ path('donate_admin_block_list', { id : layout.id }) }}">
+                        {{ macros.icon('info-sign') }} Voir les blocks
+                    </a>                
+                    <a title="Supprimer le layout" href="{{ path('donate_admin_layout_delete', { id : layout.id }) }}">
+                        {{ macros.icon('remove') }} Supprimer
+                    </a>                
+                    <a title="Prévisualiser le layout" href="{{ path('donate_admin_layout_preview', { id : layout.id }) }}">
+                        {{ macros.icon('eye-open') }} Prévisualiser
+                    </a>                
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pager">
+        {{ knp_pagination_render(layouts) }}
+    </div>
+ </div>
+{% endblock %}
+
+
+{% block sidebar %}
+    <aside id="online-help" role="help">
+        <p role="help" class="text-info">{{ macros.icon('info-sign') }} Vous pouvez cliquer sur une étoile pour rentre le layout par défaut.
+        </p>        
+    </aside>
+{% endblock %}

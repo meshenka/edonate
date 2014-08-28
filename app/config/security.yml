@@ -1,0 +1,63 @@
+security:
+    encoders:
+        #Symfony\Component\Security\Core\User\User: plaintext
+        Ecedi\Donate\CoreBundle\Entity\User: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:         ROLE_USER
+        ROLE_SUPER_ADMIN:   [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
+
+        oauth_authorize:
+            pattern:    ^/oauth/v2/auth
+            # Add your favorite authentication process here
+            form_login:
+                provider: fos_userbundle
+                check_path: /oauth/v2/auth_login_check
+                login_path: /oauth/v2/auth_login
+            anonymous: true
+        api:
+            pattern:    ^/api
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  true # note that anonymous access is now enabled
+
+        secured:
+            pattern: ^/secured
+            form_login:
+                provider:               fos_userbundle
+                csrf_provider:          form.csrf_provider
+                login_path:             fos_user_security_login
+                check_path:             fos_user_security_check             
+            logout:       
+                path:                   fos_user_security_logout
+                target:                 /                    
+            anonymous:    true
+            remember_me:
+                key:      "%secret%"
+                lifetime:  2592000 # 30 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
+        main:
+            pattern: ^/
+            anonymous: true
+
+    access_control:
+        - { path: ^/secured/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/secured/user/register, role: ROLE_USER }
+        - { path: ^/secured/resetting, role: ROLE_ADMIN }
+        - { path: ^/secured, role: ROLE_USER }
+        - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+        - { path: ^/oauth/v2/auth_login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

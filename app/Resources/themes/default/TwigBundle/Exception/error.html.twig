@@ -1,0 +1,17 @@
+{% extends "DonateFrontBundle::layout.html.twig" %}
+{% trans_default_domain 'messages' %}
+
+{% block title %}  {{'Page not found'|trans }} | {{ parent() }}{% endblock %}
+
+{% block main_content %}
+<h1>{{'Ooops, page not found'|trans }}</h1>
+
+<a  class="btn btn-primary btn-lg" href="{{ path('donate_front_home') }}" title="{{'Back to donation form'|trans}}">{{ 'Back to home' | trans }}</a>
+{% endblock %}
+
+{% block content_header %}
+{% endblock %}
+
+
+{% block sidebar %}
+{% endblock %}

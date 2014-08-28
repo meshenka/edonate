@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2013-10-29T09:19:58Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="0049f8894e41937ebb9111cd3def6749049fb50f" resname="Click here">
+        <source>Click here</source>
+        <target>Cliquez ici</target>
+        <jms:reference-file line="31">views/Ogone/index.html.twig</jms:reference-file>
+        <jms:reference-file line="42">views/Ogone/pay.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="983a04ef2627e065c31dca3fd8660400eb1f2152" resname="If it is not the case, please ">
+        <source>If it is not the case, please </source>
+        <target>Si ce n'est pas le cas, vous pouvez </target>
+        <jms:reference-file line="31">views/Ogone/index.html.twig</jms:reference-file>
+        <jms:reference-file line="42">views/Ogone/pay.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2016f580c21fe4ad58037d3c74f284fd66b401a2" resname="In a few seconds, you will be led to the payment page.">
+        <source>In a few seconds, you will be led to the payment page.</source>
+        <target>Dans quelques secondes, vous serez redirigé vers la page de paiement.</target>
+        <jms:reference-file line="28">views/Ogone/index.html.twig</jms:reference-file>
+        <jms:reference-file line="39">views/Ogone/pay.html.twig</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

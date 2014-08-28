@@ -1,0 +1,20 @@
+{% extends "DonateAdminBundle::layout.html.twig" %}
+
+{% block main_content %}
+<h2>Une application souhaite se connecter au WebService eCollecte</h2>
+
+<p class="lead">L'application <span class="client">{{ client.name }}</span> souhaite obtenir l'autorisation d'accéder aux données eCollecte en votre nom</p>
+
+<form action="{{ path('fos_oauth_server_authorize') }}" method="POST" class="fos_oauth_server_authorize" {{ form_enctype(form) }}>
+    <input type="submit" name="accepted" value="{{ 'authorize.accept'|trans({}, 'FOSOAuthServerBundle') }}" />
+    <input type="submit" name="rejected" value="{{ 'authorize.reject'|trans({}, 'FOSOAuthServerBundle') }}" />
+
+    {{ form_row(form.client_id) }}
+    {{ form_row(form.response_type) }}
+    {{ form_row(form.redirect_uri) }}
+    {{ form_row(form.state) }}
+    {{ form_row(form.scope) }}
+    {{ form_rest(form) }}
+</form>
+
+{% endblock %}

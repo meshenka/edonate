@@ -1,0 +1,27 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            fr
+    secret:            eE€_9à59s*8UIZNzhdiz55)jduUY8---
+    google_analytics:  ~
+    ogone.pspid: ~
+    ogone.sha1_in: ~
+    ogone.sha1_out: ~
+    ogone.async_postsale: false
+    reporting.analytics.api_key: ~
+    reporting.analytics.client_id: ~
+    reporting.analytics.data_ids: ~
+    session_memcached_host: ~
+    session_memcached_port: ~
+    session_memcached_prefix: ecollect
+    session_memcached_expire: ~

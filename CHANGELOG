@@ -1,0 +1,20 @@
+v1.1.0
+  * Refactoring of the payment code to use Domain Events from Ecedi\Donate\CoreBundle\Event namespace
+  * support ogone post-sale on terminate event
+  * support ogone post-sale handling in asynchronous processing
+
+v1.0.3
+  * add CmBundle that manage optin to Campaign Monitor backend
+
+v1.0.2
+  * add layout block edition with ckeditor (and file upload support)
+
+v1.0.1
+  * UI refactoring for Layout and Blocks
+  * add Layout preview mode
+  * bugfixes
+  * add online help on intent status
+
+v1.0.0
+  * add Layout and block support
+  * set up Varnish and ESI support

@@ -1,0 +1,25 @@
+{% extends "DonateAdminBundle::layout.html.twig" %}
+{% trans_default_domain 'messages' %}
+
+{% block title %}{{ "Dashboard" | trans }}{% endblock %}
+{% block main_content_title %}{{ "Dashboard" | trans }}{% endblock %}
+
+{% block main_content %}
+<h2>{{ "Dashboard" | trans }}</h2>
+<div class="row">
+    <div class="col-md-4">
+		{{ render(controller('DonateAdminBundle:Dashboard:lastIntents')) }}
+
+		{{ render(controller('DonateAdminBundle:Dashboard:errorIntents')) }}
+
+		{{ render(controller('DonateAdminBundle:Dashboard:bestDonators')) }}
+    </div> <!-- #col-1 -->
+
+    <div class="col-md-8">
+        {{ render_esi(controller('DonateAdminBundle:Dashboard:statsIntents')) }}
+        {{ render(controller('DonateAdminBundle:Dashboard:statsGa')) }}
+        
+    </div> <!-- #col-2 -->
+</div>
+
+{% endblock %}

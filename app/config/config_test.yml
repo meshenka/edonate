@@ -1,0 +1,29 @@
+imports:
+    - { resource: config_dev.yml }
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: true
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true
+
+donate_core:
+    mail:
+        donator: true
+        webmaster : ['sgogel@ecedi.fr'] ##tableau d'email
+    equivalence:
+        - {amount : 10, label : '10 euros'}
+        - {amount : 20, label : '20 euros'}
+        - {amount : 50, label : '50 euros'}
+
+donate_front:
+    payment_methods: ['ogone']
+    campaign: _utm

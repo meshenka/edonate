@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="dd7bf230fde8d4836917806aff6a6b27" resname="Address">
+        <source>Address</source>
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="88e65555ff3cee983443c3e6ba68cc9a" resname="Apartment, floor numbers">
+        <source>Apartment, floor numbers</source>
+        <target>Apartement, étage</target>
+      </trans-unit>
+      <trans-unit id="57d056ed0984166336b7879c2af3657f" resname="City">
+        <source>City</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit id="1c76cbfe21c6f44c1d1e59d54f3e4420" resname="Company">
+        <source>Company</source>
+        <target>Société</target>
+      </trans-unit>
+      <trans-unit id="59716c97497eb9694541f7c3d37b1a4d" resname="Country">
+        <source>Country</source>
+        <target>Pays</target>
+      </trans-unit>
+      <trans-unit id="f2a6c498fb90ee345d997f888fce3b18" resname="Delete">
+        <source>Delete</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="9686b1329f95dfee7c4a72f01d847882" resname="Donation submitted">
+        <source>Donation submitted</source>
+        <target>Dons soumis</target>
+      </trans-unit>
+      <trans-unit id="06d19596a801108a59aa83e01bf51339" resname="Donation types">
+        <source>Donation types</source>
+        <target>Types de dons</target>
+      </trans-unit>
+      <trans-unit id="ce8ae9da5b7cd6c3df2929543a9af92d" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="00d23a76e43b46dae9ec7aa9dcbebb32" resname="Enabled">
+        <source>Enabled</source>
+        <target>Activé</target>
+      </trans-unit>
+      <trans-unit id="0095a9fa74d1713e43e370a7d7846224" resname="Export">
+        <source>Export</source>
+        <target>Exporter</target>
+      </trans-unit>
+      <trans-unit id="d7778d0c64b6ba21494c97f77a66885a" resname="Filter">
+        <source>Filter</source>
+        <target>Filtrer</target>
+      </trans-unit>
+      <trans-unit id="04176f095283bc729f1e3926967e7034" resname="Firstname">
+        <source>Firstname</source>
+        <target>Prénom</target>
+      </trans-unit>
+      <trans-unit id="dff4bf10409100d989495c6d5486035e" resname="Lastname">
+        <source>Lastname</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="af966ee9ed55e4496e48f9d5348edc23" resname="Living with">
+        <source>Living with</source>
+        <target>Habitant chez</target>
+      </trans-unit>
+      <trans-unit id="f6fcb19b726462d66000a6460073c311" resname="Locality, post box">
+        <source>Locality, post box</source>
+        <target>Lieu-dit, boîte postale</target>
+      </trans-unit>
+      <trans-unit id="7d48ddaff550ef9e47ed788f50d860e7" resname="Max amount">
+        <source>Max amount</source>
+        <target>Montant max</target>
+      </trans-unit>
+      <trans-unit id="80a2645c681d607705f5baab7cf7d2cb" resname="Min amount">
+        <source>Min amount</source>
+        <target>Montant min</target>
+      </trans-unit>
+      <trans-unit id="49ee3087348e8d44e1feda1917443987" resname="Name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="bafd7322c6e97d25b6299b5d6fe8920b" resname="No">
+        <source>No</source>
+        <target>Non</target>
+      </trans-unit>
+      <trans-unit id="bcc254b55c4a1babdf1dcb82c207506b" resname="Phone">
+        <source>Phone</source>
+        <target>Téléphone</target>
+      </trans-unit>
+      <trans-unit id="d44edfb11d160d1a69431208bb5e9394" resname="Recuring">
+        <source>Recuring</source>
+        <target>Récurrent</target>
+      </trans-unit>
+      <trans-unit id="6c9d6b8aea6f3d16847bdebe05878a2d" resname="Spot">
+        <source>Spot</source>
+        <target>Ponctuel</target>
+      </trans-unit>
+      <trans-unit id="ec53a8c4f07baed5d8825072c89799be" resname="Status">
+        <source>Status</source>
+        <target>Statut</target>
+      </trans-unit>
+      <trans-unit id="a4d3b161ce1309df1c4e25df28694b7b" resname="Submit">
+        <source>Submit</source>
+        <target>Valider</target>
+      </trans-unit>
+      <trans-unit id="f6039d44b29456b20f8f373155ae4973" resname="Username">
+        <source>Username</source>
+        <target>Nom d'utilisateur</target>
+      </trans-unit>
+      <trans-unit id="93cba07454f06a4a960172bbd6e2a435" resname="Yes">
+        <source>Yes</source>
+        <target>Oui</target>
+      </trans-unit>
+      <trans-unit id="8c5b92b97d91daa08ebe014e20543eaf" resname="ZipCode">
+        <source>ZipCode</source>
+        <target>Code postal</target>
+      </trans-unit>
+      <trans-unit id="e0ed8e71dbd22a1e91cb570b52443fd5" resname="Zipcode">
+        <source>Zipcode</source>
+        <target>Code postal</target>
+      </trans-unit>
+      <trans-unit id="10aec35353f9c4096a71c38654c3d402" resname="cancel">
+        <source>cancel</source>
+        <target>Annulé</target>
+      </trans-unit>
+      <trans-unit id="6b2ded51d81a4403d8a4bd25fa1e57ee" resname="done">
+        <source>done</source>
+        <target>Terminé</target>
+      </trans-unit>
+      <trans-unit id="cb5e100e5a9a3e7f6d1fd97512215282" resname="error">
+        <source>error</source>
+        <target>Erreur</target>
+      </trans-unit>
+      <trans-unit id="22af645d1859cb5ca6da0c484f1f37ea" resname="new">
+        <source>new</source>
+        <target>Nouveau</target>
+      </trans-unit>
+      <trans-unit id="7c6c2e5d48ab37a007cbf70d3ea25fa4" resname="pending">
+        <source>pending</source>
+        <target>En cours</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

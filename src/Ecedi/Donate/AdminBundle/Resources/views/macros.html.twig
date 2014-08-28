@@ -1,0 +1,83 @@
+{% macro icon(type) %}
+{% set type = type|default('ok') %}
+{% spaceless %}
+<span class="glyphicon glyphicon-{{ type }}"></span>
+{% endspaceless %}
+{% endmacro %}
+
+{% macro intent_state_class(intent) %}
+{% spaceless %}
+    {% if intent.status == "new" %}
+        active
+    {% endif %}
+    {% if intent.status== "pending" %}
+        active
+    {% endif %}
+    {% if intent.status== "done" %}
+        success
+    {% endif %}
+    {% if intent.status== "cancel"%}
+        warning
+    {% endif %}
+    {% if intent.status == "error" %}
+        danger
+    {% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro euro() %}
+<span class="euro">€</span>
+{% endmacro %}
+
+{% macro fiscal_receipt(fiscal_receipt_type) %}
+    {% if fiscal_receipt_type == 0 %}
+        {{ "Email" | trans}}
+    {% elseif fiscal_receipt_type == 1 %}
+        {{ "Post" | trans}}
+    {% endif %}
+{% endmacro %}
+
+{% macro payment_state_class(payment) %}
+{% spaceless %}
+    {% if payment.status == "new" %}
+        active
+    {% endif %}
+    {% if payment.status == "autorized" %}
+        active
+    {% endif %}
+    {% if payment.status == "payed" %}
+        success
+    {% endif %}
+    {% if payment.status == "invalid"%}
+        warning
+    {% endif %}
+    {% if payment.status == "canceled"%}
+        warning
+    {% endif %}
+    {% if payment.status == "denied" %}
+        warning
+    {% endif %}
+    {% if payment.status  == "failed" %}
+        danger
+    {% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro customerLink(customerId) %}
+   {{ path('donate_admin_reporting_customer_show', { 'id': customerId }) }}
+{% endmacro %}
+
+{% macro intentLink(intentId) %}
+   {{ path('donate_admin_reporting_intent_show', { 'id': intentId }) }}
+{% endmacro %}
+
+{% macro userLink(userId) %}
+   {{ path('donate_admin_user_edit', { 'id': userId }) }}
+{% endmacro %}
+
+{% macro intentInfo(intent) %}
+{% import _self as this %}
+    <a href="{{ this.intentLink(intent.id) }}" title="Voir le détail du don">{{ intent.amount/100 }} {{ this.euro() }}{{ " - " }}{{ intent.createdAt | date('d/m/Y') }}</a>
+    {{ " - " }}<a href="{{ this.customerLink(intent.customer.id) }}" title="Voir le détail donateur">{{ intent.customer.firstName }} {{ intent.customer.lastName }}</a>
+{% endmacro %}

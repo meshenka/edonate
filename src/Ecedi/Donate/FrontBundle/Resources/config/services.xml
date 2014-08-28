@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="donate_front.google_analytics" />
+        <parameter key="donate_front.payment_methods" />
+        <parameter key="donate_front.form.civility" />
+        <parameter key="donate_front.i18n" />
+        <parameter key="donate_front.campaign" />
+        <parameter key="form.type.donation.class">Ecedi\Donate\FrontBundle\Form\DonationType</parameter>
+    </parameters>
+
+    <services>
+        <service id="form.type.donate" class="%form.type.donation.class%">
+            <argument type="service" id="service_container" />
+            <tag name="form.type" alias="donate" />
+        </service>
+
+        <service id="donate_front.i18n.twig" class="Ecedi\Donate\FrontBundle\Twig\I18nTwigExtension">
+            <argument type="service" id="service_container" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="donate_front.layout.twig" class="Ecedi\Donate\FrontBundle\Twig\Extension\LayoutExtension">
+            <argument type="service" id="donate_core.layout.manager" />
+            <argument type="service" id="service_container" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="donate_front.form_listener" class="Ecedi\Donate\FrontBundle\Listener\FormListener">
+            <argument type="service" id="event_dispatcher" />
+        </service>
+    </services>
+
+</container>

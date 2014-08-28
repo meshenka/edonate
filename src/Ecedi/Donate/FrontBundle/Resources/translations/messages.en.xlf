@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2014-02-04T14:52:35Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="3b8a78876a64b87d1b1d41812fb4f1a4d02ecee2" resname="      &#10;  &lt;p&gt;&#10;    By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.&#10;  &lt;/p&gt;&#10;  &lt;p&gt;&#10;    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.&#10;  &lt;/p&gt;">
+        <source><![CDATA[      
+  <p>
+    By supporting Association XY, you enjoy an <strong>income tax reduction of 66% of the value of the donation made</strong>, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.
+  </p>
+  <p>
+    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an <strong>income tax reduction of 75% of the value of the donation made</strong>, up to a limit of 50 000 euros.
+  </p>]]></source>
+        <target><![CDATA[      
+  <p>
+    By supporting Association XY, you enjoy an <strong>income tax reduction of 66% of the value of the donation made</strong>, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.
+  </p>
+  <p>
+    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an <strong>income tax reduction of 75% of the value of the donation made</strong>, up to a limit of 50 000 euros.
+  </p>]]></target>
+        <jms:reference-file line="22">Resources/views/sidebar.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="55ef2d8f8421092350bbf1178752ce93037c1b6a" resname=" will cost you ">
+        <source> will cost you </source>
+        <target> will cost you </target>
+        <jms:reference-file line="11">Resources/views/calculator.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b8aa330e57e58754c4078a2b7d1dda8d44c253bb" resname=" your donation of ">
+        <source> your donation of </source>
+        <target> your donation of </target>
+        <jms:reference-file line="11">Resources/views/calculator.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d70f93df5e8f9b55be44fbeee9d203972e3383d4" resname="Address">
+        <source>Address</source>
+        <target>Address</target>
+        <jms:reference-file line="125">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="43dc8532f7e57be250d7397de3d14085d51516f0" resname="Amount">
+        <source>Amount</source>
+        <target>Amount</target>
+        <jms:reference-file line="19">views/Return/completed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3e78f6e4fd49ba9f8959402d322d3f560bf1c105" resname="Apartment, floor numbers">
+        <source>Apartment, floor numbers</source>
+        <target>Apartment, floor numbers</target>
+        <jms:reference-file line="140">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7e76f2f326bb715730cf6a9276c64c163a754037" resname="Autorisation Id">
+        <source>Autorisation Id</source>
+        <target>Autorisation Id</target>
+        <jms:reference-file line="26">views/Return/completed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4271627f4f0bef6104a95cca7bb21cda4d74503e" resname="City">
+        <source>City</source>
+        <target>City</target>
+        <jms:reference-file line="150">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0506773f181511d306efe57b7d20af4ea44fa1b3" resname="Civility">
+        <source>Civility</source>
+        <target>Civility</target>
+        <jms:reference-file line="90">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7a1994999d181deea68e4304b3346e78f838ecb7" resname="Company">
+        <source>Company</source>
+        <target>Company</target>
+        <jms:reference-file line="95">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b37456c4530be810dc040f50da72eda09addfb0a" resname="Contact">
+        <source>Contact</source>
+        <target>Contact</target>
+        <jms:reference-file line="3">Resources/views/footer.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d523ebbd10146cdfd39dee077f04c9d08468d0bc" resname="Country">
+        <source>Country</source>
+        <target>Country</target>
+        <jms:reference-file line="158">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eb9a4bc1c0c153e4e4b042a79113b815b7e3021d" resname="Date">
+        <source>Date</source>
+        <target>Date</target>
+        <jms:reference-file line="21">views/Return/completed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="95345e276ffbb748fffc3a9b8c9322bd0b489d39" resname="Donate">
+        <source>Donate</source>
+        <target>Donate</target>
+        <jms:reference-file line="132">views/Form/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3bf316b705ed05e8bd2b3e446c1c3c18b3d5694f" resname="Donate to Ecedi">
+        <source>Donate to Ecedi</source>
+        <target>Donate to Ecedi</target>
+        <jms:reference-file line="13">Resources/views/layout.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="04805292da5ae6dff47a698ffbed519b1ec82d82" resname="Donation canceled">
+        <source>Donation canceled</source>
+        <target>Donation canceled</target>
+        <jms:reference-file line="5">views/Return/canceled.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="e1bb7d1bb841cc5a2b308c8c4a0426366451d691" resname="Donation completed">
+        <source>Donation completed</source>
+        <target>Donation completed</target>
+        <jms:reference-file line="5">views/Return/completed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d9f0bfaaa7cd235e0678e002a3cd48631ef3c3ea" resname="Donation denied">
+        <source>Donation denied</source>
+        <target>Donation denied</target>
+        <jms:reference-file line="5">views/Return/denied.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="323a3562b57915495efaad54f1a1dc444f57fb8d" resname="Donation failed">
+        <source>Donation failed</source>
+        <target>Donation failed</target>
+        <jms:reference-file line="5">views/Return/failed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d83f2acf0928685f2f19fa5840aa72234b3f4a76" resname="Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, ">
+        <source>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, </source>
+        <target>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, </target>
+        <jms:reference-file line="66">Resources/views/sidebar.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="888ff5f00606a835207f61357e02ea4c88080e3c" resname="Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.">
+        <source>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</source>
+        <target>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</target>
+        <jms:reference-file line="55">Resources/views/sidebar.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="78536e762f11e5044202164d1c03dc0cc7e8fe4d" resname="Donor relations">
+        <source>Donor relations</source>
+        <target>Donor relations</target>
+        <jms:reference-file line="41">Resources/views/sidebar.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="84add5b2952787581cb9a8851eef63d1ec75d22b" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+        <jms:reference-file line="118">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7e568a90221d853052b3466e581eb5f7c030b901" resname="First name">
+        <source>First name</source>
+        <target>First name</target>
+        <jms:reference-file line="99">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2f31a04afa17027d150cac07fb46cc81d3a8634b" resname="Give in trust">
+        <source>Give in trust</source>
+        <target>Give in trust</target>
+        <jms:reference-file line="52">Resources/views/sidebar.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="12f6efbf0eb770dbe56f5f40fc7644d4aca5422d" resname="Give security">
+        <source>Give security</source>
+        <target>Give security</target>
+        <jms:reference-file line="63">Resources/views/sidebar.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c47ae15370cfe1ed2781eedc1dc2547d12d9e972" resname="Help">
+        <source>Help</source>
+        <target>Help</target>
+        <jms:reference-file line="4">Resources/views/footer.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eb4fc97cbcb77b6c34d2a834ccefe51dc7992cfe" resname="How is my &lt;span&gt; donation used?&lt;span&gt;">
+        <source><![CDATA[How is my <span> donation used?<span>]]></source>
+        <target><![CDATA[How is my <span> donation used?<span>]]></target>
+        <jms:reference-file line="6">Resources/views/sidebar.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="be5d838e31caf05cb5e78ff8b99e166b110c0d15" resname="How is my donation used?">
+        <source>How is my donation used?</source>
+        <target>How is my donation used?</target>
+        <jms:reference-file line="5">Resources/views/sidebar.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="dc84040161c4de6d8165c63b3b7b6eed09a505a8" resname="I Give">
+        <source>I Give</source>
+        <target>I Give</target>
+        <jms:reference-file line="11">views/Form/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="1256a81db65a6371716be536a8240ee38e951a57" resname="I agree to receive informations from Association XY">
+        <source>I agree to receive informations from Association XY</source>
+        <target state="new">I agree to receive informations from Association XY</target>
+        <jms:reference-file line="176">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cb73cb42da33de2df8ad1b9b28a9df4e40cf818b" resname="I prefer to receive my tax receipt">
+        <source>I prefer to receive my tax receipt</source>
+        <target>I prefer to receive my tax receipt</target>
+        <jms:reference-file line="169">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="adec36a821f81a6990b1e65d9e4ac5fb8ee2a205" resname="Last name">
+        <source>Last name</source>
+        <target>Last name</target>
+        <jms:reference-file line="103">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d86792e787adb392d9bfca979ad9a73a541ece45" resname="Legal notices">
+        <source>Legal notices</source>
+        <target>Legal notices</target>
+        <jms:reference-file line="5">Resources/views/footer.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eca10f88a9ba000b16c0e92c3c647ce1f771b710" resname="Living with">
+        <source>Living with</source>
+        <target>Living with</target>
+        <jms:reference-file line="135">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="678be5c2844e1e6f148600759010fba9fbaa61f7" resname="Locality, post box">
+        <source>Locality, post box</source>
+        <target>Locality, post box</target>
+        <jms:reference-file line="130">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="38f00f8738e241daea6f37f6f55ae8414d7b0219" resname="Lorem ipsum dolor sit amet">
+        <source>Lorem ipsum dolor sit amet</source>
+        <target>Lorem ipsum dolor sit amet</target>
+        <jms:reference-file line="10">Resources/views/header.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="639fa4cb21ce791a9d177d0e6419e73518126c9f" resname="My payment method">
+        <source>My payment method</source>
+        <target>My payment method</target>
+        <jms:reference-file line="112">views/Form/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c98f1d384c092355b4f59a907840c4e914f3658d" resname="My personal details">
+        <source>My personal details</source>
+        <target>My personal details</target>
+        <jms:reference-file line="39">views/Form/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="709a23220f2c3d64d1e1d6d18c4d5280f8d82fca" resname="Name">
+        <source>Name</source>
+        <target>Name</target>
+        <jms:reference-file line="17">views/Return/completed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8b0a6ad87259ee317fd9dec93e45abd43ff9f449" resname="Other amount">
+        <source>Other amount</source>
+        <target>Other amount</target>
+        <jms:reference-file line="226">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="df6a1eb9df44c2bd5217f3e77e6c309422d04159" resname="Payment details">
+        <source>Payment details</source>
+        <target>Payment details</target>
+        <jms:reference-file line="14">views/Return/completed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="77064d5265236e0ac252f3fc4a5ba7b274b6a583" resname="Phone">
+        <source>Phone</source>
+        <target>Phone</target>
+        <jms:reference-file line="107">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eacbc121c0d70ca1c3489b1587a16bfb59b26438" resname="Repeat Email">
+        <source>Repeat Email</source>
+        <target>Repeat Email</target>
+        <jms:reference-file line="119">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cb9c1f582b1f8ce00db9e611da402c763353d02a" resname="Required fields">
+        <source>Required fields</source>
+        <target>Required fields</target>
+        <jms:reference-file line="43">views/Form/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="55b822b79c7a71438f97c3eed334fc802f6b9a64" resname="Thank you for your generous gesture">
+        <source>Thank you for your generous gesture</source>
+        <target>Thank you for your generous gesture</target>
+        <jms:reference-file line="10">views/Return/completed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3cc06d0ade4497b27d3bb60ce35edaf5a45d9503" resname="Thanks to the tax reduction of ">
+        <source>Thanks to the tax reduction of </source>
+        <target>Thanks to the tax reduction of </target>
+        <jms:reference-file line="11">Resources/views/calculator.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="e59f872ad59e386e652ffb3067df9a1e250e253c" resname="The email fields must match.">
+        <source>The email fields must match.</source>
+        <target>The email fields must match.</target>
+        <jms:reference-file line="111">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d8ffa224cce635213f1dff317230f526cecd6e94" resname="Transaction Id">
+        <source>Transaction Id</source>
+        <target>Transaction Id</target>
+        <jms:reference-file line="30">views/Return/completed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9d9f5e67bc1671465611093f236e7413f3e51550" resname="You are subject to French wealth tax (ISF)">
+        <source>You are subject to French wealth tax (ISF)</source>
+        <target>You are subject to French wealth tax (ISF)</target>
+        <jms:reference-file line="7">Resources/views/calculator.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="1b76d03727f46f29c60da617984ad54d4e4eae7b" resname="You canceled your donation">
+        <source>You canceled your donation</source>
+        <target>You canceled your donation</target>
+        <jms:reference-file line="8">views/Return/canceled.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b8ea9821e6cdf21cac4ddd73ad5e2f36c70e95a8" resname="Your contact">
+        <source>Your contact</source>
+        <target>Your contact</target>
+        <jms:reference-file line="29">Resources/views/sidebar.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9fd2c12344f1d00179b25eb820b3216c0f3e70b1" resname="Your donation failed">
+        <source>Your donation failed</source>
+        <target>Your donation failed</target>
+        <jms:reference-file line="8">views/Return/failed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="34f8bc236b04569c1912ab1036bead7c07ff0767" resname="Your donation has been canceled. You will not be charged">
+        <source>Your donation has been canceled. You will not be charged</source>
+        <target>Your donation has been canceled. You will not be charged</target>
+        <jms:reference-file line="10">views/Return/canceled.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="242125e42b3694d89208dc60b33dc30fd2b82ad9" resname="Your donation has failed. You will not be charged">
+        <source>Your donation has failed. You will not be charged</source>
+        <target>Your donation has failed. You will not be charged</target>
+        <jms:reference-file line="10">views/Return/failed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6dde53f0f98600bd9bbac501ab25a183cfe6f273" resname="Your donation is validated">
+        <source>Your donation is validated</source>
+        <target>Your donation is validated</target>
+        <jms:reference-file line="8">views/Return/completed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4f6c8bceaa2a956dd96983ee568c22f3c9c27e65" resname="Your donation was denied by your bank">
+        <source>Your donation was denied by your bank</source>
+        <target>Your donation was denied by your bank</target>
+        <jms:reference-file line="8">views/Return/denied.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d7537719fb3400524e8915a3cfb31c9a6b67e637" resname="Your transaction has been refused. You will not be charged">
+        <source>Your transaction has been refused. You will not be charged</source>
+        <target>Your transaction has been refused. You will not be charged</target>
+        <jms:reference-file line="10">views/Return/denied.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eeb1bf47a6727b57babf3daaca9e46979f2d149a" resname="Zipcode">
+        <source>Zipcode</source>
+        <target>Zipcode</target>
+        <jms:reference-file line="145">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f4065c91330ec006a24be7f559a843346907d1f5" resname="by email">
+        <source>by email</source>
+        <target>by email</target>
+        <jms:reference-file line="163">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a1c8872b8d0b2a17cc35fc16a0e320cc3eac80fa" resname="by post">
+        <source>by post</source>
+        <target>by post</target>
+        <jms:reference-file line="164">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9fd02639cabf0849d80094b44d1349240aac7b46" resname="format name@provider.com">
+        <source>format name@provider.com</source>
+        <target>format name@provider.com</target>
+        <jms:reference-file line="66">views/Form/index.html.twig</jms:reference-file>
+        <jms:reference-file line="69">views/Form/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="db870a5de4dce455b1a6c6f0b2daf424fb0cd85c" resname="xxx@yyyy.fr">
+        <source>xxx@yyyy.fr</source>
+        <target>xxx@yyyy.fr</target>
+        <jms:reference-file line="115">FrontBundle/Form/DonationType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="manual-cicility-Mr">
+        <source>Mr</source>
+        <target>Mr</target>
+      </trans-unit>
+      <trans-unit id="manual-cicility-Ms">
+        <source>Ms</source>
+        <target>Ms</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

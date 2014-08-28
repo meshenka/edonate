@@ -1,0 +1,41 @@
+#configuration des bundles ECollecte
+donate_core:
+    mail:
+        donator: true
+        webmaster : ['sgogel@ecedi.fr'] ##tableau d'email
+    equivalence:
+        - {amount : 20, label : '20<span class="euro">€</span>'}
+        - {amount : 50, label : '50<span class="euro">€</span>'}
+        - {amount : 100, label : '100<span class="euro">€</span>'}
+
+donate_front:
+    google_analytics: %google_analytics%
+    payment_methods: ['ogone']
+    i18n: ['fr', 'en']
+    campaign: _utm_campaign
+    form:
+        civility:
+            mr: 'Mr'
+            ms: 'Ms'
+#            mrs: 'Mrs'
+#            mis: 'Miss'
+#            pr: 'Prof'
+#            dr: 'Dr'
+#           rev: 'Rev'
+#           sir : 'Sir'
+            cp: 'Company'
+
+donate_ogone:
+    pspid: %ogone.pspid%
+    prod: false
+    prefix: SYGLOC
+    async_postsale: %ogone.async_postsale%
+    security:
+        sha1_in: %ogone.sha1_in%
+        sha1_out: %ogone.sha1_out%
+
+donate_admin:
+    analytics:
+        clientId: %reporting.analytics.client_id%
+        dataIds: %reporting.analytics.data_ids%
+        apiKey: %reporting.analytics.api_key%

@@ -1,0 +1,23 @@
+{% extends "DonateAdminBundle::Dashboard/block.html.twig" %}
+{% trans_default_domain 'messages' %}
+
+{% set title = 'Donator\'s info!' | trans %}
+{% block content %}
+     <ul class="item-list">
+        <li>{{ customer.civility | trans }} {{ customer.lastName }} {{ customer.firstName }}</li>
+        <li>{{ "Email" | trans }}{{ " : " }}<a href="mailto:{{ customer.email }}" title="Envoyer un email">{{ customer.email }}</a></li>
+        <li>{{ "Phone" | trans }}{{ " : " }}<a href="tel:{{ customer.phone }}" title="Appeler le {{ customer.phone }}">{{ customer.phone }}</a></li>
+        <li>{{ "Adress" | trans }} :
+            <ul>
+                <li>{{ customer.addressNber }} {{ customer.addressStreet}}</li>
+                <li>{{ customer.addressZipcode }} {{ customer.addressCity}}</li>
+                <li>{{ customer.addressCountry }}</li>
+            </ul>
+        </li>
+    </ul>
+{% endblock %}
+{% block footer %}
+    <div class="panel-footer">
+        <a href="{{ macros.customerLink(customer.id) }}" title="Voir le détail donateur">{{ "See donator's detail" | trans }}</a>
+    </div>
+{% endblock %}

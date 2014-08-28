@@ -1,0 +1,45 @@
+{% extends "DonateFrontBundle::layout.html.twig" %}
+{#
+template que vas vers ogone, formulaire avec tous les champs en Hidden
+@param ogone the Ogone  request
+#}
+{% block main_content %}
+{% spaceless %}
+<form id="goto-ogone" action="{{ ogone.action }}" method="{{ ogone.method }}">
+
+	<input type="hidden" name="ORDERID" value="{{ ogone.orderId }}" />
+    <input type="hidden" name="PSPID" value="{{ ogone.pspid }}" />
+
+    <input type="hidden" name="SHASign" value="{{ ogone.sha1in }}" />
+
+    <input type="hidden" name="AMOUNT" value="{{ ogone.amount }}" />
+
+    <input type="hidden" name="OWNERZIP" value="{{ ogone.ownerZip }}" />
+    <input type="hidden" name="OWNERTOWN" value="{{ ogone.ownerTown }}" />
+    <input type="hidden" name="OWNERCTY" value="{{ ogone.ownerCty }}" />
+
+    <!-- URL -->
+    <input type="hidden" name="ACCEPTURL" value="{{ ogone.acceptUrl }}" />
+    <input type="hidden" name="BACKURL" value="{{ ogone.backUrl }}" />
+    <input type="hidden" name="CANCELURL" value="{{ ogone.cancelUrl }}" />
+    <input type="hidden" name="DECLINEURL" value="{{ ogone.declineUrl }}" />
+    <div class="textinfo">
+    	<p>
+    		{{'In a few seconds, you will be led to the payment page.'|trans}}
+    	</p>
+    	<p>
+    		{{ 'If it is not the case, please '| trans }} <input value="{{ 'Click here'|trans }}" type="submit" name="goOgone" class="btn btn-primary"/>
+    	</p>
+    </div>
+</form>
+{% endspaceless %}
+{% endblock %}
+
+{% block end %}
+	{{ parent() }}
+	<script  type="text/javascript">
+        $(documment).ready(function() {
+		  //$("#goto-ogone").submit();
+        });
+   	</script>
+{% endblock %}

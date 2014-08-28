@@ -1,0 +1,246 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: ecollecte.yml }
+
+framework:
+    esi: { enabled: true}
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    globals:
+        google_analytics: %google_analytics%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ DonateFrontBundle, DonateAdminBundle, DonateCoreBundle, FOSUserBundle, FMElfinderBundle]
+    node: /usr/bin/nodejs
+    node_paths: [/usr/local/lib/node_modules, /usr/lib/node_modules/]
+    #java: /usr/bin/java
+    assets:
+        fix_bootstrap_css:
+            inputs:
+                - "bundles/donatecore/components/bootstrap/dist/css/bootstrap.css"
+                - "bundles/donatecore/components/bootstrap/dist/css/bootstrap-theme.css"
+            filters:
+                - cssrewrite
+
+    filters:
+        cssrewrite: ~
+        lessphp:
+            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+            apply_to: "\.less$"
+        # less:
+        #     apply_to: "\.less$"
+        uglifyjs2:
+            bin: /usr/local/bin/uglifyjs
+        uglifycss:
+            bin: /usr/local/bin/uglifycss
+        #closure:
+        #    jar: %kernel.root_dir%/Resources/java/compiler.jar
+        #yui_css:
+        #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: %kernel.root_dir%/data/data.db3
+        # path:     %database_path%
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    spool:     { type: memory }
+
+liip_theme:
+    themes: ['default']
+    active_theme: 'default'
+    load_controllers: false
+
+sensio_framework_extra:
+    view:       { annotations:  false }
+    router:     { annotations:  true }
+    request:    { converters:   true }
+
+fos_rest:
+#    routing_loader:
+#        default_format: 
+#        include_format:                 false
+    param_fetcher_listener:     true
+    body_listener:              true
+    body_converter:
+        enabled:                true
+    format_listener:
+        rules:
+            - 
+                path: ^/
+                prefer_extension:       false
+                priorities:             [html,json,xml]
+                fallback_format: html
+            -
+                path: ^/api
+                prefer_extension:       false
+                priorities:             [html,json,xml]
+                fallback_format: json
+
+    view:
+        view_response_listener: true
+
+stof_doctrine_extensions:
+    default_locale: fr_FR
+    orm:
+        default:
+            tree: false
+            timestampable: true # not needed: listeners are not enabled by default
+    uploadable:
+        default_file_path:       %kernel.root_dir%/../web/uploads
+        validate_writable_directory: true
+
+knp_paginator:
+    page_range: 10                      # default page range used in pagination control
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig     # sliding pagination controls template
+
+# FOSUserBundle Configuration       
+fos_user:
+    db_driver:      orm                        
+    firewall_name:  secured     # Le nom du firewall derrière lequel on utilisera ces utilisateurs
+    user_class:     Ecedi\Donate\CoreBundle\Entity\User
+    use_listener:   false       # If you always save the user through the user manager, you may want to disable it to improve performance.
+
+fos_oauth_server:
+    db_driver:  orm
+    client_class:        Ecedi\Donate\ApiBundle\Entity\Client
+    access_token_class:  Ecedi\Donate\ApiBundle\Entity\AccessToken
+    refresh_token_class: Ecedi\Donate\ApiBundle\Entity\RefreshToken
+    auth_code_class:     Ecedi\Donate\ApiBundle\Entity\AuthCode
+
+    service:
+        user_provider: fos_user.user_manager
+
+knp_markdown:
+    parser:
+        service: markdown.parser.sundown
+
+knp_gaufrette:
+    # stream wrappers
+    stream_wrapper: ~
+    adapters:
+        logo_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/uploads/layout/logo
+                create:     true
+        background_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/uploads/layout/background
+                create:     true
+    filesystems:
+        logo:
+            adapter: logo_adapter
+        background:
+            adapter: background_adapter
+
+vich_uploader:
+    db_driver: orm
+    gaufrette: true
+    storage:   vich_uploader.storage.gaufrette
+    mappings:
+        layout_logo:
+            upload_destination: logo
+            namer: vich_uploader.namer_uniqid
+        layout_background:
+            upload_destination: background
+            namer: vich_uploader.namer_uniqid
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    loaders:
+        stream.layout_logo:
+            stream:
+                wrapper: gaufrette://logo/
+        stream.layout_background:
+            stream:
+                wrapper: gaufrette://background/
+    #cache: default
+    filter_sets:
+        logo:
+            quality: 85
+            data_loader: stream.layout_logo
+            filters:
+                thumbnail: { size: [173, 145], mode: outbound }
+        layout_logo_thumb:
+            quality: 85
+            data_loader: stream.layout_logo
+            filters:
+                thumbnail: { size: [20, 20], mode: outbound }
+        layout_background:
+            quality: 100
+            data_loader: stream.layout_background
+            filters:
+                thumbnail: { size: [1280, 496], mode: outbound }
+
+fos_js_routing:
+    routes_to_expose: [ donate_admin_layout_switch ]
+
+sp_bower:
+    bundles:
+        DonateCoreBundle: ~
+
+trsteel_ckeditor:
+    ui_color: '#ffffff'
+    language: 'fr-fr'
+    filebrowser_image_browse_url:
+        route: elfinder
+    filebrowser_browse_url:
+        route: elfinder
+fm_elfinder:
+    editor: ckeditor # other choices are tinymce or simple
+    include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
+    compression: true # enable if you configured the uglifycss and uglifyjs2 assetic filters and want compression
+    connector:
+        debug: false # defaults to false
+        roots:       # at least one root must be defined
+            uploads:
+#                driver: elfinder.driver.filesystem
+                driver: LocalFileSystem
+                path: uploads/wysiwyg
+                upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
+                upload_deny: ['all']
+                upload_max_size: 2M

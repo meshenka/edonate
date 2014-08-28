@@ -1,0 +1,107 @@
+/* On importe le fichier LESS qui liste toutes les variables : */
+@import "variables.less";
+
+@media screen  and @screen-tablet { 
+/* 
+------------------------------------------------------------------------------------------------
+= STRUCTURE
+------------------------------------------------------------------------------------------------
+*/
+ #content, #sidebar {@f-none; .w(100%);}
+ #footerInner {max-width:100%;}
+ #main {padding:9px 10px 0;/*margin:0 -15px; padding:0; background:none;*/ background-size:100% auto;}
+ .notHome #main {padding:9px 11px 0;}
+
+/* 
+------------------------------------------------------------------------------------------------
+= header, col droite et contenu
+------------------------------------------------------------------------------------------------
+*/
+.img-rounded {padding-bottom:14px;}
+.slogan {padding-left:27px;}
+#cartoucheDr {right:-11px; z-index:1; padding: 9px 5px;}
+.confiance {@clear;}
+
+/*---------- = Montant / calculette----------*/
+    /* Montant*/
+#montant .control-group label {margin-left:28px;}
+#autreMtt {left:196px;}
+
+}/*fin media tablet*/
+
+
+/*________________________________________________________________
+                                MOBILE
+__________________________________________________________________
+*/
+@media screen  and @screen-mobile { 
+body {background-size:auto auto; background-position:left top;}
+
+/* 
+------------------------------------------------------------------------------------------------
+= STRUCTURE
+------------------------------------------------------------------------------------------------
+*/
+#main {margin:0 -15px; padding:0;}
+#autreMtt {left:197px; right:inherit; }
+
+/* 
+------------------------------------------------------------------------------------------------
+= HEADER et FOOTER
+------------------------------------------------------------------------------------------------
+*/
+.img-rounded{padding-left:0}
+.slogan { padding: 40px 7px 20px 15px; .s(1.571em);}
+#cartoucheDr {@none;}
+
+#footer {
+  ul {@block;}
+  #cartouche {margin-top:20px;}
+
+}
+
+/* 
+------------------------------------------------------------------------------------------------
+= CONTENU
+------------------------------------------------------------------------------------------------
+*/
+
+#help-inline {margin:0 15px;}
+  /*---------- = Montant / calculette----------*/
+  
+    /* Montant*/
+#amounts {padding-bottom:0;}
+
+#montant {padding-bottom:15px;
+  .panel-title {@a-center;}
+  .control-group label {
+    margin-left:8px; padding: 10px 15px 30px; width: 92px; min-height: 85px; font-size: 2.071em;
+
+    &.manual, &:last-child { min-height: 56px; width: 54%; margin-top:8px; padding: 17px 0 0 10px; font-size: 1.072em; }
+  }
+}    
+    
+#autreMtt {left:170px; bottom:-15px; min-height: 56px; width: 43%;
+    .control-group {min-height: 36px; font-size: 1.429em;}
+    input {width: 76%;}
+    .help-inline {  left:-144px; .s(0.65em);}
+}
+
+#calculator {.minH(inherit); background:url(../images/encoche-mobile.gif) no-repeat center top @bleuF;}
+
+/* 
+------------------------------------------------------------------------------------------------
+= PAGE INTERNE
+------------------------------------------------------------------------------------------------
+*/
+.dl-horizontal {
+    dt {@overflowH; clear: left;  @f-left; .w(140px); @a-right;}
+    dd {margin-left:150px;}
+}
+
+/*#footer {@box-sizing; .w(100%);}
+
+
+
+.page-header, #footerInner, #breadcrumb, #sidebar, #montant, #reception, #accept, #btSubmit, .panel-default,.sf-toolbar {display:none !important;}*/
+}/*fin media mobile*/

@@ -1,0 +1,15 @@
+{#
+ogone.txt.twig
+mail d'alerte d'action du webmaster sur certains code de retours
+
+@param response
+@param message
+#}
+Bonjour, une post-sale Ogone requière votre attention.
+
+Vous avez reçu une post-sale pour l'OrderId {{ response.orderId }} avec le code de status {{ response.status }}.
+
+{{ message }}
+
+--
+Le système d'alerte eCollecte

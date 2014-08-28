@@ -1,0 +1,12 @@
+<div id="logo" class="col-sm-4 col-md-3 col-xs-5">
+    {% if layout.logoUrl %}
+    <a href="{{ layout.logoUrl }}" title="{{ layout.logoTitle }}">
+    	<img class="img-rounded" alt="logo {{ layout.logoAlt }}" src="{{ layout.logoName | imagine_filter('logo') }}" />
+    </a> 
+    {% else %}
+        <img class="img-rounded" alt="{{ layout.logoAlt }}" src="{{ layout.logoName | imagine_filter('logo') }}" />
+    {% endif %}
+</div>
+<div class="slogan col-sm-8 col-md-9 col-xs-7">
+	{{ layout.baseline }}
+</div>

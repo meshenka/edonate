@@ -1,0 +1,15 @@
+<div class="col-md-2">
+    <a href="{{path('donate_admin_dashboard') }}" title="Dashboard">
+      	{% image '@DonateCoreBundle/Resources/public/images/logo_small.png'
+    		output='images/logo_small.png' %}
+    	<img src="{{ asset_url }}" class="img-rounded" alt="Logo Agence Web Ecedi"/>
+		{% endimage %}
+    </a>
+    {# app/Resources/views/layout.html.twig #}
+</div>
+<div class="col-md-10">
+	<h1>Back Office eCollecte</h1>
+{% if is_granted("ROLE_USER") %}
+        <p>{{ "Connected as" | trans }} {{ app.user.username }} </p>
+{% endif %}
+</div>

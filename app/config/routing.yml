@@ -1,0 +1,71 @@
+donate_ogone:
+    resource: "@DonateOgoneBundle/Controller/"
+    type:     annotation
+    prefix:   /ogone
+
+donate_front:
+    resource: "@DonateFrontBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+donate_admin:
+    resource: "@DonateAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /secured
+
+donate_oauth_login:
+    resource: Ecedi\Donate\ApiBundle\Controller\SecurityController
+    type:     annotation
+
+
+#liip_theme:
+#    resource: "@LiipThemeBundle/Resources/config/routing.xml"
+#    prefix: /theme
+
+#FOSUser
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /secured
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /secured/profile 
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /secured/change-password
+
+customers:
+    type:       rest
+    resource:   Ecedi\Donate\ApiBundle\Controller\CustomersController
+    prefix:     /api/v1 
+
+intents:
+    type:       rest
+    resource:   Ecedi\Donate\ApiBundle\Controller\IntentsController
+    prefix:     /api/v1
+
+payments:
+    type:       rest
+    resource:   Ecedi\Donate\ApiBundle\Controller\PaymentsController
+    prefix:     /api/v1
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+elfinder:
+    resource: "@FMElfinderBundle/Resources/config/routing.yml"
+    prefix: /secured

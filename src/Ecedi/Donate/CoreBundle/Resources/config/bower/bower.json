@@ -1,0 +1,12 @@
+{
+  "name": "ecedi/donatecore",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "latest",
+    "jquery-ui": "latest",
+    "bootstrap": "latest",
+    "modernizr": "latest",
+    "respond": "latest",
+    "html5shiv" : "latest"
+  }
+}

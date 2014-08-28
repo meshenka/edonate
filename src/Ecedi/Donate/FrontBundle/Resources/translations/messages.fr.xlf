@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="67154ba0564cd26d8a637a6d20a77cbf" resname="      &#10;  &lt;p&gt;&#10;    By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.&#10;  &lt;/p&gt;&#10;  &lt;p&gt;&#10;    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.&#10;  &lt;/p&gt;">
+        <source>      
+  &lt;p&gt;
+    By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.
+  &lt;/p&gt;
+  &lt;p&gt;
+    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.
+  &lt;/p&gt;</source>
+        <target>      
+  &lt;p&gt;
+    En supportant l' Association XY, vous bénéficiez d'une &lt;strong&gt;réduction d'impôt de 66% à hauteur du montant de votre don&lt;/strong&gt;, dans la limite de 20% de votre revenu imposable. Ajouter à cela, la possibilité de reporter le surplus de la réduction d'impôt sur 5 ans.
+  &lt;/p&gt;
+  &lt;p&gt;
+    Pour les personnes qui sont assujettis à l'ISF (ISF – Impôt de Solidarité sur la Fortune), vous bénéficiez d'une &lt;strong&gt;réduction d'impôt de 75% à hauteur du montant de votre don&lt;/strong&gt;, dans une limite de 50 000 euros.
+  &lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="e0382d988fa67b41b4d895267a72c9f3" resname=" will cost you ">
+        <source> will cost you </source>
+        <target> vous revient à </target>
+      </trans-unit>
+      <trans-unit id="73196cc644784c8af68e866b13089b1e" resname=" your donation of ">
+        <source> your donation of </source>
+        <target> votre don de </target>
+      </trans-unit>
+      <trans-unit id="dd7bf230fde8d4836917806aff6a6b27" resname="Address">
+        <source>Address</source>
+        <target>N° et voie (rue, avenue ...)</target>
+      </trans-unit>
+      <trans-unit id="b2f40690858b404ed10e62bdf422c704" resname="Amount">
+        <source>Amount</source>
+        <target>Montant</target>
+      </trans-unit>
+      <trans-unit id="88e65555ff3cee983443c3e6ba68cc9a" resname="Apartment, floor numbers">
+        <source>Apartment, floor numbers</source>
+        <target>Résidence, bâtiment</target>
+      </trans-unit>
+      <trans-unit id="45bda33a25181f6ced85929d6c4c0252" resname="Autorisation Id">
+        <source>Autorisation Id</source>
+        <target>N° d'autorisation</target>
+      </trans-unit>
+      <trans-unit id="57d056ed0984166336b7879c2af3657f" resname="City">
+        <source>City</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit id="a1e8db7dba8f18eff1391b2eda88b14c" resname="Civility">
+        <source>Civility</source>
+        <target>Civilité</target>
+      </trans-unit>
+      <trans-unit id="1c76cbfe21c6f44c1d1e59d54f3e4420" resname="Company">
+        <source>Company</source>
+        <target>Société</target>
+      </trans-unit>
+      <trans-unit id="bbaff12800505b22a853e8b7f4eb6a22" resname="Contact">
+        <source>Contact</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="59716c97497eb9694541f7c3d37b1a4d" resname="Country">
+        <source>Country</source>
+        <target>Pays</target>
+      </trans-unit>
+      <trans-unit id="44749712dbec183e983dcd78a7736c41" resname="Date">
+        <source>Date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="0584e445d656b83b431227bb80ff0c30" resname="Donate">
+        <source>Donate</source>
+        <target>Je valide mon don</target>
+      </trans-unit>
+      <trans-unit id="8d33b510c4e48a2444521c560ba56149" resname="Donate to Ecedi">
+        <source>Donate to Ecedi</source>
+        <target>Donner à Ecedi</target>
+      </trans-unit>
+      <trans-unit id="35b8dc9a38f5772fa0f18952ec4fce7b" resname="Donation canceled">
+        <source>Donation canceled</source>
+        <target>Votre don a été annulé</target>
+      </trans-unit>
+      <trans-unit id="bb5e30ec24e5cb037feb83c74184ecc5" resname="Donation completed">
+        <source>Donation completed</source>
+        <target>Votre don a bien été enregistré</target>
+      </trans-unit>
+      <trans-unit id="2c4f22e0164a47102b6067c96eb7a0ec" resname="Donation denied">
+        <source>Donation denied</source>
+        <target>Votre don a été rejeté par la banque</target>
+      </trans-unit>
+      <trans-unit id="d3b699a4722f14f4999c9ac39d51076b" resname="Donation failed">
+        <source>Donation failed</source>
+        <target>Votre don a échoué</target>
+      </trans-unit>
+      <trans-unit id="7c06f494bea5a38971a16623ef4532df" resname="Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, ">
+        <source>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, </source>
+        <target>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, </target>
+      </trans-unit>
+      <trans-unit id="4f7eee7501c8ced6f2e6e57ca27cf483" resname="Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.">
+        <source>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</source>
+        <target>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</target>
+      </trans-unit>
+      <trans-unit id="257f2f83eb7c8e7a5bc04bb09e827822" resname="Donor relations">
+        <source>Donor relations</source>
+        <target>Service donateur</target>
+      </trans-unit>
+      <trans-unit id="ce8ae9da5b7cd6c3df2929543a9af92d" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="20db0bfeecd8fe60533206a2b5e9891a" resname="First name">
+        <source>First name</source>
+        <target>Prénom</target>
+      </trans-unit>
+      <trans-unit id="da73757baff9cbbc2f7bd1feecf9ce08" resname="Give in trust">
+        <source>Give in trust</source>
+        <target>Donner en confiance</target>
+      </trans-unit>
+      <trans-unit id="fa7f239df7430e517cccfccb66f9b7dc" resname="Give security">
+        <source>Give security</source>
+        <target>Donner en sécurité</target>
+      </trans-unit>
+      <trans-unit id="6a26f548831e6a8c26bfbbd9f6ec61e0" resname="Help">
+        <source>Help</source>
+        <target>Aide</target>
+      </trans-unit>
+      <trans-unit id="b0b4a06bcc67624d8ee07e057e5f2f82" resname="How is my &lt;span&gt; donation used?&lt;span&gt;">
+        <source>How is my &lt;span&gt; donation used?&lt;span&gt;</source>
+        <target>Comment est utilisé &lt;span&gt;mon don ?&lt;span&gt;</target>
+      </trans-unit>
+      <trans-unit id="899e271d70ccadb70d9343206e08f916" resname="How is my donation used?">
+        <source>How is my donation used?</source>
+        <target>Comment est utilisé mon don</target>
+      </trans-unit>
+      <trans-unit id="a6c124059dcce2e2534eab924a1a7aaa" resname="I Give">
+        <source>I Give</source>
+        <target>Je donne</target>
+      </trans-unit>
+      <trans-unit id="2023ee8c66a3d73b52fb5e2c61135334" resname="I agree to receive informations from Association XY">
+        <source>I agree to receive informations from Association XY</source>
+        <target>J'accepte de recevoir des informations de la part de l' Association XY</target>
+      </trans-unit>
+      <trans-unit id="722a738021cdff58684ff0e2dd90f1d5" resname="I prefer to receive my tax receipt">
+        <source>I prefer to receive my tax receipt</source>
+        <target>Je préfère recevoir mon reçu fiscal</target>
+      </trans-unit>
+      <trans-unit id="8d3f5eff9c40ee315d452392bed5309b" resname="Last name">
+        <source>Last name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="30d965eef5ba25c6b9998ae38270b43e" resname="Legal notices">
+        <source>Legal notices</source>
+        <target>Mention légales</target>
+      </trans-unit>
+      <trans-unit id="af966ee9ed55e4496e48f9d5348edc23" resname="Living with">
+        <source>Living with</source>
+        <target>Habitant chez</target>
+      </trans-unit>
+      <trans-unit id="f6fcb19b726462d66000a6460073c311" resname="Locality, post box">
+        <source>Locality, post box</source>
+        <target>Lieu-dit, boite postale</target>
+      </trans-unit>
+      <trans-unit id="fea80f2db003d4ebc4536023814aa885" resname="Lorem ipsum dolor sit amet">
+        <source>Lorem ipsum dolor sit amet</source>
+        <target>Lorem ipsum dolor sit amet</target>
+      </trans-unit>
+      <trans-unit id="33e037fe856996f5fdd52ff642e0a627" resname="My payment method">
+        <source>My payment method</source>
+        <target>Ma méthode de paiement</target>
+      </trans-unit>
+      <trans-unit id="a82aaf33ac14b7a87241dd6389ef707a" resname="My personal details">
+        <source>My personal details</source>
+        <target>Mes coordonnées personnelles</target>
+      </trans-unit>
+      <trans-unit id="49ee3087348e8d44e1feda1917443987" resname="Name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="0433fbe357c68c8b9a053d28917b897b" resname="Other amount">
+        <source>Other amount</source>
+        <target>Autre montant</target>
+      </trans-unit>
+      <trans-unit id="ab116d52ec2aa15f6cc3c5ff66deb399" resname="Payment details">
+        <source>Payment details</source>
+        <target>Détail du paiement</target>
+      </trans-unit>
+      <trans-unit id="bcc254b55c4a1babdf1dcb82c207506b" resname="Phone">
+        <source>Phone</source>
+        <target>Téléphone</target>
+      </trans-unit>
+      <trans-unit id="51c03790b18b8f73f2b312be4d914cad" resname="Repeat Email">
+        <source>Repeat Email</source>
+        <target>Confirmation email</target>
+      </trans-unit>
+      <trans-unit id="70397c4b252a5168c5ec003931cea215" resname="Required fields">
+        <source>Required fields</source>
+        <target>Champs obligatoires</target>
+      </trans-unit>
+      <trans-unit id="d00c9123b168aea3607bf2be333097ac" resname="Thank you for your generous gesture">
+        <source>Thank you for your generous gesture</source>
+        <target>Merci pour votre générosité</target>
+      </trans-unit>
+      <trans-unit id="1f4009fab0615bded60c3456432bff29" resname="Thanks to the tax reduction of ">
+        <source>Thanks to the tax reduction of </source>
+        <target>Grâce à la déduction d'impôts de </target>
+      </trans-unit>
+      <trans-unit id="e8f9346b179a158d152c0e0a7713aa77" resname="The email fields must match.">
+        <source>The email fields must match.</source>
+        <target>Ces emails doivent être identiques.</target>
+      </trans-unit>
+      <trans-unit id="232f4b53f1b82ae84b71b38eb70958e1" resname="Transaction Id">
+        <source>Transaction Id</source>
+        <target>N° de transaction</target>
+      </trans-unit>
+      <trans-unit id="6da8db57688c2cba942497f29cfd700b" resname="You are subject to French wealth tax (ISF)">
+        <source>You are subject to French wealth tax (ISF)</source>
+        <target>Vous êtes assujeti à l'ISF</target>
+      </trans-unit>
+      <trans-unit id="ce85fd01025d6a8ed85b6cef4a130b1a" resname="You canceled your donation">
+        <source>You canceled your donation</source>
+        <target>Vous avez annulé votre don</target>
+      </trans-unit>
+      <trans-unit id="0daa205efa9a710aa60c9d6cc615b25c" resname="Your contact">
+        <source>Your contact</source>
+        <target>Votre contact</target>
+      </trans-unit>
+      <trans-unit id="587e0f84a0f8bcb16f6b4ca1b457b017" resname="Your donation failed">
+        <source>Your donation failed</source>
+        <target>Votre don a échoué</target>
+      </trans-unit>
+      <trans-unit id="bff0f696b6a9324991e862ed35c3ca17" resname="Your donation has been canceled. You will not be charged">
+        <source>Your donation has been canceled. You will not be charged</source>
+        <target>Votre don a été annulé. Vous ne serez pas débité.</target>
+      </trans-unit>
+      <trans-unit id="993ef19b80ad95f4b1a68ecc3e4a5770" resname="Your donation has failed. You will not be charged">
+        <source>Your donation has failed. You will not be charged</source>
+        <target>Votre don a échoué. Vous ne serez pas débité.</target>
+      </trans-unit>
+      <trans-unit id="94e6098833260174ae59d6b483582927" resname="Your donation is validated">
+        <source>Your donation is validated</source>
+        <target>Votre don est validé</target>
+      </trans-unit>
+      <trans-unit id="bccf57055485edf8f33aa52a29f62185" resname="Your donation was denied by your bank">
+        <source>Your donation was denied by your bank</source>
+        <target>Votre don a été rejeté</target>
+      </trans-unit>
+      <trans-unit id="1972c08d912b2cda3ca8f8bd230e20fd" resname="Your transaction has been refused. You will not be charged">
+        <source>Your transaction has been refused. You will not be charged</source>
+        <target>Votre don a été rejeté par la banque. Vous ne serez pas débité.</target>
+      </trans-unit>
+      <trans-unit id="e0ed8e71dbd22a1e91cb570b52443fd5" resname="Zipcode">
+        <source>Zipcode</source>
+        <target>Code postal</target>
+      </trans-unit>
+      <trans-unit id="fcd510f80f505ef73cf2f63c03a9b72c" resname="by email">
+        <source>by email</source>
+        <target>par email</target>
+      </trans-unit>
+      <trans-unit id="82c626b6dfdffefefc7a8966458f912e" resname="by post">
+        <source>by post</source>
+        <target>par courrier</target>
+      </trans-unit>
+      <trans-unit id="0f5755a401a49d6e2f9311884ae82638" resname="format name@provider.com">
+        <source>format name@provider.com</source>
+        <target>format nom@fournisseur.com</target>
+      </trans-unit>
+      <trans-unit id="f5bab63d668f8816e26c09efc4afef12" resname="xxx@yyyy.fr">
+        <source>xxx@yyyy.fr</source>
+        <target>xxx@yyyy.fr</target>
+      </trans-unit>
+      <trans-unit id="2c9b5b15a6d3cc951ca57c65e4966fd3" resname="Mr">
+        <source>Mr</source>
+        <target>Mr</target>
+      </trans-unit>
+      <trans-unit id="78e8eaa33b1930e23d6b57bb4827fd70" resname="Ms">
+        <source>Ms</source>
+        <target>Mme</target>
+      </trans-unit>
+      <trans-unit id="15bbb9d0bbf25e8d2978de1168c749dc" resname="Website">
+        <source>Website</source>
+        <target>__Website</target>
+      </trans-unit>
+      <trans-unit id="062533fb1af5a2f09cfd09a78de85545" resname="Adress">
+        <source>Adress</source>
+        <target>N° et voie</target>
+      </trans-unit>
+      <trans-unit id="871351d26308dd1125eb4929b13b141e" resname="Adress extended">
+        <source>Adress extended</source>
+        <target>Résidence</target>
+      </trans-unit>
+      <trans-unit id="e8b2ff9737f7e1bd5844c27915ef49c3" resname="Adress Living">
+        <source>Adress Living</source>
+        <target>Habitant chez</target>
+      </trans-unit>
+      <trans-unit id="3a5651a6f9882014fa6db485646468f8" resname="Postal box">
+        <source>Postal box</source>
+        <target>Lieu-dit, BP</target>
+      </trans-unit>
+      <trans-unit id="a0bfb8e59e6c13fc8d990781f77694fe" resname="Continue">
+        <source>Continue</source>
+        <target>Continuer</target>
+      </trans-unit>
+      <trans-unit id="f78520f4e9cfc4b18d57c21181b05f98" resname="&lt;p&gt;&#10;    By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.&#10;  &lt;/p&gt;&#10;  &lt;p&gt;&#10;    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.&#10;  &lt;/p&gt;">
+        <source>&lt;p&gt;
+    By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.
+  &lt;/p&gt;
+  &lt;p&gt;
+    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.
+  &lt;/p&gt;</source>
+        <target>__&lt;p&gt;
+    By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.
+  &lt;/p&gt;
+  &lt;p&gt;
+    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.
+  &lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="5f8f9d3f6896c7efa4781e500d6fa140" resname="Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,">
+        <source>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</source>
+        <target>__Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</target>
+      </trans-unit>
+      <trans-unit id="01b4ee0f5b9d4a0b101c1b260b1d2b0e" resname="Thanks to the tax reduction of">
+        <source>Thanks to the tax reduction of</source>
+        <target>__Thanks to the tax reduction of</target>
+      </trans-unit>
+      <trans-unit id="c59fccc7b5a6b5d956206c4c4bac12f9" resname="your donation of">
+        <source>your donation of</source>
+        <target>__your donation of</target>
+      </trans-unit>
+      <trans-unit id="93de69a9139b817c6c0f663d86435e01" resname="will cost you">
+        <source>will cost you</source>
+        <target>__will cost you</target>
+      </trans-unit>
+      <trans-unit id="manual-error-msg-min">
+        <source>Amount must be greater than </source>
+        <target>Le don doit être supérieur à </target>
+      </trans-unit>
+      <trans-unit id="manual-error-msg-max">
+        <source>Amount must be lower than </source>
+        <target>Le don doit être inférieur à </target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

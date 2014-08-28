@@ -1,0 +1,142 @@
+{% extends "DonateAdminBundle::layout2Cols.html.twig" %}
+{% trans_default_domain 'messages' %}
+
+{% form_theme intentForm 'DonateCoreBundle:Form:form_div_layout.html.twig' %}
+
+{% block title %}Les dons{% endblock %}
+{% block main_content_title %}Les dons{% endblock %}
+
+{% block sidebar %}
+
+<div class="form-filter">
+<h3>{{ "Search" | trans }}</h3>
+{{ form_start(intentForm,  { 'action': '', 'method': 'GET', 'attr': {'role': 'form'} }) }}
+    {{ form_errors(intentForm) }}
+
+    <div class="form-group">
+        {{ form_label(intentForm.type) }}
+        {{ form_widget(intentForm.type, { 'attr': {'class': 'checkbox-inline'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(intentForm.status) }}
+        {{ form_widget(intentForm.status, { 'label_attr': {'class': 'checkbox-inline'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(intentForm.email,  { 'label': "Email" | trans , 'attr': {'class': 'form-control', 'placeholder': 'xxx@ecedi.fr'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(intentForm.minAmount) }}
+        <div class="input-group">
+            <span class="input-group-addon">{{ macros.euro() }}</span>
+            {{ form_widget(intentForm.minAmount,  { 'attr': {'class': 'form-control', 'placeholder': '5'} }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(intentForm.maxAmount) }}
+        <div class="input-group">
+            <span class="input-group-addon">{{ macros.euro() }}</span>
+            {{ form_widget(intentForm.maxAmount,  { 'attr': {'class': 'form-control', 'placeholder': '2000'} }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(intentForm.minCreatedAt) }}
+        <div class="input-group">
+            <span class="input-group-addon">{{ "From" | trans }}</span>
+            {{ form_widget(intentForm.minCreatedAt,  { 'attr': {'class': 'form-control datepicker', 'placeholder': '01/10/2010'} }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {# form_label(intentForm.maxCreatedAt) #}
+        <div class="input-group">
+            <span class="input-group-addon">{{ "To" | trans }}</span>
+            {{ form_widget(intentForm.maxCreatedAt,  { 'attr': {'class': 'form-control datepicker', 'placeholder': '01/10/2012'} }) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {# L'export csv est désactivé si la recherche de dons remonte plus de ... résultats #}
+        <input type="hidden" name="nb_results" value="{{ pagination.getTotalItemCount }}"></input>
+        {% set exportDisabled = FALSE %}
+        {% if pagination.getTotalItemCount >= 5000 %}
+            {% set exportDisabled = FALSE %}
+        {% endif %}
+
+        {{ form_widget(intentForm.submit_filter, { 'attr': {'class': 'btn btn-primary' } }) }}
+        {% if exportDisabled %}
+            {{ form_widget(intentForm.submit_export, { 'attr': {'class': 'btn btn-primary', 'disabled': 'disabled' } }) }}
+        {% else %}
+            {{ form_widget(intentForm.submit_export, { 'attr': {'class': 'btn btn-primary'} }) }}
+        {% endif %}
+        <a href="{{ path('donate_admin_reporting_intents') }}" class="btn btn-reset-filters">{{ "Reset filters"|trans }}</a>
+        {% if exportDisabled %}
+            <p>{{ "Export is disabled for more than 5000 results. Thank you for refining your search." | trans }}</p>
+        {% endif %}
+    </div>
+</div>
+{{ form_end(intentForm) }}
+
+<div class="count">
+    <p>{{ "Results number" | trans }} : {{ pagination.getTotalItemCount }}</p>
+</div>
+{% endblock %}
+{% block main_content %}
+<h2>{{ "The donations" | trans }}</h2>
+<h3>{{ "Results" | trans }}</h3>
+
+{% if pagination.getTotalItemCount > 0 %}
+<div id="table" class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="donation-id">{{ knp_pagination_sortable(pagination, '#', 'i.id') }}</th>
+                <th class="donation-amount">{{ knp_pagination_sortable(pagination, "Amount" | trans , 'i.amount') }}</th>
+                <th class="donation-date">{{ knp_pagination_sortable(pagination,  "Date" | trans , 'i.createdAt') }}</th>
+                <th class="donation-status">{{ knp_pagination_sortable(pagination, "Status" | trans , 'i.status') }}</th>
+                <th class="donation-type">{{ knp_pagination_sortable(pagination, "type" | trans , 'i.type') }}</th>
+                <th class="donation-customer">{{ knp_pagination_sortable(pagination, "Donator" | trans , 'c.lastName') }}</th>
+                <th class="donation-mail">{{ "Email" | trans }}</th>
+                <th class="donation-phone">{{ "Phone" | trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            {# Préparation des liens des données du tableau de bord #}
+            {% set intentLink = macros.intentLink(entity.id) %}
+            {% set customerLink = macros.customerLink(entity.customer.id) %}
+            <tr class="{{ macros.intent_state_class(entity) }}">
+                <td><a href="{{ intentLink }}" title="Voir le détail du don">{{ entity.id }}</a></td>
+                <td><a href="{{ intentLink }}" title="Voir le détail du don">{{ entity.amount /100 }} {{ macros.euro() }}</a></td>
+                <td><a href="{{ intentLink }}" title="Voir le détail du don">{{ entity.createdAt | date('d/m/Y') }}</a></td>
+                <td><a href="{{ intentLink }}" title="Voir le détail du don">{{ entity.status|trans }}</a></td>
+                <td>
+                    <a href="{{ intentLink }}" title="Voir le détail du don">
+                        {% set types = entity.typesLabel  %}
+                        {{ types[entity.type]|trans }}
+                    </a>
+                </td>
+                <td><a href="{{ customerLink }}" title="Voir le détail donateur">{{ entity.customer.LastName }} {{ entity.customer.FirstName }}</a></td>
+                <td><a href="mailto:{{ entity.customer.email }}" title="Envoyer un email">{{ entity.customer.email }}</a></td>
+                <td><a href="tel:{{ entity.customer.phone }}" title="Appeler le {{ entity.customer.phone }}">{{ entity.customer.phone }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pager">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+ </div>
+
+     <footer id="online-help" role="help">
+        <h3>{{ macros.icon('info-sign') }} Les statuts</h3>
+         {% include "DonateAdminBundle:partials:_intent_status.html.twig" %}   
+    </footer>
+
+{% else %}
+    {{ "None result match your search" | trans }}
+{% endif %}
+{% endblock %}

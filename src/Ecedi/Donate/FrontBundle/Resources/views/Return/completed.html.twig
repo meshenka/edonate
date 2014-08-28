@@ -1,0 +1,93 @@
+{% extends "DonateFrontBundle::layout.html.twig" %}
+{#
+@param intent
+#}
+{% block title%}{{'Donation completed'|trans }} | {{ parent() }} {% endblock %}
+
+{% block main_content %}
+<h1>{{ 'Your donation is validated'|trans }}</h1>
+<p class="lead">
+{{ 'Thank you for your generous gesture'|trans }}
+</p>
+
+<div class="block">
+<h2>{{ 'Payment details'|trans }}</h2>
+
+<dl class="dl-horizontal">
+  <dt>{{ 'Name'|trans }}</dt>
+  <dd>{{ intent.customer.firstName }} {{ intent.customer.lastName }} </dd>
+  <dt>{{ 'Amount'|trans }}</dt>
+  <dd>{{ intent.amount / 100 }} <span class="euro">€</span></dd>
+  <dt>{{ 'Date'|trans }}</dt><dd>{{ intent.createdAt | date('d/m/Y') }}</dd>
+  {% if intent.customer.phone %}
+    <dt>{{ "Phone" | trans }}</dt><dd>{{ intent.customer.phone }}</dd>
+  {% endif %}
+  <dt>{{ "Email" | trans }}</dt><dd>{{ intent.customer.email }}</dd>
+  {% if intent.customer.company %}
+    <dt>{{ "Company" | trans }}</dt><dd>{{ intent.customer.company }}</dd>
+  {% endif %}
+  {% if intent.customer.website %}
+    <dt>{{ "Website" | trans }}</dt><dd>{{ intent.customer.website }}</dd>
+  {% endif %}
+  <dt>{{ "Adress" | trans }}</dt><dd>{{ intent.customer.addressNber }} {{ intent.customer.addressStreet }}</dd>
+  {% if intent.customer.addressExtra %}
+    <dt>{{ "Adress extended" | trans }}</dt><dd>{{ intent.customer.addressExtra }}</dd>
+  {% endif %}
+  {% if intent.customer.addressLiving %}
+    <dt>{{ "Adress Living" | trans }}</dt><dd>{{ intent.customer.addressLiving }}</dd>
+  {% endif %}
+  <dt>{{ "City" | trans }}</dt><dd>{{ intent.customer.addressCity }}</dd>
+  <dt>{{ "Zipcode" | trans }}</dt><dd>{{ intent.customer.addressZipcode }}</dd>
+  {% if intent.customer.addressPb %}
+    <dt>{{ "Postal box" | trans }}</dt><dd>{{ intent.customer.addressPb }}</dd>
+  {% endif %}
+  <dt>{{ "Country" | trans }}</dt><dd>{{ intent.customer.addressCountry }}</dd>
+  {% set payment = intent.payments|last %}
+  {% if payment %}
+  	{% if payment.autorisation%}
+	  <dt>{{ 'Autorisation Id'|trans }}</dt>
+	  <dd>{{ payment.autorisation }}</dd>
+	{% endif %}
+  	{% if payment.transaction%}
+	  <dt>{{ 'Transaction Id'|trans }}</dt>
+	  <dd>{{ payment.transaction }}</dd>
+	{% endif %}
+
+  {% endif %}
+</dl>
+</div>
+<div class="btn btn-primary btn-lg btn-link"><a href="{{ path('donate_front_home') }}">{{ "Continue" | trans }}</a></div>
+{% endblock %}
+
+{% block google_analytics %}
+	{{ parent() }}
+{% spaceless %}
+{% if google_analytics is not null %}
+	{# @see https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce?hl=fr#addTrans #}
+	<script type="text/javascript">
+		ga('require', 'ecommerce', 'ecommerce.js');
+
+		ga('ecommerce:addTransaction', {
+			'id': '{{ intent.id}}',
+			'affiliation' : 'Ecollect',
+			'revenue': '{{ intent.amount / 100 }}',
+			'currency': 'EUR',
+			'shipping': '0',
+			'tax': '0',
+		});
+
+		ga('ecommerce:addItem', {
+			'id': '{{ intent.id }}',
+			'name': 'Don en ligne',
+			'category': '{{intent.typesLabel[intent.type]}}',
+			'sku' : 'DON',
+			'price': '{{ intent.amount / 100 }}',
+			'quantity': '1',
+			'currency': 'EUR' // local currency code.
+		});
+
+		ga('ecommerce:send');
+	</script>
+{% endif %}
+{% endspaceless %}
+{% endblock %}
