@@ -2,7 +2,7 @@
     "name": "ecedi/ecollecte",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution based donation application",
+    "description": "eCollecte standard edition, by Agence Ecedi http://ecedi.fr",
     "autoload": {
         "psr-0": { "": "src/" }
     },

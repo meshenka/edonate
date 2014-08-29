@@ -19,12 +19,10 @@ eCollecte est une application Full Stack Symfony2 pour la production de formulai
 Optionnel
   * Une instance memcache pour la gestion des sessions php  
 
-### installation
 
 ### récuperer le code source
 
 depuis Github
-
 
     $ git clone git@github.com:ecedi/ecollecte.git ecollecte.loc
 
