@@ -2,20 +2,83 @@
 
 namespace Ecedi\Donate\CoreBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * inmutable Entity, non persistent
- * Equivalence Equivalence de dons
- * id (serial) int(11)
- * amount int(11)
- * currency
- * label
+ * @ORM\Table( "equivalence")
+ * @ORM\Entity()
  */
-class  Equivalence
+class Equivalence
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Layout", inversedBy="equivalences")
+     * @ORM\JoinColumn(name="layout_id", referencedColumnName="id")
+     *
+     */
+    private $layout;
+
+
+    /**
+     * layout
+     *
+     * @return Layout the layout
+     */
+    public function getLayout() {
+        return $this->layout;
+    }
+    
+    /**
+     * layout
+     *
+     * @param Layout $newlayout The layout
+     */
+    public function setLayout($layout) {
+        $this->layout = $layout;
+    
+        return $this;
+    }
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="amount", type="integer", nullable=false)
+     */
     private $amount;
-    private $currency;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="currency", type="string", length=3, nullable=false)
+     */
+    private $currency = 'EUR';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="label", type="string", length=255, nullable=false)
+     */
     private $label;
 
+
+    /**
+     * id
+     *
+     * @return integer
+     */
+    public function getId() {
+        return $this->id;
+    }
+    
     /**
      * amount
      *
@@ -81,6 +144,7 @@ class  Equivalence
 
         return $this;
     }
+
 
     public function __construct($amount, $label, $currency = 'EUR')
     {

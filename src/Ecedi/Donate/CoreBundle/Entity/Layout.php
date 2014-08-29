@@ -31,6 +31,11 @@ class Layout
     private $blocks;
 
     /**
+     * @ORM\OneToMany(targetEntity="Equivalence", mappedBy="layout", cascade={"persist", "remove"})
+     */
+    private $equivalences;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -348,6 +353,7 @@ class Layout
     public function __construct($language = 'fr', $name='default', $skin = self::SKIN_DEFAULT)
     {
         $this->blocks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->equivalences = new \Doctrine\Common\Collections\ArrayCollection();
         $this->setName($name);
         $this->setSkin($skin);
         $this->setIsDefault(false);
@@ -665,5 +671,38 @@ class Layout
     public function getLogoTitle()
     {
         return $this->logoTitle;
+    }
+
+    /**
+     * Add equivalences
+     *
+     * @param \Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalences
+     * @return Layout
+     */
+    public function addEquivalence(\Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalences)
+    {
+        $this->equivalences[] = $equivalences;
+    
+        return $this;
+    }
+
+    /**
+     * Remove equivalences
+     *
+     * @param \Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalences
+     */
+    public function removeEquivalence(\Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalences)
+    {
+        $this->equivalences->removeElement($equivalences);
+    }
+
+    /**
+     * Get equivalences
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEquivalences()
+    {
+        return $this->equivalences;
     }
 }
