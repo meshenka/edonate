@@ -36,6 +36,9 @@ class Payment
     const STATUS_PAYED =  'payed';
     const STATUS_FAILED = 'failed';
     const STATUS_NEW = 'new';
+    const STATUS_REFUND = 'refund';
+    const STATUS_UNKNOW = 'unknow';
+
 
     /**
      * @ORM\ManyToOne(targetEntity="Intent", inversedBy="payments")
@@ -72,6 +75,8 @@ class Payment
             self::STATUS_DENIED,
             self::STATUS_PAYED,
             self::STATUS_FAILED,
+            self::STATUS_REFUND,
+            self::STATUS_UNKNOW
         ];
     }
 
