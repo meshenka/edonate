@@ -31,10 +31,9 @@
         <service id="donate_admin.form.type.block" class="Ecedi\Donate\AdminBundle\Form\BlockType">
             <tag name="form.type" alias="block" />
         </service>
-        <!--<service id="donate_admin.form.registration" class="Ecedi\Donate\AdminBundle\Form\RegistrationType">
-            <tag name="form.type" alias="donate_admin_user_registration" />
-            <argument>%fos_user.model.user.class%</argument>
-            <argument>%security.role_hierarchy.roles%</argument>
-        </service>-->
+
+        <service id="donate_admin.form.type.equivalence" class="Ecedi\Donate\AdminBundle\Form\EquivalenceType">
+            <tag name="form.type" alias="equivalence" />
+        </service>
     </services>
 </container>
