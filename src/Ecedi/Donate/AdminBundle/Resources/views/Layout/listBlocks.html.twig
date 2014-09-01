@@ -2,10 +2,10 @@
 
 {# form_theme customerForm 'DonateCoreBundle:Form:form_div_layout.html.twig' #}
 
-{% block main_content_title %}Voir les Block éditables du Layout {{ layout.name}}{% endblock %}
+{% block main_content_title %}Voir les equivalences du Layout {{ layout.name}}{% endblock %}
 
 {% block sidebar %}
- {{ include ('DonateAdminBundle:Block:_layout.html.twig' , {'layout': layout}, with_context = false) }}
+ {{ include ('DonateAdminBundle:Layout:_layout.html.twig' , {'layout': layout}, with_context = false) }}
 {% endblock %}
 
 {% block main_content %}

@@ -679,9 +679,10 @@ class Layout
      * @param \Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalences
      * @return Layout
      */
-    public function addEquivalence(\Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalences)
+    public function addEquivalence(\Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalence)
     {
-        $this->equivalences[] = $equivalences;
+        $this->equivalences[] = $equivalence;
+        $equivalence->setLayout($this);
     
         return $this;
     }
@@ -691,9 +692,9 @@ class Layout
      *
      * @param \Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalences
      */
-    public function removeEquivalence(\Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalences)
+    public function removeEquivalence(\Ecedi\Donate\CoreBundle\Entity\Equivalence $equivalence)
     {
-        $this->equivalences->removeElement($equivalences);
+        $this->equivalences->removeElement($equivalence);
     }
 
     /**
@@ -705,4 +706,5 @@ class Layout
     {
         return $this->equivalences;
     }
+
 }

@@ -8,10 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ecedi\Donate\CoreBundle\Entity\Block;
 use Ecedi\Donate\CoreBundle\Entity\Layout;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
+use Ecedi\Donate\CoreBundle\Entity\Equivalence;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class BlockController extends Controller
+class LayoutController extends Controller
 {
 
     /**
@@ -200,5 +201,30 @@ class BlockController extends Controller
             'block' => $block
         ];
     }
+
+    /**
+     * @Route("/cms/layout/{layout}/equivalences" , name="donate_admin_equivalence_list", requirements={"layout" = "\d+"}, defaults={"layout" = 0})
+     * @Template()
+     */
+    public function listEquivalencesAction( Layout $layout) {
+        return ['layout' => $layout];
+    }
+ 
+
+    /**
+     * @Route("/cms/layout/{layout}/equivalences/add" , name="donate_admin_equivalence_add", requirements={"layout" = "\d+"}, defaults={"layout" = 0})
+     * @Template()
+     */
+    public function addEquivalencesAction( Layout $layout) {
+        //TODO use a Form Type
+        $eq = new Equivalence(10, '<span class="amount">10</span> <span class="currency">€</span>');
+        $layout->addEquivalence($eq);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($layout);
+        $em->flush();
+        return  $this->redirect($this->generateUrl('donate_admin_equivalence_list', [ 'layout' => $layout->getId()]));
+    }
+ 
 
 }
