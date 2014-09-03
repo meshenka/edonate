@@ -215,15 +215,27 @@ class LayoutController extends Controller
      * @Route("/cms/layout/{layout}/equivalences/add" , name="donate_admin_equivalence_add", requirements={"layout" = "\d+"}, defaults={"layout" = 0})
      * @Template()
      */
-    public function addEquivalencesAction( Layout $layout) {
+    public function addEquivalenceAction(Request $request,  Layout $layout) {
         //TODO use a Form Type
         $eq = new Equivalence(10, '<span class="amount">10</span> <span class="currency">€</span>');
-        $layout->addEquivalence($eq);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($layout);
-        $em->flush();
-        return  $this->redirect($this->generateUrl('donate_admin_equivalence_list', [ 'layout' => $layout->getId()]));
+        $form = $this->createForm('equivalence', $eq);
+        
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $layout->addEquivalence($eq);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($layout);
+                $em->flush();
+                return  $this->redirect($this->generateUrl('donate_admin_equivalence_list', [ 'layout' => $layout->getId()]));
+        } else {
+            return [
+                'form' =>  $form->createView(),
+                'layout' => $layout
+            ];
+        }
     }
  
 

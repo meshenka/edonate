@@ -94,7 +94,7 @@ class Equivalence
      *
      * @param Integer $newamount Amount
      */
-    private function setAmount($amount)
+    public function setAmount($amount)
     {
         $this->amount = $amount;
 
@@ -116,7 +116,7 @@ class Equivalence
      *
      * @param String $newCurrency Currency
      */
-    private function setCurrency($currency)
+    public function setCurrency($currency)
     {
         $this->currency = $currency;
 
@@ -138,7 +138,7 @@ class Equivalence
      *
      * @param String $newlabel Label
      */
-    private function setLabel($label)
+    public function setLabel($label)
     {
         $this->label = $label;
 

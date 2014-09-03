@@ -5,7 +5,6 @@ namespace Ecedi\Donate\AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-//use Ecedi\Donate\CoreBundle\Entity\Block;
 
 /**
  * Une classe pour le formulaire des comptes utilisateurs

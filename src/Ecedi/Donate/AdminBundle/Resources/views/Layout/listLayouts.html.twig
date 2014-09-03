@@ -108,6 +108,10 @@ $(function() {
                     </a>                
                     <a title="Prévisualiser le layout" href="{{ path('donate_admin_layout_preview', { id : layout.id }) }}">
                         {{ macros.icon('eye-open') }} Prévisualiser
+                    </a>       
+
+                    <a title="Equivalences" href="{{ path('donate_admin_equivalence_list', { layout : layout.id }) }}">
+                        {{ macros.icon('info-sign') }}
                     </a>                
 
                 </td>
