@@ -1,0 +1,58 @@
+{# 
+attention dans le cas d'une configuration l'email part assez tards (dans l'event kernel.terminate, voir en asynchrone )
+du coup la variable global layout n'est pas toujours disponible dans ce template 
+
+@param payment
+@param intent
+#}
+<h1>{{ 'Your donation is validated'|trans }}</h1>
+<p class="lead">
+{{ 'Thank you for your generous gesture'|trans }}
+</p>
+
+<div class="block">
+<h2>{{ 'Payment details'|trans }}</h2>
+
+<dl class="dl-horizontal">
+  <dt>{{ 'Name'|trans }}</dt>
+  <dd>{{ intent.customer.firstName }} {{ intent.customer.lastName }} </dd>
+  <dt>{{ 'Amount'|trans }}</dt>
+  <dd>{{ intent.amount / 100 }} <span class="euro">€</span></dd>
+  <dt>{{ 'Date'|trans }}</dt><dd>{{ intent.createdAt | date('d/m/Y') }}</dd>
+  {% if intent.customer.phone %}
+    <dt>{{ "Phone" | trans }}</dt><dd>{{ intent.customer.phone }}</dd>
+  {% endif %}
+  <dt>{{ "Email" | trans }}</dt><dd>{{ intent.customer.email }}</dd>
+  {% if intent.customer.company %}
+    <dt>{{ "Company" | trans }}</dt><dd>{{ intent.customer.company }}</dd>
+  {% endif %}
+  {% if intent.customer.website %}
+    <dt>{{ "Website" | trans }}</dt><dd>{{ intent.customer.website }}</dd>
+  {% endif %}
+  <dt>{{ "Adress" | trans }}</dt><dd>{{ intent.customer.addressNber }} {{ intent.customer.addressStreet }}</dd>
+  {% if intent.customer.addressExtra %}
+    <dt>{{ "Adress extended" | trans }}</dt><dd>{{ intent.customer.addressExtra }}</dd>
+  {% endif %}
+  {% if intent.customer.addressLiving %}
+    <dt>{{ "Adress Living" | trans }}</dt><dd>{{ intent.customer.addressLiving }}</dd>
+  {% endif %}
+  <dt>{{ "City" | trans }}</dt><dd>{{ intent.customer.addressCity }}</dd>
+  <dt>{{ "Zipcode" | trans }}</dt><dd>{{ intent.customer.addressZipcode }}</dd>
+  {% if intent.customer.addressPb %}
+    <dt>{{ "Postal box" | trans }}</dt><dd>{{ intent.customer.addressPb }}</dd>
+  {% endif %}
+  <dt>{{ "Country" | trans }}</dt><dd>{{ intent.customer.addressCountry }}</dd>
+  {% set payment = intent.payments|last %}
+  {% if payment %}
+  	{% if payment.autorisation%}
+	  <dt>{{ 'Autorisation Id'|trans }}</dt>
+	  <dd>{{ payment.autorisation }}</dd>
+	{% endif %}
+  	{% if payment.transaction%}
+	  <dt>{{ 'Transaction Id'|trans }}</dt>
+	  <dd>{{ payment.transaction }}</dd>
+	{% endif %}
+
+  {% endif %}
+</dl>
+</div>

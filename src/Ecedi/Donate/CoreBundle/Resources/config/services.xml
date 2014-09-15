@@ -13,6 +13,7 @@
         <parameter key="donate_core.analytics.cookieparser.class">Ecedi\Donate\CoreBundle\Analytics\GoogleCookieParser</parameter>
         <parameter key="donate_core.mail.donator"/>
         <parameter key="donate_core.mail.webmaster"/>
+        <parameter key="donate_core.mail.noreply"/>
         <parameter key="donate_core.layout.manager.class">Ecedi\Donate\CoreBundle\Layout\LayoutManager</parameter>
         
     </parameters>

@@ -10,6 +10,7 @@
         <parameter key="donate_front.i18n" />
         <parameter key="donate_front.campaign" />
         <parameter key="form.type.donation.class">Ecedi\Donate\FrontBundle\Form\DonationType</parameter>
+        <parameter key="donate_front.thanks_email.listener.class">Ecedi\Donate\FrontBundle\EventListener\ThanksEmailEventListener</parameter>
     </parameters>
 
     <services>
@@ -32,6 +33,15 @@
         <service id="donate_front.form_listener" class="Ecedi\Donate\FrontBundle\Listener\FormListener">
             <argument type="service" id="event_dispatcher" />
         </service>
+
+        <service id="donate_front.thanks_email.listener" class="%donate_front.thanks_email.listener.class%">
+            <argument type="service" id="templating" />
+            <argument type="service" id="mailer" />
+            <argument type="service" id="translator" />
+            <argument>%donate_core.mail.noreply%</argument>
+            <tag name="kernel.event_subscriber" />
+        </service>
+
     </services>
 
 </container>

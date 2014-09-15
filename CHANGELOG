@@ -1,3 +1,6 @@
+v1.1.1
+  * add thanks email on payment completed or authorized
+
 v1.1.0
   * Refactoring of the payment code to use Domain Events from Ecedi\Donate\CoreBundle\Event namespace
   * support ogone post-sale on terminate event

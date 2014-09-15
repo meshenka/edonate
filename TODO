@@ -1,4 +1,3 @@
-  * add email on OK for online PaymentMethods
   * add CheckPaymentMethod (offline method for spot)
   * add RIBPaymentMethod (offline method for spot/recuring)
   * configure Equivalences in Back Office instead of configuration

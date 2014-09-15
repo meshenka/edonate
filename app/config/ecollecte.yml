@@ -3,6 +3,7 @@ donate_core:
     mail:
         donator: true
         webmaster : ['sgogel@ecedi.fr'] ##tableau d'email
+        noreply : %donate_core.email.noreply%
     equivalence:
         - {amount : 20, label : '20<span class="euro">€</span>'}
         - {amount : 50, label : '50<span class="euro">€</span>'}

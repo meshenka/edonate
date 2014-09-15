@@ -28,6 +28,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('mail')
                     ->children()
                         ->booleanNode('donator')->defaultFalse()->end()
+                        ->scalarNode('noreply')->defaultValue('noreply@ecedi.fr')->end()
                         ->arrayNode('webmaster')->prototype('scalar')->defaultNull()->end()
                     ->end()
                 ->end()
