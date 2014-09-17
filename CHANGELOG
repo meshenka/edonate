@@ -1,3 +1,6 @@
+v1.2.0
+  * add offline payment method for promises by checks
+  * add configuration to decide which payment methods are enabled (previously all available paymentmethods where considereed enabled)
 v1.1.1
   * add thanks email on payment completed or authorized
 
