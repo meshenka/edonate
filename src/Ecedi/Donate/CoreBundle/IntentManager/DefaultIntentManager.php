@@ -25,7 +25,7 @@ class DefaultIntentManager implements IntentManagerInterface
         return $this->container->get('doctrine');
     }
 
-    protected function preHandle() {
+    protected function preHandle(Intent $intent) {
 
             $request = $this->container->get('request');
             $session = $request->getSession();
@@ -47,7 +47,7 @@ class DefaultIntentManager implements IntentManagerInterface
 
     public function handleAutorize(Intent $intent)
     {
-        $this->preHandle();
+        $this->preHandle($intent);
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
         if($pm) {
@@ -59,7 +59,7 @@ class DefaultIntentManager implements IntentManagerInterface
 
     public function handlePay(Intent $intent)
     {
-        $this->preHandle();
+        $this->preHandle($intent);
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
 

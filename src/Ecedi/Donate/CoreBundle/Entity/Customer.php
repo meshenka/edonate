@@ -234,7 +234,7 @@ class Customer
     /**
      * @var boolean
      *
-     * @ORM\Column(name="optinSynchronized", type="boolean", nullable=false)
+     * @ORM\Column(name="optinSynchronized", type="boolean", nullable=true)
      * @Serializer\Groups({"REST"})
      */
     private $optinSynchronized;

@@ -48,6 +48,7 @@ class DonationType extends AbstractType
     $paymentMethodDiscovery = $this->container->get('donate_core.payment_method_discovery');
     
     $params['payment_methods'] = $paymentMethodDiscovery->getEnabledMethods();
+
     $params['equivalences'] = $this->container->get('donate_core.equivalence.factory')->get();
 
     $this->setParams($params);
@@ -196,9 +197,17 @@ class DonationType extends AbstractType
         'mapped' => false,
         ));
     } else {
+
+      //ld($params['payment_methods']);
+      //
+      $choices = array();
+      foreach($params['payment_methods'] as $id => $pm) {
+        $choices[$id] = $pm->getName();
+      }
+
       //radio button
       $builder->add('payment_method', 'choice', array(
-        'choices'   => array_keys($params['payment_methods']),
+        'choices'   => $choices,
         'required'  => true,
         'expanded' => true,
         'multiple' => false,
