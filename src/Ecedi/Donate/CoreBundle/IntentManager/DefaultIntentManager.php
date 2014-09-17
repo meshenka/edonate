@@ -24,6 +24,19 @@ class DefaultIntentManager implements IntentManagerInterface
         return $this->container->get('doctrine');
     }
 
+    protected function preHandle() {
+
+            $request = $this->container->get('request');
+            $session = $request->getSession();
+            $session->set('intentId', $intent->getId());
+
+            // try to see if the locale has been set as a _locale routing parameter
+            if ($locale = $request->getLocale()) {
+                $session->set('_locale', $locale);
+            }
+
+    }
+
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -33,6 +46,7 @@ class DefaultIntentManager implements IntentManagerInterface
 
     public function handleAutorize(Intent $intent)
     {
+        $this->preHandle();
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
 
@@ -41,6 +55,7 @@ class DefaultIntentManager implements IntentManagerInterface
 
     public function handlePay(Intent $intent)
     {
+        $this->preHandle();
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
 
