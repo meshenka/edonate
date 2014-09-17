@@ -9,8 +9,8 @@
 <p class="lead no-print">{{ 'thank you cheque head' | trans ({'%amount%' : intent.amount / 100 })}}</p>
 <p class="no-print pre">{{ 'thank you cheque body'|trans }}</p>
 <div class="btn btn-primary btn-lg btn-link"><a href="#" onclick="window.print();return false">{{ "Print" | trans }}</a></div>
-{% endblock %}
-{% block printPaiement %}
+
+
 <div class="print">
   <h2>{{ 'print check title' | trans }}</h2>
   {{ 'print check %amount%' | trans ({'%amount%' : intent.amount / 100 }) | raw }}
@@ -22,8 +22,9 @@
     <dd>{{ intent.customer.firstName }} </dd>
     <dt>{{ 'Lastname'|trans }} :</dt>
     <dd>{{ intent.customer.lastName }} </dd>
-    <!--dt>{{ 'Amount'|trans }} :</dt>
-    <dd>{{ intent.amount / 100 }} <span class="euro">€</span></dd-->
+    <dt>{{ 'Amount'|trans }} :</dt>
+    <dd>{{ intent.amount / 100 }} <span class="euro">€</span></dd>
+    
     {% if intent.customer.company %}
       <dt>{{ "Company" | trans }} :</dt><dd>{{ intent.customer.company }}</dd>
     {% endif %}

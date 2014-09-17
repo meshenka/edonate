@@ -48,7 +48,10 @@ class CheckPromisePaymentMethod implements PaymentMethodInterface {
         	$em->persist($intent);
         	$em->flush();
 
-            //  return $this->container->get('templating')->renderResponse($view, $parameters, $response);
+            //  j'aime pas trop cette technique parce que sur un F5 dans le navigateur ca refait un don,
+            //  je pense qu'il est préferable de faire un redirect vers une url dédié qui ne crée pas 
+            //  de nouveaux dons.... p-e en utilisant un token unique dans l'URL ou la session 
+            //  pour avoir toujours la même URL ?
             return $this->templating->renderResponse('DonatePaymentBundle:CheckPromise:pay.html.twig', array(
                 'intent' => $intent));
 
