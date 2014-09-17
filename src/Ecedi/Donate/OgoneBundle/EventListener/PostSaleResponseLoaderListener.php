@@ -8,6 +8,7 @@ use Ecedi\Donate\OgoneBundle\Ogone\Response as OgoneResponse;
 
 /**
  * autoload the json serialized response as a Ecedi\Donate\OgoneBundle\Ogone\Response instance, injected in the entity
+ * TODO attention avec les evenements il faut les traiter que quand cela est pertinant
  */
 class PostSaleResponseLoaderListener
 {
