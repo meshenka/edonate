@@ -8,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Ecedi\Donate\CoreBundle\Event\DonateEvents;
 use Ecedi\Donate\CoreBundle\Event\DonationRequestedEvent;
 use Ecedi\Donate\CoreBundle\Event\PaymentRequestedEvent;
+use Ecedi\Donate\CoreBundle\Exception\UnknownPaymentMethodException;
 
 class DefaultIntentManager implements IntentManagerInterface
 {
@@ -49,8 +50,11 @@ class DefaultIntentManager implements IntentManagerInterface
         $this->preHandle();
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
-
-        return $pm->autorize($intent);
+        if($pm) {
+            return $pm->autorize($intent);
+        } else {
+            throw new UnknownPaymentMethodException($intent->getPaymentMethod());
+        }
     }
 
     public function handlePay(Intent $intent)
@@ -63,9 +67,11 @@ class DefaultIntentManager implements IntentManagerInterface
             $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_REQUESTED, new PaymentRequestedEvent($intent));
             return $pm->pay($intent);            
         }
+        else {
+            throw new UnknownPaymentMethodException($intent->getPaymentMethod());
+        }
 
-        return ''; //TODO return a 404 response
-
+        //return ''; //TODO return a 404 response
 
     }
 
