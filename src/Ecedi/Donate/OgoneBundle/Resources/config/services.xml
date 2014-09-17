@@ -34,6 +34,11 @@
             <tag name="donate.payment_method" />
         </service>
 
+<!--         <service id="donate_paypal.payment_method" class="Ecedi\Donate\OgoneBundle\Service\PaypalPaymentMethod">
+            <tag name="donate.payment_method" />
+        </service>
+ -->
+
         <!-- Service de gestion de la PostSale (validation de la post-sale et rattachement à l'intent d'origine ) 
             use class donate_ogone.postsale.manager.class to handle the post sale inside the controller
             use class donate_ogone.postsale.manager.spool.class to handle the post sale on Terminate event (after response is sent)

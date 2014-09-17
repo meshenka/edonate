@@ -31,6 +31,6 @@ class DonateCoreExtension extends Extension
         $container->setParameter('donate_core.mail.donator',$config['mail']['donator']);
         $container->setParameter('donate_core.mail.webmaster',$config['mail']['webmaster']);
         $container->setParameter('donate_core.mail.noreply',$config['mail']['noreply']);
-
+        $container->setParameter('donate_core.payment_methods',$config['payment_methods']);
     }
 }

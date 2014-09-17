@@ -36,13 +36,7 @@ class DonationType extends AbstractType
     return $this;
   }
 
-  /*
-  public function __construct(array $params = array(), Container $container)
-  {
-    $this->setParams($params);
-    $this->container = $container;
-  }
-  */
+
   public function __construct(Container $container)
   {
     $this->container = $container;
@@ -52,7 +46,8 @@ class DonationType extends AbstractType
     $params['civility'] = $this->container->getParameter('donate_front.form.civility');
 
     $paymentMethodDiscovery = $this->container->get('donate_core.payment_method_discovery');
-    $params['payment_methods'] = $paymentMethodDiscovery->getAvailableMethods();
+    
+    $params['payment_methods'] = $paymentMethodDiscovery->getEnabledMethods();
     $params['equivalences'] = $this->container->get('donate_core.equivalence.factory')->get();
 
     $this->setParams($params);
@@ -203,7 +198,7 @@ class DonationType extends AbstractType
     } else {
       //radio button
       $builder->add('payment_method', 'choice', array(
-        'choices'   => $params['payment_methods'],
+        'choices'   => array_keys($params['payment_methods']),
         'required'  => true,
         'expanded' => true,
         'multiple' => false,
