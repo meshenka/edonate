@@ -9,7 +9,7 @@
     <dt>{{ "Amount" | trans }}</dt><dd>{{ intent.amount / 100}}  {{ macros.euro() }}</dd>
     <dt>{{ "Status" | trans }}</dt><dd><button type="button" class="btn btn-{{ macros.intent_state_class(intent) }}">{{ intent.status | trans}}</button></dd>
     <dt>{{ "Type" | trans }}</dt><dd>{{ types[intent.type] | trans}}</dd>
-    <dt>{{ "Payment method" | trans }}</dt><dd>{{ intent.paymentMethod }}</dd>
+    <dt>{{ "Payment method" | trans }}</dt><dd>{{ intent.paymentMethod | trans }}</dd>
     <dt>{{ "Fiscal receipt " | trans }}</dt><dd>{{ macros.fiscal_receipt(intent.fiscalReceipt) }}</dd>
     <dt>{{ "Campaign" | trans }}</dt><dd>{{ intent.campaign }}</dd>
 </dl>
