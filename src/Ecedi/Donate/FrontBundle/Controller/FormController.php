@@ -50,6 +50,7 @@ class FormController extends Controller
             $em->persist($data);
             $em->flush();
 
+            // TODO we should use handleAutorize when using recurring tunnel
             return  $im->handlePay($intent);
         }
 
