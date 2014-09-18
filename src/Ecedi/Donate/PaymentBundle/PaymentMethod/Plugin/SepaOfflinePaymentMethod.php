@@ -15,6 +15,9 @@ use Symfony\Component\Routing\RouterInterface;
  * to the association
  *
  * We call it offline to mark it different than online SEPA Mandate with direct numeric signature
+ *
+ * TODO premier payment méthod pour le tunnel de vente recurring à voir comment le traiter au niveua IntentManager!!
+ * 
  */
 class SepaOfflinePaymentMethod implements PaymentMethodInterface {
 
