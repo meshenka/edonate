@@ -1,0 +1,86 @@
+{#
+
+@param intent
+
+#}
+{% trans_default_domain "check_promise" %}
+
+{% extends "DonateFrontBundle::layout.html.twig" %}
+{% block title%}{{'Donation completed'|trans }} | {{ parent() }} {% endblock %}
+
+{% block main_content %}
+<h1 class="no-print">{{ 'thank you cheque title'|trans }}</h1>
+
+<p class="lead no-print">
+	{{ 'thank you cheque head' | trans ({'%amount%' : intent.amount / 100 })}}
+</p>
+
+<p class="no-print pre">
+	{{ 'thank you cheque body'|trans }}
+</p>
+<div class="btn-link">
+	<a class="btn btn-primary btn-lg" href="#" onclick="window.print();return false">{{ "Print" | trans }}</a>
+</div>
+
+
+<div class="print">
+	<h2>{{ 'print check title' | trans }}</h2>
+
+	{{ 'print check %amount%' | trans ({'%amount%' : intent.amount / 100 }) | raw }}
+
+	<h3>{{ 'print check contact details title' | trans }}</h3>
+	
+	<dl class="dl-horizontal">
+		{% if intent.customer.civility %}
+		<dt>{{ 'Civility'|trans }} :</dt>
+		<dd>{{ intent.customer.civility }} </dd>
+		{% endif %}
+
+		<dt>{{ 'Firstname'|trans }} :</dt>
+		<dd>{{ intent.customer.firstName }} </dd>
+		
+		<dt>{{ 'Lastname'|trans }} :</dt>
+		<dd>{{ intent.customer.lastName }} </dd>
+		
+		<dt>{{ 'Amount'|trans }} :</dt>
+		<dd>{{ intent.amount / 100 }} <span class="euro">€</span></dd>
+		
+		{% if intent.customer.company %}
+		<dt>{{ "Company" | trans }} :</dt><dd>{{ intent.customer.company }}</dd>
+		{% endif %}
+
+		<dt>{{ "Address" | trans }} :</dt><dd>{{ intent.customer.addressNber }} {{ intent.customer.addressStreet }}</dd>
+
+		{% if intent.customer.addressExtra %}
+		<dt>{{ "Address extended" | trans }} :</dt><dd>{{ intent.customer.addressExtra }}</dd>
+		{% endif %}
+
+		{% if intent.customer.addressLiving %}
+		<dt>{{ "Address Living" | trans }} :</dt><dd>{{ intent.customer.addressLiving }}</dd>
+		{% endif %}
+		
+		<dt>{{ "Zipcode" | trans }} :</dt><dd>{{ intent.customer.addressZipcode }}</dd>
+		<dt>{{ "City" | trans }} :</dt><dd>{{ intent.customer.addressCity }}</dd>
+		
+		{% if intent.customer.addressPb %}
+		<dt>{{ "Postal box" | trans }} :</dt><dd>{{ intent.customer.addressPb }}</dd>
+		{% endif %}
+		
+		<dt>{{ "Country" | trans }} :</dt><dd>{{ intent.customer.addressCountry }}</dd>
+		
+		{% if intent.customer.phone %}
+		<dt>{{ "Phone" | trans }} :</dt><dd>{{ intent.customer.phone }}</dd>
+		{% endif %}
+		
+		<dt>{{ "Email" | trans }} :</dt><dd>{{ intent.customer.email }}</dd>
+	</dl>
+
+	<p class='separation'>
+		{{ "print check donor relation" | trans | raw}}
+	</p>
+
+	<p class="loi">
+		{{ "print check privacy" | trans | raw }}
+	</p>
+</div>
+{% endblock %}

@@ -38,24 +38,11 @@ class OgonePaymentMethod extends Controller implements PaymentMethodInterface
     {
         if ($intent->getStatus() === Intent::STATUS_NEW) {
 
-            //store intentId in session
-            //TODO put this code in CoreBundle
-            $request = $this->getRequest();
-            $session = $request->getSession();
-            $session->set('intentId', $intent->getId());
-
-            // try to see if the locale has been set as a _locale routing parameter
-            if ($locale = $request->getLocale()) {
-                $session->set('_locale', $locale);
-            }
-
-            //ladybug_dump($httpRequest);
             return $this->redirect($this->generateUrl('donate_ogone_pay', []), 301);
 
         } else {
             $response = new Response();
             $response->setStatusCode(500);
-
             return $response;
         }
     }

@@ -44,6 +44,7 @@ class AppKernel extends Kernel
             new Ecedi\Donate\FrontBundle\DonateFrontBundle(),
             new Ecedi\Donate\OgoneBundle\DonateOgoneBundle(),
             new Ecedi\Donate\CmBundle\DonateCmBundle(),
+            new Ecedi\Donate\PaymentBundle\DonatePaymentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

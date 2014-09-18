@@ -13,6 +13,7 @@ use Ecedi\Donate\CoreBundle\Event\PaymentReceivedEvent;
 /**
  * Ce Subscriber envoi des emails lors de la réception de post-sale quand le code status de la réponse Ogone
  * Indique qu'une action humaine est nécessaire.
+ * TODO attention avec les evenements il faut les traiter que quand cela est pertinant
  * 
  */
 class NotifyPostSaleStatusListener extends ContainerAware implements EventSubscriberInterface

@@ -25,15 +25,17 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
         $rootNode
             ->children()
+                ->arrayNode('payment_methods')
+                    ->prototype('scalar')->defaultNull()->end()
+                ->end()
                 ->arrayNode('mail')
                     ->children()
                         ->booleanNode('donator')->defaultFalse()->end()
                         ->scalarNode('noreply')->defaultValue('noreply@ecedi.fr')->end()
-                        ->arrayNode('webmaster')->prototype('scalar')->defaultNull()->end()
+                        ->arrayNode('webmaster')->prototype('scalar')->defaultNull()->end()->end()
                     ->end()
                 ->end()
-            ->end()
-            ->arrayNode('equivalence')
+                ->arrayNode('equivalence')
                     ->isRequired()
                     ->requiresAtLeastOneElement()
                     ->prototype('array')
@@ -43,6 +45,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('currency')->defaultValue('EUR')->end()
                     ->end()
                 ->end()
+            ->end()
         ;
 
         return $treeBuilder;

@@ -15,6 +15,29 @@ class Discovery
 
     private $translator;
 
+    private $config;
+
+
+    /**
+     * config
+     *
+     * @return array list of enabled methods
+     */
+    public function getConfig() {
+        return $this->config;
+    }
+    
+    /**
+     * config
+     *
+     * @param Array $newconfig List of enabled methods
+     */
+    public function setConfig($config) {
+        $this->config = $config;
+    
+        return $this;
+    }
+
     /**
      * translator
      *
@@ -59,9 +82,10 @@ class Discovery
         return $this;
     }
 
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator, $config)
     {
         $this->setTranslator($translator);
+        $this->config = $config;
     }
 
     public function addMethod(PaymentMethodInterface $method)
@@ -77,7 +101,16 @@ class Discovery
      * @return array key is serviceId, value is Name
      */
     public function getEnabledMethods()
-    {
+    {       
+        $enabledMethods = array();
+
+        foreach($this->config as $mid) {
+            if (isset($this->methods[$mid])) {
+                $enabledMethods[$mid] = $this->methods[$mid];
+            }       
+        }
+
+        return $enabledMethods;
     }
 
     /**

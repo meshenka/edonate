@@ -1,5 +1,6 @@
 #configuration des bundles ECollecte
 donate_core:
+    payment_methods: ['ogone', 'check_promise']
     mail:
         donator: true
         webmaster : ['sgogel@ecedi.fr'] ##tableau d'email

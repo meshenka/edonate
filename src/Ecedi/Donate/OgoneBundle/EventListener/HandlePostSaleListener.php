@@ -14,6 +14,8 @@ use Ecedi\Donate\CoreBundle\Event\PaymentReceivedEvent;
  * Emails are sent on the kernel.terminate event.
  *
  * @author Fabien Potencier <fabien@symfony.com>
+ *
+ * TODO attention avec les evenements il faut les traiter que quand cela est pertinant
  */
 class HandlePostSaleListener implements EventSubscriberInterface
 {

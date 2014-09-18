@@ -13,6 +13,11 @@ donate_admin:
     type:     annotation
     prefix:   /secured
 
+donate_payment:
+    resource: "@DonatePaymentBundle/Controller/"
+    type:     annotation
+    prefix:   /payment
+
 donate_oauth_login:
     resource: Ecedi\Donate\ApiBundle\Controller\SecurityController
     type:     annotation

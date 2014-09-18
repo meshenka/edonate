@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="bb5e30ec24e5cb037feb83c74184ecc5" resname="Donation completed">
+        <source>Donation completed</source>
+        <target>Your donation by paycheck has been registered</target>
+      </trans-unit>
+      <trans-unit id="7fe87ae6180b531cbd38e7c053b53c33" resname="thank you cheque title">
+        <source>thank you cheque title</source>
+        <target>Thank you for your donation via paycheck</target>
+      </trans-unit>
+      <trans-unit id="89952d5bc469f83f5b39adc748fbecae" resname="thank you cheque head">
+        <source>thank you cheque head</source>
+        <target>Our association thanks you for your generosity.</target>
+      </trans-unit>
+      <trans-unit id="ac3fa52cdfbb48e1c6064032295a5a69" resname="thank you cheque body">
+        <source>thank you cheque body</source>
+        <target>new_thank you cheque body</target>
+      </trans-unit>
+      <trans-unit id="13dba24862cf9128167a59100e154c8d" resname="Print">
+        <source>Print</source>
+        <target>Print</target>
+      </trans-unit>
+      <trans-unit id="280a194fbeaa0c19e882ffbdba15216d" resname="print check title">
+        <source>print check title</source>
+        <target>Your donation</target>
+      </trans-unit>
+      <trans-unit id="a05ffde8b4b279c6b44b8dffb22deb1b" resname="print check %amount%">
+        <source>print check %amount%</source>
+        <target>
+          <![CDATA[
+            Your next step is to send us by mail your paycheck of %amount% <span class="euro">€</span> order is: [PUT HERE PAYCHECK ORDER]
+          ]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="ffbd6037bce32c7ff9187782cb64e354" resname="print check contact details title">
+        <source>print check contact details title</source>
+        <target>Your personnal details</target>
+      </trans-unit>
+      <trans-unit id="a1e8db7dba8f18eff1391b2eda88b14c" resname="Civility">
+        <source>Civility</source>
+        <target>Civility</target>
+      </trans-unit>
+      <trans-unit id="04176f095283bc729f1e3926967e7034" resname="Firstname">
+        <source>Firstname</source>
+        <target>Firstname</target>
+      </trans-unit>
+      <trans-unit id="dff4bf10409100d989495c6d5486035e" resname="Lastname">
+        <source>Lastname</source>
+        <target>Lastname</target>
+      </trans-unit>
+      <trans-unit id="b2f40690858b404ed10e62bdf422c704" resname="Amount">
+        <source>Amount</source>
+        <target>Amount</target>
+      </trans-unit>
+      <trans-unit id="1c76cbfe21c6f44c1d1e59d54f3e4420" resname="Company">
+        <source>Company</source>
+        <target>Company</target>
+      </trans-unit>
+      <trans-unit id="dd7bf230fde8d4836917806aff6a6b27" resname="Address">
+        <source>Address</source>
+        <target>Address</target>
+      </trans-unit>
+      <trans-unit id="fc7ca4556b22ef2dd2b19ff13beb498f" resname="Address extended">
+        <source>Address extended</source>
+        <target>Extended Address</target>
+      </trans-unit>
+      <trans-unit id="2bf07f4a9e7c154f6e8a08bc972d2db9" resname="Address Living">
+        <source>Address Living</source>
+        <target>Living</target>
+      </trans-unit>
+      <trans-unit id="e0ed8e71dbd22a1e91cb570b52443fd5" resname="Zipcode">
+        <source>Zipcode</source>
+        <target>Zipcode</target>
+      </trans-unit>
+      <trans-unit id="57d056ed0984166336b7879c2af3657f" resname="City">
+        <source>City</source>
+        <target>City</target>
+      </trans-unit>
+      <trans-unit id="3a5651a6f9882014fa6db485646468f8" resname="Postal box">
+        <source>Postal box</source>
+        <target>Postal box</target>
+      </trans-unit>
+      <trans-unit id="59716c97497eb9694541f7c3d37b1a4d" resname="Country">
+        <source>Country</source>
+        <target>Country</target>
+      </trans-unit>
+      <trans-unit id="bcc254b55c4a1babdf1dcb82c207506b" resname="Phone">
+        <source>Phone</source>
+        <target>Phone</target>
+      </trans-unit>
+      <trans-unit id="ce8ae9da5b7cd6c3df2929543a9af92d" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="26d101ca246d5d580108875a3455b9bb" resname="print check donor relation">
+        <source>print check donor relation</source>
+        <target>[PUT HERE ADDRESS OF DONATOR SERVICE]</target>
+      </trans-unit>
+      <trans-unit id="d3550451123150b9307a04a78fdb7cab" resname="print check privacy">
+        <source>print check privacy</source>
+        <target>[PUT HERE PRIVACY DETAILS]</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

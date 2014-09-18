@@ -20,8 +20,8 @@ class FormController extends Controller
     {
         //cache validation tjrs public, c'est l'ESI qui gère la sidebar
         $response = new Response();
-        $response->setPublic();
-        $response->setSharedMaxAge(3600);
+        // $response->setPublic();
+        // $response->setSharedMaxAge(3600);
 
         $data = new Customer();
 

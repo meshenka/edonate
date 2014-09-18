@@ -8,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Ecedi\Donate\CoreBundle\Event\DonateEvents;
 use Ecedi\Donate\CoreBundle\Event\DonationRequestedEvent;
 use Ecedi\Donate\CoreBundle\Event\PaymentRequestedEvent;
+use Ecedi\Donate\CoreBundle\Exception\UnknownPaymentMethodException;
 
 class DefaultIntentManager implements IntentManagerInterface
 {
@@ -24,6 +25,19 @@ class DefaultIntentManager implements IntentManagerInterface
         return $this->container->get('doctrine');
     }
 
+    protected function preHandle(Intent $intent) {
+
+            $request = $this->container->get('request');
+            $session = $request->getSession();
+            $session->set('intentId', $intent->getId());
+
+            // try to see if the locale has been set as a _locale routing parameter
+            if ($locale = $request->getLocale()) {
+                $session->set('_locale', $locale);
+            }
+
+    }
+
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -33,14 +47,19 @@ class DefaultIntentManager implements IntentManagerInterface
 
     public function handleAutorize(Intent $intent)
     {
+        $this->preHandle($intent);
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
-
-        return $pm->autorize($intent);
+        if($pm) {
+            return $pm->autorize($intent);
+        } else {
+            throw new UnknownPaymentMethodException($intent->getPaymentMethod());
+        }
     }
 
     public function handlePay(Intent $intent)
     {
+        $this->preHandle($intent);
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
 
@@ -48,9 +67,11 @@ class DefaultIntentManager implements IntentManagerInterface
             $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_REQUESTED, new PaymentRequestedEvent($intent));
             return $pm->pay($intent);            
         }
+        else {
+            throw new UnknownPaymentMethodException($intent->getPaymentMethod());
+        }
 
-        return ''; //TODO return a 404 response
-
+        //return ''; //TODO return a 404 response
 
     }
 
