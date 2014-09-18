@@ -5,13 +5,17 @@ namespace Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin;
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 class CheckPromisePaymentMethod implements PaymentMethodInterface {
 
 	private $templating;
 	private $doctrine;
+    private $router;
+
 
     public function getId()
     {
@@ -23,10 +27,12 @@ class CheckPromisePaymentMethod implements PaymentMethodInterface {
         return 'Send a check';
     }
 
-    public function __construct(RegistryInterface $doctrine, EngineInterface $templating) {
+    public function __construct(RegistryInterface $doctrine, EngineInterface $templating, RouterInterface $router) {
     	$this->templating = $templating;
     	$this->doctrine = $doctrine;
+        $this->router = $router;
     }
+
     /**
      * does not support authorisation tunnel
      * 
@@ -45,15 +51,12 @@ class CheckPromisePaymentMethod implements PaymentMethodInterface {
         	//le payement est immédiatement terminé,
         	$intent->setStatus(Intent::STATUS_DONE);
         	$em = $this->doctrine->getManager();
+
+            //TODO should we dispatch an event or something?
         	$em->persist($intent);
         	$em->flush();
-
-            //  j'aime pas trop cette technique parce que sur un F5 dans le navigateur ca refait un don,
-            //  je pense qu'il est préferable de faire un redirect vers une url dédié qui ne crée pas 
-            //  de nouveaux dons.... p-e en utilisant un token unique dans l'URL ou la session 
-            //  pour avoir toujours la même URL ?
-            return $this->templating->renderResponse('DonatePaymentBundle:CheckPromise:pay.html.twig', array(
-                'intent' => $intent));
+            
+            return new RedirectResponse($this->router->generate('donate_payment_check_promise_completed'));
 
         } else {
             $response = new Response();
