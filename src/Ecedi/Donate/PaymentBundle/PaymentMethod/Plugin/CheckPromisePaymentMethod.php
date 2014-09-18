@@ -16,10 +16,11 @@ class CheckPromisePaymentMethod implements PaymentMethodInterface {
 	private $doctrine;
     private $router;
 
+    const ID = 'check_promise';
 
     public function getId()
     {
-        return 'check_promise';
+        return self::ID;
     }
 
     public function getName()

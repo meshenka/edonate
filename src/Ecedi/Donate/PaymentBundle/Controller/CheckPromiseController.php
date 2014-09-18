@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Ecedi\Donate\CoreBundle\Entity\Intent;
+use Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\CheckPromisePaymentMethod;
+
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckPromiseController extends Controller
@@ -29,9 +32,9 @@ class CheckPromiseController extends Controller
         //en env de dev on peut afficher la page avec un payment OK
         if ($this->container->getParameter('kernel.environment') === 'dev') {
 
-           $i = $ir->findOneBy(array('status' => Intent::STATUS_DONE));
+           $i = $ir->findOneBy(array('status' => Intent::STATUS_DONE, 'paymentMethod' => CheckPromisePaymentMethod::ID));
            if ($i) {
-            return ['intent' => $i->getIntent()];
+            return ['intent' => $i];
            }
 
         }
