@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
-//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class FormController extends Controller
 {
@@ -48,10 +47,12 @@ class FormController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($data);
-            $em->flush();
 
             // TODO we should use handleAutorize when using recurring tunnel
-            return  $im->handlePay($intent);
+            $response =  $im->handle($intent);
+
+            $em->flush();
+            return $response;
         }
 
         return $this->render('DonateFrontBundle:Form:index.html.twig', array(

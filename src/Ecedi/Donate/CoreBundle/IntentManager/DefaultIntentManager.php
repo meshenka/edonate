@@ -8,7 +8,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Ecedi\Donate\CoreBundle\Event\DonateEvents;
 use Ecedi\Donate\CoreBundle\Event\DonationRequestedEvent;
 use Ecedi\Donate\CoreBundle\Event\PaymentRequestedEvent;
+use Ecedi\Donate\CoreBundle\Event\AutorizationRequestedEvent;
 use Ecedi\Donate\CoreBundle\Exception\UnknownPaymentMethodException;
+use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 
 class DefaultIntentManager implements IntentManagerInterface
 {
@@ -45,33 +47,64 @@ class DefaultIntentManager implements IntentManagerInterface
         $this->logger = $container->get('logger');
     }
 
-    public function handleAutorize(Intent $intent)
-    {
-        $this->preHandle($intent);
-        //find used PaymentMethod and send if
+    /**
+     * run autorize or pay according to tunnel
+     * 
+     * @param  Intent $intent [description]
+     * @return [type]         [description]
+     * @throws UnknownPaymentMethodException If method id is not found in existing configuration
+     */
+    public function handle(Intent $intent) {
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
         if($pm) {
-            return $pm->autorize($intent);
+            if($pm->getTunnel() === PaymentMethodInterface::TUNNEL_RECURING) {
+
+                return $this->handleAutorize($intent);
+            }
+
+            if($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPOT) {
+
+                return $this->handlePay($intent);
+            }
+
         } else {
             throw new UnknownPaymentMethodException($intent->getPaymentMethod());
         }
+
     }
 
-    public function handlePay(Intent $intent)
+    /**
+     * run autorisation for recurring sell tunnel
+     * 
+     * @param  Intent $intent
+     * @return Response  
+     */
+    protected function handleAutorize(Intent $intent)
     {
         $this->preHandle($intent);
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
 
-        if($pm) {
-            $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_REQUESTED, new PaymentRequestedEvent($intent));
-            return $pm->pay($intent);            
-        }
-        else {
-            throw new UnknownPaymentMethodException($intent->getPaymentMethod());
-        }
+        $this->container->get('event_dispatcher')->dispatch(DonateEvents::AUTORIZATION_REQUESTED, new AutorizationRequestedEvent($intent));
 
-        //return ''; //TODO return a 404 response
+        return $pm->autorize($intent);
+    }
+
+    /**
+     * run immediate payment for spot sell tunnel
+     * 
+     * @param  Intent $intent
+     * @return Response  
+     * @throws UnknownPaymentMethodException If method id is not found in existing configuration
+     */
+    protected function handlePay(Intent $intent)
+    {
+        $this->preHandle($intent);
+        //find used PaymentMethod and send if
+        $pm = $this->discovery->getMethod($intent->getPaymentMethod());
+
+        $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_REQUESTED, new PaymentRequestedEvent($intent));
+        return $pm->pay($intent);            
 
     }
 

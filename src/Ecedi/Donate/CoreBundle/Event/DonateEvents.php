@@ -14,6 +14,9 @@ final class DonateEvents
     //when someone submit a new donation via the form
     const DONATION_REQUESTED = "donate.intent.requested";
 
+    //when someone submit a new donation via the form
+    const AUTORIZATION_REQUESTED = "donate.autorization.requested";
+
     //when the TPE is submited
     const PAYMENT_REQUESTED = "donate.payment.requested";
 
