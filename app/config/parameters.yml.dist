@@ -26,3 +26,4 @@ parameters:
     session_memcached_prefix: ecollect
     session_memcached_expire: ~
     donate_core.email.noreply: ~
+    donate_core.email.webmaster: ~

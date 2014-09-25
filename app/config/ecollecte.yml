@@ -3,7 +3,7 @@ donate_core:
     payment_methods: ['ogone', 'check_promise', 'sepa_offline']
     mail:
         donator: true
-        webmaster : ['sgogel@ecedi.fr'] ##tableau d'email
+        webmaster : [ %donate_core.email.webmaster% ] ##tableau d'email
         noreply : %donate_core.email.noreply%
     equivalence:
         - {amount : 20, label : '20<span class="euro">€</span>'}
