@@ -336,6 +336,20 @@
         <source>Amount must be lower than </source>
         <target>Le don doit être inférieur à </target>
       </trans-unit>
+
+      <trans-unit id="pm-ogone-spot">
+        <source>Ogone</source>
+        <target>Paiement par CB via Ogone </target>
+      </trans-unit>
+      <trans-unit id="pm-checkpromise-spot">
+        <source>Send a check</source>
+        <target>Envoyer un chèque par courrier</target>
+      </trans-unit>
+      <trans-unit id="pm-sepaoffline-spot">
+        <source>Send a SEPA Mandate</source>
+        <target>Envoyer un mandat SEPA par courrier</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>
