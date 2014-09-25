@@ -5,7 +5,6 @@ namespace Ecedi\Donate\PaymentBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\CheckPromisePaymentMethod;
 
@@ -38,7 +37,6 @@ class CheckPromiseController extends Controller
            }
 
         }
-
         //gerer par une 404 l'accès à la page sans sessions
         //else this Intent is already managed, or not in session
         $response = new Response();

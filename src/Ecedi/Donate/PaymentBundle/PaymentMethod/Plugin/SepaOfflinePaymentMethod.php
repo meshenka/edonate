@@ -57,6 +57,7 @@ class SepaOfflinePaymentMethod implements PaymentMethodInterface {
 
         	//le payement est immédiatement terminé,
         	$intent->setStatus(Intent::STATUS_PENDING);
+            $intent->setType(Intent::TYPE_RECURING);
         	$em = $this->doctrine->getManager();
 
             //TODO should we dispatch an event or something?
@@ -80,7 +81,11 @@ class SepaOfflinePaymentMethod implements PaymentMethodInterface {
      */
     public function pay(Intent $intent)
     {
-        return $this->autorize($intent);
+        return false;
     }
 	
+    public function getTunnel() {
+        return self::TUNNEL_RECURING;
+    }
+
 }

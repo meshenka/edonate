@@ -39,13 +39,13 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->requiresAtLeastOneElement()
                     ->prototype('array')
-                    ->children()
-                        ->scalarNode('amount')->isRequired()->end()
-                        ->scalarNode('label')->isRequired()->end()
-                        ->scalarNode('currency')->defaultValue('EUR')->end()
+                        ->children()
+                            ->scalarNode('amount')->isRequired()->end()
+                            ->scalarNode('label')->isRequired()->end()
+                            ->scalarNode('currency')->defaultValue('EUR')->end()
+                        ->end()
                     ->end()
                 ->end()
-            ->end()
         ;
 
         return $treeBuilder;

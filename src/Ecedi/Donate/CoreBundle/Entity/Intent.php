@@ -32,6 +32,7 @@ class Intent
 
     const TYPE_SPOT = 0;
     const TYPE_RECURING = 1;
+    const TYPE_SPONSORSHIP = 2;
 
     const STATUS_NEW = 'new';
     const STATUS_PENDING = 'pending';
@@ -76,14 +77,15 @@ class Intent
 
     public static function getTypes()
     {
-        return array(self::TYPE_SPOT, self::TYPE_RECURING);
+        return array(self::TYPE_SPOT, self::TYPE_RECURING, self::TYPE_SPONSORSHIP);
     }
 
     public static function getTypesLabel()
     {
         return array(
-            Intent::TYPE_SPOT       => 'Spot',
-            Intent::TYPE_RECURING   => 'Recuring',
+            self::TYPE_SPOT       => 'Spot',
+            self::TYPE_RECURING   => 'Recuring',
+            self::TYPE_SPONSORSHIP => 'Sponsorship'
         );
     }
 

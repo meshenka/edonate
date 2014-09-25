@@ -6,6 +6,9 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
 
 interface PaymentMethodInterface
 {
+	const TUNNEL_RECURING = 'recurring';
+	const TUNNEL_SPOT = 'spot';
+	const TUNNEL_SPONSORSHIP = 'sponsorship';
 
 	const PAYMENT_STATUS_COMPLETED = 'completed';
 	const PAYMENT_STATUS_CANCELED = 'canceled';
@@ -15,6 +18,8 @@ interface PaymentMethodInterface
     public function getId();
 
     public function getName();
+
+    public function getTunnel();
 
     public function autorize(Intent $intent);
 

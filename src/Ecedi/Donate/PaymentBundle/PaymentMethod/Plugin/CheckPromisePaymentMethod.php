@@ -66,5 +66,10 @@ class CheckPromisePaymentMethod implements PaymentMethodInterface {
             return $response;
         }
     }
+
+    public function getTunnel() {
+        return self::TUNNEL_SPOT;
+    }
+
 	
 }

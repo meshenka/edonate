@@ -47,4 +47,9 @@ class OgonePaymentMethod extends Controller implements PaymentMethodInterface
         }
     }
 
+    public function getTunnel() {
+        return self::TUNNEL_SPOT;
+    }
+
+
 }

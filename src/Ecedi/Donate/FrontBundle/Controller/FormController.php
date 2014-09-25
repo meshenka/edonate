@@ -47,11 +47,10 @@ class FormController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($data);
-
-            // TODO we should use handleAutorize when using recurring tunnel
+            
+            $em->flush();
             $response =  $im->handle($intent);
 
-            $em->flush();
             return $response;
         }
 

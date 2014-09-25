@@ -5,7 +5,6 @@ namespace Ecedi\Donate\PaymentBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod;
 
@@ -25,7 +24,7 @@ class SepaOfflineController extends Controller
 
         if ($session->has('intentId')) {
             $intentId = $session->get('intentId');
-
+            
             return ['intent' => $ir->find($intentId)];
         }
 
@@ -34,6 +33,7 @@ class SepaOfflineController extends Controller
 
            $i = $ir->findOneBy(array('status' => Intent::STATUS_DONE, 'paymentMethod' => SepaOfflinePaymentMethod::ID));
            if ($i) {
+            //ld($i);
             return ['intent' => $i];
            }
 

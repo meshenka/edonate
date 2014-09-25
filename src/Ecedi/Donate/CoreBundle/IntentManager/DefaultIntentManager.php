@@ -27,8 +27,8 @@ class DefaultIntentManager implements IntentManagerInterface
         return $this->container->get('doctrine');
     }
 
-    protected function preHandle(Intent $intent) {
-
+    protected function preHandle(Intent $intent)
+    {
             $request = $this->container->get('request');
             $session = $request->getSession();
             $session->set('intentId', $intent->getId());
@@ -49,21 +49,21 @@ class DefaultIntentManager implements IntentManagerInterface
 
     /**
      * run autorize or pay according to tunnel
-     * 
-     * @param  Intent $intent [description]
-     * @return [type]         [description]
+     *
+     * @param  Intent                        $intent [description]
+     * @return [type]                        [description]
      * @throws UnknownPaymentMethodException If method id is not found in existing configuration
      */
-    public function handle(Intent $intent) {
+    public function handle(Intent $intent)
+    {
+        $this->preHandle($intent);
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
-        if($pm) {
-            if($pm->getTunnel() === PaymentMethodInterface::TUNNEL_RECURING) {
-
+        if ($pm) {
+            if ( ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_RECURING )|| ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPONSORSHIP)) {
                 return $this->handleAutorize($intent);
             }
 
-            if($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPOT) {
-
+            if ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPOT) {
                 return $this->handlePay($intent);
             }
 
@@ -75,13 +75,12 @@ class DefaultIntentManager implements IntentManagerInterface
 
     /**
      * run autorisation for recurring sell tunnel
-     * 
-     * @param  Intent $intent
-     * @return Response  
+     *
+     * @param  Intent   $intent
+     * @return Response
      */
     protected function handleAutorize(Intent $intent)
     {
-        $this->preHandle($intent);
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
 
@@ -92,19 +91,19 @@ class DefaultIntentManager implements IntentManagerInterface
 
     /**
      * run immediate payment for spot sell tunnel
-     * 
-     * @param  Intent $intent
-     * @return Response  
+     *
+     * @param  Intent                        $intent
+     * @return Response
      * @throws UnknownPaymentMethodException If method id is not found in existing configuration
      */
     protected function handlePay(Intent $intent)
     {
-        $this->preHandle($intent);
         //find used PaymentMethod and send if
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
 
         $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_REQUESTED, new PaymentRequestedEvent($intent));
-        return $pm->pay($intent);            
+
+        return $pm->pay($intent);
 
     }
 

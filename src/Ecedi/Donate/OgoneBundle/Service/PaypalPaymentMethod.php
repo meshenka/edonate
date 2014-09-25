@@ -30,4 +30,8 @@ class PaypalPaymentMethod implements PaymentMethodInterface
     {
         return false;
     }
+
+    public function getTunnel() {
+        return self::TUNNEL_SPOT;
+    }
 }

@@ -3,16 +3,17 @@
 @param intent
 
 #}
-{% trans_default_domain "sepa_offline" %}
+{% trans_default_domain "check_promise" %}
 
 {% extends "DonateFrontBundle::layout.html.twig" %}
 {% block title%}{{'Donation completed'|trans }} | {{ parent() }} {% endblock %}
 
 {% block main_content %}
+
 <h1 class="no-print">{{ 'thank you cheque title'|trans }}</h1>
 
 <p class="lead no-print">
-	{{ 'thank you cheque head' | trans ({'%amount%' : intent.amount / 100 })}}
+	{{ 'thank you cheque head  %amount%' | trans ({'%amount%' : intent.amount / 100 })}}
 </p>
 
 <p class="no-print pre">
@@ -83,4 +84,5 @@
 		{{ "print check privacy" | trans | raw }}
 	</p>
 </div>
+
 {% endblock %}
