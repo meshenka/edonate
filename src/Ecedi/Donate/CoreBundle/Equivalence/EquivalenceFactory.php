@@ -6,6 +6,7 @@
  */
 namespace Ecedi\Donate\CoreBundle\Equivalence;
 use  Ecedi\Donate\CoreBundle\Entity\Equivalence;
+use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 
 class EquivalenceFactory
 {
@@ -21,14 +22,29 @@ class EquivalenceFactory
         return new Equivalence($amount, $label, $currency);
     }
 
-    public function get()
-    {
-        $equivalences = [];
 
-        foreach ($this->config as $c) {
+    /**
+     * get all equivalences for all tunnels
+     * @return array key is the tunnel constant, value is an array of Equivalence Entities
+     * TODO refactore this to use Event and Listener (which will allow to have different way to gather equivalences)
+     */
+    public function getAll() {
+        $equivalences = array();
+
+        foreach ($this->config as $tunnel => $val) {        
+            $equivalences[$tunnel] = $this->get($tunnel);
+        }
+        return $equivalences;
+    }
+
+    public function get($tunnel = PaymentMethodInterface::TUNNEL_SPOT)
+    {
+
+        $equivalences = [];
+        $tunnel = $this->config[$tunnel]; 
+        foreach ( $tunnel as $c) {
             $equivalences[] = $this->create($c['amount'], $c['label'], $c['currency']);
         }
-
         return $equivalences;
     }
 

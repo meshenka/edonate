@@ -6,6 +6,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 
 class DonationType extends AbstractType
 {
@@ -49,7 +50,7 @@ class DonationType extends AbstractType
     
     $params['payment_methods'] = $paymentMethodDiscovery->getEnabledMethods();
 
-    $params['equivalences'] = $this->container->get('donate_core.equivalence.factory')->get();
+    $params['equivalences'] = $this->container->get('donate_core.equivalence.factory')->getAll();
 
     $this->setParams($params);
   }
@@ -229,7 +230,7 @@ class DonationType extends AbstractType
     $options = [];
 
     $params = $this->getParams();
-    foreach ($params['equivalences'] as $equivalence) {
+    foreach ($params['equivalences'][PaymentMethodInterface::TUNNEL_SPOT] as $equivalence) {
       $options[$equivalence->getAmount()] = $equivalence->getLabel();
     }
     $options['manual'] = $this->container->get('translator')->trans('Other amount');

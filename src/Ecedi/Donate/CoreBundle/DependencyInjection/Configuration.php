@@ -4,7 +4,7 @@ namespace Ecedi\Donate\CoreBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-
+use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 /**
  * This is the class that validates and merges configuration from your app/config files
  *
@@ -36,13 +36,24 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->arrayNode('equivalence')
-                    ->isRequired()
-                    ->requiresAtLeastOneElement()
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('amount')->isRequired()->end()
-                            ->scalarNode('label')->isRequired()->end()
-                            ->scalarNode('currency')->defaultValue('EUR')->end()
+                    ->children()
+                        ->arrayNode(PaymentMethodInterface::TUNNEL_SPOT)
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('amount')->isRequired()->end()
+                                    ->scalarNode('label')->isRequired()->end()
+                                    ->scalarNode('currency')->defaultValue('EUR')->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode(PaymentMethodInterface::TUNNEL_RECURING)
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('amount')->isRequired()->end()
+                                    ->scalarNode('label')->isRequired()->end()
+                                    ->scalarNode('currency')->defaultValue('EUR')->end()
+                                ->end()
+                            ->end()
                         ->end()
                     ->end()
                 ->end()

@@ -6,7 +6,7 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
 
 interface PaymentMethodInterface
 {
-	const TUNNEL_RECURING = 'recurring';
+	const TUNNEL_RECURING = 'recuring';
 	const TUNNEL_SPOT = 'spot';
 	const TUNNEL_SPONSORSHIP = 'sponsorship';
 

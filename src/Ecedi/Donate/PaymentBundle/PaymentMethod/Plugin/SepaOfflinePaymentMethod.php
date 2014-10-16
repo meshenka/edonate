@@ -56,7 +56,7 @@ class SepaOfflinePaymentMethod implements PaymentMethodInterface {
         if ($intent->getStatus() === Intent::STATUS_NEW) {
 
         	//le payement est immédiatement terminé,
-        	$intent->setStatus(Intent::STATUS_PENDING);
+        	$intent->setStatus(Intent::STATUS_DONE);
             $intent->setType(Intent::TYPE_RECURING);
         	$em = $this->doctrine->getManager();
 
