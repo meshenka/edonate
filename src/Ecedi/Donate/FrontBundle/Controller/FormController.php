@@ -24,7 +24,11 @@ class FormController extends Controller
 
         $data = new Customer();
 
-        $form = $this->createForm('donate', $data);
+        $form = $this->createForm('donate', $data, array(
+            'civilities' => $this->container->getParameter('donate_front.form.civility'),
+            'equivalences' => $this->container->get('donate_core.equivalence.factory')->getAll(),
+            'payment_methods' => $this->container->get('donate_core.payment_method_discovery')->getEnabledMethods(),
+        ));
 
 
         $form->handleRequest($request);

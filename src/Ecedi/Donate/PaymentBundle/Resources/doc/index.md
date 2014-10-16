@@ -15,6 +15,5 @@ This payment method is unable to track the actual payment
 
 
 TODO
-  * avoir une config d'équivalence par tunnel
   * avoir un block de montant par tunnel activé
   * gérer la relation entre les tunnels et les options de paiement

@@ -3,248 +3,210 @@ namespace Ecedi\Donate\FrontBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\DependencyInjection\Container;
+// use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class DonationType extends AbstractType
 {
 
-  private $params;
+    private $translator;
 
-  private $container;
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
 
-  /**
-   * params
-   *
-   * @return array parameters
-   */
-  public function getParams()
-  {
-    return $this->Params;
-  }
+    }
 
-  /**
-   * [Description]
-   *
-   * @param Array $newParams Parameters
-   */
-  protected function setParams($Params)
-  {
-    $this->Params = $Params;
-
-    return $this;
-  }
-
-
-  public function __construct(Container $container)
-  {
-    $this->container = $container;
-
-    $params = []; //DonationType parameters, from bundle settings
-
-    $params['civility'] = $this->container->getParameter('donate_front.form.civility');
-
-    $paymentMethodDiscovery = $this->container->get('donate_core.payment_method_discovery');
-    
-    $params['payment_methods'] = $paymentMethodDiscovery->getEnabledMethods();
-
-    $params['equivalences'] = $this->container->get('donate_core.equivalence.factory')->getAll();
-
-    $this->setParams($params);
-  }
-
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    // Configurations des montants de dons
-    $minAmount = 5;
-    $maxAmount = 4000;
-
-    $params = $this->getParams();
-
-    $builder->add('amount_preselected', 'choice',
-      array(
-        'choices'   => $this->getEquivalencesOptions(),
-        'required'  => true,
-        'expanded' => true,
-        'multiple' => false,
-        'label' => false,
-        'data' => 100,
-        'mapped' => false,
-        )
-      );
-
-    $builder->add('amount_manual', 'money',
-      array(
-        'currency' => 'EUR',
-        'required'  => false,
-        'label' => false,
-        'precision' => 0,
-        'mapped' => false,
-        'constraints' => array(
-          new Assert\Range(
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+       
+        $builder->add('amount_preselected', 'choice',
             array(
-              'min' => $minAmount,
-              'max' => $maxAmount,
-              'minMessage' => $this->container->get('translator')->trans('Amount must be greater than ') . $minAmount,
-              'maxMessage' => $this->container->get('translator')->trans('Amount must be lower than ') . $maxAmount,
-            )
-          )
-        )
-      )
-    );
+                'choices'   => $this->getEquivalencesOptions($options['equivalences']),
+                'required'  => true,
+                'expanded' => true,
+                'multiple' => false,
+                'label' => false,
+                'data' => 100,
+                'mapped' => false,
+                )
+            );
 
-        // Info perso
-    $builder->add('civility', 'choice',
-     array(
-       'choices'   => $params['civility'],
-       'required'  => false,
-        'label' => $this->container->get('translator')->trans('Civility')
-       )
-     );
-    $builder->add('company', 'text', array(
-     'required' => FALSE,
-     'label' => $this->container->get('translator')->trans('Company')));
+        $builder->add('amount_manual', 'money',
+            array(
+                'currency' => 'EUR',
+                'required'  => false,
+                'label' => false,
+                'precision' => 0,
+                'mapped' => false,
+                'constraints' => array(
+                    new Assert\Range(
+                        array(
+                            'min' => $options['min_amount'],
+                            'max' => $options['max_amount'],
+                            'minMessage' => $this->translator->trans('Amount must be greater than ') . $options['min_amount'],
+                            'maxMessage' => $this->translator->trans('Amount must be lower than ') . $options['max_amount'],
+                            )
+                        )
+                    )
+                )
+            );
 
-    $builder->add('firstName', 'text', array(
-     'required' => TRUE,
-     'label' => $this->container->get('translator')->trans('First name')));
+    // Info perso
+        $builder->add('civility', 'choice',
+            array(
+                'choices'   => $options['civilities'],
+                'required'  => false,
+                'label' => $this->translator->trans('Civility')
+                )
+            );
+        $builder->add('company', 'text', array(
+            'required' => FALSE,
+            'label' => $this->translator->trans('Company')));
 
-    $builder->add('lastName', 'text', array(
-     'required' => TRUE,
-     'label' => $this->container->get('translator')->trans('Last name')));
+        $builder->add('firstName', 'text', array(
+            'required' => TRUE,
+            'label' => $this->translator->trans('First name')));
 
-    $builder->add('phone', 'text', array(
-     'required' => FALSE,
-     'label' => $this->container->get('translator')->trans('Phone')));
+        $builder->add('lastName', 'text', array(
+            'required' => TRUE,
+            'label' => $this->translator->trans('Last name')));
 
-    $builder->add('email', 'repeated', array(
-      'type' => 'email',
-      'invalid_message' => $this->container->get('translator')->trans('The email fields must match.'),
-      'options' => array(
-       'attr' => array(
-        'class' => 'form-control',
-        'placeholder' => "xxx@yyyy.fr"
-        )),
-      'required' => true,
-      'first_options'  => array('label' => $this->container->get('translator')->trans('Email')),
-      'second_options' => array('label' => $this->container->get('translator')->trans('Repeat Email')),
-      ));
+        $builder->add('phone', 'text', array(
+            'required' => FALSE,
+            'label' => $this->translator->trans('Phone')));
 
-        //Address
-    $builder->add('addressStreet', 'text', array(
-     'required'  => true,
-     'label' => $this->container->get('translator')->trans('Address')
-     ));
+        $builder->add('email', 'repeated', array(
+            'type' => 'email',
+            'invalid_message' => $this->translator->trans('The email fields must match.'),
+            'options' => array(
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => "xxx@yyyy.fr"
+                    )),
+            'required' => true,
+            'first_options'  => array('label' => $this->translator->trans('Email')),
+            'second_options' => array('label' => $this->translator->trans('Repeat Email')),
+            ));
 
-    $builder->add('addressPb', 'text', array(
-     'required'  => false,
-     'label' => $this->container->get('translator')->trans('Locality, post box')
-     ));
+    //Address
+        $builder->add('addressStreet', 'text', array(
+            'required'  => true,
+            'label' => $this->translator->trans('Address')
+            ));
 
-    $builder->add('addressLiving', 'text', array(
-     'required'  => false,
-     'label' => $this->container->get('translator')->trans('Living with')
-     ));
+        $builder->add('addressPb', 'text', array(
+            'required'  => false,
+            'label' => $this->translator->trans('Locality, post box')
+            ));
 
-    $builder->add('addressExtra', 'text', array(
-     'required'  => false,
-     'label' => $this->container->get('translator')->trans('Apartment, floor numbers')
-     ));
+        $builder->add('addressLiving', 'text', array(
+            'required'  => false,
+            'label' => $this->translator->trans('Living with')
+            ));
 
-    $builder->add('addressZipcode', 'number', array(
-     'required'  => true,
-     'label' => $this->container->get('translator')->trans('Zipcode')
-     ));
+        $builder->add('addressExtra', 'text', array(
+            'required'  => false,
+            'label' => $this->translator->trans('Apartment, floor numbers')
+            ));
 
-    $builder->add('addressCity', 'text', array(
-     'required'  => true,
-     'label' => $this->container->get('translator')->trans('City')
-     ));
+        $builder->add('addressZipcode', 'number', array(
+            'required'  => true,
+            'label' => $this->translator->trans('Zipcode')
+            ));
 
-    $builder->add('addressCountry', 'country', array(
-     'required'  => true,
-     'preferred_choices' => array('FR'),
-     'data' => 'FR',
-     'label' => $this->container->get('translator')->trans('Country')
-     ));
+        $builder->add('addressCity', 'text', array(
+            'required'  => true,
+            'label' => $this->translator->trans('City')
+            ));
 
-    $builder->add('erf', 'choice', array(
-     'choices'   => array(
-        0 => $this->container->get('translator')->trans('by email'),
-        1 => $this->container->get('translator')->trans('by post')
-      ),
-     'required'  => true,
-     'expanded' => true,
-     'multiple' => false,
-     'label' => $this->container->get('translator')->trans('I prefer to receive my tax receipt'),
-     'data' => 0,
-     'mapped' => false,
-     ));
-    $builder->add('optin', 'checkbox', array(
-     'required' => false,
-     'label' => $this->container->get('translator')->trans('I agree to receive informations from Association XY'),
-     ));
+        $builder->add('addressCountry', 'country', array(
+            'required'  => true,
+            'preferred_choices' => array('FR'),
+            'data' => 'FR',
+            'label' => $this->translator->trans('Country')
+            ));
+
+        $builder->add('erf', 'choice', array(
+            'choices'   => array(
+                0 => $this->translator->trans('by email'),
+                1 => $this->translator->trans('by post')
+                ),
+            'required'  => true,
+            'expanded' => true,
+            'multiple' => false,
+            'label' => $this->translator->trans('I prefer to receive my tax receipt'),
+            'data' => 0,
+            'mapped' => false,
+            ));
+        $builder->add('optin', 'checkbox', array(
+            'required' => false,
+            'label' => $this->translator->trans('I agree to receive informations from Association XY'),
+            ));
 
     //payment method
-    $methods = $params['payment_methods'];
+        $methods = $options['payment_methods'];
 
-    if (sizeof($methods) == 1) {
-      //hidden input
-      $builder->add('payment_method', 'hidden', array(
-        'required' => true,
-        'data' => array_keys($methods)[0],
-        'mapped' => false,
+        if (sizeof($methods) == 1) {
+    //hidden input
+            $builder->add('payment_method', 'hidden', array(
+                'required' => true,
+                'data' => array_keys($methods)[0],
+                'mapped' => false,
+                ));
+        } else {
+
+            $choices = array();
+            foreach ($methods as $id => $pm) {
+                $choices[$id] = $pm->getName();
+            }
+
+    //radio button
+            $builder->add('payment_method', 'choice', array(
+                'choices'   => $choices,
+                'required'  => true,
+                'expanded' => true,
+                'multiple' => false,
+    //'data' => reset(array_keys($methods)),
+                'label' => false,
+                'mapped' => false,
+                ));
+        }
+    }
+
+    public function getName()
+    {
+        return 'donate';
+    }
+
+    protected function getEquivalencesOptions($equivalences)
+    {
+
+        $options = [];
+
+        foreach ($equivalences[PaymentMethodInterface::TUNNEL_SPOT] as $equivalence) {
+            $options[$equivalence->getAmount()] = $equivalence->getLabel();
+        }
+        $options['manual'] = $this->translator->trans('Other amount');
+
+        return $options;
+    }
+
+    /**
+    * {@inheritdoc}
+    */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'csrf_protection'   => false,
+            'civilities' => array(),
+            'equivalences' => array(),
+            'payment_methods' => array(),
+            'min_amount' => 5,
+            'max_amount' => 4000,
         ));
-    } else {
-
-      //ld($params['payment_methods']);
-      //
-      $choices = array();
-      foreach($params['payment_methods'] as $id => $pm) {
-        $choices[$id] = $pm->getName();
-      }
-
-      //radio button
-      $builder->add('payment_method', 'choice', array(
-        'choices'   => $choices,
-        'required'  => true,
-        'expanded' => true,
-        'multiple' => false,
-        //'data' => reset(array_keys($methods)),
-        'label' => false,
-        'mapped' => false,
-     ));
-    }
-  }
-
-  public function getName()
-  {
-    return 'donate';
-  }
-
-  protected function getEquivalencesOptions()
-  {
-
-    $options = [];
-
-    $params = $this->getParams();
-    foreach ($params['equivalences'][PaymentMethodInterface::TUNNEL_SPOT] as $equivalence) {
-      $options[$equivalence->getAmount()] = $equivalence->getLabel();
-    }
-    $options['manual'] = $this->container->get('translator')->trans('Other amount');
-
-    return $options;
-  }
-
-  /**
- * {@inheritdoc}
- */
-public function setDefaultOptions(OptionsResolverInterface $resolver)
-{
-    $resolver->setDefaults(array(
-        'csrf_protection'   => false,
-    ));
-}
+    }   
 }
