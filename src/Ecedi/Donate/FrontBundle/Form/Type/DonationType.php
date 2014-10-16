@@ -21,49 +21,31 @@ class DonationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-       
-        $builder->add('amount', 'amount_selector', array(
-            'mapped'        => false,
-            'label'         => false,
-            'required'      => true,
-            'choices'       => $this->getEquivalencesOptions($options['equivalences']),
-            'min_amount'    => $options['min_amount'],
-            'max_amount'    => $options['max_amount'],
-            
-        ));      
-        /*
-        $builder->add('amount_preselected', 'choice',
-            array(
-                'choices'   => $this->getEquivalencesOptions($options['equivalences']),
-                'required'  => true,
-                'expanded' => true,
-                'multiple' => false,
-                'label' => false,
-                'data' => 100,
-                'mapped' => false,
-                )
-            );
+        // ld($options['payment_methods']);
 
-        $builder->add('amount_manual', 'money',
-            array(
-                'currency' => 'EUR',
-                'required'  => false,
-                'label' => false,
-                'precision' => 0,
-                'mapped' => false,
-                'constraints' => array(
-                    new Assert\Range(
-                        array(
-                            'min' => $options['min_amount'],
-                            'max' => $options['max_amount'],
-                            'minMessage' => $this->translator->trans('Amount must be greater than ') . $options['min_amount'],
-                            'maxMessage' => $this->translator->trans('Amount must be lower than ') . $options['max_amount'],
-                            )
-                        )
-                    )
-                )
-            );
-        */
+        // foreach($options['payment_methods'] as $key => $pm) {
+
+            //TODO add an amount_selector by tunnel ?
+            $builder->add('amount_spot', 'amount_selector', array(
+                'mapped'        => false,
+                'label'         => false,
+                'required'      => true,
+                'choices'       => $this->getEquivalencesOptions($options['equivalences'], 'spot'),
+                'min_amount'    => $options['min_amount'],
+                'max_amount'    => $options['max_amount'],
+                
+            ));
+
+            $builder->add('amount_recuring', 'amount_selector', array(
+                'mapped'        => false,
+                'label'         => false,
+                'required'      => true,
+                'choices'       => $this->getEquivalencesOptions($options['equivalences'], 'recuring'),
+                'min_amount'    => $options['min_amount'],
+                'max_amount'    => $options['max_amount'],
+                
+            ));      
+        // }
 
     // Info perso
         $builder->add('civility', 'choice',
@@ -192,12 +174,12 @@ class DonationType extends AbstractType
         return 'donate';
     }
 
-    protected function getEquivalencesOptions($equivalences)
+    protected function getEquivalencesOptions($equivalences, $tunnel = PaymentMethodInterface::TUNNEL_SPOT)
     {
 
         $options = [];
 
-        foreach ($equivalences[PaymentMethodInterface::TUNNEL_SPOT] as $equivalence) {
+        foreach ($equivalences[$tunnel] as $equivalence) {
             $options[$equivalence->getAmount()] = $equivalence->getLabel();
         }
         $options['manual'] = $this->translator->trans('Other amount');
