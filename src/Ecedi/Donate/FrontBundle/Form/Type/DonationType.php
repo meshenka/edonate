@@ -1,9 +1,8 @@
 <?php
-namespace Ecedi\Donate\FrontBundle\Form;
+namespace Ecedi\Donate\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-// use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
@@ -23,6 +22,16 @@ class DonationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
        
+        $builder->add('amount', 'amount_selector', array(
+            'mapped'        => false,
+            'label'         => false,
+            'required'      => true,
+            'choices'       => $this->getEquivalencesOptions($options['equivalences']),
+            'min_amount'    => $options['min_amount'],
+            'max_amount'    => $options['max_amount'],
+            
+        ));      
+        /*
         $builder->add('amount_preselected', 'choice',
             array(
                 'choices'   => $this->getEquivalencesOptions($options['equivalences']),
@@ -54,6 +63,7 @@ class DonationType extends AbstractType
                     )
                 )
             );
+        */
 
     // Info perso
         $builder->add('civility', 'choice',

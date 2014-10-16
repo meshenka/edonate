@@ -37,13 +37,8 @@ class FormController extends Controller
             $im = $this->get('donate_core.intent_manager');
 
             //calcul du montant
-            $amount = 0;
-            if ($form['amount_preselected']->getData() === 'manual' ) {
-                $amount = $form['amount_manual']->getData() * 100;
-            } else {
-                $amount = $form['amount_preselected']->getData() * 100;
-            }
-
+            $amount = $form['amount']->getData();
+            
             $intent = $im->newIntent($amount, $form['payment_method']->getData());
             $intent->setFiscalReceipt($form['erf']->getData());
 

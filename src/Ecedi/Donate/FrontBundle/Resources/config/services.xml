@@ -9,7 +9,7 @@
         <parameter key="donate_front.form.civility" />
         <parameter key="donate_front.i18n" />
         <parameter key="donate_front.campaign" />
-        <parameter key="form.type.donation.class">Ecedi\Donate\FrontBundle\Form\DonationType</parameter>
+        <parameter key="form.type.donation.class">Ecedi\Donate\FrontBundle\Form\Type\DonationType</parameter>
         <parameter key="donate_front.thanks_email.listener.class">Ecedi\Donate\FrontBundle\EventListener\ThanksEmailEventListener</parameter>
     </parameters>
 
@@ -17,6 +17,11 @@
         <service id="form.type.donate" class="%form.type.donation.class%">
             <argument type="service" id="translator" />
             <tag name="form.type" alias="donate" />
+        </service>
+
+        <service id="donate_front.form.type.amount_type" class="Ecedi\Donate\FrontBundle\Form\Type\AmountType">
+            <argument type="service" id="translator" />
+            <tag name="form.type" alias="amount_selector" />
         </service>
 
         <service id="donate_front.i18n.twig" class="Ecedi\Donate\FrontBundle\Twig\I18nTwigExtension">
