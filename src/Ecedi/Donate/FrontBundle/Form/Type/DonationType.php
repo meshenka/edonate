@@ -20,32 +20,29 @@ class DonationType extends AbstractType
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        // ld($options['payment_methods']);
-
-        // foreach($options['payment_methods'] as $key => $pm) {
-
-            //TODO add an amount_selector by tunnel ?
-            $builder->add('amount_spot', 'amount_selector', array(
-                'mapped'        => false,
-                'label'         => false,
-                'required'      => true,
-                'choices'       => $this->getEquivalencesOptions($options['equivalences'], 'spot'),
-                'min_amount'    => $options['min_amount'],
-                'max_amount'    => $options['max_amount'],
-                
-            ));
-
-            $builder->add('amount_recuring', 'amount_selector', array(
-                'mapped'        => false,
-                'label'         => false,
-                'required'      => true,
-                'choices'       => $this->getEquivalencesOptions($options['equivalences'], 'recuring'),
-                'min_amount'    => $options['min_amount'],
-                'max_amount'    => $options['max_amount'],
-                
-            ));      
-        // }
+    {        
+        //TODO add an amount_selector by tunnel ?
+        $builder->add(
+            $builder->create('tunnels', 'form', array('virtual' => true))
+                ->add('spot', 'amount_selector', array(
+                    'mapped'        => false,
+                    'label'         => false,
+                    'required'      => true,
+                    'choices'       => $this->getEquivalencesOptions($options['equivalences'], 'spot'),
+                    'min_amount'    => $options['min_amount'],
+                    'max_amount'    => $options['max_amount'],
+                    
+                ))
+                ->add('recuring', 'amount_selector', array(
+                                'mapped'        => false,
+                                'label'         => false,
+                                'required'      => true,
+                                'choices'       => $this->getEquivalencesOptions($options['equivalences'], 'recuring'),
+                                'min_amount'    => $options['min_amount'],
+                                'max_amount'    => $options['max_amount'],
+                                
+                ))
+        );
 
     // Info perso
         $builder->add('civility', 'choice',

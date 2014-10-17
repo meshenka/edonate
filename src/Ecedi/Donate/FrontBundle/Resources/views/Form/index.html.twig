@@ -1,7 +1,6 @@
 {% extends "DonateFrontBundle::layout.html.twig" %}
 {% block body_classe %}Home{% endblock %}
 {% form_theme form 'DonateFrontBundle:Form:form_div_layout.html.twig' %}
-
 {% block main_content %}
 {{ form_start(form,  { 'attr': {'role': 'form'} }) }}
     {{ form_errors(form) }}
@@ -21,9 +20,9 @@
               * quand l'internaute sélectionne un montant dans un tunnel cela limite le nbre d'option dans les payment_methods
 
             #}
-            {{ form_row(form.amount_spot) }}
+            {{ form_row(form.tunnels.spot) }}
 
-            {{ form_row(form.amount_recuring) }}
+            {{ form_row(form.tunnels.recuring) }}
           </div>
         </div>
       </div>
