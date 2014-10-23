@@ -13,7 +13,7 @@ donate_core:
         recuring:
             - {amount : 5, label : '5<span class="euro">€</span>'}
             - {amount : 10, label : '10<span class="euro">€</span>'}
-            - {amount : 30, label : '20<span class="euro">€</span>'}
+            - {amount : 20, label : '20<span class="euro">€</span>'}
 
 donate_front:
     google_analytics: %google_analytics%

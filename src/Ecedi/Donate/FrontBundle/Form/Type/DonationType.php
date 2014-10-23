@@ -21,30 +21,27 @@ class DonationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {        
-        //TODO add an amount_selector by tunnel ?
-        $builder->add(
-            $builder->create('tunnels', 'form', array('virtual' => true))
-                ->add('spot', 'amount_selector', array(
+        $tunnels = $this->paymentMethodsToTunnels($options['payment_methods']);
+
+        // equivalences for each tunnels subform
+        $tunnelForm = $builder->create('tunnels', 'form', array('virtual' => true, 'label' => false));
+
+        foreach($tunnels as $key => $val) {
+            $tunnelForm->add($key, 'amount_selector', array(
                     'mapped'        => false,
                     'label'         => false,
                     'required'      => true,
-                    'choices'       => $this->getEquivalencesOptions($options['equivalences'], 'spot'),
+                    'choices'       => $this->getEquivalencesOptions($options['equivalences'], $key),
                     'min_amount'    => $options['min_amount'],
                     'max_amount'    => $options['max_amount'],
+                    'attr'          => array('class'=>'amount_selector tunnel-' . $key), //used in the JS part
                     
-                ))
-                ->add('recuring', 'amount_selector', array(
-                                'mapped'        => false,
-                                'label'         => false,
-                                'required'      => true,
-                                'choices'       => $this->getEquivalencesOptions($options['equivalences'], 'recuring'),
-                                'min_amount'    => $options['min_amount'],
-                                'max_amount'    => $options['max_amount'],
-                                
-                ))
-        );
+                ));
+        }
 
-    // Info perso
+        $builder->add($tunnelForm);
+        
+        // Info perso
         $builder->add('civility', 'choice',
             array(
                 'choices'   => $options['civilities'],
@@ -81,7 +78,7 @@ class DonationType extends AbstractType
             'second_options' => array('label' => $this->translator->trans('Repeat Email')),
             ));
 
-    //Address
+        //Address
         $builder->add('addressStreet', 'text', array(
             'required'  => true,
             'label' => $this->translator->trans('Address')
@@ -136,34 +133,27 @@ class DonationType extends AbstractType
             'label' => $this->translator->trans('I agree to receive informations from Association XY'),
             ));
 
-    //payment method
-        $methods = $options['payment_methods'];
 
-        if (sizeof($methods) == 1) {
-    //hidden input
-            $builder->add('payment_method', 'hidden', array(
-                'required' => true,
-                'data' => array_keys($methods)[0],
-                'mapped' => false,
-                ));
-        } else {
+        // payment methods for each tunnels subform
+        $pmForm = $builder->create('payment_method', 'form', array('virtual' => true, 'label' => false));
 
-            $choices = array();
-            foreach ($methods as $id => $pm) {
-                $choices[$id] = $pm->getName();
+        foreach($tunnels as $key => $val) {
+            $choices = [];
+            foreach($val as $pm) {
+                $choices[$pm->getId()] = $pm->getName();
             }
 
-    //radio button
-            $builder->add('payment_method', 'choice', array(
-                'choices'   => $choices,
-                'required'  => true,
-                'expanded' => true,
-                'multiple' => false,
-    //'data' => reset(array_keys($methods)),
-                'label' => false,
-                'mapped' => false,
+            $pmForm->add($key, 'choice', array(
+                    'mapped'        => false,
+                    'label'         => false,
+                    'required'      => true,
+                    'choices'       => $choices,
+                    'attr'          => array('class'=>'tunnel-' . $key), //used in the JS part
+                    
                 ));
         }
+
+        $builder->add($pmForm);
     }
 
     public function getName()
@@ -184,6 +174,20 @@ class DonationType extends AbstractType
         return $options;
     }
 
+
+    /**
+     * transform a list of payment methods to an array with key is tunnel name
+     * @param  array $paymentMethods a list of PaymentMethodInterface
+     * @return [type]                 [description]
+     */
+    protected function paymentMethodsToTunnels($paymentMethods) {
+        $tunnels = [];
+        foreach($paymentMethods as $pm) {
+            $tunnels[$pm->getTunnel()][] = $pm;
+        }
+
+        return $tunnels;
+    }
     /**
     * {@inheritdoc}
     */

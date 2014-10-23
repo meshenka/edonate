@@ -1,25 +1,33 @@
 /* global jQuery: false */
 'use strict';
-
+// TODO refaire ce JS, pas très component oriented
 (function($){
 	$(document).ready(function(){
-    var language = $('html').attr('lang');
-    var chosenselectText = {'en': "Select an option", 'fr': 'Choisissez une option'};  
-    $("#donate_addressCountry, #donate_civility").chosen({disable_search_threshold: 10, placeholder_text_single: chosenselectText[language]});
-        
-		var spotFreeAmount = $('#donate_amount_manual');
+
+		//chosen
+	    var language = $('html').attr('lang');
+	    var chosenselectText = {'en': 'Select an option', 'fr': 'Choisissez une option'};
+	    $('#donate_addressCountry, #donate_civility').chosen({disable_search_threshold: 10, placeholder_text_single: chosenselectText[language]});
+	    
+	    //plug amountSelector behavior
+	    $('.amount_selector').amountSelector();
+
+	    
+	    /*
+	    //AmountType behavior
 		var preselectedAmounts = $('#amounts');
-		
-        /*attribution de la class checked à l'élément sélectionné par defaut*/
-        preselectedAmounts.find('input').each( function() {
-            var _this = $(this);
-            if ( _this.is(':checked')) 
-            {
-                 _this.parent('label').addClass('checked');
-            }
-        });
-        
-        preselectedAmounts.find('input').click(function(){
+		var freeAmount = $('#amounts').find('input[type=text]');
+
+	    // attribution de la class checked à l'élément sélectionné par defaut
+	    preselectedAmounts.find('input').each( function() {
+	        var _this = $(this);
+	        if ( _this.is(':checked'))
+	        {
+	             _this.parent('label').addClass('checked');
+	        }
+	    });
+	    
+	    preselectedAmounts.find('input').click(function(){
 			var _this = $(this);
 			var amount = _this.val();
 
@@ -29,23 +37,23 @@
 
 			if(amount === '') {
 				//si on a cocher none, alors on vide le manuelInput
-				spotFreeAmount.val('');
+				freeAmount.val('');
 			} else {
 				        
 				if(isNumber(amount)) {
 					
-					spotFreeAmount.val('');
+					freeAmount.val('');
 					// Mise à jour du montant du don pour la calculette
 					$('#calc-amount').trigger('amount', amount);
 				}
 
 				if(amount === 'manual') {
-					spotFreeAmount.focus();
+					freeAmount.focus();
 				}
 			}
 		});
 
-		spotFreeAmount.keyup(function(){
+		freeAmount.keyup(function(){
 			var amount = $(this).val();
 			amount = amount.replace(',','.');
 			amount = Number(amount.replace(/[^0-9\.]+/g,''));
@@ -58,6 +66,7 @@
 			//check manual 
 			preselectedAmounts.find('input[value=manual]').click();
 		});
+		*/
 
 	});
 
