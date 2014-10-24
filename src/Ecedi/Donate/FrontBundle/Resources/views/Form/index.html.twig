@@ -105,7 +105,12 @@
   </div>
 </div>
 
-{% if form.payment_method.vars.choices is defined %}
+<div id="accept" class="form-group col-md-12">
+  <div class="checkbox col-md-12">
+     {{ form_row(form.optin) }}
+  </div>
+</div>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h2 class="panel-title">{{'My payment method'|trans}}</h2>
@@ -114,21 +119,6 @@
     <div class="form-group">
         {{ form_row(form.payment_method) }}
     </div>
-  </div>
-</div>
-{% else  %}
-     {{ form_row(form.payment_method) }}
-{% endif %}
-
-<div id="accept" class="form-group col-md-12">
-  <div class="checkbox col-md-12">
-     {{ form_row(form.optin) }}
-  </div>
-</div>
-
-<div id="btSubmit" class="form-group col-md-12">
-  <div class="col-md-12">
-    <input type="submit" value="{{'Donate'|trans}}" class="btn btn-primary btn-lg"></input>
   </div>
 </div>
 

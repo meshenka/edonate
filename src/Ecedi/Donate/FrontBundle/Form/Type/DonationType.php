@@ -133,23 +133,13 @@ class DonationType extends AbstractType
             'label' => $this->translator->trans('I agree to receive informations from Association XY'),
             ));
 
-
         // payment methods for each tunnels subform
         $pmForm = $builder->create('payment_method', 'form', array('virtual' => true, 'label' => false));
 
-        foreach($tunnels as $key => $val) {
-            $choices = [];
-            foreach($val as $pm) {
-                $choices[$pm->getId()] = $pm->getName();
-            }
-
-            $pmForm->add($key, 'choice', array(
-                    'mapped'        => false,
-                    'label'         => false,
-                    'required'      => true,
-                    'choices'       => $choices,
-                    'attr'          => array('class'=>'tunnel-' . $key), //used in the JS part
-                    
+        foreach($options['payment_methods'] as $pm) {
+            $pmForm->add($pm->getId(), 'submit', array(
+                    'label'         => $pm->getName(),
+                    'attr'          => array('class'=> 'btn btn-primary tunnel-' . $key), //used in the JS part                                        
                 ));
         }
 

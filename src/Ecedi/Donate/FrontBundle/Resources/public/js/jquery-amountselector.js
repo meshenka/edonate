@@ -1,12 +1,12 @@
 'use strict';
 /* global jQuery */
+/* global console */
 
 /**
  *
  * API 
  *   when selecting a predefined amount it throws a preselected-clicked.as event
  *   when a manual amount is keyuped  it throws a manual-clicked.as event
- *   TODO a finaliser
  */
 (function($){
 
@@ -15,14 +15,17 @@
 	};
 
 	$.fn.amountSelector = function() {
+
+		var _this = this;
+
 		//this is the selector
 		var manual = this.find('input[type=text]');
 		var preselected = this.find('input[type=radio]');
 
 		//public Event Driven API
 		manual.on('keyup', function() {
-			var _this = $(this);
-			var amount = $(this).val();
+			var e = $(this);
+			var amount = e.val();
 			amount = amount.replace(',','.'); //we force . instead of ,
 			amount = Number(amount.replace(/[^0-9\.]+/g,'')); //only numbers and  .
 			amount = amount.toFixed(2); // trim to 2 digits after .
@@ -34,9 +37,11 @@
 			} else {
 				ev.value = null;
 			}
-			ev.emitter = _this;
+			ev.emitter = e;
+
 			//throws public events
-			$(this).trigger( 'manual-clicked.as', ev);
+			_this.trigger( 'manual-clicked.as', ev);
+			console.log('trigger manual-clicked.as');
 
 			//internal behavior
 			//on keyup we force the preselected to manual
@@ -45,15 +50,21 @@
 
 		//public Event Driven API
 		preselected.on('click', function() {
-			var _this = $(this);
+			var e = $(this);
 
 			//throws public events
 			var ev = $.Event('Preselected Amount');
-			ev.value = _this._this.val();
-			ev.emitter = _this;
-			$(this).trigger( 'preselected-clicked.as', ev);
+			ev.value = e.val();
+			ev.emitter = e;
+			_this.trigger( 'preselected-clicked.as', ev);
+			console.log('trigger preselected-clicked.as');
 
 			//internal behavior
+			if(e.val() !== 'manual') {
+				manual.val('');
+			} else {
+				manual.focus();
+			}
 		});
 
 		
