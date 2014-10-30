@@ -15,9 +15,7 @@
         "symfony/assetic-bundle": "2.3.*",
         "symfony/swiftmailer-bundle": "2.3.*",
         "symfony/monolog-bundle": "2.3.*",
-        "sensio/distribution-bundle": "2.3.*",
         "sensio/framework-extra-bundle": "2.3.*",
-        "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "knplabs/knp-paginator-bundle": "2.3.*",
@@ -29,8 +27,6 @@
         "jms/serializer-bundle" : "0.13.*",
         "stof/doctrine-extensions-bundle" : "~1.1@dev",
         "friendsofsymfony/rest-bundle": "1.2.*",
-        "raulfraile/ladybug-bundle": "dev-master",
-        "phpspec/phpspec": "2.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "jms/translation-bundle": "dev-master",
         "cnerta/breadcrumb-bundle": "1.0.*",
@@ -43,6 +39,13 @@
         "trsteel/ckeditor-bundle": "~1.4",
         "helios-ag/fm-elfinder-bundle": "1.x",
         "campaignmonitor/createsend-php": "4.*"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "2.3.*",
+        "raulfraile/ladybug-bundle": "dev-master",
+        "phpspec/phpspec": "2.0.*@dev",
+        "sensio/distribution-bundle": "2.3.*",
+        "phpmd/phpmd" : "@stable" 
     },
     "scripts": {
         "post-install-cmd": [
