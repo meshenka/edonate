@@ -14,9 +14,12 @@
 	    $('.amount_selector')
 	    .amountSelector()
 	    .on('preselected-clicked.as', function(e){
+	    	console.log(this.className);
 			if(e.amount !== 'manual') {
 				amount.trigger('amount', e.amount);
 			}
+
+			//TODO display hide buttons according to current selected tunnel
 	    })
 	    .on('manual-clicked.as', function(e){
 			amount.trigger('amount', e.amount);
