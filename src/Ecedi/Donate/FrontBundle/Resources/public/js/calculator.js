@@ -49,6 +49,8 @@
       //quand le montant change
       var amount = $('#calc-amount');
       amount.bind('amount', function(event, amount) {
+        // console.log('in amount.bind(amout)');
+        // console.log('amount:' + amount)
         $(this).text(amount);
         Donate.calculator.recalc();
       });
