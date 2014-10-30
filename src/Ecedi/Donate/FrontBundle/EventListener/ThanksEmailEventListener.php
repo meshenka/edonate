@@ -39,21 +39,21 @@ class ThanksEmailEventListener implements EventSubscriberInterface {
 		$this->send($payment);
 	}
 
-	protected function send(Payment $p) {
+	protected function send(Payment $payment) {
 		//si on a pas associé l'intent alors pas d'email
 		
-		if($p->getIntent()) {
+		if($payment->getIntent()) {
 			$body = $this->templating->render(
 				'DonateFrontBundle:Mail:thanks.txt.twig',
 				array(
-					'intent' => $p->getIntent(),
-					'payment' => $p
+					'intent' => $payment->getIntent(),
+					'payment' => $payment
 					)
 				);
 			$message = \Swift_Message::newInstance()
 			->setSubject($this->translator->trans('Thank you for your generosity'))
 			->setFrom($this->noreply)
-			->setTo($p->getIntent()->getCustomer()->getEmail())
+			->setTo($payment->getIntent()->getCustomer()->getEmail())
 			->setBody($body, 'text/html');
 
 			$this->mailer->send($message);

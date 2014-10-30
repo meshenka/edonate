@@ -22,7 +22,6 @@ class AmountType extends AbstractType
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {   
-    	$amount = array();
        
         // Ajout d'un champ de saisi manuel si voulu
 		$options['choices']['manual'] = $this->translator->trans('Other amount');	

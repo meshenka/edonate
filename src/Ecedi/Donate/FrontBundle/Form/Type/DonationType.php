@@ -2,6 +2,7 @@
 namespace Ecedi\Donate\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -19,29 +20,21 @@ class DonationType extends AbstractType
 
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {        
-        $tunnels = $this->paymentMethodsToTunnels($options['payment_methods']);
+    private function buildAmountSelectorSubForm(FormBuilderInterface $form, $tunnel, $options) {        
+        $form->add($tunnel, 'amount_selector', array(
+                'mapped'        => false,
+                'label'         => false,
+                'required'      => true,
+                'choices'       => $this->getEquivalencesOptions($options['equivalences'], $tunnel),
+                'min_amount'    => $options['min_amount'],
+                'max_amount'    => $options['max_amount'],
+                'attr'          => array('class'=>'amount_selector tunnel-' . $tunnel), //used in the JS part
+                
+            ));        
+    }
 
-        // equivalences for each tunnels subform
-        $tunnelForm = $builder->create('tunnels', 'form', array('virtual' => true, 'label' => false));
-
-        foreach($tunnels as $key => $val) {
-            $tunnelForm->add($key, 'amount_selector', array(
-                    'mapped'        => false,
-                    'label'         => false,
-                    'required'      => true,
-                    'choices'       => $this->getEquivalencesOptions($options['equivalences'], $key),
-                    'min_amount'    => $options['min_amount'],
-                    'max_amount'    => $options['max_amount'],
-                    'attr'          => array('class'=>'amount_selector tunnel-' . $key), //used in the JS part
-                    
-                ));
-        }
-
-        $builder->add($tunnelForm);
-        
-        // Info perso
+    private function buildPersonnalDetails(FormBuilderInterface $builder, array $options) {
+                // Info perso
         $builder->add('civility', 'choice',
             array(
                 'choices'   => $options['civilities'],
@@ -115,6 +108,22 @@ class DonationType extends AbstractType
             'data' => 'FR',
             'label' => $this->translator->trans('Country')
             ));
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {        
+        $tunnels = $this->paymentMethodsToTunnels($options['payment_methods']);
+
+        // equivalences for each tunnels subform
+        $tunnelForm = $builder->create('tunnels', 'form', array('virtual' => true, 'label' => false));
+
+        foreach(array_keys($tunnels) as $key) {
+            $this->buildAmountSelectorSubForm($tunnelForm, $key, $options);
+        }
+
+        $builder->add($tunnelForm);
+        
+        $this->buildPersonnalDetails($builder, $options);
 
         $builder->add('erf', 'choice', array(
             'choices'   => array(

@@ -264,7 +264,7 @@ class FrontControllerTest extends WebTestCase
         $cookieJar->set(new Cookie('__utmz', '1.1386025859.5.5.utmcsr=apis.google.com|utmccn=phpunit|utmcmd=referral|utmcct=/u/0/wm/4/_/widget/render/comments',time() + 3600 * 24 * 7, '/', 'localhost', false, false));
 
         $container = $client->getContainer();
-        $campaign =  $container->getParameter('donate_front.campaign');
+        //$campaign =  $container->getParameter('donate_front.campaign');
         $crawler = $client->request('GET', '/');//, [$campaign => 'phpunit']);
 
         $form = $crawler->selectButton('Donner')->form();
