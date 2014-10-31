@@ -148,7 +148,7 @@ class DonationType extends AbstractType
         foreach($options['payment_methods'] as $pm) {
             $pmForm->add($pm->getId(), 'submit', array(
                     'label'         => $pm->getName(),
-                    'attr'          => array('class'=> 'btn btn-primary tunnel-' . $key), //used in the JS part                                        
+                    'attr'          => array('class'=> 'btn btn-primary tunnel-' . $pm->getTunnel()), //used in the JS part                                        
                 ));
         }
 
