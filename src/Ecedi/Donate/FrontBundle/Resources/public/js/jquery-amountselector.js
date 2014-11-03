@@ -23,6 +23,11 @@
 			var manual = _this.find('input[type=text]');
 			var preselected = _this.find('input[type=radio]');
 
+			_this.on('reset.as', function() {
+				manual.val('');
+				preselected.filter('[value=""]').prop('checked', true);
+			});
+
 			//public Event Driven API
 			manual.on('keyup', function() {
 				var e = $(this);
@@ -44,7 +49,7 @@
 
 				//internal behavior
 				//on keyup we force the preselected to manual
-				preselected.find('input[value=manual]').click();
+				preselected.filter('[value=manual]').click();
 			});
 
 			//public Event Driven API

@@ -26,45 +26,44 @@ class AmountType extends AbstractType
         // Ajout d'un champ de saisi manuel si voulu
 		$options['choices']['manual'] = $this->translator->trans('Other amount');	
 	    $builder
-	    	->addViewTransformer(new AmountChoiceToIntentAmountTransformer(array(
+	    	->addViewTransformer(new AmountChoiceToIntentAmountTransformer([
 	    		'manual',	
 	    		'preselected',	
-	    	)))
-	    	->add('preselected', 'choice', array(
+	    	]))
+	    	->add('preselected', 'choice', [
 				'choices'   => $options['choices'],
-				'required'  => true,
+				'required'  => false,
 				'expanded' 	=> true,
 				'multiple' 	=> false,
 				'label' 	=> false,
 				'data' 		=> 100,
-			))
-			->add('manual', 'money', array(
+			])
+			->add('manual', 'money', [
 				'currency' 	=> 'EUR',
 				'required'  => false,
 				'label' 	=> false,
 				'precision' => 0,
-				'constraints' => array(
+				'constraints' => [
 					new Assert\Range(
-						array(
+						[
 						  'min' 		=> $options['min_amount'],
 						  'max' 		=> $options['max_amount'],
 						  'minMessage' 	=> $this->translator->trans('Amount must be greater than ') . $options['min_amount'],
 						  'maxMessage' 	=> $this->translator->trans('Amount must be lower than ') . $options['max_amount'],
-						)
+						]
 					)
-				)
-			)
-		);                  
+				]
+			]
+		);
     }  
     
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {       
-		$options = array(
-		    'choices'   		=> array(),
+        $resolver->setDefaults([
+		    'choices'   		=> [],
 		    'min_amount' 		=> 5,
 		    'max_amount' 		=> 4000,
-		);    
-        $resolver->setDefaults($options);    
+		]);    
     }
 
     public function getName()

@@ -21,27 +21,27 @@ class DonationType extends AbstractType
     }
 
     private function buildAmountSelectorSubForm(FormBuilderInterface $form, $tunnel, $options) {        
-        $form->add($tunnel, 'amount_selector', array(
+        $form->add($tunnel, 'amount_selector', [
                 'mapped'        => false,
                 'label'         => false,
                 'required'      => true,
                 'choices'       => $this->getEquivalencesOptions($options['equivalences'], $tunnel),
                 'min_amount'    => $options['min_amount'],
                 'max_amount'    => $options['max_amount'],
-                'attr'          => array('class'=>'amount_selector tunnel-' . $tunnel), //used in the JS part
-                
-            ));        
+                'attr'          => ['class'=>'amount_selector tunnel-' . $tunnel], //used in the JS part                
+            ]);        
     }
 
     private function buildPersonnalDetails(FormBuilderInterface $builder, array $options) {
                 // Info perso
         $builder->add('civility', 'choice',
-            array(
+            [
                 'choices'   => $options['civilities'],
                 'required'  => false,
                 'label' => $this->translator->trans('Civility')
-                )
-            );
+            ]
+        );
+        
         $builder->add('company', 'text', array(
             'required' => FALSE,
             'label' => $this->translator->trans('Company')));
@@ -125,31 +125,33 @@ class DonationType extends AbstractType
         
         $this->buildPersonnalDetails($builder, $options);
 
-        $builder->add('erf', 'choice', array(
-            'choices'   => array(
+        $builder->add('erf', 'choice', [
+            'choices'   => [
                 0 => $this->translator->trans('by email'),
                 1 => $this->translator->trans('by post')
-                ),
+            ],
             'required'  => true,
             'expanded' => true,
             'multiple' => false,
             'label' => $this->translator->trans('I prefer to receive my tax receipt'),
             'data' => 0,
             'mapped' => false,
-            ));
-        $builder->add('optin', 'checkbox', array(
+            ]
+        );
+
+        $builder->add('optin', 'checkbox', [
             'required' => false,
             'label' => $this->translator->trans('I agree to receive informations from Association XY'),
-            ));
+        ]);
 
         // payment methods for each tunnels subform
-        $pmForm = $builder->create('payment_method', 'form', array('virtual' => true, 'label' => false));
+        $pmForm = $builder->create('payment_method', 'form', ['virtual' => true, 'label' => false]);
 
         foreach($options['payment_methods'] as $pm) {
-            $pmForm->add($pm->getId(), 'submit', array(
+            $pmForm->add($pm->getId(), 'submit', [
                     'label'         => $pm->getName(),
-                    'attr'          => array('class'=> 'btn btn-primary tunnel-' . $pm->getTunnel()), //used in the JS part                                        
-                ));
+                    'attr'          => ['class'=> 'btn btn-primary tunnel-' . $pm->getTunnel()], //used in the JS part                                        
+                ]);
         }
 
         $builder->add($pmForm);
@@ -192,13 +194,13 @@ class DonationType extends AbstractType
     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'csrf_protection'   => false,
-            'civilities' => array(),
-            'equivalences' => array(),
-            'payment_methods' => array(),
+            'civilities' => [],
+            'equivalences' => [],
+            'payment_methods' => [],
             'min_amount' => 5,
             'max_amount' => 4000,
-        ));
+        ]);
     }   
 }

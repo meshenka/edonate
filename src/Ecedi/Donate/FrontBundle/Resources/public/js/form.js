@@ -18,6 +18,9 @@
                 amount.trigger('amount', e.amount);
             }
 
+            $('.amount_selector').not($(this)).trigger('reset.as');
+            //automaticaly pass others amount_selector to none
+            
             var matches = this.className.match(/tunnel\-([a-zA-Z0-9\-_]*)/);
             
             if(matches) {
