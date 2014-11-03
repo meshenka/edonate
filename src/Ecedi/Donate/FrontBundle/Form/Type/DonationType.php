@@ -33,7 +33,7 @@ class DonationType extends AbstractType
     }
 
     private function buildPersonnalDetails(FormBuilderInterface $builder, array $options) {
-                // Info perso
+        // Info perso
         $builder->add('civility', 'choice',
             [
                 'choices'   => $options['civilities'],

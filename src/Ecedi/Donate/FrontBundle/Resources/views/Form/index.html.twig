@@ -14,14 +14,7 @@
       <div id="amounts" class="col-md-7 col-sm-7">
         <div class="form-group">
           <div class="input-group">
-            {# TODO 
-              * chaque tunnel à ses options, mais on ne peut choisir un montant que dans l'un des deux blocs, si les deux sont sélectionnés nous allons retenir le recurent
-              * la calculette s'ajuste en fonction du dernier choix de l'internaute, quelque soit la tunnel empreinté
-              * quand l'internaute sélectionne un montant dans un tunnel cela limite le nbre d'option dans les payment_methods
-
-            #}
-            {{ form_row(form.tunnels) }}
-            
+            {{ form_row(form.tunnels) }}            
           </div>
         </div>
       </div>

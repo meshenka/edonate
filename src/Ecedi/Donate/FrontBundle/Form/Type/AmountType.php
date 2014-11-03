@@ -36,7 +36,7 @@ class AmountType extends AbstractType
 				'expanded' 	=> true,
 				'multiple' 	=> false,
 				'label' 	=> false,
-				'data' 		=> 100,
+				'data' 		=> $options['default'],
 			])
 			->add('manual', 'money', [
 				'currency' 	=> 'EUR',
@@ -48,8 +48,8 @@ class AmountType extends AbstractType
 						[
 						  'min' 		=> $options['min_amount'],
 						  'max' 		=> $options['max_amount'],
-						  'minMessage' 	=> $this->translator->trans('Amount must be greater than ') . $options['min_amount'],
-						  'maxMessage' 	=> $this->translator->trans('Amount must be lower than ') . $options['max_amount'],
+						  'minMessage' 	=> $this->translator->trans('Amount must be greater than %amount% €', ['%amount%' => $options['min_amount']], 'validation'),
+						  'maxMessage' 	=> $this->translator->trans('Amount must be lower than  %amount% €', [ '%amount%' => $options['max_amount']], 'validation'),
 						]
 					)
 				]
@@ -63,6 +63,7 @@ class AmountType extends AbstractType
 		    'choices'   		=> [],
 		    'min_amount' 		=> 5,
 		    'max_amount' 		=> 4000,
+		    'default' 			=> ''
 		]);    
     }
 

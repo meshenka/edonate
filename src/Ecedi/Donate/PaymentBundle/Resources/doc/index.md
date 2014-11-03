@@ -15,4 +15,5 @@ This payment method is unable to track the actual payment
 
 
 TODO
-  * finaliser le template
+  * Finaliser le template SEPA (manque les différents champs obligatoires )
+  * initialisation des boutons sur le formulaire
