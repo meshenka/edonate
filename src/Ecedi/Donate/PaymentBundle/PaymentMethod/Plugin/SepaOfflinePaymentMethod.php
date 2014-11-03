@@ -66,12 +66,12 @@ class SepaOfflinePaymentMethod implements PaymentMethodInterface {
             
             return new RedirectResponse($this->router->generate('donate_payment_sepa_offline_completed'));
 
-        } else {
-            $response = new Response();
-            $response->setStatusCode(500);
-
-            return $response;
         }
+
+        $response = new Response();
+        $response->setStatusCode(500);
+
+        return $response;        
     }
     /**
      * does not support direct payment

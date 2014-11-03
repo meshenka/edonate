@@ -20,20 +20,20 @@ class CheckPromiseController extends Controller
     {
         //cette route est cache-control: private car elle peut contenir des info sur la transaction
         $session = $this->getRequest()->getSession();
-        $ir = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
+        $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
         if ($session->has('intentId')) {
             $intentId = $session->get('intentId');
 
-            return ['intent' => $ir->find($intentId)];
+            return ['intent' => $intentRepo->find($intentId)];
         }
 
         //en env de dev on peut afficher la page avec un payment OK
         if ($this->container->getParameter('kernel.environment') === 'dev') {
 
-           $i = $ir->findOneBy(array('status' => Intent::STATUS_DONE, 'paymentMethod' => CheckPromisePaymentMethod::ID));
-           if ($i) {
-            return ['intent' => $i];
+           $intent = $intentRepo->findOneBy(array('status' => Intent::STATUS_DONE, 'paymentMethod' => CheckPromisePaymentMethod::ID));
+           if ($intent) {
+            return ['intent' => $intent];
            }
 
         }

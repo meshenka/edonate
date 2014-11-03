@@ -59,12 +59,13 @@ class CheckPromisePaymentMethod implements PaymentMethodInterface {
             
             return new RedirectResponse($this->router->generate('donate_payment_check_promise_completed'));
 
-        } else {
-            $response = new Response();
-            $response->setStatusCode(500);
-
-            return $response;
         }
+        
+        $response = new Response();
+        $response->setStatusCode(500);
+
+        return $response;
+        
     }
 
     public function getTunnel() {
