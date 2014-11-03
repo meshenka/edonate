@@ -15,7 +15,7 @@ class FormController extends Controller
     /**
      * @Route("/{_locale}", name="donate_front_home", defaults={"_locale"="fr"}, requirements = {"_locale" = "fr|en"})
      */
-    public function indexAction(Request $request, $_locale)
+    public function indexAction(Request $request)
     {
         //cache validation tjrs public, c'est l'ESI qui gère la sidebar
         $response = new Response();
@@ -34,7 +34,7 @@ class FormController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
 
-            $im = $this->get('donate_core.intent_manager');
+            $intentMgr = $this->get('donate_core.intent_manager');
 
             $paymentMethods = $this->container->get('donate_core.payment_method_discovery')->getEnabledMethods();
 
@@ -42,7 +42,7 @@ class FormController extends Controller
                 if($form->get('payment_method')->get($pm->getId())->isClicked()) {
                     $amount = $form->get('tunnels')->get($pm->getTunnel())->getData();
                     
-                    $intent = $im->newIntent($amount, $pm->getId());
+                    $intent = $intentMgr->newIntent($amount, $pm->getId());
                     $intent->setFiscalReceipt($form['erf']->getData());
 
                     $data->addIntent($intent);
@@ -51,7 +51,7 @@ class FormController extends Controller
                     $em->persist($data);
                     
                     $em->flush();
-                    $response =  $im->handle($intent);
+                    $response =  $intentMgr->handle($intent);
 
                     return $response;
                 }

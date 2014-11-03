@@ -33,7 +33,7 @@ class ReturnControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/completed');
+        $client->request('GET', '/fr/completed');
 
         $response = $client->getResponse();
         $this->assertTrue($response->isClientError());
@@ -44,7 +44,7 @@ class ReturnControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/canceled');
+        $client->request('GET', '/fr/canceled');
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
@@ -55,7 +55,7 @@ class ReturnControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/denied');
+        $client->request('GET', '/fr/denied');
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
@@ -66,7 +66,7 @@ class ReturnControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/failed');
+        $client->request('GET', '/fr/failed');
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());

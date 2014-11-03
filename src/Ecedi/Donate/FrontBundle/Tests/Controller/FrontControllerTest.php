@@ -248,9 +248,10 @@ class FrontControllerTest extends WebTestCase
         $profiler = $client->getProfile($response);
         if ($profiler) {
             $this->assertEquals('donate_front_home', $profiler->getCollector('request')->getRoute(), 'We are back on home');
-        } else {
-            $this->assertTrue('false');
-        }
+            return;
+        } 
+
+        $this->assertTrue('false');        
 
     }
 
@@ -300,10 +301,12 @@ class FrontControllerTest extends WebTestCase
             $intent = $intentRepository->find($intentId);
 
             $this->assertEquals('phpunit', $intent->getCampaign(), 'Intent capture request utm campaign');
-        } else {
-            $this->assertTrue(false, 'cannot find intentId from OrderID');
+            return;
+        
         }
-
+        
+        $this->assertTrue(false, 'cannot find intentId from OrderID');
+        
     }
 
     public function testSubmitCampaignTrackerByQuery()
@@ -346,9 +349,10 @@ class FrontControllerTest extends WebTestCase
             $intent = $intentRepository->find($intentId);
 
             $this->assertEquals('phpunit', $intent->getCampaign(), 'Intent capture request utm campaign');
-        } else {
-            $this->assertTrue(false, 'cannot find intentId from OrderID');
-        }
+            return;
+        } 
+        
+        $this->assertTrue(false, 'cannot find intentId from OrderID');        
 
     }
 
