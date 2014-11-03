@@ -986,12 +986,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSOAuthServerBundle.git",
-                "reference": "ab26212ee333456ae0d3a12e23832e1f87b25b87"
+                "reference": "9e15c229eff547443d686445d629e9356ab0672e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSOAuthServerBundle/zipball/ab26212ee333456ae0d3a12e23832e1f87b25b87",
-                "reference": "ab26212ee333456ae0d3a12e23832e1f87b25b87",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSOAuthServerBundle/zipball/9e15c229eff547443d686445d629e9356ab0672e",
+                "reference": "9e15c229eff547443d686445d629e9356ab0672e",
                 "shasum": ""
             },
             "require": {
@@ -1046,7 +1046,7 @@
                 "oauth2",
                 "server"
             ],
-            "time": "2014-10-04 17:05:53"
+            "time": "2014-10-31 13:44:14"
         },
         {
             "name": "friendsofsymfony/oauth2-php",

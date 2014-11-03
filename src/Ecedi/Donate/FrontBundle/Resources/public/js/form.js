@@ -18,7 +18,6 @@
                 amount.trigger('amount', e.amount);
             }
 
-            //TODO hide buttons according to initial form setup
             var matches = this.className.match(/tunnel\-([a-zA-Z0-9\-_]*)/);
             
             if(matches) {
