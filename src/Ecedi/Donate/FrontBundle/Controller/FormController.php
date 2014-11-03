@@ -19,8 +19,8 @@ class FormController extends Controller
     {
         //cache validation tjrs public, c'est l'ESI qui gère la sidebar
         $response = new Response();
-        // $response->setPublic();
-        // $response->setSharedMaxAge(3600);
+        $response->setPublic();
+        $response->setSharedMaxAge(3600);
 
         $data = new Customer();
 
@@ -36,21 +36,27 @@ class FormController extends Controller
 
             $im = $this->get('donate_core.intent_manager');
 
-            //calcul du montant
-            $amount = $form['amount']->getData();
-            
-            $intent = $im->newIntent($amount, $form['payment_method']->getData());
-            $intent->setFiscalReceipt($form['erf']->getData());
+            $paymentMethods = $this->container->get('donate_core.payment_method_discovery')->getEnabledMethods();
 
-            $data->addIntent($intent);
+            foreach($paymentMethods as $pm) {
+                if($form->get('payment_method')->get($pm->getId())->isClicked()) {
+                    $amount = $form->get('tunnels')->get($pm->getTunnel())->getData();
+                    
+                    $intent = $im->newIntent($amount, $pm->getId());
+                    $intent->setFiscalReceipt($form['erf']->getData());
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($data);
-            
-            $em->flush();
-            $response =  $im->handle($intent);
+                    $data->addIntent($intent);
 
-            return $response;
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($data);
+                    
+                    $em->flush();
+                    $response =  $im->handle($intent);
+
+                    return $response;
+                }
+            }
+        
         }
 
         return $this->render('DonateFrontBundle:Form:index.html.twig', array(
