@@ -566,5 +566,4 @@ class Request implements \JsonSerializable
 
         return $this;
     }
-
 }

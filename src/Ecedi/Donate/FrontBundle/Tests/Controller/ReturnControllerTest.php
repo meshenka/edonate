@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ReturnControllerTest extends WebTestCase
 {
-
     /**
      * verification du bon affichage du front office en français
      */
@@ -26,7 +25,6 @@ class ReturnControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('h2:contains("Détail du paiement")')->count() == 1);
 
         //TODO tester le contenu dynamique de la page
-
     }
 
     public function testCompletedWithoutSession()
@@ -37,7 +35,6 @@ class ReturnControllerTest extends WebTestCase
 
         $response = $client->getResponse();
         $this->assertTrue($response->isClientError());
-
     }
 
     public function testCanceled()
@@ -48,7 +45,6 @@ class ReturnControllerTest extends WebTestCase
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
-
     }
 
     public function testDenied()
@@ -59,7 +55,6 @@ class ReturnControllerTest extends WebTestCase
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
-
     }
 
     public function testFailed()
@@ -70,7 +65,5 @@ class ReturnControllerTest extends WebTestCase
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
-
     }
-
 }

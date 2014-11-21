@@ -5,5 +5,4 @@ use FOS\OAuthServerBundle\Controller\AuthorizeController as BaseAuthorizeControl
 
 class AuthorizeController extends BaseAuthorizeController
 {
-
 }

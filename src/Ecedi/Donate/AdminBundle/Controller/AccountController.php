@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ecedi\Donate\AdminBundle\Form\AccountType;
 use Ecedi\Donate\CoreBundle\Entity\User as User;
-
 use FOS\UserBundle\Model\UserManager;
 use FOS\UserBundle\Util\UserManipulator;
 
@@ -54,13 +53,12 @@ class AccountController extends Controller
         if ($form->isValid()) {
             if ($form->get('submit_delete')->isClicked()) {
                 $userManager->deleteUser($user);
-                $this->get('session')->getFlashBag()->add('notice', "L'utilisateur " . $user->getUsername() . " a été supprimé.");
+                $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été supprimé.");
             } else {
                 $data = $form->getData();
                 if (!$this->userAlreadyExist($userManager, $data->getUsername(), $data->getEmail(), $id)) {
                     $userManager->updateUser($user);
-                    $this->get('session')->getFlashBag()->add('notice', "L'utilisateur " . $user->getUsername() . " a été mis à jour.");
-
+                    $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été mis à jour.");
                 }
             }
 
@@ -93,7 +91,7 @@ class AccountController extends Controller
             if (!$this->userAlreadyExist($userManager, $data->getUsername(), $data->getEmail())) {
                 $userManipulator = new UserManipulator($userManager);
                 $user = $userManipulator->create($data->getUsername(), $data->getPassword(), $data->getEmail(), true, false);
-                $this->get('session')->getFlashBag()->add('notice', "L'utilisateur " . $user->getUsername() . " a été enregistré");
+                $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été enregistré");
 
                 return $this->redirect($this->generateUrl('donate_admin_users'));
             }

@@ -25,7 +25,8 @@ class LayoutExtension extends \Twig_Extension
      * @return array An array of global variables
      */
     public function getGlobals()
-    {   try{
+    {
+        try {
             $request = $this->container->get('request');
 
             return ['layout' => $this->layoutManager->getDefault($request->getLocale())];
@@ -34,7 +35,6 @@ class LayoutExtension extends \Twig_Extension
             return [];
         }
     }
-
 
     public function getName()
     {

@@ -52,5 +52,4 @@ class IntentsController extends Controller
             'intent' => $intent
         ];
     }
-
 }

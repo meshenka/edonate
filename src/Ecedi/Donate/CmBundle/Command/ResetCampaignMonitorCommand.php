@@ -35,5 +35,4 @@ EOF
 
         $output->writeln('Reset of enrolled customes <info>done</info>');
     }
-
 }

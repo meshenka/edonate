@@ -29,15 +29,14 @@ class DefaultIntentManager implements IntentManagerInterface
 
     protected function preHandle(Intent $intent)
     {
-            $request = $this->container->get('request');
-            $session = $request->getSession();
-            $session->set('intentId', $intent->getId());
+        $request = $this->container->get('request');
+        $session = $request->getSession();
+        $session->set('intentId', $intent->getId());
 
             // try to see if the locale has been set as a _locale routing parameter
             if ($locale = $request->getLocale()) {
                 $session->set('_locale', $locale);
             }
-
     }
 
     public function __construct(ContainerInterface $container)
@@ -59,18 +58,16 @@ class DefaultIntentManager implements IntentManagerInterface
         $this->preHandle($intent);
         $pm = $this->discovery->getMethod($intent->getPaymentMethod());
         if ($pm) {
-            if ( ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_RECURING )|| ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPONSORSHIP)) {
+            if (($pm->getTunnel() === PaymentMethodInterface::TUNNEL_RECURING) || ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPONSORSHIP)) {
                 return $this->handleAutorize($intent);
             }
 
             if ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPOT) {
                 return $this->handlePay($intent);
             }
-
         } else {
             throw new UnknownPaymentMethodException($intent->getPaymentMethod());
         }
-
     }
 
     /**
@@ -104,7 +101,6 @@ class DefaultIntentManager implements IntentManagerInterface
         $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_REQUESTED, new PaymentRequestedEvent($intent));
 
         return $pm->pay($intent);
-
     }
 
     /**
@@ -155,11 +151,9 @@ class DefaultIntentManager implements IntentManagerInterface
                 //Propagation de l'état du paiement vers l'intent
                 $intent->setStatus(Intent::STATUS_DONE);
                 $this->logger->debug('set intent status to DONE');
-
             } else {
                 //on reçoit plusieurs post-sale pour le même spot order...
                 $this->logger->notice('another post sale for this intent');
-
             }
 
             $em->persist($intent);
@@ -168,5 +162,4 @@ class DefaultIntentManager implements IntentManagerInterface
         $em->persist($payment);
         $em->flush();
     }
-
 }

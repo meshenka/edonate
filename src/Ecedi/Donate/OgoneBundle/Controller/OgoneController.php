@@ -14,7 +14,6 @@ use Ecedi\Donate\CoreBundle\Event\DonateEvents;
 use Ecedi\Donate\CoreBundle\Event\PaymentReceivedEvent;
 use Ecedi\Donate\OgoneBundle\Ogone\Response as OgoneResponse;
 
-
 class OgoneController extends Controller
 {
     /**
@@ -23,18 +22,16 @@ class OgoneController extends Controller
      */
     public function payAction(Request $request)
     {
-
         $session = $request->getSession();
         $request->setlocale($session->get('_locale'));
 
         if ($intentId = $session->get('intentId')) {
-
             $ir = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
             $intent = $ir->find($intentId);
 
             //if ($intent->getStatus() == Intent::STATUS_NEW ) {
-            if ($intent->getStatus() == Intent::STATUS_NEW || $intent->getStatus() == Intent::STATUS_PENDING ) {
+            if ($intent->getStatus() == Intent::STATUS_NEW || $intent->getStatus() == Intent::STATUS_PENDING) {
                 $im = $this->get('donate_core.intent_manager');
                 $im->pending($intent);
 
@@ -53,7 +50,7 @@ class OgoneController extends Controller
 
     /**
      * @Route("/api/postsale",  name="donate_ogone_postsale")
-     * 
+     *
      * TODO solution type BEN
      * Sur la post-sale on ne fait que enregistrer les informations
      * validation/vérification/association à un intent se fera plus tard
@@ -65,21 +62,21 @@ class OgoneController extends Controller
     public function postsaleAction(Request $request)
     {
         $response = OgoneResponse::createFromRequest($request);
-       
+
         //initialize payment
         $payment = new Payment();
         $payment->setAutorisation($response->getAcceptance()) //n° autorisation
             ->setTransaction($response->getPayId()) //no transaction
             ->setResponseCode($response->getStatus()) //status ogone
             ->setResponse($response);
-        
+
         $em = $this->getDoctrine()->getManager();
 
-        //si nous somme en mode asynchrone, alors c'est via la commande donate:ogone:postsale que seront envoyés 
+        //si nous somme en mode asynchrone, alors c'est via la commande donate:ogone:postsale que seront envoyés
         // les events
-        if($this->container->getParameter('donate_ogone.async_postsale') == false ) {
+        if ($this->container->getParameter('donate_ogone.async_postsale') == false) {
             $this->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_RECEIVED,  new PaymentReceivedEvent($payment));
-            $this->get('logger')->debug( DonateEvents::PAYMENT_RECEIVED . ' dispatched');
+            $this->get('logger')->debug(DonateEvents::PAYMENT_RECEIVED.' dispatched');
         }
 
         $em->persist($payment);
@@ -87,5 +84,4 @@ class OgoneController extends Controller
 
         return new JsonResponse(['status' => 'OK']);
     }
-
 }

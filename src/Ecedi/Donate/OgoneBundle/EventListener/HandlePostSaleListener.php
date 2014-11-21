@@ -34,11 +34,11 @@ class HandlePostSaleListener implements EventSubscriberInterface
         $this->manager->handle($event->getPayment());
     }
 
-   public static function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return array(DonateEvents::PAYMENT_RECEIVED => array(
-                array('onPostSale', 10)
-            )
+                array('onPostSale', 10),
+            ),
         );
     }
 }

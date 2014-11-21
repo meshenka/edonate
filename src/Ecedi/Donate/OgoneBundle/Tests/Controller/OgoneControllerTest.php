@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class OgoneControllerTest extends WebTestCase
 {
-
     public function testPayWithoutSession()
     {
         $client = static::createClient();
@@ -56,6 +55,5 @@ class OgoneControllerTest extends WebTestCase
         //TODO verifier ce qu'il se passe dans cette requête.
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
-
     }
 }

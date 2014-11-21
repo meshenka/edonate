@@ -10,7 +10,6 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
  */
 class PaypalPaymentMethod implements PaymentMethodInterface
 {
-
     public function getId()
     {
         return 'paypal';
@@ -31,7 +30,8 @@ class PaypalPaymentMethod implements PaymentMethodInterface
         return false;
     }
 
-    public function getTunnel() {
+    public function getTunnel()
+    {
         return self::TUNNEL_SPOT;
     }
 }

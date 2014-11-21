@@ -10,7 +10,6 @@ namespace Ecedi\Donate\CoreBundle\Event;
  */
 final class DonateEvents
 {
-
     //when someone submit a new donation via the form
     const DONATION_REQUESTED = "donate.intent.requested";
 
@@ -22,7 +21,7 @@ final class DonateEvents
 
     //when the TPE is send back transaction details
     const PAYMENT_RECEIVED = "donate.payment.received";
-    
+
     //when transaction details says ok
     const PAYMENT_COMPLETED = "donate.payment.completed";
 
@@ -40,7 +39,5 @@ final class DonateEvents
 
     private function __construct()
     {
-
     }
-
 }

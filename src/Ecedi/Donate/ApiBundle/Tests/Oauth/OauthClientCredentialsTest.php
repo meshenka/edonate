@@ -21,11 +21,10 @@ class OauthClientCredentialsTest extends WebTestCase
             'token',
             'client_credentials',
             'authorization_code',
-            'password'));
+            'password', ));
         $clientManager->updateClient($client);
 
         $this->client = $client;
-
     }
     /*
     //TODO voir pourquoi ca ne fonctionne pas
@@ -77,11 +76,10 @@ class OauthClientCredentialsTest extends WebTestCase
 
         //try to access using this token
         $crawler = $client->request('GET', '/api/v1/customers', array(
-            'access_token' =>  $data->access_token),
+            'access_token' =>  $data->access_token, ),
              array(),
             array('HTTP_ACCEPT' => 'application/json'));
         $this->assertTrue($client->getResponse()->isSuccessful(), 'check access to endpoint with oauth token');
-
     }
     /*
     public function testAuthorisationCodeAccess()
@@ -140,8 +138,8 @@ class OauthClientCredentialsTest extends WebTestCase
             'client_id' => $oauthClient->getPublicId(),
             'client_secret' => $oauthClient->getSecret(),
             'username' => 'root',
-            'password' => 'root'
-            ),array(),
+            'password' => 'root',
+            ), array(),
             array('HTTP_ACCEPT' => 'application/json'));
 
   //       $this->assertEquals(
@@ -155,7 +153,7 @@ class OauthClientCredentialsTest extends WebTestCase
         $data = json_decode($content);
         //try to access using this token
         $crawler = $client->request('GET', '/api/v1/customers', array(
-            'access_token' =>  $data->access_token),
+            'access_token' =>  $data->access_token, ),
              array(),
             array('HTTP_ACCEPT' => 'application/json'));
         $this->assertTrue($client->getResponse()->isSuccessful(), 'check access to endpoint with oauth token');
@@ -165,6 +163,5 @@ class OauthClientCredentialsTest extends WebTestCase
 
         //check response
         //{"access_token":"ACCESS_TOKEN","expires_in":3600,"token_type":"bearer","scope":null,"refresh_token":"REFRESH_TOKEN"}
-
     }
 }

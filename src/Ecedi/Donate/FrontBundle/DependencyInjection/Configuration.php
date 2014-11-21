@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
         $treeBuilder->root('donate_front')
         ->children()
-            ->scalarNode('campaign')->defaultValue  ('campaign')->end()
+            ->scalarNode('campaign')->defaultValue('campaign')->end()
             ->scalarNode('google_analytics')->defaultNull()->end()
             ->arrayNode('payment_methods')->isRequired()->requiresAtLeastOneElement()->prototype('scalar')->end()->end()
             ->arrayNode('i18n')->prototype('scalar')->defaultNull()->end()->end()

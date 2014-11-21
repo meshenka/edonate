@@ -2,7 +2,6 @@
 
 namespace Ecedi\Donate\CoreBundle\Event;
 
-
-class DonationRequestedEvent extends IntentEvent {
-	
+class DonationRequestedEvent extends IntentEvent
+{
 }

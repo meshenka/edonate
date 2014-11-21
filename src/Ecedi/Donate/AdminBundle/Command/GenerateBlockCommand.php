@@ -9,7 +9,6 @@ use Ecedi\Donate\CoreBundle\Entity\Layout;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-
 class GenerateBlockCommand extends ContainerAwareCommand
 {
     protected function configure()
@@ -26,7 +25,7 @@ EOF
     }
     /**
     * Exécution de la commande
-    * 
+    *
     *
     * @param InputInterface $input
     * @param OutputInterface $output
@@ -34,7 +33,7 @@ EOF
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        
+
         $layoutFr = $this->createLayout('fr');
         $layoutEn = $this->createLayout('en');
 
@@ -42,15 +41,16 @@ EOF
         $em->persist($layoutEn);
 
         $em->flush();
-        
+
         $output->writeln('<info>layouts generated</info>');
     }
 
-    protected function createLayout($lang) {
-        $layout = new Layout($lang, "default-$lang"); 
+    protected function createLayout($lang)
+    {
+        $layout = new Layout($lang, "default-$lang");
         $logoPath = $this->getContainer()->get('kernel')->getRootDir().'/../web/bundles/donatefront/images/logo.png';
         $bgPath = $this->getContainer()->get('kernel')->getRootDir().'/../web/bundles/donatefront/images/fd-body.jpg';
-        
+
         $f = new File($logoPath);
         $logo = new UploadedFile($logoPath, 'ulogo.png', $f->getMimeType(), $f->getSize());
 
@@ -64,11 +64,10 @@ EOF
         $repo = $em->getRepository('DonateCoreBundle:Layout');
 
         $defaultLayout = $repo->findDefaultLayout($lang);
-        if(count($defaultLayout) == 0) {
+        if (count($defaultLayout) == 0) {
             $layout->setIsDefault(true);
         }
 
         return $layout;
-
     }
 }

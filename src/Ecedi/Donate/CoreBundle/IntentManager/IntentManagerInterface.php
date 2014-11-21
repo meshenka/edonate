@@ -8,5 +8,5 @@ interface IntentManagerInterface
 {
     // public function handleAutorize(Intent $intent);
     // public function handlePay(Intent $intent);
-	public function handle(Intent $intent);
+    public function handle(Intent $intent);
 }

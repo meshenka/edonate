@@ -22,7 +22,6 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Payment
 {
-
     public function __construct()
     {
         $this->setStatus(self::STATUS_NEW);
@@ -38,7 +37,6 @@ class Payment
     const STATUS_NEW = 'new';
     const STATUS_REFUND = 'refund';
     const STATUS_UNKNOW = 'unknow';
-
 
     /**
      * @ORM\ManyToOne(targetEntity="Intent", inversedBy="payments")

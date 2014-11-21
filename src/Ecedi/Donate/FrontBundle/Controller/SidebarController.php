@@ -3,21 +3,18 @@
 namespace Ecedi\Donate\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Ecedi\Donate\CoreBundle\Entity\Layout;
-
 
 class SidebarController extends Controller
 {
     public function showAction(Layout $layout, $cache = true)
     {
-
         $blocks = $layout->getBlocks();
 
         //cache validation
         $response = new Response();
-        if($cache) {
+        if ($cache) {
             // Définit la réponse comme publique. Sinon elle sera privée par défaut.
             $response->setPublic();
             $response->setSharedMaxAge(600);
@@ -26,7 +23,6 @@ class SidebarController extends Controller
         return $this->render('DonateFrontBundle::sidebar.html.twig', array(
             'blocks' => $blocks,
             ), $response);
-
     }
 
     protected function computeEtag($blocks)

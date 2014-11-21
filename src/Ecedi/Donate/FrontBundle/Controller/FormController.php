@@ -11,7 +11,6 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
 
 class FormController extends Controller
 {
-
     /**
      * @Route("/{_locale}", name="donate_front_home", defaults={"_locale"="fr"}, requirements = {"_locale" = "fr|en"})
      */
@@ -30,18 +29,16 @@ class FormController extends Controller
             'payment_methods' => $this->container->get('donate_core.payment_method_discovery')->getEnabledMethods(),
         ));
 
-
         $form->handleRequest($request);
         if ($form->isValid()) {
-
             $intentMgr = $this->get('donate_core.intent_manager');
 
             $paymentMethods = $this->container->get('donate_core.payment_method_discovery')->getEnabledMethods();
 
-            foreach($paymentMethods as $pm) {
-                if($form->get('payment_method')->get($pm->getId())->isClicked()) {
+            foreach ($paymentMethods as $pm) {
+                if ($form->get('payment_method')->get($pm->getId())->isClicked()) {
                     $amount = $form->get('tunnels')->get($pm->getTunnel())->getData();
-                    
+
                     $intent = $intentMgr->newIntent($amount, $pm->getId());
                     $intent->setFiscalReceipt($form['erf']->getData());
 
@@ -49,19 +46,17 @@ class FormController extends Controller
 
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($data);
-                    
+
                     $em->flush();
                     $response =  $intentMgr->handle($intent);
 
                     return $response;
                 }
             }
-        
         }
 
         return $this->render('DonateFrontBundle:Form:index.html.twig', array(
             'form' => $form->createView(),
             ), $response);
     }
-
 }

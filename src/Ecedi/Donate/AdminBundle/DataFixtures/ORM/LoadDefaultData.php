@@ -45,7 +45,7 @@ class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
             $customer->setAddressCity(self::getRandomCity());
             $customer->setAddressCountry(self::getRandomCountry());
 
-            $CustomerOgoneID = $customer->getLastName() . '_OGONE_' . self::getRandomRemoteId();
+            $CustomerOgoneID = $customer->getLastName().'_OGONE_'.self::getRandomRemoteId();
 
             $manager->persist($customer);
 
@@ -138,7 +138,7 @@ class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
 
     public static function getRandomEmail($lastname)
     {
-        $randEmail = $lastname . '_' . rand(1, 1000) . '@' . self::getRandomMailBox();
+        $randEmail = $lastname.'_'.rand(1, 1000).'@'.self::getRandomMailBox();
 
         return $randEmail;
     }
@@ -154,9 +154,9 @@ class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
 
     public static function getRandomPhone()
     {
-        $ind = self::getRandomString(array('01', '02', '03', '04','05', '07', '08', '09'));
+        $ind = self::getRandomString(array('01', '02', '03', '04', '05', '07', '08', '09'));
 
-        return $ind . rand(10000000, 99999999);
+        return $ind.rand(10000000, 99999999);
     }
 
     public static function getRandomCompany()
@@ -168,7 +168,7 @@ class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
 
     public static function getRandomWebsite()
     {
-        $randSite = 'Http://' . self::getRandomLastname().'@ecedi.com';
+        $randSite = 'Http://'.self::getRandomLastname().'@ecedi.com';
 
         return $randSite;
     }
@@ -190,28 +190,28 @@ class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
     public static function getRandomCountry()
     {
         return self::getRandomString(array(
-            'FR', 'EN', 'IT', 'GH', 'GS', 'GI', 'US', 'DE'
+            'FR', 'EN', 'IT', 'GH', 'GS', 'GI', 'US', 'DE',
         ));
     }
 
     public static function getRandomAmount()
     {
         return self::getRandomString(array(
-            '2000', '5000', '8000', '10000', '20000', '40000', '60000', '100000' // en cents
+            '2000', '5000', '8000', '10000', '20000', '40000', '60000', '100000', // en cents
         ));
     }
 
     public static function getRandomPaymentMethod()
     {
         return self::getRandomString(array(
-            'Ponctuel', 'Périodique', 'Prélèvement automatique', 'Promesse de don par chèque'
+            'Ponctuel', 'Périodique', 'Prélèvement automatique', 'Promesse de don par chèque',
         ));
     }
 
     public static function getRandomType()
     {
         return self::getRandomString(array(
-            Intent::TYPE_SPOT, Intent::TYPE_RECURING
+            Intent::TYPE_SPOT, Intent::TYPE_RECURING,
         ));
     }
 
@@ -219,14 +219,14 @@ class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
     {
         return self::getRandomString(array(
             Intent::STATUS_NEW, Intent::STATUS_PENDING, Intent::STATUS_DONE, Intent::STATUS_CANCEL, Intent::STATUS_ERROR,
-            Intent::STATUS_DONE,Intent::STATUS_DONE,Intent::STATUS_DONE,Intent::STATUS_DONE
+            Intent::STATUS_DONE, Intent::STATUS_DONE, Intent::STATUS_DONE, Intent::STATUS_DONE,
         ));
     }
 
     public static function getRandomCampaign()
     {
         return self::getRandomString(array(
-            'Campagne évènemetielle', 'Campagne Annuelle', 'Campagne trimestrielle', 'Campagne bimensuelle'
+            'Campagne évènemetielle', 'Campagne Annuelle', 'Campagne trimestrielle', 'Campagne bimensuelle',
         ));
     }
 
@@ -240,18 +240,18 @@ class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
     public static function getRandomMailBox()
     {
         return self::getRandomString(array(
-            'yahoo.fr', 'hotmail.fr', 'google.com','ecedi.fr'
+            'yahoo.fr', 'hotmail.fr', 'google.com', 'ecedi.fr',
         ));
     }
 
     public static function getRandomTransactionId()
     {
-        return 'TRANSACT_' . rand(1000000, 9999999);
+        return 'TRANSACT_'.rand(1000000, 9999999);
     }
 
     public static function getRandomAutorisationId()
     {
-        return 'AUTORIZED_' . rand(1000000, 9999999);
+        return 'AUTORIZED_'.rand(1000000, 9999999);
     }
 
     private static function getRandomPaymentStatus()

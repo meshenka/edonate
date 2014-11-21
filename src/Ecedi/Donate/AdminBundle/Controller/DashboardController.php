@@ -58,7 +58,6 @@ class DashboardController extends Controller
      */
     public function statsIntentsAction()
     {
-
         $response = new Response();
         $response->setPublic();
         $response->setSharedMaxAge(3600);
@@ -70,9 +69,9 @@ class DashboardController extends Controller
             $stats[$status] = $ir->getCountByStatus($status);
         }
 
-        return $this->render('DonateAdminBundle:Dashboard:statsIntents.html.twig',[
+        return $this->render('DonateAdminBundle:Dashboard:statsIntents.html.twig', [
             'id'        => 'stats-intents',
-            'title'     => $this->get('translator')->trans('Donations distributions'),//'Répartition des dons',
+            'title'     => $this->get('translator')->trans('Donations distributions'), //'Répartition des dons',
             'stats'     => $stats,
         ], $response);
     }
@@ -139,5 +138,4 @@ class DashboardController extends Controller
             'results'   => $results,
         ];
     }
-
 }

@@ -3,7 +3,6 @@
 namespace Ecedi\Donate\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 
 /**
@@ -14,7 +13,7 @@ use Ecedi\Donate\CoreBundle\Entity\Payment;
  */
 class PaymentRepository extends EntityRepository
 {
-   /**
+    /**
     * Fonction qui retourne les paiements pour une intent spécifique
     *
     * @param array $parameters
@@ -47,7 +46,7 @@ class PaymentRepository extends EntityRepository
            ->setMaxResults($limit);
 
         $qb->setParameters([
-            'paymentStatus'  => Payment::STATUS_PAYED
+            'paymentStatus'  => Payment::STATUS_PAYED,
         ]);
 
         return $qb->getQuery()->getResult();

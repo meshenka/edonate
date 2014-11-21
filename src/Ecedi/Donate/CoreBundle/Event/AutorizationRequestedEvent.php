@@ -2,7 +2,6 @@
 
 namespace Ecedi\Donate\CoreBundle\Event;
 
-
-class AutorizationRequestedEvent extends IntentEvent {
-	
+class AutorizationRequestedEvent extends IntentEvent
+{
 }

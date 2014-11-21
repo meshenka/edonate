@@ -38,10 +38,9 @@ EOF
         $exporter->setExportQuery($query);
         $data = $exporter->getCsvContent();
         // Création du fichier
-        $csvExportName = 'export_donator_' . $exportDate . '.csv';
-        $handle = fopen($csvFolder . '/' . $csvExportName, 'w') or die('Cannot open file:  '  .$csvExportName);
-        fwrite($handle, $data) or die('Unable to write in: ' . $csvFolder . '/' .$csvExportName);;
-
-        $output->writeln('The file "' . $csvExportName . '" has been created in ' . $csvFolder . ' folder');
+        $csvExportName = 'export_donator_'.$exportDate.'.csv';
+        $handle = fopen($csvFolder.'/'.$csvExportName, 'w') or die('Cannot open file:  '.$csvExportName);
+        fwrite($handle, $data) or die('Unable to write in: '.$csvFolder.'/'.$csvExportName);
+        $output->writeln('The file "'.$csvExportName.'" has been created in '.$csvFolder.' folder');
     }
 }

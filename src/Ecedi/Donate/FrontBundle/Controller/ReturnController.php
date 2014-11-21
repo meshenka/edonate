@@ -29,13 +29,12 @@ class ReturnController extends Controller
 
         //en env de dev on peut afficher la page avec un payment OK
         if ($this->container->getParameter('kernel.environment') === 'dev') {
-           $paymentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Payment');
+            $paymentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Payment');
 
-           $payment = $paymentRepo->findOneBy(array('status' => Payment::STATUS_PAYED));
-           if ($payment) {
-            return ['intent' => $payment->getIntent()];
-           }
-
+            $payment = $paymentRepo->findOneBy(array('status' => Payment::STATUS_PAYED));
+            if ($payment) {
+                return ['intent' => $payment->getIntent()];
+            }
         }
 
         //gerer par une 404 l'accès à la page sans sessions
@@ -76,5 +75,4 @@ class ReturnController extends Controller
     {
         return [];
     }
-
 }

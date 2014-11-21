@@ -7,7 +7,6 @@ use Knp\Menu\MenuItem;
 
 class Builder extends ContainerAware
 {
-
     /**
      * adminMenu builder
      *
@@ -42,7 +41,7 @@ class Builder extends ContainerAware
 
         // Logout
         $menu->addChild($trans->trans('Disconnect'), array('route' => 'fos_user_security_logout'))
-            ->setAttribute('data-icon', 'glyphicon glyphicon-log-out');;
+            ->setAttribute('data-icon', 'glyphicon glyphicon-log-out');
 
         return $menu;
     }
@@ -54,42 +53,39 @@ class Builder extends ContainerAware
     */
     private function addCmsMenuItems($menu)
     {
-       if ($this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
-       
+        if ($this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $request = $this->container->get('request');
             $id = !is_null($request->get('id')) ? $request->get('id') : 0;
             $layout = !is_null($request->get('layout')) ? $request->get('layout') : false;
-    
 
             $block = !is_null($request->get('block')) ? $request->get('block') : false;
 
             $menu->addChild('CMS', array('route' => 'donate_admin_layout_list'))
                 ->setAttribute('data-icon', 'glyphicon glyphicon-pencil') // Permet l'ajout d'une icone (via un span) dans le lien
-                ->setDisplayChildren(false);        
+                ->setDisplayChildren(false);
 
             $menu['CMS']->addChild('Nouveau Gabarit', array('route' => 'donate_admin_layout_new'));
             $menu['CMS']->addChild('Editer Gabarit', array(
                 'route' => 'donate_admin_layout_edit',
                 'routeParameters' => array(
                     'id' => ($layout) ? $layout->getId() : $id,
-                )))
+                ), ))
                 ->setAttribute('data-icon', 'glyphicon glyphicon-edit');
-             
+
             $menu['CMS']['Editer Gabarit']->addChild('Editer Block', array(
                 'route' => 'donate_admin_block_edit',
                 'routeParameters' => array(
-                    'layout' => ($layout)? $layout->getId() : $id,
-                    'block' => ($block)? $block->getId() : $id,
-                )))
+                    'layout' => ($layout) ? $layout->getId() : $id,
+                    'block' => ($block) ? $block->getId() : $id,
+                ), ))
                 ->setAttribute('data-icon', 'glyphicon glyphicon-edit');
 
             $menu['CMS']['Editer Gabarit']->addChild('Voir Block', array(
                 'route' => 'donate_admin_block_list',
                 'routeParameters' => array(
-                    'id' => ($layout) ? $layout->getId() : $id
-                )))
+                    'id' => ($layout) ? $layout->getId() : $id,
+                ), ))
                 ->setAttribute('data-icon', 'glyphicon glyphicon-info-sign');
-
         }
     }
 
@@ -124,7 +120,7 @@ class Builder extends ContainerAware
         $menu['Donateurs']
             ->addChild('Détail du donateur', array(
                 'route'           => 'donate_admin_reporting_customer_show',
-                'routeParameters' => array('id' => $id)
+                'routeParameters' => array('id' => $id),
             ))
                 ->addChild("Editer", array('route' => 'donate_admin_reporting_customer_edit')); // N3
     }

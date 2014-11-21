@@ -2,7 +2,6 @@
 
 namespace Ecedi\Donate\CoreBundle\Event;
 
-
-class PaymentDeniedEvent extends PaymentEvent {
-	
+class PaymentDeniedEvent extends PaymentEvent
+{
 }

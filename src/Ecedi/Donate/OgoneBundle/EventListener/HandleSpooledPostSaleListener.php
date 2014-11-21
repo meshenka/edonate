@@ -31,23 +31,23 @@ class HandleSpooledPostSaleListener implements EventSubscriberInterface
 
         if (!$this->container->has('donate_ogone.postsale.manager')) {
             $logger->error('no postsale manager');
+
             return;
         }
 
         $postSaleManager = $this->container->get('donate_ogone.postsale.manager');
-         $logger->debug(get_class($postSaleManager));
+        $logger->debug(get_class($postSaleManager));
         if ($postSaleManager instanceof \Ecedi\Donate\OgoneBundle\Ogone\PostSale\MemorySpoolPostSaleManager) {
             $logger->debug('flush!!');
             $postSaleManager->flush();
         }
-
     }
 
     public static function getSubscribedEvents()
     {
         $listeners = [
             KernelEvents::TERMINATE => ['onTerminate', 10],
-            ConsoleEvents::TERMINATE => ['onTerminate', 10]
+            ConsoleEvents::TERMINATE => ['onTerminate', 10],
         ];
 
         return $listeners;

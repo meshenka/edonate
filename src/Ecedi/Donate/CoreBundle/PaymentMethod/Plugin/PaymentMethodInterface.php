@@ -6,14 +6,14 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
 
 interface PaymentMethodInterface
 {
-	const TUNNEL_RECURING = 'recuring';
-	const TUNNEL_SPOT = 'spot';
-	const TUNNEL_SPONSORSHIP = 'sponsorship';
+    const TUNNEL_RECURING = 'recuring';
+    const TUNNEL_SPOT = 'spot';
+    const TUNNEL_SPONSORSHIP = 'sponsorship';
 
-	const PAYMENT_STATUS_COMPLETED = 'completed';
-	const PAYMENT_STATUS_CANCELED = 'canceled';
-	const PAYMENT_STATUS_DENIED = 'denied';
-	const PAYMENT_STATUS_FAILED = 'failed';
+    const PAYMENT_STATUS_COMPLETED = 'completed';
+    const PAYMENT_STATUS_CANCELED = 'canceled';
+    const PAYMENT_STATUS_DENIED = 'denied';
+    const PAYMENT_STATUS_FAILED = 'failed';
 
     public function getId();
 

@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class OgonePaymentMethod extends Controller implements PaymentMethodInterface
 {
-
     public function getId()
     {
         return 'ogone';
@@ -37,19 +36,17 @@ class OgonePaymentMethod extends Controller implements PaymentMethodInterface
     public function pay(Intent $intent)
     {
         if ($intent->getStatus() === Intent::STATUS_NEW) {
-
             return $this->redirect($this->generateUrl('donate_ogone_pay', []), 301);
-
         } else {
             $response = new Response();
             $response->setStatusCode(500);
+
             return $response;
         }
     }
 
-    public function getTunnel() {
+    public function getTunnel()
+    {
         return self::TUNNEL_SPOT;
     }
-
-
 }
