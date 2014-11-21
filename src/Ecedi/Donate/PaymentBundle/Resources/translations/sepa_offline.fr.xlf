@@ -130,7 +130,7 @@
       </trans-unit>
       <trans-unit id="c960a24a4fb4852887506fdc99057eaa64c3e66e" resname="sepa.lead.title">
         <source>sepa.lead.title</source>
-        <target>Merci pour votre don par mandat SEPA</target>
+        <target>Merci pour votre don par mandat de prélèvement SEPA</target>
         <jms:reference-file line="13">views/SepaOffline/autorize.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bc8fc6d76d927cded6a21bc2ebba90e4f9833958" resname="sepa.privacy">
