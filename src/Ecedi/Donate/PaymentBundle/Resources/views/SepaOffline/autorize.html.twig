@@ -30,7 +30,7 @@
 	{{ 'sepa.body.text.%amount%' | trans ({'%amount%' : intent.amount / 100 }) | raw }}
 
 	<h3>{{ 'sepa.donator-details.title' | trans }}</h3>
-	
+
 	<dl class="dl-horizontal">
 		{% if intent.customer.civility %}
 		<dt>{{ 'Civility'|trans }} :</dt>
@@ -39,13 +39,13 @@
 
 		<dt>{{ 'Firstname'|trans }} :</dt>
 		<dd>{{ intent.customer.firstName }} </dd>
-		
+
 		<dt>{{ 'Lastname'|trans }} :</dt>
 		<dd>{{ intent.customer.lastName }} </dd>
-		
+
 		<dt>{{ 'Amount'|trans }} :</dt>
 		<dd>{{ intent.amount / 100 }} <span class="euro">€</span></dd>
-		
+
 		{% if intent.customer.company %}
 		<dt>{{ "Company" | trans }} :</dt><dd>{{ intent.customer.company }}</dd>
 		{% endif %}
@@ -59,20 +59,20 @@
 		{% if intent.customer.addressLiving %}
 		<dt>{{ "Address Living" | trans }} :</dt><dd>{{ intent.customer.addressLiving }}</dd>
 		{% endif %}
-		
+
 		<dt>{{ "Zipcode" | trans }} :</dt><dd>{{ intent.customer.addressZipcode }}</dd>
 		<dt>{{ "City" | trans }} :</dt><dd>{{ intent.customer.addressCity }}</dd>
-		
+
 		{% if intent.customer.addressPb %}
 		<dt>{{ "Postal box" | trans }} :</dt><dd>{{ intent.customer.addressPb }}</dd>
 		{% endif %}
-		
+
 		<dt>{{ "Country" | trans }} :</dt><dd>{{ intent.customer.addressCountry }}</dd>
-		
+
 		{% if intent.customer.phone %}
 		<dt>{{ "Phone" | trans }} :</dt><dd>{{ intent.customer.phone }}</dd>
 		{% endif %}
-		
+
 		<dt>{{ "Email" | trans }} :</dt><dd>{{ intent.customer.email }}</dd>
 	</dl>
 

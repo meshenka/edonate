@@ -16,7 +16,7 @@
             <argument type="service" id="templating" />
             <argument type="service" id="router" />
         </service>
- 
+
         <service id="donate_payment.sepa_offline.payment_method" class="Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod">
             <tag name="donate.payment_method" />
             <argument type="service" id="doctrine" />
