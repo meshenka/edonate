@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 
 <project name="eCollecte" default="update" basedir="." description="eCollecte.">
+	<!-- Prepare build folders -->
 	<target name="prepare" description="Create directories">
 		<mkdir dir="docs"/>
 		<mkdir dir="reports"/>
@@ -8,12 +9,14 @@
 		<echo msg="Making docs, report and build directories"/>		
 	</target>
 
-	<target name="codebase-update" depends="prepare" description="Update codebase">
+	<!-- Update codebase (on current checkouted branch) -->
+	<target name="codebase-update" description="Update codebase">
 		<!-- git update -->
 		<gitpull repository="." all="true"/>
 		<echo msg="git pull."/>	
 	</target>	
 
+	<!-- run all symfony related commands to update local installation -->
 	<target name="update" depends="prepare, codebase-update" description="Update codebase">
 
 		<!-- composer install -->
@@ -28,10 +31,11 @@
 
 		<!-- dump assets -->
 		<SymfonyConsole command="assetic:dump"/>
-		<echo msg="app/console doctrine:schema:update --force"/>		
+		<echo msg="app/console assetic:dump"/>		
 	</target>
-		
-	<target name="docs" depends="prepare, codebase-update" description="Generate documentation">
+	
+	<!-- generate documentation	 -->
+	<target name="doc" depends="prepare, codebase-update" description="Generate documentation">
 		<phpdoc2 title="eCollecte" destdir="docs">
 			<fileset dir="src">
 				<include name="**/*.php"/>
@@ -39,12 +43,14 @@
 		</phpdoc2>
 		<echo msg="Generating PhpDoc."/>		
 	</target>
-	
-	<target name="unit-test" depends="prepare, codebase-update" description="Run unit tests">
+
+	<!-- Run unit tests -->
+	<target name="unit-test" depends="update" description="Run unit tests">
 		<exec command="./bin/phpspec --ansi" output="reports/specs.log"/>
 		<echo msg="run phpspec"/>		
 	</target>
 
+	<!-- Run integration test (WARNING: require db reset) -->
 	<target name="integration-test" depends="unit-test" description="Run integration tests">
 		<phpunit codecoverage="true" configuration="app/phpunit.xml">
 		  <formatter todir="reports" type="xml" outfile="integration.xml"/>		 
