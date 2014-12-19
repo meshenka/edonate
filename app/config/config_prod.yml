@@ -19,7 +19,7 @@ monolog:
             handler:      nested
         nested:
            type:  stream
-           path:  %kernel.logs_dir%/%kernel.environment%.log
+           path:  /var/log/ecollecte/%kernel.environment%.log
            level: warning
         # info:
         #     type: stream
