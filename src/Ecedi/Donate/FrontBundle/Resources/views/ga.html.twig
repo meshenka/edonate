@@ -9,8 +9,23 @@ Google analytics tag
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	ga('create', '{{google_analytics}}');
-  	ga('send', 'pageview');
+    var prefix = '{{google_analytics_prefix}}';
+
+    ga('create', '{{google_analytics}}');
+    ga('require', 'displayfeatures');
+
+    if(prefix === '') {
+        ga('send', 'pageview');
+        
+    } else {
+        var loc = window.location.protocol +
+            '//' + window.location.hostname +
+            '/' + prefix +
+            window.location.pathname +
+            window.location.search;
+
+        ga('send', 'pageview', loc);        
+    }
 </script>
 {% else %}
     <!-- Your Google Analytics is not configured -->

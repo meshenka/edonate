@@ -28,6 +28,7 @@ twig:
     strict_variables: %kernel.debug%
     globals:
         google_analytics: %google_analytics%
+        google_analytics_prefix: %google_analytics_prefix%
 
 # Assetic Configuration
 assetic:

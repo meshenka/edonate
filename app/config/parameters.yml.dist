@@ -14,6 +14,7 @@ parameters:
     locale:            fr
     secret:            eE€_9à59s*8UIZNzhdiz55)jduUY8---
     google_analytics:  ~
+    google_analytics_prefix: /ecollect
     ogone.pspid: ~
     ogone.sha1_in: ~
     ogone.sha1_out: ~
