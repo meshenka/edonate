@@ -1,8 +1,21 @@
 <?php
+/**
+ * @author  Sylvain Gogel <sgogel@ecedi.fr>
+ * @package ECollecte
+ * @subpackage SEPA
+ */
+
 namespace Ecedi\Donate\PaymentBundle\Rum;
 
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 
+/**
+ * Provide an automatic RUM number, based on Intent details
+ *
+ * Use it when client want to pregenerate RUM in generated Mandate
+ *
+ * @since  2.0.0
+ */
 class PreformatedRumGenerator implements RumGeneratorInterface
 {
     private $prefix;
