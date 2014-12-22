@@ -2,12 +2,12 @@
 
 namespace Ecedi\Donate\OgoneBundle\Service;
 
-use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
+use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\AbstractPaymentMethod;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class OgonePaymentMethod extends Controller implements PaymentMethodInterface
+class OgonePaymentMethod extends AbstractPaymentMethod
 {
     public function getId()
     {
@@ -36,7 +36,7 @@ class OgonePaymentMethod extends Controller implements PaymentMethodInterface
     public function pay(Intent $intent)
     {
         if ($intent->getStatus() === Intent::STATUS_NEW) {
-            return $this->redirect($this->generateUrl('donate_ogone_pay', []), 301);
+            return new RedirectResponse($this->router->generate('donate_ogone_pay'));
         } else {
             $response = new Response();
             $response->setStatusCode(500);

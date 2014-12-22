@@ -27,10 +27,7 @@
         </service>
 
         <!-- Plugin de payment methode -->
-        <service id="donate_ogone.payment_method" class="%donate_ogone.payment_method.class%">
-             <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
+        <service id="donate_ogone.payment_method" class="%donate_ogone.payment_method.class%" parent="donate_core.base_payment_method">            
             <tag name="donate.payment_method" />
         </service>
 
