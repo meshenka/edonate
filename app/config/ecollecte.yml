@@ -12,6 +12,7 @@ donate_core:
 
 donate_front:
     google_analytics: %google_analytics%
+    google_analytics_prefix: %google_analytics_prefix%
     payment_methods: ['ogone']
     i18n: ['fr', 'en']
     campaign: _utm_campaign
