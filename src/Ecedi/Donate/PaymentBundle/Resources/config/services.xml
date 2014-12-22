@@ -10,18 +10,12 @@
     </parameters>
     -->
     <services>
-        <service id="donate_payment.check_promise.payment_method" class="Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\CheckPromisePaymentMethod">
+        <service id="donate_payment.check_promise.payment_method" class="Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\CheckPromisePaymentMethod" parent="donate_core.base_payment_method">
             <tag name="donate.payment_method" />
-            <argument type="service" id="doctrine" />
-            <argument type="service" id="templating" />
-            <argument type="service" id="router" />
         </service>
 
-        <service id="donate_payment.sepa_offline.payment_method" class="Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod">
+        <service id="donate_payment.sepa_offline.payment_method" class="Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod" parent="donate_core.base_payment_method">
             <tag name="donate.payment_method" />
-            <argument type="service" id="doctrine" />
-            <argument type="service" id="templating" />
-            <argument type="service" id="router" />
         </service>
     </services>
 </container>

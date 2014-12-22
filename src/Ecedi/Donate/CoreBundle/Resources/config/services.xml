@@ -20,6 +20,19 @@
     </parameters>
 
     <services>
+
+        <service id="donate_core.base_payment_method" abstract="true">
+            <call method="setTemplating">
+                <argument type="service" id="templating" />
+            </call>
+            <call method="setDoctrine">
+                <argument type="service" id="doctrine" />
+            </call>
+            <call method="setRouter">
+                <argument type="service" id="router" />
+            </call>
+        </service>
+
         <service id="donate_core.analytics.cookieparser" class="%donate_core.analytics.cookieparser.class%">
         </service>
 

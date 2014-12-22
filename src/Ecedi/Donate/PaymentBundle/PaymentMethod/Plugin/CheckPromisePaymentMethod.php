@@ -2,20 +2,13 @@
 
 namespace Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin;
 
-use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
+use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\AbstractPaymentMethod;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Templating\EngineInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\Routing\RouterInterface;
 
-class CheckPromisePaymentMethod implements PaymentMethodInterface
+class CheckPromisePaymentMethod extends AbstractPaymentMethod
 {
-    private $templating;
-    private $doctrine;
-    private $router;
-
     const ID = 'check_promise';
 
     public function getId()
@@ -26,13 +19,6 @@ class CheckPromisePaymentMethod implements PaymentMethodInterface
     public function getName()
     {
         return 'Send a check';
-    }
-
-    public function __construct(RegistryInterface $doctrine, EngineInterface $templating, RouterInterface $router)
-    {
-        $this->templating = $templating;
-        $this->doctrine = $doctrine;
-        $this->router = $router;
     }
 
     /**

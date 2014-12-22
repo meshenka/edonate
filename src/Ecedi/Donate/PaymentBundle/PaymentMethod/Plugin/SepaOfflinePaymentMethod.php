@@ -2,13 +2,10 @@
 
 namespace Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin;
 
-use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
+use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\AbstractPaymentMethod;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Templating\EngineInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\Routing\RouterInterface;
 
 /**
  * an offline payment method that allow user to print a mandat to send by postal mail
@@ -19,12 +16,8 @@ use Symfony\Component\Routing\RouterInterface;
  * TODO premier payment méthod pour le tunnel de vente recurring à voir comment le traiter au niveua IntentManager!!
  *
  */
-class SepaOfflinePaymentMethod implements PaymentMethodInterface
+class SepaOfflinePaymentMethod extends AbstractPaymentMethod
 {
-    private $templating;
-    private $doctrine;
-    private $router;
-
     const ID = 'sepa_offline';
 
     public function getId()
@@ -35,13 +28,6 @@ class SepaOfflinePaymentMethod implements PaymentMethodInterface
     public function getName()
     {
         return 'Send a SEPA Mandate';
-    }
-
-    public function __construct(RegistryInterface $doctrine, EngineInterface $templating, RouterInterface $router)
-    {
-        $this->templating = $templating;
-        $this->doctrine = $doctrine;
-        $this->router = $router;
     }
 
     /**
