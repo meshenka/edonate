@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author  Sylvain Gogel <sgogel@ecedi.fr>
+ * @package ECollecte
+ * @subpackage PaymentMethod
+ */
 namespace Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin;
 
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\AbstractPaymentMethod;
@@ -13,8 +17,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  *
  * We call it offline to mark it different than online SEPA Mandate with direct numeric signature
  *
- * TODO premier payment méthod pour le tunnel de vente recurring à voir comment le traiter au niveua IntentManager!!
- *
+ * @since  2.0.0
  */
 class SepaOfflinePaymentMethod extends AbstractPaymentMethod
 {

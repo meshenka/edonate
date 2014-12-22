@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author  Sylvain Gogel <sgogel@ecedi.fr>
+ * @package ECollecte
+ * @subpackage PaymentMethod
+ */
 namespace Ecedi\Donate\OgoneBundle\Service;
 
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\AbstractPaymentMethod;
@@ -7,6 +11,10 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+/**
+ * A payment plugin for eCollect that plug DirectPayment with online/off-site TPE
+ * @since  1.0.0
+ */
 class OgonePaymentMethod extends AbstractPaymentMethod
 {
     public function getId()
