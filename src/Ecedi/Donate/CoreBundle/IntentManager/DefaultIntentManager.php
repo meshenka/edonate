@@ -65,9 +65,8 @@ class DefaultIntentManager implements IntentManagerInterface
             if ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPOT) {
                 return $this->handlePay($intent);
             }
-        } else {
-            throw new UnknownPaymentMethodException($intent->getPaymentMethod());
         }
+        throw new UnknownPaymentMethodException($intent->getPaymentMethod());
     }
 
     /**
