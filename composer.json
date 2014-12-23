@@ -38,7 +38,8 @@
         "sp/bower-bundle": "dev-master",
         "trsteel/ckeditor-bundle": "~1.4",
         "helios-ag/fm-elfinder-bundle": "1.x",
-        "campaignmonitor/createsend-php": "4.*"
+        "campaignmonitor/createsend-php": "4.*",
+        "zendframework/zendpdf": "2.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.3.*",

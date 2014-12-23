@@ -13,12 +13,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod;
 use Symfony\Component\HttpFoundation\Response;
+use Ecedi\Donate\PaymentBundle\Event\IntentDocumentGeneratedEvent;
+use Ecedi\Donate\PaymentBundle\Event\PaymentEvents;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class SepaOfflineController extends Controller
 {
     /**
      * @Route("/sepa-offline/completed", name="donate_payment_sepa_offline_completed")
      * @Template()
+     * @since  2.0.0
      */
     public function autorizeAction()
     {
@@ -44,6 +48,48 @@ class SepaOfflineController extends Controller
         //else this Intent is already managed, or not in session
         $response = new Response();
         $response->setStatusCode(417);
+
+        return $response;
+    }
+
+    /**
+     * @Route("/sepa-offline/mandate/pdf", name="donate_payment_sepa_offline_document")
+     * @since  2.0.0
+     * @todo  a faire
+     * @see  http://symfony.com/fr/doc/current/components/http_foundation/introduction.html#retourner-des-fichiers
+     */
+    public function generatePdf()
+    {
+        //TODO dispatch an event to request a pdf generation
+        $session = $this->getRequest()->getSession();
+        $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
+
+        if ($session->has('intentId')) {
+            $intentId = $session->get('intentId');
+            if ($intent = $intentRepo->find($intentId)) {
+                $event = new IntentDocumentGeneratedEvent($intent);
+                $this->get('event_dispatcher')->dispatch(PaymentEvents::INTENT_DOCUMENT_GENERATED,  $event);
+
+                if ($document = $event->getDocument()) {
+                    $response = new Response($document->render());
+
+                    $response->headers->set('Content-Type', 'application/pdf');
+                    $disposition = $response->headers->makeDisposition(
+                        ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+                        'sepa-'.$intentId.'.pdf'
+                    );
+
+                    $response->headers->set('Content-Disposition', $disposition);
+
+                    return $response;
+                }
+            }
+
+            //return ['intent' => $intentRepo->find($intentId)];
+        }
+
+        $response = new Response();
+        $response->setStatusCode(403);
 
         return $response;
     }
