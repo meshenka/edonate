@@ -53,6 +53,16 @@ class SepaOfflineController extends Controller
     }
 
     /**
+     *
+     * This route generate a PDF version of the SEPA Mandate
+     * To make it work you must implement a listener on PaymentEvents::INTENT_DOCUMENT_GENERATED and produce a ZendPdf\PdfDocument instance
+     * in your own bundle (do not hack the core)
+     * the listener should use a RumGeneratorInterface.
+     * 2 services are enabled by default, and you can create your own
+     *   * donate_payment.sepa_offline.rum.empty
+     *   * donate_payment.sepa_offline.rum.preformated
+     *
+     *
      * @Route("/sepa-offline/mandate/pdf", name="donate_payment_sepa_offline_document")
      * @since  2.0.0
      * @todo  a faire
@@ -60,7 +70,6 @@ class SepaOfflineController extends Controller
      */
     public function generatePdf()
     {
-        //TODO dispatch an event to request a pdf generation
         $session = $this->getRequest()->getSession();
         $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
@@ -84,8 +93,6 @@ class SepaOfflineController extends Controller
                     return $response;
                 }
             }
-
-            //return ['intent' => $intentRepo->find($intentId)];
         }
 
         $response = new Response();

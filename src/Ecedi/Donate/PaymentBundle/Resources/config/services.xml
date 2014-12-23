@@ -17,5 +17,13 @@
         <service id="donate_payment.sepa_offline.payment_method" class="Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod" parent="donate_core.base_payment_method">
             <tag name="donate.payment_method" />
         </service>
+
+
+        <service id="donate_payment.sepa_offline.rum.empty" class="Ecedi\Donate\PaymentBundle\Rum\EmptyRumGenerator">
+        </service>
+
+        <service id="donate_payment.sepa_offline.rum.preformated" class="Ecedi\Donate\PaymentBundle\Rum\PreformatedRumGenerator">
+        </service>
+
     </services>
 </container>
