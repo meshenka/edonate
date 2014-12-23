@@ -12,11 +12,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class DefaultIntentManagerSpec extends ObjectBehavior
 {
@@ -49,13 +51,26 @@ class DefaultIntentManagerSpec extends ObjectBehavior
 
     public $intentRepository;
 
+    /**
+     * @var Request
+     */
+    private $request;
+
+    /**
+     *
+     * @var SessionInterface
+     */
+    private $session;
+
     public function let(ContainerInterface $container,
         RegistryInterface $doctrine,
         Discovery $discovery,
         EventDispatcherInterface $dispatcher,
         ObjectManager $manager,
         LoggerInterface $logger,
-        ObjectRepository $intentRepository)
+        ObjectRepository $intentRepository,
+        Request $request,
+        SessionInterface $session)
     {
         $this->container = $container;
         $this->doctrine = $doctrine;
@@ -64,7 +79,8 @@ class DefaultIntentManagerSpec extends ObjectBehavior
         $this->manager = $manager;
         $this->logger = $logger;
         $this->intentRepository = $intentRepository;
-
+        $this->request = $request;
+        $this->session = $session;
         $this->trainContainer();
 
         $this->beConstructedWith($container);
@@ -72,12 +88,15 @@ class DefaultIntentManagerSpec extends ObjectBehavior
 
     protected function trainContainer()
     {
+        $this->request->getSession()->willReturn($this->session);
+        $this->request->getLocale()->willReturn('fr_FR');
+        $this->doctrine->getManager()->willReturn($this->manager);
         $this->doctrine->getManager()->willReturn($this->manager);
 
         $this->doctrine->getRepository('DonateCoreBundle:Intent')->willReturn($this->intentRepository);
         $this->container->has('doctrine')->willReturn(true);
         $this->container->get('doctrine')->willReturn($this->doctrine);
-        $this->doctrine->getManager()->willReturn($this->manager);
+        $this->container->get('request')->willReturn($this->request);
 
         $this->container->get('donate_core.payment_method_discovery')->willReturn($this->discovery);
         $this->container->get('event_dispatcher')->willReturn($this->dispatcher);
@@ -125,6 +144,7 @@ class DefaultIntentManagerSpec extends ObjectBehavior
     public function it_should_delegate_payment_to_payment_method(Intent $intent, PaymentMethodInterface $pm, Response $response)
     {
         $this->discovery->getMethod('specmethod')->willReturn($pm);
+        $intent->getId()->willReturn(144);
         $pm->getTunnel()->willReturn(PaymentMethodInterface::TUNNEL_SPOT);
         $pm->pay($intent)->willReturn($response);
 

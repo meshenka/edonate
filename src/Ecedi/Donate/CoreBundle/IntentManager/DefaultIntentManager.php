@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * @author  Sylvain Gogel <sgogel@ecedi.fr>
+ * @package ECollecte
+ * @subpackage Core
+ * @copyright Agence Ecedi 2014
+ *
+ */
 namespace Ecedi\Donate\CoreBundle\IntentManager;
 
 use Ecedi\Donate\CoreBundle\Entity\Intent;
@@ -12,10 +18,30 @@ use Ecedi\Donate\CoreBundle\Event\AutorizationRequestedEvent;
 use Ecedi\Donate\CoreBundle\Exception\UnknownPaymentMethodException;
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 
+/**
+ * Default implementation of the IntentManagerInterface
+ * @since  1.0.0
+ */
 class DefaultIntentManager implements IntentManagerInterface
 {
+    /**
+     * The service that gather and manager all payment methods
+     *
+     * @var Ecedi\Donate\CoreBundle\PaymentMethod\Discovery
+     */
     private $discovery;
+
+    /**
+     * The Symfony Container
+     *
+     * @var ContainerInterface
+     */
     private $container;
+
+    /**
+     * a PSR-3 logger service
+     * @var Psr\Log\LoggerInterface
+     */
     private $logger;
 
     protected function getDoctrine()
@@ -27,6 +53,13 @@ class DefaultIntentManager implements IntentManagerInterface
         return $this->container->get('doctrine');
     }
 
+    /**
+     * Business Logic to run prior entering any Payment method
+     *
+     * @since 2.0.0
+     * @param  Intent $intent [description]
+     * @return [type] [description]
+     */
     protected function preHandle(Intent $intent)
     {
         $request = $this->container->get('request');
@@ -39,6 +72,11 @@ class DefaultIntentManager implements IntentManagerInterface
             }
     }
 
+    /**
+     * @since 1.0.0
+     * @param ContainerInterface $container a configured container
+     * @todo  do not inject the container, use explicit dependencies
+     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -47,11 +85,8 @@ class DefaultIntentManager implements IntentManagerInterface
     }
 
     /**
-     * run autorize or pay according to tunnel
-     *
-     * @param  Intent                        $intent [description]
-     * @return [type]                        [description]
-     * @throws UnknownPaymentMethodException If method id is not found in existing configuration
+     * {@inheritdoc}
+     * @throws UnknownPaymentMethodException if not payment methods can handle this intent
      */
     public function handle(Intent $intent)
     {
@@ -70,10 +105,11 @@ class DefaultIntentManager implements IntentManagerInterface
     }
 
     /**
-     * run autorisation for recurring sell tunnel
+     * Run autorisation for recurring sell tunnel
      *
-     * @param  Intent   $intent
-     * @return Response
+     * @since  2.0.0
+     * @param  Intent                                    $intent
+     * @return Symfony\Component\HttpFoundation\Response
      */
     protected function handleAutorize(Intent $intent)
     {
@@ -88,9 +124,9 @@ class DefaultIntentManager implements IntentManagerInterface
     /**
      * run immediate payment for spot sell tunnel
      *
-     * @param  Intent                        $intent
-     * @return Response
-     * @throws UnknownPaymentMethodException If method id is not found in existing configuration
+     * @param  Intent                                    $intent
+     * @return Symfony\Component\HttpFoundation\Response
+     * @since  2.0.0
      */
     protected function handlePay(Intent $intent)
     {
@@ -104,6 +140,11 @@ class DefaultIntentManager implements IntentManagerInterface
 
     /**
      * Set status as pending
+     * @since  1.0.0
+     * @todo  should not flush here, flush should be in controller
+     * @todo  i'm not even sure this method should stay, should probably move to entity class
+     * @param  Intent an intent
+     * @return current object for chainability
      */
     public function pending(Intent $intent)
     {
@@ -118,6 +159,15 @@ class DefaultIntentManager implements IntentManagerInterface
 
     /**
      * Initialisation d'un nouvel intent
+     * This method is usefull as it dispatch an event
+     * @todo  may be should be moved somewhere else, like in a Doctrine Event listener as recommanded by Kris Wallsmith
+     * @see  https://www.youtube.com/watch?v=W8MOIOyPbmM
+     *
+     * @since  1.0.0
+     *
+     * @param  integer amount
+     * @param string the unique machine name that indiquate which payment method should handle
+     * @return a new Intent instance
      */
     public function newIntent($amount, $paymentMethodId)
     {
@@ -130,9 +180,11 @@ class DefaultIntentManager implements IntentManagerInterface
 
     /**
      * Association d'un Intent et d'un paiement, avec envoie des evenements
-     * @param  mixed                                  $intentId integer si intentId est false alors nous avons un payment orphelin.
-     * @param  Ecedi\Donate\CoreBundle\Entity\Payment $payment  une instance de payment
-     * @return none
+     * @since  1.0.0
+     * @param mixed                                  $intentId integer si intentId est false alors nous avons un payment orphelin.
+     * @param Ecedi\Donate\CoreBundle\Entity\Payment $payment  une instance de payment
+     * @todo  flush is not right here, it should be in the controller
+     *
      */
     public function attachPayment($intentId, Payment $payment)
     {
