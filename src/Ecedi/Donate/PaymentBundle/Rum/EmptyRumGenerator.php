@@ -11,7 +11,7 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
 
 /**
  * Provide an Empty RUM number, will be set by back-office members
- * Use it when client does not have a strategy
+ * Use it when client does not have an automatic strategy
  *
  * @since  2.0.0
  */
@@ -22,6 +22,6 @@ class EmptyRumGenerator implements RumGeneratorInterface
      */
     public function generate(Intent $intent)
     {
-        return str_repeat('', 35);
+        return str_repeat(' ', 35);
     }
 }
