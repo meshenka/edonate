@@ -2,7 +2,7 @@
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
  * @package ECollecte
- * @subpackage PaymentMethod
+ * @subpackage SEPA
  */
 namespace Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin;
 

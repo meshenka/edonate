@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * @author  Sylvain Gogel <sgogel@ecedi.fr>
+ * @package Ecollecte
+ * @subpackage Check
+ * @copyright Agence Ecedi 2014
+ */
 namespace Ecedi\Donate\PaymentBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

@@ -13,6 +13,7 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
  * This interface is the base API to provide unique RUM for SEPA Mandate
  *
  * @since  2.0.0
+ * @api
  */
 interface RumGeneratorInterface
 {
