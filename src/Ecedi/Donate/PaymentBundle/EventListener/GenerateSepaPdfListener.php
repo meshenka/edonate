@@ -31,6 +31,11 @@ class GenerateSepaPdfListener
      */
     private $kernel;
 
+    /**
+     * constructor
+     * @param RumGeneratorInterface $rumGenerator A RUM Generator
+     * @param HttpKernelInterface   $kernel       the kernel, needed to locate files
+     */
     public function __construct(RumGeneratorInterface $rumGenerator, HttpKernelInterface $kernel)
     {
         $this->rumGenerator = $rumGenerator;
@@ -40,7 +45,11 @@ class GenerateSepaPdfListener
      * Generate the Pdf
      * @param IntentDocumentGeneratedEvent $event the event
      * @see http://stackoverflow.com/questions/7585474/accessing-files-relative-to-bundle-in-symfony2
-     * @todo finaliser un document par defaut
+     * @todo finaliser l'inscrition de toutes les info dynamiques
+     * @todo  avoir une sepa-template neutre
+     * @todo  insérer le logo du layout courant dans le pdf
+     * @todo  insérer des textes simple en y ajoutant le nom du client dynamiquement
+     * @todo  insérer l'ICS
      */
     public function generate(IntentDocumentGeneratedEvent $event)
     {
