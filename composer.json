@@ -39,14 +39,15 @@
         "trsteel/ckeditor-bundle": "~1.4",
         "helios-ag/fm-elfinder-bundle": "1.x",
         "campaignmonitor/createsend-php": "4.*",
-        "zendframework/zendpdf": "2.*"
+        "zendframework/zendpdf": "2.*",
     },
     "require-dev": {
         "sensio/generator-bundle": "2.3.*",
         "raulfraile/ladybug-bundle": "dev-master",
         "phpspec/phpspec": "2.0.*@dev",
         "sensio/distribution-bundle": "2.3.*",
-        "phpmd/phpmd" : "@stable" 
+        "phpmd/phpmd" : "@stable" ,
+        "henrikbjorn/phpspec-code-coverage": "~0.2"
     },
     "scripts": {
         "post-install-cmd": [
