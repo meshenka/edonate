@@ -58,7 +58,7 @@ class GenerateSepaPdfListener
          */
         $intent = $event->getIntent();
 
-        if ($intent->getPaymentMethod() === SepaOfflinePaymentMethod::ID) {
+        if ($intent->getPaymentMethod() === SepaOfflinePaymentMethod::ID && $event->getDocument() === null) {
             $pdf = new Pdf\PdfDocument();
 
             $pdf->pages[] = ($page1 = $pdf->newPage('A4'));

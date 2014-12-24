@@ -14,6 +14,7 @@ use Ecedi\Donate\PaymentBundle\Rum\RumGeneratorInterface;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpKernel\Kernel;
 use Prophecy\Argument;
+use ZendPdf\PdfDocument;
 /**
  * Unit tests for GenerateSepaPdfListener
  */
@@ -46,9 +47,7 @@ class GenerateSepaPdfListenerSpec extends ObjectBehavior
         $this->intent = $intent;
         $this->kernel = $kernel;
 
-        $event->getIntent()->willReturn($intent);
-        $intent->getPaymentMethod()->willReturn(SepaOfflinePaymentMethod::ID);
-
+        $this->event->getIntent()->willReturn($this->intent);
         $kernel->locateResource('@DonatePaymentBundle/Resources/public/img/sepa-template.jpg')->willReturn(__DIR__.'/test.jpg');
         $this->beConstructedWith($rumGenerator, $kernel);
     }
@@ -59,8 +58,27 @@ class GenerateSepaPdfListenerSpec extends ObjectBehavior
 
     public function it_should_create_pdf()
     {
+        $this->intent->getPaymentMethod()->willReturn(SepaOfflinePaymentMethod::ID);
+        $this->event->getDocument()->willReturn(null);
         $this->event->setDocument(Argument::Type('ZendPdf\PdfDocument'))->shouldBeCalled();
         $this->event->stopPropagation()->shouldBeCalled();
+        $this->generate($this->event);
+    }
+
+    public function it_should_not_create_pdf_if_not_right_type()
+    {
+        $this->intent->getPaymentMethod()->willReturn('PHPSPEC');
+        $this->event->getDocument()->willReturn(null);
+        $this->event->setDocument(Argument::Type('ZendPdf\PdfDocument'))->shouldNotBeCalled();
+        $this->event->stopPropagation()->shouldNotBeCalled();
+        $this->generate($this->event);
+    }
+    public function it_should_not_create_pdf_document_already_created(PdfDocument $doc)
+    {
+        $this->intent->getPaymentMethod()->willReturn(SepaOfflinePaymentMethod::ID);
+        $this->event->getDocument()->willReturn($doc);
+        $this->event->setDocument(Argument::Type('ZendPdf\PdfDocument'))->shouldNotBeCalled();
+        $this->event->stopPropagation()->shouldNotBeCalled();
         $this->generate($this->event);
     }
 }
