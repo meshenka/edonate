@@ -3,6 +3,7 @@
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
  * @package ECollecte
  * @subpackage SEPA
+ * @copyright Agence Ecedi 2014
  */
 
 namespace Ecedi\Donate\PaymentBundle\Rum;

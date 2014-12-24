@@ -17,12 +17,17 @@ use Ecedi\Donate\PaymentBundle\Event\IntentDocumentGeneratedEvent;
 use Ecedi\Donate\PaymentBundle\Event\PaymentEvents;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
+/**
+ * Controller for display of SEPA Offline return pages
+ * @since  2.0.0
+ */
 class SepaOfflineController extends Controller
 {
     /**
      * @Route("/sepa-offline/completed", name="donate_payment_sepa_offline_completed")
      * @Template()
      * @since  2.0.0
+     * @return mixed array of twig variables, or a manual Symfony\Component\HttpFoundation\Response
      */
     public function autorizeAction()
     {
@@ -65,8 +70,9 @@ class SepaOfflineController extends Controller
      *
      * @Route("/sepa-offline/mandate/pdf", name="donate_payment_sepa_offline_document")
      * @since  2.0.0
-     * @todo  a faire
+     * @todo  Faire un lien avec un token unique ?
      * @see  http://symfony.com/fr/doc/current/components/http_foundation/introduction.html#retourner-des-fichiers
+     * @return Symfony\Component\HttpFoundation\Response an HTTP response with the file, or an HTTP 403 Response
      */
     public function generatePdf()
     {
