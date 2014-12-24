@@ -26,7 +26,6 @@ class Configuration implements ConfigurationInterface
         ->children()
             ->scalarNode('campaign')->defaultValue('campaign')->end()
             ->scalarNode('google_analytics')->defaultNull()->end()
-            ->arrayNode('payment_methods')->isRequired()->requiresAtLeastOneElement()->prototype('scalar')->end()->end()
             ->arrayNode('i18n')->prototype('scalar')->defaultNull()->end()->end()
             ->arrayNode('form')
                     ->children()

@@ -23,6 +23,13 @@
         </service>
 
         <service id="donate_payment.sepa_offline.rum.preformated" class="Ecedi\Donate\PaymentBundle\Rum\PreformatedRumGenerator">
+            <argument>ECOLLECT</argument>
+        </service>
+
+        <service id="donate_payment.sepa_offline.pdf.listener" class="Ecedi\Donate\PaymentBundle\EventListener\GenerateSepaPdfListener">
+            <argument type="service" id="donate_payment.sepa_offline.rum.preformated" />
+            <argument type="service" id="kernel" />
+            <tag name="kernel.event_listener" event="donate.payment.document.generated" method="generate" />
         </service>
 
     </services>

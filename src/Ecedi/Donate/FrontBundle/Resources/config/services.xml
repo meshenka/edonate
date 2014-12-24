@@ -5,7 +5,6 @@
 
     <parameters>
         <parameter key="donate_front.google_analytics" />
-        <parameter key="donate_front.payment_methods" />
         <parameter key="donate_front.form.civility" />
         <parameter key="donate_front.i18n" />
         <parameter key="donate_front.campaign" />

@@ -28,7 +28,6 @@ class DonateFrontExtension extends Extension
         $container->setParameter('donate_front.form.civility', $config['form']['civility']);
         $container->setParameter('donate_front.google_analytics', $config['google_analytics']);
         $container->setParameter('donate_front.i18n', $config['i18n']);
-        $container->setParameter('donate_front.payment_methods', $config['payment_methods']);
         $container->setParameter('donate_front.campaign', $config['campaign']);
     }
 }

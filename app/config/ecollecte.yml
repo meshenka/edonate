@@ -18,7 +18,6 @@ donate_core:
 
 donate_front:
     google_analytics: %google_analytics%
-    payment_methods: ['ogone']
     i18n: ['fr', 'en']
     campaign: _utm_campaign
     form:
