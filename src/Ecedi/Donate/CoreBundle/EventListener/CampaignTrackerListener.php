@@ -14,7 +14,6 @@ class CampaignTrackerListener extends ContainerAware implements EventSubscriberI
     public function __construct($queryKey)
     {
         $this->key = $queryKey;
-
     }
 
     public static function getSubscribedEvents()
@@ -35,7 +34,6 @@ class CampaignTrackerListener extends ContainerAware implements EventSubscriberI
 
         if ($request->query->has($this->key)) {
             $intent->setCampaign($request->query->get($this->key));
-
         } else {
             $intent->setCampaign($utm->getCampaignName());
         }

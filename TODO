@@ -4,7 +4,7 @@
   * Refactor the PaymentMethod API to have better support for other TPE
   * See if we can intergrate http://sylius.org/ instead of homemade code for TPE managment
   * Add front office skinability
-  * Add multiple layout template to choose from
+  * Add multiple design to choose from
   * Add support for recurring donations from CreditCard data (with aliasing support, we do not want to store CC details)
   * Add support for SEPA (with Slimpay?)
   * Add Campaign based donation form (with specific layout/blocks and URL) (multi donation form from same TPE)

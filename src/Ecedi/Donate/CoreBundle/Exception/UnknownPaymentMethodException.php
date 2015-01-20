@@ -4,13 +4,14 @@ namespace Ecedi\Donate\CoreBundle\Exception;
 
 class UnknownPaymentMethodException
 extends \Exception
-implements CoreExceptionInterface {
+implements CoreExceptionInterface
+{
+    protected $paymentMethod;
 
-	protected $paymentMethod;
+    public function __contruct($pm)
+    {
+        $this->$paymentMethod = $pm;
 
-	public function __contruct($pm) {
-		$this->$paymentMethod = $pm;
-
-		parent::__contruct('This payment method id is knowned');
-	}
+        parent::__contruct('This payment method id is knowned');
+    }
 }

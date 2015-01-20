@@ -25,9 +25,8 @@ class DonateAdminExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->setParameter('donate_admin.analytics.client_id',$config['analytics']['clientId']);
-        $container->setParameter('donate_admin.analytics.data_ids',$config['analytics']['dataIds']);
-        $container->setParameter('donate_admin.analytics.api_key',$config['analytics']['apiKey']);
-
+        $container->setParameter('donate_admin.analytics.client_id', $config['analytics']['clientId']);
+        $container->setParameter('donate_admin.analytics.data_ids', $config['analytics']['dataIds']);
+        $container->setParameter('donate_admin.analytics.api_key', $config['analytics']['apiKey']);
     }
 }

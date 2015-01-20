@@ -122,7 +122,7 @@ class IntentExporter
             "Code postal",
             "Ville",
             "Pays",
-            "Site web"
+            "Site web",
         );
 
         fputcsv($handle, $csvHeader, ';');
@@ -141,7 +141,7 @@ class IntentExporter
         $nbResultsRequested = 500;
         $iMax = ceil($nbIntents/$nbResultsRequested); // Calcul du nombre de requêtes à réaliser
 
-        for ($i = 0; $i <= $iMax ; $i++) {
+        for ($i = 0; $i <= $iMax; $i++) {
             $exportQb->select('i, c') // cf repository pour les alias, on récupère les infos des intents et des customers
                      ->setFirstResult($i * $nbResultsRequested)
                      ->setMaxResults($nbResultsRequested);
@@ -184,7 +184,6 @@ class IntentExporter
                 ];
 
                 fputcsv($handle, $fieldsValue, ';');
-
             }
         }
         /*print memory_get_usage()/(1024).'Ko pour '.$nbResultsRequested;

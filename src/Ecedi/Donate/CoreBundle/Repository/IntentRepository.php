@@ -65,8 +65,8 @@ class IntentRepository extends EntityRepository
            ->orderBy('i.createdAt', 'DESC');
 
         if ($exclude) {
-           $exclude = is_array($exclude) ? $exclude : (array) $exclude;
-           $qb->andWhere('i.id NOT IN (:exlude)')
+            $exclude = is_array($exclude) ? $exclude : (array) $exclude;
+            $qb->andWhere('i.id NOT IN (:exlude)')
               ->setParameter('exlude', $exclude);
         }
 
@@ -115,7 +115,7 @@ class IntentRepository extends EntityRepository
                 case 'maxAmount':
                     $field = 'amount';
                     if (!empty($value)) {
-                        $value = $this->getAmountInCents($value) ;
+                        $value = $this->getAmountInCents($value);
                         if (empty($parameters['min_amount'])) {
                             $this->rangeFilter($qb, 'i', $field, '<=', $value);
                         }
@@ -128,7 +128,6 @@ class IntentRepository extends EntityRepository
                         $value = $this->getDatetimeFromDate($value);
                         if (!empty($parameters['maxCreatedAt'])) {
                             $value2 = $this->getDatetimeFromDate($parameters['maxCreatedAt']);
-
                         } else {
                             $value2 = new \DateTime('NOW');
                         }
@@ -177,7 +176,7 @@ class IntentRepository extends EntityRepository
     private function getDatetimeFromDate($dateString)
     {
         $dateArray = explode('/', $dateString);
-        $datetime = new \DateTime($dateArray[0] . '-' . $dateArray[1] . '-' . $dateArray[2]);
+        $datetime = new \DateTime($dateArray[0].'-'.$dateArray[1].'-'.$dateArray[2]);
 
         return $datetime;
     }
@@ -200,7 +199,7 @@ class IntentRepository extends EntityRepository
 
         $qb->setParameters([
             'intentType'    => Intent::TYPE_SPOT,
-            'intentStatus'  => Intent::STATUS_DONE
+            'intentStatus'  => Intent::STATUS_DONE,
         ]);
 
         return $qb->getQuery()->getResult();
@@ -224,7 +223,7 @@ class IntentRepository extends EntityRepository
 
         $qb->setParameters([
             'intentType'    => Intent::TYPE_RECURING,
-            'intentStatus'  => Intent::STATUS_DONE
+            'intentStatus'  => Intent::STATUS_DONE,
         ]);
 
         return $qb->getQuery()->getResult();

@@ -1,7 +1,6 @@
 {% extends "DonateFrontBundle::layout.html.twig" %}
 {% block body_classe %}Home{% endblock %}
 {% form_theme form 'DonateFrontBundle:Form:form_div_layout.html.twig' %}
-
 {% block main_content %}
 {{ form_start(form,  { 'attr': {'role': 'form'} }) }}
     {{ form_errors(form) }}
@@ -15,17 +14,10 @@
       <div id="amounts" class="col-md-7 col-sm-7">
         <div class="form-group">
           <div class="input-group">
-            {{ form_row(form.amount_preselected) }}
-          </div>
-        </div>
-
-        <div id="autreMtt" class="form-group">
-          <div class="input-group">
-            {{ form_row(form.amount_manual, { 'attr': {'class': 'form-control', 'placeholder': '100'} }) }}
+            {{ form_row(form.tunnels) }}
           </div>
         </div>
       </div>
-
       <div id="calc" class="col-md-5 col-sm-5">
         {% include "DonateFrontBundle::calculator.html.twig" %}
       </div>
@@ -106,7 +98,12 @@
   </div>
 </div>
 
-{% if form.payment_method.vars.choices is defined %}
+<div id="accept" class="form-group col-md-12">
+  <div class="checkbox col-md-12">
+     {{ form_row(form.optin) }}
+  </div>
+</div>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h2 class="panel-title">{{'My payment method'|trans}}</h2>
@@ -115,21 +112,6 @@
     <div class="form-group">
         {{ form_row(form.payment_method) }}
     </div>
-  </div>
-</div>
-{% else  %}
-     {{ form_row(form.payment_method) }}
-{% endif %}
-
-<div id="accept" class="form-group col-md-12">
-  <div class="checkbox col-md-12">
-     {{ form_row(form.optin) }}
-  </div>
-</div>
-
-<div id="btSubmit" class="form-group col-md-12">
-  <div class="col-md-12">
-    <input type="submit" value="{{'Donate'|trans}}" class="btn btn-primary btn-lg"></input>
   </div>
 </div>
 

@@ -18,8 +18,8 @@ trait FilterTrait
     {
         if ($this->getClassMetadata()->hasField($field)) {
             $value = !is_array($value) ? $value : (array) $value;
-            $qb->andWhere($qb->expr()->in($tableAlias . '.' . $field, ':' . $tableAlias . '_' . $field))
-               ->setParameter($tableAlias . '_' . $field, $value);
+            $qb->andWhere($qb->expr()->in($tableAlias.'.'.$field, ':'.$tableAlias.'_'.$field))
+               ->setParameter($tableAlias.'_'.$field, $value);
         }
     }
 
@@ -34,14 +34,14 @@ trait FilterTrait
     */
     public function matchFilter(QueryBuilder $qb, $tableAlias, $field, $operator, $value)
     {
-        $qb->andWhere($tableAlias . '.' . $field . ' ' . $operator . ' :' . $tableAlias . '_' . $field);
+        $qb->andWhere($tableAlias.'.'.$field.' '.$operator.' :'.$tableAlias.'_'.$field);
 
         switch ($operator) {
             case 'LIKE':
-                $qb->setParameter($tableAlias . '_' . $field, '%' . $value . '%');
+                $qb->setParameter($tableAlias.'_'.$field, '%'.$value.'%');
                 break;
             case '=':
-                $qb->setParameter($tableAlias . '_' . $field, $value);
+                $qb->setParameter($tableAlias.'_'.$field, $value);
         }
     }
 
@@ -59,22 +59,22 @@ trait FilterTrait
     {
         switch ($operator) {
             case '>=':
-                $qb->andWhere($tableAlias . '.' . $field . ' ' . $operator . ' :' . $tableAlias . '_' . $field)
-                   ->setParameter($tableAlias . '_' . $field, $value);
+                $qb->andWhere($tableAlias.'.'.$field.' '.$operator.' :'.$tableAlias.'_'.$field)
+                   ->setParameter($tableAlias.'_'.$field, $value);
                 break;
             case 'BETWEEN':
                 $qb->andWhere($qb->expr()->between(
-                    $tableAlias . '.' . $field,
-                    ':' . $tableAlias . '_' . $field,
-                    ':' . $tableAlias . '_' . $field . '_2'
+                    $tableAlias.'.'.$field,
+                    ':'.$tableAlias.'_'.$field,
+                    ':'.$tableAlias.'_'.$field.'_2'
                 ))
-                   ->setParameter($tableAlias . '_' . $field, $value)
-                   ->setParameter($tableAlias . '_' . $field . '_2' , $value2);
+                   ->setParameter($tableAlias.'_'.$field, $value)
+                   ->setParameter($tableAlias.'_'.$field.'_2', $value2);
                 break;
 
             case '<=':
-                $qb->andWhere($tableAlias . '.' . $field . ' ' . $operator . ' :' . $tableAlias . '_' . $field)
-                   ->setParameter($tableAlias . '_' . $field, $value);
+                $qb->andWhere($tableAlias.'.'.$field.' '.$operator.' :'.$tableAlias.'_'.$field)
+                   ->setParameter($tableAlias.'_'.$field, $value);
                 break;
         }
     }

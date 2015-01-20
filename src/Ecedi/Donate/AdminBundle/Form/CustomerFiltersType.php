@@ -2,8 +2,6 @@
 
 namespace Ecedi\Donate\AdminBundle\Form;
 
-use  Ecedi\Donate\CoreBundle\Entity\Customer;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -50,7 +48,7 @@ class CustomerFiltersType extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection'       => false,
-            'translation_domain'    => 'forms'
+            'translation_domain'    => 'forms',
         ));
     }
 

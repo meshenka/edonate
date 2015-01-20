@@ -19,6 +19,7 @@ parameters:
     ogone.sha1_in: ~
     ogone.sha1_out: ~
     ogone.async_postsale: false
+    ogone.prefix: ECOLLECTE
     reporting.analytics.api_key: ~
     reporting.analytics.client_id: ~
     reporting.analytics.data_ids: ~
@@ -27,3 +28,4 @@ parameters:
     session_memcached_prefix: ecollect
     session_memcached_expire: ~
     donate_core.email.noreply: ~
+    donate_core.email.webmaster: ~

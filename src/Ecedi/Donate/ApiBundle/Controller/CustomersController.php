@@ -3,14 +3,12 @@
 namespace Ecedi\Donate\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
-
 use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Ecedi\Donate\CoreBundle\Form\CustomerType;
 
@@ -143,7 +141,7 @@ class CustomersController extends Controller
     private function throwNotFoundExceptionIfNotCustomer($customer)
     {
         if (!$customer instanceof Customer) {
-             throw $this->createNotFoundException("Customer not found, check id or parameters.");
+            throw $this->createNotFoundException("Customer not found, check id or parameters.");
         }
     }
 }

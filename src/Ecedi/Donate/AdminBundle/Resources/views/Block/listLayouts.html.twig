@@ -42,7 +42,7 @@ $(function() {
                 //fade out label
                 setTimeout(function() { markup.fadeOut('slow'); }, 2000);
             })
-            .fail(function( jqXHR, textStatus, errorThrown ) { 
+            .fail(function( jqXHR, textStatus, errorThrown ) {
                 var markup = $('<span class="label label-danger">Echec!</span>');
                 _this.prepend(markup);
                 setTimeout(function() { markup.fadeOut('slow'); }, 2000);
@@ -87,13 +87,13 @@ $(function() {
 
                     <div class="switch-layout pull-right">
                         {% if layout.isDefault == 1 %}
-                            {{ macros.icon('star') }} 
+                            {{ macros.icon('star') }}
                         {% else %}
-                            {{ macros.icon('star-empty') }} 
+                            {{ macros.icon('star-empty') }}
                         {% endif %}
-                    </div>                    
+                    </div>
                 </td>
-                
+
                 <td><a title="Editer" href="{{ path('donate_admin_layout_edit', { id : layout.id }) }}">
                     {{ macros.icon('edit') }} {{ layout.name }}
                 </a></td>
@@ -102,13 +102,13 @@ $(function() {
                 <td>
                     <a title="Blocks" href="{{ path('donate_admin_block_list', { id : layout.id }) }}">
                         {{ macros.icon('info-sign') }} Voir les blocks
-                    </a>                
+                    </a>
                     <a title="Supprimer le layout" href="{{ path('donate_admin_layout_delete', { id : layout.id }) }}">
                         {{ macros.icon('remove') }} Supprimer
-                    </a>                
+                    </a>
                     <a title="Prévisualiser le layout" href="{{ path('donate_admin_layout_preview', { id : layout.id }) }}">
                         {{ macros.icon('eye-open') }} Prévisualiser
-                    </a>                
+                    </a>
 
                 </td>
             </tr>
@@ -125,6 +125,6 @@ $(function() {
 {% block sidebar %}
     <aside id="online-help" role="help">
         <p role="help" class="text-info">{{ macros.icon('info-sign') }} Vous pouvez cliquer sur une étoile pour rentre le layout par défaut.
-        </p>        
+        </p>
     </aside>
 {% endblock %}

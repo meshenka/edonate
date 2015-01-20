@@ -2,8 +2,7 @@
 
 namespace Ecedi\Donate\AdminBundle\Form;
 
-use  Ecedi\Donate\CoreBundle\Entity\Intent;
-
+use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -29,7 +28,7 @@ class IntentFiltersType extends AbstractType
                 'multiple'      => true,
                 'expanded'      => true,
                 'data'          => array_keys($types),
-                'translation_domain' => 'forms'
+                'translation_domain' => 'forms',
             ))
             ->add('status', 'choice', array(
                 'label'         => "Status",
@@ -52,7 +51,7 @@ class IntentFiltersType extends AbstractType
                 'required'      => false,
             ))
             ->add('minCreatedAt', 'date', array(
-                'label'         => 'Donation submitted',//Dons soumis
+                'label'         => 'Donation submitted', //Dons soumis
                 'input'         => 'datetime',
                 'widget'        => 'single_text',
                 'format'        => "dd/MM/yyyy",
@@ -79,7 +78,7 @@ class IntentFiltersType extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection'       => false,
-            'translation_domain'    => 'forms'
+            'translation_domain'    => 'forms',
         ));
     }
 

@@ -7,7 +7,6 @@ use Ecedi\Donate\CoreBundle\Entity\Payment;
 
 class PaymentEvent extends Event
 {
-
     private $payment;
 
    /**

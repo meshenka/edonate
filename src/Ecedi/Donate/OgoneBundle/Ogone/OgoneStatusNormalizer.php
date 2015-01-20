@@ -4,19 +4,18 @@ namespace Ecedi\Donate\OgoneBundle\Ogone;
 
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 
-class OgoneStatusNormalizer {
-
-	/**
+class OgoneStatusNormalizer
+{
+    /**
      * Cette méthode convertie un code de status Ogone en un status de l'intent
      *
      * @see Ecedi\Donate\CoreBundle\Entity\Payment::getAllowedStatus()
      *
-     * @param integer $status
-     * @return string one legal value from
+     * @param  integer $status
+     * @return string  one legal value from
      */
     public function normalize($status)
     {
-
         switch ($status) {
             case 0: //Incomplete or invalid
 
@@ -73,6 +72,4 @@ class OgoneStatusNormalizer {
                   return Payment::STATUS_FAILED;
         }
     }
-
-	
 }

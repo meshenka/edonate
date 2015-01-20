@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="ac3fa52cdfbb48e1c6064032295a5a69" resname="thank you cheque body">
         <source>thank you cheque body</source>
-        <target>new_thank you cheque body</target>
+        <target>[METTRE ICI TEXTE DE REMERCIEMENT]</target>
       </trans-unit>
       <trans-unit id="13dba24862cf9128167a59100e154c8d" resname="Print">
         <source>Print</source>

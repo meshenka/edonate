@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BlockController extends Controller
 {
-
     /**
      * @Route("/cms/layout/{id}/switch" , name="donate_admin_layout_switch", requirements={"id" = "\d+"}, defaults={"id" = 0})
      * @Template()
@@ -24,8 +23,8 @@ class BlockController extends Controller
         $layoutManager = $this->get('donate_core.layout.manager');
 
         $layouts = $layoutManager->makeDefault($layout);
-        
-        if(count($layouts) == 2) {
+
+        if (count($layouts) == 2) {
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($layouts[0]);
@@ -37,21 +36,19 @@ class BlockController extends Controller
                 'state' => [
                     [ 'id'  => $layouts[0]->getId(), 'value' => $layouts[0]->getIsDefault()],
                     [ 'id'  => $layouts[1]->getId(), 'value' => $layouts[1]->getIsDefault()],
-                ]
+                ],
             );
         } else {
             $data = array(
                 'result' => 'no-changes',
-                'state' => [$layout->getId() => $layout->getIsDefault()]
+                'state' => [$layout->getId() => $layout->getIsDefault()],
             );
         }
 
+        $response = new JsonResponse($data);
 
-
-        $response = new JsonResponse($data);                                                
         return $response;
     }
-
 
     /**
      * @Route("/cms/layout/{id}" , name="donate_admin_layout_show", requirements={"id" = "\d+"}, defaults={"id" = 0})
@@ -72,19 +69,16 @@ class BlockController extends Controller
      */
     public function previewLayoutAction(Request $request, Layout $layout)
     {
-
         $request->setLocale($layout->getLanguage());
-        
+
         $data = new Customer();
         $form = $this->createForm('donate', $data);
-
 
         return [
             'layout' => $layout,
             'form' => $form->createView()
         ];
     }
-
 
     /**
      * @Route("/cms/layout/{id}/blocks" , name="donate_admin_block_list", requirements={"id" = "\d+"}, defaults={"id" = 0})
@@ -95,22 +89,19 @@ class BlockController extends Controller
         return ['layout' => $layout];
     }
 
-
     /**
      * @Route("/cms/layouts" , name="donate_admin_layout_list")
      * @Template()
      */
     public function listLayoutsAction(Request $request)
     {
-
         $repo = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Layout');
         $query = $repo->getFindAllQuery();
         $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($query, $request->query->get('page', 1),20);
+        $pagination = $paginator->paginate($query, $request->query->get('page', 1), 20);
 
         return ['layouts' => $pagination];
     }
-
 
     /**
      * @Route("/cms/layout/{id}/edit", name="donate_admin_layout_edit", requirements={"id" = "\d+"}, defaults={"id" = 0})
@@ -135,7 +126,7 @@ class BlockController extends Controller
         return [
             'form' =>  $form->createView(),
             'layout' => $layout
-        ];    
+        ];
     }
 
     /**
@@ -150,7 +141,6 @@ class BlockController extends Controller
 
         return $this->redirect($this->generateUrl('donate_admin_layout_list'));
     }
-
 
     /**
      * @Route("/cms/layout/new", name="donate_admin_layout_new")
@@ -174,7 +164,7 @@ class BlockController extends Controller
         return [
             'form' =>  $form->createView(),
             'layout' => $layout
-        ];    
+        ];
     }
 
     /**
@@ -200,5 +190,4 @@ class BlockController extends Controller
             'block' => $block
         ];
     }
-
 }

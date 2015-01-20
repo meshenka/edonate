@@ -2,7 +2,6 @@
 
 namespace Ecedi\Donate\CoreBundle\Event;
 
-
-class PaymentRequestedEvent extends IntentEvent {
-	
+class PaymentRequestedEvent extends IntentEvent
+{
 }

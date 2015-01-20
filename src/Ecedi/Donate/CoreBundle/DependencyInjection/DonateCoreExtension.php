@@ -19,7 +19,6 @@ class DonateCoreExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-
         $configuration = new Configuration();
 
         $config = $this->processConfiguration($configuration, $configs);
@@ -27,10 +26,10 @@ class DonateCoreExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->setParameter('donate_core.equivalence',$config['equivalence']);
-        $container->setParameter('donate_core.mail.donator',$config['mail']['donator']);
-        $container->setParameter('donate_core.mail.webmaster',$config['mail']['webmaster']);
-        $container->setParameter('donate_core.mail.noreply',$config['mail']['noreply']);
-        $container->setParameter('donate_core.payment_methods',$config['payment_methods']);
+        $container->setParameter('donate_core.equivalence', $config['equivalence']);
+        $container->setParameter('donate_core.mail.donator', $config['mail']['donator']);
+        $container->setParameter('donate_core.mail.webmaster', $config['mail']['webmaster']);
+        $container->setParameter('donate_core.mail.noreply', $config['mail']['noreply']);
+        $container->setParameter('donate_core.payment_methods', $config['payment_methods']);
     }
 }

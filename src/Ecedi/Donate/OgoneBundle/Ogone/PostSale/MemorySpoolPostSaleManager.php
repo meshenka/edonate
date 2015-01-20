@@ -2,10 +2,7 @@
 
 namespace Ecedi\Donate\OgoneBundle\Ogone\PostSale;
 
-use Symfony\Component\HttpFoundation\Request as HttpRequest;
-use Ecedi\Donate\OgoneBundle\Ogone\Response;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
-
 
 class MemorySpoolPostSaleManager extends PostSaleManager
 {
@@ -18,8 +15,8 @@ class MemorySpoolPostSaleManager extends PostSaleManager
 
     public function handle(Payment $payment)
     {
-
         $this->spool[] = $payment;
+
         return $this;
     }
 

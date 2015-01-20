@@ -4,7 +4,6 @@ namespace Ecedi\Donate\FrontBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-
 use Symfony\Component\BrowserKit\Cookie;
 //use Symfony\Component\BrowserKit\CookieJar;
 
@@ -26,7 +25,6 @@ class FrontControllerTest extends WebTestCase
 
         $this->assertTrue($crawler->filter('form')->count() == 1);
         $this->assertTrue($crawler->filter('input[type=submit]')->count() == 1);
-
     }
 
     /**
@@ -45,7 +43,6 @@ class FrontControllerTest extends WebTestCase
 
         $this->assertTrue($crawler->filter('form')->count() == 1);
         $this->assertTrue($crawler->filter('input[type=submit]')->count() == 1);
-
     }
 
    /**
@@ -83,7 +80,6 @@ class FrontControllerTest extends WebTestCase
         $this->assertTrue(
             $client->getResponse()->isRedirect('/ogone/pay')
         );
-
     }
 
     /**
@@ -124,8 +120,7 @@ class FrontControllerTest extends WebTestCase
 
         //on verifier le montant dans le formulaire ogone
         $input = $crawler->filter('input[name="AMOUNT"]');
-        $this->assertEquals('1000', $input->attr('value'),'Amount selection failed failed');
-
+        $this->assertEquals('1000', $input->attr('value'), 'Amount selection failed failed');
     }
 
     /**
@@ -165,8 +160,7 @@ class FrontControllerTest extends WebTestCase
 
         //on verifier le montant dans le formulaire ogone
         $input = $crawler->filter('input[name="AMOUNT"]');
-        $this->assertEquals('1000', $input->attr('value'),'Preselected Amount selection failed');
-
+        $this->assertEquals('1000', $input->attr('value'), 'Preselected Amount selection failed');
     }
 
     /**
@@ -207,8 +201,7 @@ class FrontControllerTest extends WebTestCase
 
         //on verifier le montant dans le formulaire ogone
         $input = $crawler->filter('input[name="AMOUNT"]');
-        $this->assertEquals('66000', $input->attr('value'),'Preselected Amount selection failed');
-
+        $this->assertEquals('66000', $input->attr('value'), 'Preselected Amount selection failed');
     }
 
     /**
@@ -218,10 +211,8 @@ class FrontControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-
         $crawler = $client->request('GET', '/');
         $form = $crawler->selectButton('Donner')->form();
-
 
         $client->enableProfiler();
         $crawler = $client->submit($form,
@@ -248,10 +239,11 @@ class FrontControllerTest extends WebTestCase
         $profiler = $client->getProfile($response);
         if ($profiler) {
             $this->assertEquals('donate_front_home', $profiler->getCollector('request')->getRoute(), 'We are back on home');
-        } else {
-            $this->assertTrue('false');
+
+            return;
         }
 
+        $this->assertTrue('false');
     }
 
     /**
@@ -261,14 +253,13 @@ class FrontControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $cookieJar = $client->getCookieJar();
-        $cookieJar->set(new Cookie('__utmz', '1.1386025859.5.5.utmcsr=apis.google.com|utmccn=phpunit|utmcmd=referral|utmcct=/u/0/wm/4/_/widget/render/comments',time() + 3600 * 24 * 7, '/', 'localhost', false, false));
+        $cookieJar->set(new Cookie('__utmz', '1.1386025859.5.5.utmcsr=apis.google.com|utmccn=phpunit|utmcmd=referral|utmcct=/u/0/wm/4/_/widget/render/comments', time() + 3600 * 24 * 7, '/', 'localhost', false, false));
 
         $container = $client->getContainer();
-        $campaign =  $container->getParameter('donate_front.campaign');
+        //$campaign =  $container->getParameter('donate_front.campaign');
         $crawler = $client->request('GET', '/');//, [$campaign => 'phpunit']);
 
         $form = $crawler->selectButton('Donner')->form();
-
 
         $crawler = $client->submit($form,
             array(
@@ -292,18 +283,18 @@ class FrontControllerTest extends WebTestCase
 
         $prefix =  $container->getParameter('donate_ogone.prefix');
 
-        if (strpos($orderId, $prefix. '-') === 0) {
-
-            $intentId = (int) str_replace($prefix. '-', '', $orderId);
+        if (strpos($orderId, $prefix.'-') === 0) {
+            $intentId = (int) str_replace($prefix.'-', '', $orderId);
             $intentRepository = $container->get('doctrine')->getManager()->getRepository('DonateCoreBundle:Intent');
 
             $intent = $intentRepository->find($intentId);
 
             $this->assertEquals('phpunit', $intent->getCampaign(), 'Intent capture request utm campaign');
-        } else {
-            $this->assertTrue(false, 'cannot find intentId from OrderID');
+
+            return;
         }
 
+        $this->assertTrue(false, 'cannot find intentId from OrderID');
     }
 
     public function testSubmitCampaignTrackerByQuery()
@@ -338,18 +329,17 @@ class FrontControllerTest extends WebTestCase
 
         $prefix =  $container->getParameter('donate_ogone.prefix');
 
-        if (strpos($orderId, $prefix. '-') === 0) {
-
-            $intentId = (int) str_replace($prefix. '-', '', $orderId);
+        if (strpos($orderId, $prefix.'-') === 0) {
+            $intentId = (int) str_replace($prefix.'-', '', $orderId);
             $intentRepository = $container->get('doctrine')->getManager()->getRepository('DonateCoreBundle:Intent');
 
             $intent = $intentRepository->find($intentId);
 
             $this->assertEquals('phpunit', $intent->getCampaign(), 'Intent capture request utm campaign');
-        } else {
-            $this->assertTrue(false, 'cannot find intentId from OrderID');
+
+            return;
         }
 
+        $this->assertTrue(false, 'cannot find intentId from OrderID');
     }
-
 }

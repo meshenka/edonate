@@ -105,7 +105,7 @@ class CustomerExporter
                 utf8_decode($row[0]->getCompany()),
                 utf8_decode($birthDay),
                 utf8_decode($row[0]->getEmail()),
-                utf8_decode('#' . $row[0]->getPhone()),
+                utf8_decode('#'.$row[0]->getPhone()),
                 utf8_decode($row[0]->getAddressNber()),
                 utf8_decode($row[0]->getAddressStreet()),
                 utf8_decode($row[0]->getAddressExtra()),
@@ -126,5 +126,4 @@ class CustomerExporter
 
         return $content;
     }
-
 }

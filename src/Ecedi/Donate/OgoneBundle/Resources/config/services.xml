@@ -27,10 +27,7 @@
         </service>
 
         <!-- Plugin de payment methode -->
-        <service id="donate_ogone.payment_method" class="%donate_ogone.payment_method.class%">
-             <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
+        <service id="donate_ogone.payment_method" class="%donate_ogone.payment_method.class%" parent="donate_core.base_payment_method">            
             <tag name="donate.payment_method" />
         </service>
 
@@ -39,7 +36,7 @@
         </service>
  -->
 
-        <!-- Service de gestion de la PostSale (validation de la post-sale et rattachement à l'intent d'origine ) 
+        <!-- Service de gestion de la PostSale (validation de la post-sale et rattachement à l'intent d'origine )
             use class donate_ogone.postsale.manager.class to handle the post sale inside the controller
             use class donate_ogone.postsale.manager.spool.class to handle the post sale on Terminate event (after response is sent)
         -->
@@ -65,7 +62,7 @@
         </service>
 
         <!--Observateur traitement de la postsale -->
-        <service id="donate_ogone.handle_postsale.listener" 
+        <service id="donate_ogone.handle_postsale.listener"
             class="Ecedi\Donate\OgoneBundle\EventListener\HandlePostSaleListener">
             <argument type="service" id="donate_ogone.postsale.manager" />
             <argument type="service" id="logger" />
@@ -73,13 +70,13 @@
         </service>
 
         <!--Observateur traite les post-sale délégué après la réponse HTTP -->
-         <service id="donate_ogone.handle_spooled_postsale.listener" 
+         <service id="donate_ogone.handle_spooled_postsale.listener"
             class="Ecedi\Donate\OgoneBundle\EventListener\HandleSpooledPostSaleListener">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="service_container" />
         </service>
 
-         <service id="donate_ogone.postsale_response_autoloader.listener" 
+         <service id="donate_ogone.postsale_response_autoloader.listener"
             class="Ecedi\Donate\OgoneBundle\EventListener\PostSaleResponseLoaderListener">
             <tag name="doctrine.event_listener" event="postLoad" connection="default"/>
         </service>

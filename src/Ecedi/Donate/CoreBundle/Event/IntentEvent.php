@@ -7,7 +7,6 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
 
 class IntentEvent extends Event
 {
-
     private $intent;
 
    /**

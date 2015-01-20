@@ -5,7 +5,7 @@
     <ul>
         <li>Est par défaut: <span class="value">{% if layout.isDefault == 1 %}Oui{% else %}Non{% endif %}</span></li>
         <li>Skin: <span class="value">{{ layout.skin }}</span></li>
-        <li>Titre : <span class="value">{{ layout.metaTitle }}</span></li>        
+        <li>Titre : <span class="value">{{ layout.metaTitle }}</span></li>
     </ul>
     <div class="action-box">
     <a role="button" class="btn btn-primary" title="Editer" href="{{ path('donate_admin_layout_edit', { id : layout.id }) }}">

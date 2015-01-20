@@ -15,6 +15,34 @@ class  Equivalence
     private $amount;
     private $currency;
     private $label;
+    private $default;
+
+    /**
+     * default
+     *
+     * @return boolean [description]
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    public function isDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * [Description]
+     *
+     * @param Boolean $newdefautl [description]
+     */
+    private function setDefault($default)
+    {
+        $this->default = $default;
+
+        return $this;
+    }
 
     /**
      * amount
@@ -82,10 +110,11 @@ class  Equivalence
         return $this;
     }
 
-    public function __construct($amount, $label, $currency = 'EUR')
+    public function __construct($amount, $label, $currency = 'EUR', $default = false)
     {
         $this->setAmount($amount);
         $this->setLabel($label);
         $this->setCurrency($currency);
+        $this->setDefault($default);
     }
 }

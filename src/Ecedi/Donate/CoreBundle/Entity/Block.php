@@ -22,7 +22,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Block
 {
-
     const FORMAT_HTML = 'html';
     const FORMAT_RAW = 'raw';
     const FORMAT_MARKDOWN = 'md';
@@ -119,7 +118,7 @@ class Block
         return array(
             self::FORMAT_HTML,
             self::FORMAT_MARKDOWN,
-            self::FORMAT_RAW);
+            self::FORMAT_RAW, );
     }
 
     /**
@@ -360,7 +359,7 @@ class Block
         return $this->body;
     }
 
-    public function __construct($name, $position, $type='simple')
+    public function __construct($name, $position, $type = 'simple')
     {
         $this->setName($name);
         $this->setPosition($position);
