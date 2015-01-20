@@ -41,6 +41,17 @@
         })
         ;
 
+        var isNumber = function(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        };
+
+        //Set default buttons on form submit
+        $('.amount_selector input:checked').each(function(){
+            var _this = $(this);
+            if(isNumber(_this.val())){
+                _this.trigger('click');
+            }
+        });
 
     });
 

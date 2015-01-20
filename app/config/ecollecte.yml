@@ -6,9 +6,9 @@ donate_core:
         webmaster : [ %donate_core.email.webmaster% ] ##tableau d'email
         noreply : %donate_core.email.noreply%
     equivalence:
-#        default: {spot: 20}
+#        default: {spot: 50}
         spot:
-            - {amount : 20, label : '20<span class="euro">€</span>'}
+            - {amount : 20, label : '20<span class="euro">€</span>', default: true}
             - {amount : 50, label : '50<span class="euro">€</span>'}
             - {amount : 100, label : '100<span class="euro">€</span>'}
         recuring:

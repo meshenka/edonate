@@ -18,6 +18,15 @@ class DonationType extends AbstractType
 
     private function buildAmountSelectorSubForm(FormBuilderInterface $form, $tunnel, $options)
     {
+        $choices = $options['equivalences'][$tunnel];
+        $default = '';
+
+        foreach ($choices as $equivalence) {
+            if ($equivalence->isDefault()) {
+                $default = $equivalence->getAmount();
+            }
+        }
+
         $form->add($tunnel, 'amount_selector', [
                 'mapped'        => false,
                 'label'         => false,
@@ -26,6 +35,7 @@ class DonationType extends AbstractType
                 'min_amount'    => $options['min_amount'],
                 'max_amount'    => $options['max_amount'],
                 'attr'          => ['class' => 'amount_selector tunnel-'.$tunnel], //used in the JS part
+                'default'       => $default
             ]);
     }
 

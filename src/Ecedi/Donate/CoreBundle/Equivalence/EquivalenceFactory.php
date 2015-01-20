@@ -18,9 +18,9 @@ class EquivalenceFactory
         $this->config = $configuration;
     }
 
-    public function create($amount, $label, $currency = 'EUR')
+    public function create($amount, $label, $currency = 'EUR', $default = false)
     {
-        return new Equivalence($amount, $label, $currency);
+        return new Equivalence($amount, $label, $currency, $default);
     }
 
     /**
@@ -44,7 +44,7 @@ class EquivalenceFactory
         $equivalences = [];
         $tunnel = $this->config[$tunnel];
         foreach ($tunnel as $c) {
-            $equivalences[] = $this->create($c['amount'], $c['label'], $c['currency']);
+            $equivalences[] = $this->create($c['amount'], $c['label'], $c['currency'], $c['default']);
         }
 
         return $equivalences;
