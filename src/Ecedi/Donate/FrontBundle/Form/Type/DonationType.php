@@ -6,6 +6,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Doctrine\Common\Collections\Collection;
 
 class DonationType extends AbstractType
 {
@@ -118,6 +119,67 @@ class DonationType extends AbstractType
             ));
     }
 
+    /**
+     * @since  2.0.0
+     *
+     * @param  Collection $affectations [description]
+     * @return array      [description]
+     */
+    protected function getAffectationChoices(Collection $affectations)
+    {
+        $choices = [];
+        foreach ($affectations as $aff) {
+            $choices[$aff->getCode()] = $aff->getLabel();
+        }
+
+        return $choices;
+    }
+
+    /**
+     * Add affectation field according to options
+     *
+     * @since 2.0.0
+     *
+     * @param FormBuilderInterface $builder [description]
+     * @param array                $options [description]
+     */
+    public function buildAffectations(FormBuilderInterface $builder, array $options)
+    {
+        $affectations = $options['affectations'];
+
+        if ($affectations->count() === 0) {
+            $builder->add('affectations', 'hidden', [
+                'data' => false,
+                'mapped' => false,
+            ]);
+
+            return;
+        }
+
+        if ($affectations->count() === 1) {
+            $builder->add('affectations', 'hidden', [
+                'data' => $affectations->first()->getCode(),
+                'mapped' => false,
+            ]);
+
+            return;
+        }
+
+        if ($affectations->count() > 1) {
+            $builder->add('affectations', 'choice', [
+                 'choices'   => $this->getAffectationChoices($affectations),
+                 'required'  => true,
+                 'expanded' => true,
+                 'multiple' => false,
+                 'label' => $this->translator->trans('I want to'),
+                 'data' => $affectations[0]->getCode(),
+                 'mapped' => false,
+            ]);
+
+            return;
+        }
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $tunnels = $this->paymentMethodsToTunnels($options['payment_methods']);
@@ -131,6 +193,7 @@ class DonationType extends AbstractType
 
         $builder->add($tunnelForm);
 
+        $this->buildAffectations($builder, $options);
         $this->buildPersonnalDetails($builder, $options);
 
         $builder->add('erf', 'choice', [
@@ -208,6 +271,7 @@ class DonationType extends AbstractType
             'payment_methods' => [],
             'min_amount' => 5,
             'max_amount' => 4000,
+            'affectations' => [],
         ]);
     }
 }

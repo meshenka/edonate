@@ -25,6 +25,19 @@
   </div>
 </div>
 
+{# how to not output markup when form.affections is a hidden #}
+{% if layout.affectations|length > 1 %}
+<div id="attribution" class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">{{'My donation affectation'|trans}}</h2>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-12">
+      {{ form_row(form.affectations) }}
+    </div>
+  </div>
+</div>
+{% endif %}
 
 <div class="panel panel-default">
   <div class="panel-heading">

@@ -14,7 +14,7 @@ class FormController extends Controller
     /**
      * @Route("/{_locale}", name="donate_front_home", defaults={"_locale"="fr"}, requirements = {"_locale" = "fr|en"})
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $_locale)
     {
         //cache validation tjrs public, c'est l'ESI qui gère la sidebar
         $response = new Response();
@@ -22,11 +22,15 @@ class FormController extends Controller
         $response->setSharedMaxAge(3600);
 
         $data = new Customer();
+        $layoutMgr = $this->get('donate_core.layout.manager');
+
+        $layout = $layoutMgr->getDefault($_locale);
 
         $form = $this->createForm('donate', $data, array(
             'civilities' => $this->container->getParameter('donate_front.form.civility'),
             'equivalences' => $this->container->get('donate_core.equivalence.factory')->getAll(),
             'payment_methods' => $this->container->get('donate_core.payment_method_discovery')->getEnabledMethods(),
+            'affectations' =>  $layout->getAffectations(),
         ));
 
         $form->handleRequest($request);
@@ -41,6 +45,9 @@ class FormController extends Controller
 
                     $intent = $intentMgr->newIntent($amount, $pm->getId());
                     $intent->setFiscalReceipt($form['erf']->getData());
+
+                    //TODO add affectation if any
+                    $intent->setAffectationCode($form['affectations']->getData());
 
                     $data->addIntent($intent);
 
