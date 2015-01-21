@@ -228,11 +228,16 @@ trsteel_ckeditor:
     language: 'fr-fr'
     filebrowser_image_browse_url:
         route: elfinder
+        route_parameters:
+            instance: default
     filebrowser_browse_url:
         route: elfinder
+        route_parameters:
+            instance: default
 fm_elfinder:
    instances:
         default:
+            relative_path: false
             locale: %locale% 
             editor: ckeditor # other choices are tinymce or simple
             include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
