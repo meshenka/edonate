@@ -60,6 +60,7 @@
 		{% endif %}
 
 		<dt>{{ "Zipcode" | trans }} :</dt><dd>{{ intent.customer.addressZipcode }}</dd>
+
 		<dt>{{ "City" | trans }} :</dt><dd>{{ intent.customer.addressCity }}</dd>
 
 		{% if intent.customer.addressPb %}
@@ -73,6 +74,11 @@
 		{% endif %}
 
 		<dt>{{ "Email" | trans }} :</dt><dd>{{ intent.customer.email }}</dd>
+
+        {% if intent.affectationCode %}
+            <dt>{{ "Affectation" | trans }}</dt><dd>{{ intent.affectationCode }}</dd>
+        {% endif %}
+
 	</dl>
 
 	<p class='separation'>
@@ -83,4 +89,12 @@
 		{{ "print check privacy" | trans | raw }}
 	</p>
 </div>
+{% endblock %}
+
+
+{% block google_analytics %}
+    {{ parent() }}
+    {% spaceless %}
+        {% include "DonateFrontBundle::ga_ecommerce.html.twig" with {'intent': intent, 'google_analytics': google_analytics} only %}
+    {% endspaceless %}
 {% endblock %}

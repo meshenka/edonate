@@ -42,6 +42,11 @@
     <dt>{{ "Postal box" | trans }}</dt><dd>{{ intent.customer.addressPb }}</dd>
   {% endif %}
   <dt>{{ "Country" | trans }}</dt><dd>{{ intent.customer.addressCountry }}</dd>
+
+  {% if intent.affectationCode %}
+    <dt>{{ "Affectation" | trans }}</dt><dd>{{ intent.affectationCode }}</dd>
+  {% endif %}
+
   {% set payment = intent.payments|last %}
   {% if payment %}
   	{% if payment.autorisation%}
@@ -62,32 +67,6 @@
 {% block google_analytics %}
 	{{ parent() }}
 {% spaceless %}
-{% if google_analytics is not null %}
-	{# @see https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce?hl=fr#addTrans #}
-	<script type="text/javascript">
-		ga('require', 'ecommerce', 'ecommerce.js');
-
-		ga('ecommerce:addTransaction', {
-			'id': '{{ intent.id}}',
-			'affiliation' : 'Ecollect',
-			'revenue': '{{ intent.amount / 100 }}',
-			'currency': 'EUR',
-			'shipping': '0',
-			'tax': '0',
-		});
-
-		ga('ecommerce:addItem', {
-			'id': '{{ intent.id }}',
-			'name': 'Don en ligne',
-			'category': '{{intent.typesLabel[intent.type]}}',
-			'sku' : 'DON',
-			'price': '{{ intent.amount / 100 }}',
-			'quantity': '1',
-			'currency': 'EUR' // local currency code.
-		});
-
-		ga('ecommerce:send');
-	</script>
-{% endif %}
+    {% include "DonateFrontBundle::ga_ecommerce.html.twig" with {'intent': intent, 'google_analytics': google_analytics} only %}
 {% endspaceless %}
 {% endblock %}

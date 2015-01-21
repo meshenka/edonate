@@ -74,6 +74,11 @@
 		{% endif %}
 
 		<dt>{{ "Email" | trans }} :</dt><dd>{{ intent.customer.email }}</dd>
+
+        {% if intent.affectationCode %}
+            <dt>{{ "Affectation" | trans }}</dt><dd>{{ intent.affectationCode }}</dd>
+        {% endif %}
+
 	</dl>
 
 	<p class='separation'>
