@@ -1,0 +1,45 @@
+{% extends "DonateAdminBundle::layout2Cols.html.twig" %}
+
+{% form_theme form 'DonateFrontBundle:Form:form_div_layout.html.twig' %}
+
+{% block main_content_title %}Ajout d'affectation pour le layout {{ layout.name }}{% endblock %}
+
+
+{% block sidebar %}
+    {{ include ('DonateAdminBundle:Block:_layout.html.twig' , {'layout': layout}, with_context = false) }}
+
+    <div class="block">
+    <h2>{{ 'Affectations' | trans}}</h2>
+
+    <ul>
+    	{% for a in layout.affectations %}
+        	<li>
+        		<a title="Editer l'affectation" href="{{ path('donate_admin_affectation_edit', { layout : layout.id, affectation: a.id }) }}">
+                        {{ macros.icon('edit') }} {{ macros.icon('map-marker') }} {{ a.code }}
+				</a>
+			</li>
+        {% else %}
+        	<li>{{ 'Auncune affectations' | trans }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block main_content %}
+
+{{ form_start(form, { 'attr': {'role': 'form', 'id':'affectation-add-form'}} ) }}
+    {{ form_errors(form) }}
+
+    <div class="form-group"><div class="control-group">
+    {{ form_row(form.code, { 'attr': {'class': 'form-control'}}) }}
+    </div></div>
+
+
+    <div class="form-group"><div class="control-group">
+	{{ form_row(form.label, { 'attr': {'class': 'form-control'}}) }}
+    </div></div>
+
+    {{ form_rest(form) }}
+
+{{ form_end(form) }}
+{% endblock %}

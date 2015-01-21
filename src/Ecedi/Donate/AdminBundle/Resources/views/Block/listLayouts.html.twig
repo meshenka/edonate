@@ -103,6 +103,10 @@ $(function() {
                     <a title="Blocks" href="{{ path('donate_admin_block_list', { id : layout.id }) }}">
                         {{ macros.icon('info-sign') }} Voir les blocks
                     </a>
+                    <a title="Affectations" href="{{ path('donate_admin_affectation_show', { layout : layout.id }) }}">
+                        {{ macros.icon('map-marker') }} Voir les affectations
+                    </a>                
+
                     <a title="Supprimer le layout" href="{{ path('donate_admin_layout_delete', { id : layout.id }) }}">
                         {{ macros.icon('remove') }} Supprimer
                     </a>

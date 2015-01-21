@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author  Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright 2015 Ecedi
+ * @package eCollecte
+ *
+ */
 
 namespace Ecedi\Donate\CoreBundle\Entity;
 
@@ -24,6 +30,12 @@ class Layout
     const SKIN_LIGHT = 'light';
     const SKIN_DARK = 'dark';
     const SKIN_CUSTOM = 'custom';
+
+    /**
+     * @ORM\OneToMany(targetEntity="Affectation", mappedBy="layout", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"weight" = "ASC"})
+     */
+    private $affectations;
 
     /**
      * @ORM\OneToMany(targetEntity="Block", mappedBy="layout", cascade={"persist", "remove"})
@@ -344,6 +356,8 @@ class Layout
     public function __construct($language = 'fr', $name = 'default', $skin = self::SKIN_DEFAULT)
     {
         $this->blocks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->affecations = new \Doctrine\Common\Collections\ArrayCollection();
+
         $this->setName($name);
         $this->setSkin($skin);
         $this->setIsDefault(false);
@@ -658,5 +672,39 @@ class Layout
     public function getLogoTitle()
     {
         return $this->logoTitle;
+    }
+
+    /**
+     * Add affectation
+     *
+     * @param  \Ecedi\Donate\CoreBundle\Entity\affectation $affectation
+     * @return Layout
+     */
+    public function addAffectations(Affectation $affectation)
+    {
+        $this->affectations[] = $affectation;
+        $affectation->setLayout($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove affectation
+     *
+     * @param \Ecedi\Donate\CoreBundle\Entity\affectation $affectation
+     */
+    public function removeAffectations(Affectation $affectation)
+    {
+        $this->affectations->removeElement($affectation);
+    }
+
+    /**
+     * Get affectation
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAffectations()
+    {
+        return $this->affectations;
     }
 }

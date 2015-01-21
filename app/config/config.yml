@@ -217,7 +217,7 @@ liip_imagine:
                 thumbnail: { size: [1280, 496], mode: outbound }
 
 fos_js_routing:
-    routes_to_expose: [ donate_admin_layout_switch ]
+    routes_to_expose: [ donate_admin_layout_switch, donate_admin_affectation_sort]
 
 sp_bower:
     bundles:

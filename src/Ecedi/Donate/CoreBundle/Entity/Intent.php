@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author  Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright 2015 Ecedi
+ * @package eCollecte
+ *
+ */
 
 namespace Ecedi\Donate\CoreBundle\Entity;
 
@@ -71,6 +77,41 @@ class Intent
      *
      */
     private $type;
+
+    /**
+     * @var string
+     * @since  2.0.0
+     *
+     * @ORM\Column(name="affectation_code", type="string", length=12, nullable=true)
+     * @Serializer\Groups({"REST"})
+     *
+     * Not an integrity-relation because affectations can be change after intents doned.
+     */
+    private $affectationCode;
+
+    /**
+     * accessor to affectationCode
+     * @since  2.0.0
+     *
+     * @return string affectation code
+     */
+    public function getAffectationCode()
+    {
+        return $this->affectationCode;
+    }
+
+    /**
+     * accessor to affectationCode
+     * @since  2.0.0
+     *
+     * @param string $newaffectationCode affectation code
+     */
+    public function setAffectationCode($affectationCode)
+    {
+        $this->affectationCode = $affectationCode;
+
+        return $this;
+    }
 
     public static function getTypes()
     {

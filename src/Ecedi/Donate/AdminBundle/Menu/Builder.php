@@ -55,10 +55,11 @@ class Builder extends ContainerAware
     {
         if ($this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
             $request = $this->container->get('request');
+
             $id = !is_null($request->get('id')) ? $request->get('id') : 0;
             $layout = !is_null($request->get('layout')) ? $request->get('layout') : false;
-
             $block = !is_null($request->get('block')) ? $request->get('block') : false;
+            $affectation = !is_null($request->get('affectation')) ? $request->get('affectation') : false;
 
             $menu->addChild('CMS', array('route' => 'donate_admin_layout_list'))
                 ->setAttribute('data-icon', 'glyphicon glyphicon-pencil') // Permet l'ajout d'une icone (via un span) dans le lien
@@ -86,6 +87,29 @@ class Builder extends ContainerAware
                     'id' => ($layout) ? $layout->getId() : $id,
                 ), ))
                 ->setAttribute('data-icon', 'glyphicon glyphicon-info-sign');
+
+            //Affectations
+            $menu['CMS']['Editer Gabarit']->addChild('Voir Affectations', array(
+                'route' => 'donate_admin_affectation_show',
+                'routeParameters' => array(
+                    'layout' => ($layout) ? $layout->getId() : $id,
+                ), ))
+                ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
+
+            $menu['CMS']['Editer Gabarit']->addChild('Nouvelle affectation', array(
+                'route' => 'donate_admin_affectation_add',
+                'routeParameters' => array(
+                    'layout' => ($layout) ? $layout->getId() : $id,
+                ), ))
+                ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
+
+            $menu['CMS']['Editer Gabarit']->addChild('Editer Affectations', array(
+                'route' => 'donate_admin_affectation_edit',
+                'routeParameters' => array(
+                    'layout' => ($layout) ? $layout->getId() : $id,
+                    'affectation' => ($affectation) ? $affectation->getId() : $id,
+                ), ))
+                ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
         }
     }
 
