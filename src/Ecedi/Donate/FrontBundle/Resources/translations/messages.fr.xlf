@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="fr" datatype="plaintext" original="file.ext">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="67154ba0564cd26d8a637a6d20a77cbf" resname="      &#10;  &lt;p&gt;&#10;    By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.&#10;  &lt;/p&gt;&#10;  &lt;p&gt;&#10;    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.&#10;  &lt;/p&gt;">
         <source>      
@@ -10,13 +10,13 @@
   &lt;p&gt;
     For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.
   &lt;/p&gt;</source>
-        <target>      
-  &lt;p&gt;
-    En supportant l' Association XY, vous bénéficiez d'une &lt;strong&gt;réduction d'impôt de 66% à hauteur du montant de votre don&lt;/strong&gt;, dans la limite de 20% de votre revenu imposable. Ajouter à cela, la possibilité de reporter le surplus de la réduction d'impôt sur 5 ans.
-  &lt;/p&gt;
-  &lt;p&gt;
-    Pour les personnes qui sont assujettis à l'ISF (ISF – Impôt de Solidarité sur la Fortune), vous bénéficiez d'une &lt;strong&gt;réduction d'impôt de 75% à hauteur du montant de votre don&lt;/strong&gt;, dans une limite de 50 000 euros.
-  &lt;/p&gt;</target>
+        <target><![CDATA[      
+  <p>
+    En supportant l' Association XY, vous bénéficiez d'une <strong>réduction d'impôt de 66% à hauteur du montant de votre don</strong>, dans la limite de 20% de votre revenu imposable. Ajouter à cela, la possibilité de reporter le surplus de la réduction d'impôt sur 5 ans.
+  </p>
+  <p>
+    Pour les personnes qui sont assujettis à l'ISF (ISF – Impôt de Solidarité sur la Fortune), vous bénéficiez d'une <strong>réduction d'impôt de 75% à hauteur du montant de votre don</strong>, dans une limite de 50 000 euros.
+  </p>]]></target>
       </trans-unit>
       <trans-unit id="e0382d988fa67b41b4d895267a72c9f3" resname=" will cost you ">
         <source> will cost you </source>
@@ -124,7 +124,7 @@
       </trans-unit>
       <trans-unit id="b0b4a06bcc67624d8ee07e057e5f2f82" resname="How is my &lt;span&gt; donation used?&lt;span&gt;">
         <source>How is my &lt;span&gt; donation used?&lt;span&gt;</source>
-        <target>Comment est utilisé &lt;span&gt;mon don ?&lt;span&gt;</target>
+        <target><![CDATA[Comment est utilisé <span>mon don ?<span>]]></target>
       </trans-unit>
       <trans-unit id="899e271d70ccadb70d9343206e08f916" resname="How is my donation used?">
         <source>How is my donation used?</source>
@@ -276,7 +276,7 @@
       </trans-unit>
       <trans-unit id="15bbb9d0bbf25e8d2978de1168c749dc" resname="Website">
         <source>Website</source>
-        <target>__Website</target>
+        <target>Site web</target>
       </trans-unit>
       <trans-unit id="062533fb1af5a2f09cfd09a78de85545" resname="Adress">
         <source>Adress</source>
@@ -305,12 +305,12 @@
   &lt;p&gt;
     For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.
   &lt;/p&gt;</source>
-        <target>__&lt;p&gt;
-    By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.
-  &lt;/p&gt;
-  &lt;p&gt;
-    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.
-  &lt;/p&gt;</target>
+        <target><![CDATA[__<p>
+    By supporting Association XY, you enjoy an <strong>income tax reduction of 66% of the value of the donation made</strong>, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.
+  </p>
+  <p>
+    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an <strong>income tax reduction of 75% of the value of the donation made</strong>, up to a limit of 50 000 euros.
+  </p>]]></target>
       </trans-unit>
       <trans-unit id="5f8f9d3f6896c7efa4781e500d6fa140" resname="Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,">
         <source>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</source>
@@ -328,28 +328,38 @@
         <source>will cost you</source>
         <target>__will cost you</target>
       </trans-unit>
-      <trans-unit id="manual-error-msg-min">
+      <trans-unit id="2c1682b59bb3e4f20c4b0c27546ba3b6" resname="Amount must be greater than ">
         <source>Amount must be greater than </source>
         <target>Le don doit être supérieur à </target>
       </trans-unit>
-      <trans-unit id="manual-error-msg-max">
+      <trans-unit id="e187f6ab726935c20e313e2219752452" resname="Amount must be lower than ">
         <source>Amount must be lower than </source>
         <target>Le don doit être inférieur à </target>
       </trans-unit>
-
-      <trans-unit id="pm-ogone-spot">
+      <trans-unit id="53b920c088ffb15b01b1aa4bb8d2574e" resname="Ogone">
         <source>Ogone</source>
         <target>Paiement par CB via Ogone </target>
       </trans-unit>
-      <trans-unit id="pm-checkpromise-spot">
+      <trans-unit id="97b79ddb26e4fde193d45b770b944bd5" resname="Send a check">
         <source>Send a check</source>
         <target>Envoyer un chèque par courrier</target>
       </trans-unit>
-      <trans-unit id="pm-sepaoffline-spot">
+      <trans-unit id="1a3e65c8f95898cc9caf2d5088be7507" resname="Send a SEPA Mandate">
         <source>Send a SEPA Mandate</source>
         <target>Envoyer un mandat SEPA par courrier</target>
       </trans-unit>
-
+      <trans-unit id="7c07918c904bddd2922d3657782afc51" resname="My donation affectation">
+        <source>My donation affectation</source>
+        <target>Affectation de mon don</target>
+      </trans-unit>
+      <trans-unit id="0e2ea7b0c841be076515b4d89cf33d99" resname="Affectation">
+        <source>Affectation</source>
+        <target>Affectation</target>
+      </trans-unit>
+      <trans-unit id="0d4sq564dsq64d68sq49" resname="I want to">
+        <source>I want to</source>
+        <target>Je souhaite</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
