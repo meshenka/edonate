@@ -2557,12 +2557,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "c972b590167834c120dda300c4869d3dd17d67e7"
+                "reference": "33440c2c13b1a469f4dd2e27501877d26755c3bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/c972b590167834c120dda300c4869d3dd17d67e7",
-                "reference": "c972b590167834c120dda300c4869d3dd17d67e7",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/33440c2c13b1a469f4dd2e27501877d26755c3bb",
+                "reference": "33440c2c13b1a469f4dd2e27501877d26755c3bb",
                 "shasum": ""
             },
             "require": {
@@ -2622,7 +2622,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2015-01-21 19:27:00"
+            "time": "2015-01-27 10:12:30"
         },
         {
             "name": "liip/theme-bundle",
@@ -2631,12 +2631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipThemeBundle.git",
-                "reference": "7e7756f8d40d19d690f73354a132d86f6a14a372"
+                "reference": "2a370bdf6cf961dbf15e6dc227d4750fd29e14c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/7e7756f8d40d19d690f73354a132d86f6a14a372",
-                "reference": "7e7756f8d40d19d690f73354a132d86f6a14a372",
+                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/2a370bdf6cf961dbf15e6dc227d4750fd29e14c9",
+                "reference": "2a370bdf6cf961dbf15e6dc227d4750fd29e14c9",
                 "shasum": ""
             },
             "require": {
@@ -2677,7 +2677,7 @@
                 "themes",
                 "theming"
             ],
-            "time": "2015-01-21 08:46:21"
+            "time": "2015-01-27 15:47:57"
         },
         {
             "name": "michelf/php-markdown",
@@ -3278,32 +3278,33 @@
         },
         {
             "name": "symfony/assetic-bundle",
-            "version": "v2.6.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle.git",
-                "reference": "39d0e15b63936464a9929c00f8e28a30f2331419"
+                "reference": "422b0add2110f0cf9bc7a873a386ea053f4a89f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/39d0e15b63936464a9929c00f8e28a30f2331419",
-                "reference": "39d0e15b63936464a9929c00f8e28a30f2331419",
+                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/422b0add2110f0cf9bc7a873a386ea053f4a89f0",
+                "reference": "422b0add2110f0cf9bc7a873a386ea053f4a89f0",
                 "shasum": ""
             },
             "require": {
                 "kriswallsmith/assetic": "~1.2",
                 "php": ">=5.3.0",
-                "symfony/console": "~2.1",
-                "symfony/framework-bundle": "~2.1",
-                "symfony/yaml": "~2.1"
+                "symfony/console": "~2.3",
+                "symfony/dependency-injection": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/yaml": "~2.3"
             },
             "require-dev": {
                 "kriswallsmith/spork": "~0.2",
                 "patchwork/jsqueeze": "~1.0",
-                "symfony/class-loader": "~2.1",
-                "symfony/css-selector": "~2.1",
-                "symfony/dom-crawler": "~2.1",
-                "symfony/twig-bundle": "~2.1"
+                "symfony/class-loader": "~2.3",
+                "symfony/css-selector": "~2.3",
+                "symfony/dom-crawler": "~2.3",
+                "symfony/twig-bundle": "~2.3"
             },
             "suggest": {
                 "kriswallsmith/spork": "to be able to dump assets in parallel",
@@ -3338,7 +3339,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2015-01-26 13:00:20"
+            "time": "2015-01-27 12:45:16"
         },
         {
             "name": "symfony/monolog-bundle",
