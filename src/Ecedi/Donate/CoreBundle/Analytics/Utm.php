@@ -3,17 +3,17 @@ namespace Ecedi\Donate\CoreBundle\Analytics;
 
 class Utm
 {
-    private $campaignSource;    		// Campaign Source
-    private $campaignName;  			// Campaign Name
-    private $campaignMedium;    		// Campaign Medium
-    private $campaignContent;   		// Campaign Content
-    private $campaignTerm;      		// Campaign Term
+    private $campaignSource;            // Campaign Source
+    private $campaignName;            // Campaign Name
+    private $campaignMedium;            // Campaign Medium
+    private $campaignContent;        // Campaign Content
+    private $campaignTerm;              // Campaign Term
 
-    private $firstVisit;      		// Date of first visit
-      private $previousVisit;			// Date of previous visit
-      private $currentVisitStarted;	// Current visit started at
-      private $timesVisited;			// Times visited
-      private $pagesViewed;			// Pages viewed in current session
+    private $firstVisit;              // Date of first visit
+      private $previousVisit;            // Date of previous visit
+      private $currentVisitStarted;    // Current visit started at
+      private $timesVisited;            // Times visited
+      private $pagesViewed;            // Pages viewed in current session
 
       /**
        * Pages viewed in current session
@@ -233,5 +233,4 @@ class Utm
 
           return $this;
       }
-
 }

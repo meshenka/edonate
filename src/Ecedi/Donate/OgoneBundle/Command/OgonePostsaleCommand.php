@@ -43,7 +43,7 @@ EOF
 
             $payments = $paymentRepository->getNewPayments(100);
 
-            $output->writeln('Found <info>'.count($payments) .'</info> unhandled postsales');
+            $output->writeln('Found <info>'.count($payments).'</info> unhandled postsales');
             foreach ($payments as $payment) {
                 $container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_RECEIVED,  new PaymentReceivedEvent($payment));
 
@@ -54,7 +54,7 @@ EOF
 
             $output->writeln("<info>Done</info>");
         } else {
-             $output->writeln('<error>Async postsale handling is disabled. Nothing done</error>');
+            $output->writeln('<error>Async postsale handling is disabled. Nothing done</error>');
         }
 
         return;

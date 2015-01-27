@@ -3,11 +3,11 @@
 
 {% block main_content_title %}Editer block {{ block.name }}{% endblock %}
 
- {% block footer_js %}        
+ {% block footer_js %}
 	{{ parent() }}
     <script  type="text/javascript">
     $(function(){
-        
+
         var format = $('#block_format');
 
         if( 'html' != format.val() )  {

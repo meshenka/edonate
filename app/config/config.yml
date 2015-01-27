@@ -217,7 +217,7 @@ liip_imagine:
                 thumbnail: { size: [1280, 496], mode: outbound }
 
 fos_js_routing:
-    routes_to_expose: [ donate_admin_layout_switch ]
+    routes_to_expose: [ donate_admin_layout_switch, donate_admin_affectation_sort]
 
 sp_bower:
     bundles:
@@ -228,19 +228,25 @@ trsteel_ckeditor:
     language: 'fr-fr'
     filebrowser_image_browse_url:
         route: elfinder
+        route_parameters:
+            instance: default
     filebrowser_browse_url:
         route: elfinder
+        route_parameters:
+            instance: default
 fm_elfinder:
-    editor: ckeditor # other choices are tinymce or simple
-    include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
-    compression: true # enable if you configured the uglifycss and uglifyjs2 assetic filters and want compression
-    connector:
-        debug: false # defaults to false
-        roots:       # at least one root must be defined
-            uploads:
-#                driver: elfinder.driver.filesystem
-                driver: LocalFileSystem
-                path: uploads/wysiwyg
-                upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
-                upload_deny: ['all']
-                upload_max_size: 2M
+   instances:
+        default:
+            relative_path: false
+            locale: %locale% 
+            editor: ckeditor # other choices are tinymce or simple
+            include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
+            connector:
+                debug: false # defaults to false
+                roots:       # at least one root must be defined
+                    uploads:
+                        driver: LocalFileSystem
+                        path: uploads/wysiwyg
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
+                        upload_deny: ['all']
+                        upload_max_size: 2M

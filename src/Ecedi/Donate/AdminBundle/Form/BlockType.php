@@ -12,10 +12,8 @@ use Ecedi\Donate\CoreBundle\Entity\Block;
  */
 class BlockType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder->add('name', 'text', array(
                 'disabled'  => true,
                 'required'  => true,
@@ -23,7 +21,7 @@ class BlockType extends AbstractType
             ));
 
         $builder->add('enabled', 'choice', array(
-                'choices'           => array(0 =>'Non', 1 => 'Oui'),
+                'choices'           => array(0 => 'Non', 1 => 'Oui'),
                 'required'          => true,
                 'label'             => 'Activé',
             ));
@@ -60,7 +58,7 @@ class BlockType extends AbstractType
                 'required'  => false,
                 'label'     => 'Contenu',
                 'attr' => array(
-                    'class' => 'editable'
+                    'class' => 'editable',
                 ),
                 'transformers' => array('html_purifier'),
 
@@ -84,7 +82,7 @@ class BlockType extends AbstractType
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',
-            'data_class' => 'Ecedi\Donate\CoreBundle\Entity\Block'
+            'data_class' => 'Ecedi\Donate\CoreBundle\Entity\Block',
         ));
     }
     /**

@@ -38,7 +38,7 @@ class RequestBuilder  extends ContainerAware
             ->setOrderId($this->orderId($intent))
             ->setOperation('SAL')
             ->setPm('CreditCard')
-            ->setCn($intent->getCustomer()->getLastName() . ' ' . $intent->getCustomer()->getFirstName())
+            ->setCn($intent->getCustomer()->getLastName().' '.$intent->getCustomer()->getFirstName())
             ->setEmail($intent->getCustomer()->getEmail())
             ->setAmount($intent->getAmount())
             ->setCurrency($intent->getCurrency())
@@ -80,7 +80,6 @@ class RequestBuilder  extends ContainerAware
         return 'en_US'; //Anglais/USA
     }
 
-
     /**
      * Génération de la signature de la Requête
      *
@@ -102,17 +101,16 @@ class RequestBuilder  extends ContainerAware
 
         foreach ($shaParams as $key => $val) {
             if ($val != '') {
-                $hashKey .= $key . '=' . $val . $sha1inkey;
+                $hashKey .= $key.'='.$val.$sha1inkey;
             }
         }
 
         $logger = $this->container->get('logger');
 
         $logger->info("clef à hasher $hashKey");
-        $logger->info('hash ' .hash('sha1', $hashKey));
+        $logger->info('hash '.hash('sha1', $hashKey));
 
         return $r->setSha1in(hash('sha1', $hashKey));
-
     }
 
     /**
@@ -122,7 +120,7 @@ class RequestBuilder  extends ContainerAware
      */
     protected function orderId(Intent $intent)
     {
-        return $this->container->getParameter('donate_ogone.prefix'). '-' . $intent->getId();
+        return $this->container->getParameter('donate_ogone.prefix').'-'.$intent->getId();
     }
 
     /**

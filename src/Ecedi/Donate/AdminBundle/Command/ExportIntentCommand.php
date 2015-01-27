@@ -5,7 +5,6 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Ecedi\Donate\CoreBundle\Repository\Intent;
 
 class ExportIntentCommand extends ContainerAwareCommand
@@ -49,7 +48,7 @@ EOF
 
         if (isset($month)) {
             if (($month <= 12) && ($month >= 0)) {
-                $stamp = strtotime('-' . $month . ' month');
+                $stamp = strtotime('-'.$month.' month');
                 $parameters = array(
                     'minCreatedAt' => date('01/m/Y', $stamp),
                     'maxCreatedAt' => date('t/m/Y', $stamp),
@@ -59,10 +58,10 @@ EOF
                 $dateArray = explode('-', $month);
 
                 $parameters = array(
-                    'minCreatedAt' => '01/' . $dateArray[1] . '/' . $dateArray[0],
-                    'maxCreatedAt' => date('t/'.$dateArray[1]. '/' . $dateArray[0]),
+                    'minCreatedAt' => '01/'.$dateArray[1].'/'.$dateArray[0],
+                    'maxCreatedAt' => date('t/'.$dateArray[1].'/'.$dateArray[0]),
                 );
-                $exportDate = $dateArray[0] . '_' . $dateArray[1];
+                $exportDate = $dateArray[0].'_'.$dateArray[1];
             }
         }
 
@@ -72,10 +71,9 @@ EOF
         $exporter->setExportQb($qb);
         $data = $exporter->getCsvContent();
         // Création du fichier
-        $csvExportName = 'export_intent_' . $exportDate . '.csv';
-        $handle = fopen($csvFolder . '/' . $csvExportName, 'w') or die('Cannot open file:  '  .$csvExportName);
-        fwrite($handle, $data) or die('Unable to write in: ' . $csvFolder . '/' .$csvExportName);;
-
-        $output->writeln('The file "' . $csvExportName . '" has been created in ' . $csvFolder . ' folder');
+        $csvExportName = 'export_intent_'.$exportDate.'.csv';
+        $handle = fopen($csvFolder.'/'.$csvExportName, 'w') or die('Cannot open file:  '.$csvExportName);
+        fwrite($handle, $data) or die('Unable to write in: '.$csvFolder.'/'.$csvExportName);
+        $output->writeln('The file "'.$csvExportName.'" has been created in '.$csvFolder.' folder');
     }
 }

@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ReturnControllerTest extends WebTestCase
 {
-
     /**
      * verification du bon affichage du front office en français
      */
@@ -26,51 +25,45 @@ class ReturnControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('h2:contains("Détail du paiement")')->count() == 1);
 
         //TODO tester le contenu dynamique de la page
-
     }
 
     public function testCompletedWithoutSession()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/completed');
+        $client->request('GET', '/fr/completed');
 
         $response = $client->getResponse();
         $this->assertTrue($response->isClientError());
-
     }
 
     public function testCanceled()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/canceled');
+        $client->request('GET', '/fr/canceled');
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
-
     }
 
     public function testDenied()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/denied');
+        $client->request('GET', '/fr/denied');
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
-
     }
 
     public function testFailed()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/failed');
+        $client->request('GET', '/fr/failed');
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
-
     }
-
 }

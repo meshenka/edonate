@@ -35,7 +35,7 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('sha1_in')->isRequired()->end()
                     ->scalarNode('sha1_out')->isRequired()->end()
                 //->arrayNode('options')
-        ;
+;
 
         return $treeBuilder;
     }

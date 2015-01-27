@@ -8,12 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-
 use Ecedi\Donate\AdminBundle\Form\IntentFiltersType;
 use Ecedi\Donate\AdminBundle\Form\CustomerFiltersType;
 use Ecedi\Donate\AdminBundle\Form\CustomerType;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
-
 use Doctrine\ORM\Query;
 
 /**
@@ -23,7 +21,6 @@ use Doctrine\ORM\Query;
  */
 class ReportingController extends Controller
 {
-
     /**
      * @Route("/intents" , name="donate_admin_reporting_intents")
      * @Template()
@@ -214,11 +211,11 @@ class ReportingController extends Controller
         $response = new Response();
         $response->setContent($content);
         $response->setStatusCode(200);
-        $response->headers->set('Content-Type', 'text/csv;charset=' . $charset);
+        $response->headers->set('Content-Type', 'text/csv;charset='.$charset);
         $response->headers->set('Content-Transfer-Encoding', 'binary');
         $response->headers->set('Pragma', 'no-cache');
         $response->headers->set('Expires', '0');
-        $response->headers->set('Content-Disposition', 'attachment; filename=' . $csvName . '_' . date("d_m_Y").'.csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename='.$csvName.'_'.date("d_m_Y").'.csv');
 
         return $response;
     }

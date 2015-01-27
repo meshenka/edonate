@@ -2,11 +2,11 @@
 {% set currentItem = cnerta_breadcrumb_get('DonateAdminBundle:Builder:adminMenu') %}
 <li><a href="{{ path('donate_admin_dashboard') }}">{{ macros.icon('home') }} Accueil</a></li>
 {% for item in currentItem %}
-	
+
     {% if loop.index != 1 %}
-        {% if not loop.last %}<li>       
+        {% if not loop.last %}<li>
         <a href="{{ item.uri }}">
-        	
+
 	        {% if item.item.attribute('data-icon') is not empty  %}
 	            <span class="{{ item.item.attribute('data-icon') }}"></span>
 	        {% endif %}

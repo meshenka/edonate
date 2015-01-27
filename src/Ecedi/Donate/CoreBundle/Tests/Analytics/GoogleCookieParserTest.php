@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 class GoogleCookieParserTest extends WebTestCase
 {
-
     public function testParseUtmzString()
     {
         $utmz = '1.1386025859.5.5.utmcsr=apis.google.com|utmccn=(referral)|utmcmd=referral|utmcct=/u/0/wm/4/_/widget/render/comments';

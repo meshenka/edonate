@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author  Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright 2015 Ecedi
+ * @package eCollecte
+ *
+ */
 
 namespace Ecedi\Donate\CoreBundle\Entity;
 
@@ -20,10 +26,16 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Layout
 {
-    const SKIN_DEFAULT='sky';
-    const SKIN_LIGHT='light';
-    const SKIN_DARK='dark';
-    const SKIN_CUSTOM='custom';
+    const SKIN_DEFAULT = 'sky';
+    const SKIN_LIGHT = 'light';
+    const SKIN_DARK = 'dark';
+    const SKIN_CUSTOM = 'custom';
+
+    /**
+     * @ORM\OneToMany(targetEntity="Affectation", mappedBy="layout", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"weight" = "ASC"})
+     */
+    private $affectations;
 
     /**
      * @ORM\OneToMany(targetEntity="Block", mappedBy="layout", cascade={"persist", "remove"})
@@ -46,14 +58,12 @@ class Layout
      */
     private $isDefault;
 
-
     /**
      * @var string
      *
      * @ORM\Column(name="language", type="string", length=5)
      */
     private $language;
-
 
     /**
      * @var string
@@ -97,7 +107,6 @@ class Layout
      */
     private $logoTitle;
 
-
     /**
      * @Assert\File(
      *     maxSize="100k",
@@ -119,7 +128,7 @@ class Layout
      * @var UploadedFile $background
      */
     protected $background;
-  
+
     /**
      * @var string
      *
@@ -170,7 +179,6 @@ class Layout
      * @Gedmo\Timestampable(on="update")
      */
     private $changedAt;
-
 
     /**
      * Get id
@@ -345,29 +353,29 @@ class Layout
     /**
      * Constructor
      */
-    public function __construct($language = 'fr', $name='default', $skin = self::SKIN_DEFAULT)
+    public function __construct($language = 'fr', $name = 'default', $skin = self::SKIN_DEFAULT)
     {
         $this->blocks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->affecations = new \Doctrine\Common\Collections\ArrayCollection();
+
         $this->setName($name);
         $this->setSkin($skin);
         $this->setIsDefault(false);
         $this->setLanguage($language);
 
-        foreach ($this->generateBlock($name) as $b) {             
+        foreach ($this->generateBlock($name) as $b) {
             $this->addBlock($b);
         }
-        
     }
 
      // utilisation d'un generator php5.5
     private function generateBlock($name = 'default')
     {
         for ($i = 1; $i <= 4; $i++) {
-            $b = new Block("{$name}-" . $i, $i*10);
+            $b = new Block("{$name}-".$i, $i*10);
             yield $b;
         }
     }
-
 
     /**
      * Add blocks
@@ -379,6 +387,7 @@ class Layout
     {
         $this->blocks[] = $blocks;
         $blocks->setLayout($this);
+
         return $this;
     }
 
@@ -405,20 +414,20 @@ class Layout
     /**
      * Set metaTitle
      *
-     * @param string $metaTitle
+     * @param  string $metaTitle
      * @return Layout
      */
     public function setMetaTitle($metaTitle)
     {
         $this->metaTitle = $metaTitle;
-    
+
         return $this;
     }
 
     /**
      * Get metaTitle
      *
-     * @return string 
+     * @return string
      */
     public function getMetaTitle()
     {
@@ -428,20 +437,20 @@ class Layout
     /**
      * Set default
      *
-     * @param boolean $defaul
+     * @param  boolean $defaul
      * @return Layout
      */
     public function setDefault($default)
     {
         $this->isDefault = $default;
-    
+
         return $this;
     }
 
     /**
      * Get default
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getDefault()
     {
@@ -451,7 +460,7 @@ class Layout
     /**
      * Get default
      *
-     * @return boolean 
+     * @return boolean
      */
     public function isDefault()
     {
@@ -461,27 +470,25 @@ class Layout
     /**
      * Set isDefault
      *
-     * @param boolean $isDefault
+     * @param  boolean $isDefault
      * @return Layout
      */
     public function setIsDefault($isDefault)
     {
         $this->isDefault = $isDefault;
-    
+
         return $this;
     }
 
     /**
      * Get isDefault
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsDefault()
     {
         return $this->isDefault;
     }
-
-
 
     /**
      * Sets file.
@@ -492,6 +499,7 @@ class Layout
     {
         $this->background = $file;
         $this->setChangedAt(new \DateTime());
+
         return $this;
     }
 
@@ -505,8 +513,6 @@ class Layout
         return $this->background;
     }
 
-
-
     /**
      * Sets file.
      *
@@ -516,6 +522,7 @@ class Layout
     {
         $this->logo = $file;
         $this->setChangedAt(new \DateTime());
+
         return $this;
     }
 
@@ -532,20 +539,20 @@ class Layout
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Layout
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-    
+
         return $this;
     }
 
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -555,20 +562,20 @@ class Layout
     /**
      * Set changedAt
      *
-     * @param \DateTime $changedAt
+     * @param  \DateTime $changedAt
      * @return Layout
      */
     public function setChangedAt($changedAt)
     {
         $this->changedAt = $changedAt;
-    
+
         return $this;
     }
 
     /**
      * Get changedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getChangedAt()
     {
@@ -578,20 +585,20 @@ class Layout
     /**
      * Set language
      *
-     * @param string $language
+     * @param  string $language
      * @return Layout
      */
     public function setLanguage($language)
     {
         $this->language = $language;
-    
+
         return $this;
     }
 
     /**
      * Get language
      *
-     * @return string 
+     * @return string
      */
     public function getLanguage()
     {
@@ -601,20 +608,20 @@ class Layout
     /**
      * Set logoUrl
      *
-     * @param string $logoUrl
+     * @param  string $logoUrl
      * @return Layout
      */
     public function setLogoUrl($logoUrl)
     {
         $this->logoUrl = $logoUrl;
-    
+
         return $this;
     }
 
     /**
      * Get logoUrl
      *
-     * @return string 
+     * @return string
      */
     public function getLogoUrl()
     {
@@ -624,20 +631,20 @@ class Layout
     /**
      * Set logoAlt
      *
-     * @param string $logoAlt
+     * @param  string $logoAlt
      * @return Layout
      */
     public function setLogoAlt($logoAlt)
     {
         $this->logoAlt = $logoAlt;
-    
+
         return $this;
     }
 
     /**
      * Get logoAlt
      *
-     * @return string 
+     * @return string
      */
     public function getLogoAlt()
     {
@@ -647,23 +654,57 @@ class Layout
     /**
      * Set logoTitle
      *
-     * @param string $logoTitle
+     * @param  string $logoTitle
      * @return Layout
      */
     public function setLogoTitle($logoTitle)
     {
         $this->logoTitle = $logoTitle;
-    
+
         return $this;
     }
 
     /**
      * Get logoTitle
      *
-     * @return string 
+     * @return string
      */
     public function getLogoTitle()
     {
         return $this->logoTitle;
+    }
+
+    /**
+     * Add affectation
+     *
+     * @param  \Ecedi\Donate\CoreBundle\Entity\affectation $affectation
+     * @return Layout
+     */
+    public function addAffectations(Affectation $affectation)
+    {
+        $this->affectations[] = $affectation;
+        $affectation->setLayout($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove affectation
+     *
+     * @param \Ecedi\Donate\CoreBundle\Entity\affectation $affectation
+     */
+    public function removeAffectations(Affectation $affectation)
+    {
+        $this->affectations->removeElement($affectation);
+    }
+
+    /**
+     * Get affectation
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAffectations()
+    {
+        return $this->affectations;
     }
 }

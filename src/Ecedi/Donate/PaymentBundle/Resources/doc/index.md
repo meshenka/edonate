@@ -12,3 +12,7 @@ It is a very simple offline/off-site payment method. Customer is supposed to pri
 with his check.
 
 This payment method is unable to track the actual payment
+
+
+TODO
+  * Finaliser le template SEPA (manque les différents champs obligatoires )

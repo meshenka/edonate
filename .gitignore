@@ -20,4 +20,8 @@
 .buildpath
 .project
 /cov
+/build
+/docs
+/reports
 /src/Ecedi/Donate/CoreBundle/Resources/public/components/*
+/coverage/

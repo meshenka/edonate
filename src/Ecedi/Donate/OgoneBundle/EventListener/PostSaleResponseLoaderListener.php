@@ -12,16 +12,16 @@ use Ecedi\Donate\OgoneBundle\Ogone\Response as OgoneResponse;
  */
 class PostSaleResponseLoaderListener
 {
-	public function postLoad(LifecycleEventArgs $event)
+    public function postLoad(LifecycleEventArgs $event)
     {
         $entity = $event->getEntity();
         $entityManager = $event->getEntityManager();
 
         if ($entity instanceof Payment) {
-        	if($entity->getResponse()) {
-				$r = OgoneResponse::createFromArray($entity->getResponse());
-	            $entity->setResponse($r);
-	        }
+            if ($entity->getResponse()) {
+                $r = OgoneResponse::createFromArray($entity->getResponse());
+                $entity->setResponse($r);
+            }
         }
     }
 }

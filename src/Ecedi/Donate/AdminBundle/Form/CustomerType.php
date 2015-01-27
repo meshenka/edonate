@@ -32,51 +32,51 @@ class CustomerType extends AbstractType
         $builder
             ->add('company', 'text', array(
                 'required'  => FALSE,
-                'label'     => 'Company'
+                'label'     => 'Company',
             ))
             ->add('firstName', 'text', array(
                 'required'  => TRUE,
-                'label'     => 'Firstname'
+                'label'     => 'Firstname',
             ))
             ->add('lastName', 'text', array(
                 'required'  => TRUE,
-                'label'     => 'Lastname'
+                'label'     => 'Lastname',
             ))
             ->add('phone', 'text', array(
                 'required'  => FALSE,
-                'label'     => 'Phone'
+                'label'     => 'Phone',
             ))
             ->add('email', 'email', array(
                 'required'  => true,
-                'label'     => 'Email'
+                'label'     => 'Email',
             ))
             ->add('addressStreet', 'text', array(
                 'required'  => true,
-                'label'     => 'Address'
+                'label'     => 'Address',
             ))
             ->add('addressPb', 'text', array(
                 'required'  => false,
-                'label'     => 'Locality, post box'
+                'label'     => 'Locality, post box',
             ))
             ->add('addressLiving', 'text', array(
                 'required'  => false,
-                'label'     => 'Living with'
+                'label'     => 'Living with',
             ))
             ->add('addressExtra', 'text', array(
                 'required'  => false,
-                'label'     => 'Apartment, floor numbers'
+                'label'     => 'Apartment, floor numbers',
             ))
             ->add('addressZipcode', 'number', array(
                 'required'  => true,
-                'label'     => 'Zipcode'
+                'label'     => 'Zipcode',
             ))
             ->add('addressCity', 'text', array(
                 'required'  => true,
-                'label'     => 'City'
+                'label'     => 'City',
             ))
             ->add('addressCountry', 'country', array(
                 'required'  => true,
-                'label'     => 'Country'
+                'label'     => 'Country',
             ))
             ->add('submit', 'submit', array(
                 'label'     => 'Submit',
@@ -90,7 +90,7 @@ class CustomerType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class'            => 'Ecedi\Donate\CoreBundle\Entity\Customer',
-            'translation_domain'    => 'forms'
+            'translation_domain'    => 'forms',
         ));
     }
     /**
@@ -102,5 +102,4 @@ class CustomerType extends AbstractType
     {
         return 'donate_admin_customer_edit';
     }
-
 }

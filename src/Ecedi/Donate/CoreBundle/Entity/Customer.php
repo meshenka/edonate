@@ -29,7 +29,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Customer
 {
-
     public function __construct()
     {
         $this->intents = new ArrayCollection();
@@ -791,7 +790,7 @@ class Customer
     /**
      * Set optinSynchronized
      *
-     * @param boolean $optinSynchronized
+     * @param  boolean  $optinSynchronized
      * @return Customer
      */
     public function setOptinSynchronized($optinSynchronized)

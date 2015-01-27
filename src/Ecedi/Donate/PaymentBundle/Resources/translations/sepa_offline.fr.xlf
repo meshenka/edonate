@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2014-11-03T16:37:47Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="d70f93df5e8f9b55be44fbeee9d203972e3383d4" resname="Address">
+        <source>Address</source>
+        <target>Adresse</target>
+        <jms:reference-file line="53">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="36bb049c5ad723e8183e663c9a6fb0ab705b26dc" resname="Address Living">
+        <source>Address Living</source>
+        <target>Habitant chez</target>
+        <jms:reference-file line="60">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4aede254b34dce2f5652b8b281c091a0c0fca0f0" resname="Address extended">
+        <source>Address extended</source>
+        <target>Complement d'adresse</target>
+        <jms:reference-file line="56">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="43dc8532f7e57be250d7397de3d14085d51516f0" resname="Amount">
+        <source>Amount</source>
+        <target>Montant</target>
+        <jms:reference-file line="46">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4271627f4f0bef6104a95cca7bb21cda4d74503e" resname="City">
+        <source>City</source>
+        <target>Ville</target>
+        <jms:reference-file line="64">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0506773f181511d306efe57b7d20af4ea44fa1b3" resname="Civility">
+        <source>Civility</source>
+        <target>Civilité</target>
+        <jms:reference-file line="36">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7a1994999d181deea68e4304b3346e78f838ecb7" resname="Company">
+        <source>Company</source>
+        <target>Société</target>
+        <jms:reference-file line="50">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d523ebbd10146cdfd39dee077f04c9d08468d0bc" resname="Country">
+        <source>Country</source>
+        <target>Pays</target>
+        <jms:reference-file line="70">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="84add5b2952787581cb9a8851eef63d1ec75d22b" resname="Email">
+        <source>Email</source>
+        <target>E-mail</target>
+        <jms:reference-file line="76">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cf23ba48c06d7e6d4b41a205bfb3cac3bb7b1e38" resname="Firstname">
+        <source>Firstname</source>
+        <target>Prénom</target>
+        <jms:reference-file line="40">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="639860fbb86cea7f96e287fa3fecca62e4bb42f8" resname="Lastname">
+        <source>Lastname</source>
+        <target>Nom de famille</target>
+        <jms:reference-file line="43">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="77064d5265236e0ac252f3fc4a5ba7b274b6a583" resname="Phone">
+        <source>Phone</source>
+        <target>Téléphone</target>
+        <jms:reference-file line="73">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="30169d94044928f4dd461e7c12810f5604e00a85" resname="Postal box">
+        <source>Postal box</source>
+        <target>Boite Postale</target>
+        <jms:reference-file line="67">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5b221e9c2a451799d8f37e2b9874409d5e03ab05" resname="Print">
+        <source>Print</source>
+        <target>Imprimer</target>
+        <jms:reference-file line="23">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eeb1bf47a6727b57babf3daaca9e46979f2d149a" resname="Zipcode">
+        <source>Zipcode</source>
+        <target>Code postale</target>
+        <jms:reference-file line="63">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cd2cc1987e1b527c782e38fc0642c51ae4cc4233" resname="sepa.body.text.%amount%">
+        <source>sepa.body.text.%amount%</source>
+        <target><![CDATA[
+          Merci d'imprimer cette page qui fait office de mandat de %amount% € <br/>
+          puis de remplir les mentions obligatoire et de nous le faire parvenir à l'adresse suivante: <br/>
+          [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+          [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+          [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+          [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+        ]]></target>
+        <jms:reference-file line="30">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0c67e2b200d409e85fa681851ec3cee216c301d6" resname="sepa.body.title">
+        <source>sepa.body.title</source>
+        <target>Votre don</target>
+        <jms:reference-file line="28">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6e6631619d8c605017c7d46b835aa20304c8fc87" resname="sepa.donation.completed">
+        <source>sepa.donation.completed</source>
+        <target>Votre don a bien été enregistré</target>
+        <jms:reference-file line="9">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="889ffa6fd5008e38d9b1cfbcfcc4f6b45ff778ce" resname="sepa.donator-details.title">
+        <source>sepa.donator-details.title</source>
+        <target>Vos coordonnées</target>
+        <jms:reference-file line="32">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7de1231dc104f5dd7c4408c5ac14dd31ececc410" resname="sepa.donator-service.contact">
+        <source>sepa.donator-service.contact</source>
+        <target><![CDATA[
+            <p>Envoyez votre courrier à l'adresse suivante: </p>
+            <address>
+            [METTRE ICI LES COORDONNEES SERVICE DONATEUR]
+            </address>
+          ]]></target>
+        <jms:reference-file line="80">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="550065bbd8e64e943e8692f6226946f37bb63fc5" resname="sepa.lead.highlight.text.%amount%">
+        <source>sepa.lead.highlight.text.%amount%</source>
+        <target>Notre association vous remercie pour votre généreuse contribution de %amount% euros.</target>
+        <jms:reference-file line="16">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c7ab498b96aec790bfaa51f7f6ef250c033d41dd" resname="sepa.lead.text">
+        <source>sepa.lead.text</source>
+        <target>[METTRE ICI TEXTE DE REMERCIEMENT]</target>
+        <jms:reference-file line="20">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c960a24a4fb4852887506fdc99057eaa64c3e66e" resname="sepa.lead.title">
+        <source>sepa.lead.title</source>
+        <target>Merci pour votre don par mandat de prélèvement SEPA</target>
+        <jms:reference-file line="13">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="bc8fc6d76d927cded6a21bc2ebba90e4f9833958" resname="sepa.privacy">
+        <source>sepa.privacy</source>
+        <target>[METTRE ICI LES CLOSES DE CONFIDENTIALITES]</target>
+        <jms:reference-file line="84">views/SepaOffline/autorize.html.twig</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

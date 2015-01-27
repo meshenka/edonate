@@ -88,13 +88,13 @@ EOF
                     }
                 }
             } catch (Exception $e) {
-                $msgException = "\nException : " . $e->getMessage() . "\ngetTraceAsString():\n" . $e->getTraceAsString();
+                $msgException = "\nException : ".$e->getMessage()."\ngetTraceAsString():\n".$e->getTraceAsString();
                 $output->writeln("<error>Exception</error>");
-                $output->writeln("\t" .$e->getMessage());
-                $output->writeln("\t" . $e->getTraceAsString());
+                $output->writeln("\t".$e->getMessage());
+                $output->writeln("\t".$e->getTraceAsString());
             }
         } else {
-             $output->writeln('<error>Campaign Monitor URL is not configured. Nothing done</error>');
+            $output->writeln('<error>Campaign Monitor URL is not configured. Nothing done</error>');
         }
 
         return;
@@ -103,7 +103,7 @@ EOF
     /**
      * find customers created after a specific id
      * @param  Integer   $lastId a customerId
-     * @param integer $limit Nombre de résultats max
+     * @param  integer   $limit  Nombre de résultats max
      * @return \Iterable
      */
     protected function nextCustomers($limit)
@@ -120,9 +120,9 @@ EOF
      *
      * @see  https://github.com/campaignmonitor/createsend-php
      * @see  http://www.campaignmonitor.com/api/
-     * @param  string $apiKey
-     * @param  string $listId
-     * @param  array $subscribers
+     * @param  string                 $apiKey
+     * @param  string                 $listId
+     * @param  array                  $subscribers
      * @return CS_REST_Wrapper_Result
      */
     protected function subscribe($apiKey, $listId, $subscribers)
@@ -130,6 +130,7 @@ EOF
         $auth = array('api_key' => $apiKey);
         $wrap = new \CS_REST_Subscribers($listId, $auth);
         $result = $wrap->import($subscribers, true);
+
         return $result;
     }
 }

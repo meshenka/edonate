@@ -3,7 +3,7 @@ namespace Ecedi\Donate\AdminBundle\Exporter;
 
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Export
@@ -19,7 +19,7 @@ class IntentExporter
 
     private $translator;
 
-    public function __construct(Translator $translator)
+    public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
@@ -107,6 +107,7 @@ class IntentExporter
             utf8_decode('Méthode de paiement'),
             utf8_decode('Reçu fiscal'),
             'Campagne',
+            'Affectation',
             utf8_decode("Civilité"),
             "Nom",
             utf8_decode("Prénom"),
@@ -122,7 +123,7 @@ class IntentExporter
             "Code postal",
             "Ville",
             "Pays",
-            "Site web"
+            "Site web",
         );
 
         fputcsv($handle, $csvHeader, ';');
@@ -141,7 +142,7 @@ class IntentExporter
         $nbResultsRequested = 500;
         $iMax = ceil($nbIntents/$nbResultsRequested); // Calcul du nombre de requêtes à réaliser
 
-        for ($i = 0; $i <= $iMax ; $i++) {
+        for ($i = 0; $i <= $iMax; $i++) {
             $exportQb->select('i, c') // cf repository pour les alias, on récupère les infos des intents et des customers
                      ->setFirstResult($i * $nbResultsRequested)
                      ->setMaxResults($nbResultsRequested);
@@ -165,6 +166,7 @@ class IntentExporter
                     utf8_decode($intent['paymentMethod']),
                     utf8_decode($fiscalreceipt),
                     utf8_decode($intent['campaign']),
+                    isset($intent['affectationCode']) ? utf8_decode($intent['affectationCode']) : '',
                     isset($intent['customer']['civility']) ? utf8_decode($intent['customer']['civility']) : '',
                     isset($intent['customer']['firstName']) ? utf8_decode($intent['customer']['firstName']) : '',
                     isset($intent['customer']['lastName']) ? utf8_decode($intent['customer']['lastName']) : '',
@@ -184,7 +186,6 @@ class IntentExporter
                 ];
 
                 fputcsv($handle, $fieldsValue, ';');
-
             }
         }
         /*print memory_get_usage()/(1024).'Ko pour '.$nbResultsRequested;

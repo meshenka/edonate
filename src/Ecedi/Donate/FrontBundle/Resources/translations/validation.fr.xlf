@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="9d4e3e553debf3ae471757c304ac2e6f" resname="Amount must be greater than %amount% €">
+        <source>Amount must be greater than %amount% €</source>
+        <target>Le montant doit être supérieur à %amount% €</target>
+      </trans-unit>
+      <trans-unit id="23d2686d70d13c9c27b355bf5e0be561" resname="Amount must be lower than  %amount% €">
+        <source>Amount must be lower than  %amount% €</source>
+        <target>Le montant doit être inférieur à %amount% €</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

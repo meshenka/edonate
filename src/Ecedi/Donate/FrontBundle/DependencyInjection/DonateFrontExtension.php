@@ -29,7 +29,7 @@ class DonateFrontExtension extends Extension
         $container->setParameter('donate_front.google_analytics', $config['google_analytics']);
         $container->setParameter('donate_front.google_analytics.prefix', $config['google_analytics_prefix']);
         $container->setParameter('donate_front.i18n', $config['i18n']);
-        $container->setParameter('donate_front.payment_methods', $config['payment_methods']);
+        //$container->setParameter('donate_front.payment_methods', $config['payment_methods']);
         $container->setParameter('donate_front.campaign', $config['campaign']);
     }
 }

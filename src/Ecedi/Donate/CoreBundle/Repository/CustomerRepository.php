@@ -126,6 +126,7 @@ class CustomerRepository extends EntityRepository
             ->andWhere($qb->expr()->eq('c.optinSynchronized', 0))
             ->add('orderBy', 'c.id ASC')
             ->setMaxResults($limit);
+
         return $qb->getQuery();
     }
     /**
@@ -140,6 +141,7 @@ class CustomerRepository extends EntityRepository
                 ->set('c.optinSynchronized', 0)
                 ->where($qb->expr()->eq('c.optinSynchronized', 1))
                 ->getQuery();
+
         return $q->execute();
     }
 }

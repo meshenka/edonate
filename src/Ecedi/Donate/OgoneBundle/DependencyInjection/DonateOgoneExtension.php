@@ -25,13 +25,12 @@ class DonateOgoneExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->setParameter('donate_ogone.prod',$config['prod']);
-        $container->setParameter('donate_ogone.pspid',$config['pspid']);
-        $container->setParameter('donate_ogone.prefix',$config['prefix']);
-        $container->setParameter('donate_ogone.async_postsale',$config['async_postsale']);
+        $container->setParameter('donate_ogone.prod', $config['prod']);
+        $container->setParameter('donate_ogone.pspid', $config['pspid']);
+        $container->setParameter('donate_ogone.prefix', $config['prefix']);
+        $container->setParameter('donate_ogone.async_postsale', $config['async_postsale']);
 
-        $container->setParameter('donate_ogone.security.sha1_in',$config['security']['sha1_in']);
-        $container->setParameter('donate_ogone.security.sha1_out',$config['security']['sha1_out']);
-
+        $container->setParameter('donate_ogone.security.sha1_in', $config['security']['sha1_in']);
+        $container->setParameter('donate_ogone.security.sha1_out', $config['security']['sha1_out']);
     }
 }

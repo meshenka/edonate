@@ -18,16 +18,15 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('donate_front');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
-        $rootNode->children()
+        $treeBuilder->root('donate_front')
+        ->children()
             ->scalarNode('campaign')->defaultValue('campaign')->end()
             ->scalarNode('google_analytics')->defaultNull()->end()
-            ->scalarNode('google_analytics_prefix')->defaultNull()->end()
-            ->arrayNode('payment_methods')->isRequired()->requiresAtLeastOneElement()->prototype('scalar')->end()->end()
+            ->scalarNode('google_analytics_prefix')->defaultValue('/ecollect')->end()
             ->arrayNode('i18n')->prototype('scalar')->defaultNull()->end()->end()
             ->arrayNode('form')
                     ->children()

@@ -25,3 +25,6 @@ monolog:
         #     type: stream
         #     path:  %kernel.logs_dir%/%kernel.environment%-info.log
         #     level: info
+
+donate_ogone:
+    prod: true

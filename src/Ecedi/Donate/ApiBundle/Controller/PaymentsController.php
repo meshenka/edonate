@@ -8,7 +8,6 @@ use FOS\RestBundle\Controller\Annotations\NamePrefix;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
-
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 //use Ecedi\Donate\CoreBundle\Form\PaymentType;
 
@@ -99,7 +98,7 @@ class PaymentsController extends Controller
     private function throwNotFoundExceptionIfNotPayment($payment)
     {
         if (!$payment instanceof Payment) {
-             throw $this->createNotFoundException("Payment not found, check id or parameters.");
+            throw $this->createNotFoundException("Payment not found, check id or parameters.");
         }
     }
 }

@@ -15,27 +15,26 @@ class ReturnController extends Controller
      * @Route("/{_locale}/completed", name="donate_front_completed", defaults={"_locale"="fr"}, requirements = {"_locale" = "fr|en"})
      * @Template()
      */
-    public function completedAction($_locale)
+    public function completedAction()
     {
         //cette route est cache-control: private car elle peut contenur des info sur la transaction
          $session = $this->getRequest()->getSession();
 
         if ($session->has('intentId')) {
             $intentId = $session->get('intentId');
-            $ir = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
+            $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
-            return ['intent' => $ir->find($intentId)];
+            return ['intent' => $intentRepo->find($intentId)];
         }
 
         //en env de dev on peut afficher la page avec un payment OK
         if ($this->container->getParameter('kernel.environment') === 'dev') {
-           $pr = $this->getDoctrine()->getRepository('DonateCoreBundle:Payment');
+            $paymentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Payment');
 
-           $p = $pr->findOneBy(array('status' => Payment::STATUS_PAYED));
-           if ($p) {
-            return ['intent' => $p->getIntent()];
-           }
-
+            $payment = $paymentRepo->findOneBy(array('status' => Payment::STATUS_PAYED));
+            if ($payment) {
+                return ['intent' => $payment->getIntent()];
+            }
         }
 
         //gerer par une 404 l'accès à la page sans sessions
@@ -52,9 +51,9 @@ class ReturnController extends Controller
      * @Cache(public="true", maxage="3600", smaxage="3600")
      *
      */
-    public function canceledAction($_locale)
+    public function canceledAction()
     {
-        return array( );
+        return [];
     }
 
     /**
@@ -62,9 +61,9 @@ class ReturnController extends Controller
      * @Template()
      * @Cache(public="true", maxage="3600", smaxage="3600")
      */
-    public function deniedAction($_locale)
+    public function deniedAction()
     {
-        return array( );
+        return [];
     }
 
     /**
@@ -72,9 +71,8 @@ class ReturnController extends Controller
      * @Template()
      * @Cache(public="true", maxage="3600", smaxage="3600")
      */
-    public function failedAction($_locale)
+    public function failedAction()
     {
-        return array( );
+        return [];
     }
-
 }

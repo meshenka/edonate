@@ -3,12 +3,10 @@
 namespace Ecedi\Donate\CoreBundle\PaymentMethod;
 
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
-
 use Symfony\Component\Translation\TranslatorInterface;
 
 class Discovery
 {
-
     private $availableMethods = array();
 
     private $methods = array();
@@ -17,24 +15,25 @@ class Discovery
 
     private $config;
 
-
     /**
      * config
      *
      * @return array list of enabled methods
      */
-    public function getConfig() {
+    public function getConfig()
+    {
         return $this->config;
     }
-    
+
     /**
      * config
      *
      * @param Array $newconfig List of enabled methods
      */
-    public function setConfig($config) {
+    public function setConfig($config)
+    {
         $this->config = $config;
-    
+
         return $this;
     }
 
@@ -101,13 +100,13 @@ class Discovery
      * @return array key is serviceId, value is Name
      */
     public function getEnabledMethods()
-    {       
+    {
         $enabledMethods = array();
 
-        foreach($this->config as $mid) {
+        foreach ($this->config as $mid) {
             if (isset($this->methods[$mid])) {
                 $enabledMethods[$mid] = $this->methods[$mid];
-            }       
+            }
         }
 
         return $enabledMethods;

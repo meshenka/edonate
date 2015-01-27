@@ -15,7 +15,7 @@
     <div class="form-group">
     {{ form_row(form.language, { 'attr': {'class': 'form-control'}}) }}
     </div>
-    
+
     <div class="form-group">
     {{ form_row(form.skin, { 'attr': {'class': 'form-control'}}) }}
     </div>
@@ -58,9 +58,9 @@
             </div>
         {% endif %}
     </div>
-    
+
     {{ form_rest(form) }}
-    
+
 
 {{ form_end(form) }}
 {% endblock %}
@@ -69,6 +69,13 @@
     <div class="actions">
         <a role="button" class="btn btn-primary" title="{{ 'Edit blocks'|trans }}" href="{{ path('donate_admin_block_list', {'id': layout.id}) }}">
         {{ macros.icon('info-sign') }} {{ 'View blocks'|trans }}
+    </a>
+
+    <a role="button" 
+        class="btn btn-default" 
+        title="{{ 'Edit Affectations'|trans }}" 
+        href="{{ path('donate_admin_affectation_show', {'layout': layout.id}) }}">
+        {{ macros.icon('map-marker') }} {{ 'View Affectations'|trans }}
     </a>
 
     <a role="button" class="btn btn-default" title="Prévisualiser le layout" href="{{ path('donate_admin_layout_preview', { id : layout.id }) }}">

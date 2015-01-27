@@ -1,6 +1,7 @@
 <?php
 
 namespace Ecedi\Donate\OgoneBundle\Ogone;
+
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
@@ -503,7 +504,6 @@ class Response implements \JsonSerializable
         ;
 
         return $response;
-
     }
 
     /**
@@ -539,5 +539,4 @@ class Response implements \JsonSerializable
 
         return $response;
     }
-
 }

@@ -12,13 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class LayoutRepository extends EntityRepository
 {
+    public function getQb()
+    {
+        return $this->createQueryBuilder('l');
+    }
 
-	public function getQb() {
-		return $this->createQueryBuilder('l');
-        	
-	}
-
-    protected function defaultLayoutQb() {
+    protected function defaultLayoutQb()
+    {
         $qb = $this->getQb();
         $qb
             ->where('l.isDefault = true')
@@ -26,10 +26,9 @@ class LayoutRepository extends EntityRepository
             ->add('orderBy', 'l.id ASC');
 
         return $qb;
-        
     }
 
-	public function getFindAllQuery()
+    public function getFindAllQuery()
     {
         $qb = $this->getQb();
         $qb
@@ -39,15 +38,17 @@ class LayoutRepository extends EntityRepository
         return $qb->getQuery();
     }
 
-    public function getDefaultLayout($lang='fr') {
-		$qb = $this->defaultLayoutQb();
+    public function getDefaultLayout($lang = 'fr')
+    {
+        $qb = $this->defaultLayoutQb();
         $qb->setParameter('language', $lang)
         ;
 
         return $qb->getQuery()->getSingleResult();
     }
 
-    public function findDefaultLayout($lang='fr') {
+    public function findDefaultLayout($lang = 'fr')
+    {
         $qb = $this->defaultLayoutQb();
         $qb->setParameter('language', $lang);
 
