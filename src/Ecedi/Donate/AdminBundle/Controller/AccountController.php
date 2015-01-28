@@ -124,26 +124,28 @@ class AccountController extends Controller
     private function getAvailabledRoles()
     {
         $roles = [];
-        $roles_hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
+        $rolesHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
         // Un utilisateur ne peut pas assigner ces rôles à d'autres utilisateur
         // ! Le ROLE_SUPER_ADMIN ne doit etre créé qu'en ligne de commandes !
         $unAvailabledRoles = ['ROLE_SUPER_ADMIN', 'ROLE_ALLOWED_TO_SWITCH'];
 
         // Parcours de l'arbre de la hiérachie des rôles
-        foreach ($roles_hierarchy as $parentRole => $row) {
+        foreach ($rolesHierarchy as $parentRole => $row) {
             if (!in_array($parentRole, $unAvailabledRoles)) {
                 $roles[$parentRole] = $parentRole;
             }
-            foreach ($row as $key => $childRole) {
+            foreach ($row as $childRole) {
                 if (!in_array($childRole, $unAvailabledRoles)) {
                     $roles[$childRole] = $childRole;
                 }
             }
         }
+
         $roles = array_unique($roles); // Suppression de la redondance des roles (si plusieurs parents ont des enfants communs)
 
         return $roles;
     }
+
     /**
     * Fonction permettant de savoir si un utilisateur existe déja selon son username et email
     *
