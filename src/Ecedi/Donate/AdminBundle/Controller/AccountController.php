@@ -5,7 +5,6 @@ namespace Ecedi\Donate\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ecedi\Donate\AdminBundle\Form\AccountType;
 use Ecedi\Donate\CoreBundle\Entity\User as User;
 use FOS\UserBundle\Model\UserManager;
@@ -15,31 +14,27 @@ class AccountController extends Controller
 {
     /**
      * @Route("/users" , name="donate_admin_users")
-     * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $request = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
         $query = $em->getRepository('DonateCoreBundle:User')->getAllUsers();
         $pagination = $this->getPagination($request, $query, 10);
 
-        return [
+        return $this->render('DonateAdminBundle:Account:index.html.twig', [
             'pagination' => $pagination
-        ];
+        ]);
     }
 
     /**
      * @Route("/user/{id}/edit" , name="donate_admin_user_edit", defaults={"id" = 0})
-     * @Template()
      */
-    public function editAction($id)
+    public function editAction(Request $request, User $user)
     {
-        $request = $this->getRequest();
         $roles = $this->getAvailabledRoles();
-        $userManager = $this->get('fos_user.user_manager');
-        $user = $userManager->findUserBy(['id' => $id]);
+        //$user = $userManager->findUserBy(['id' => $id]);
         // Un super-admin ne peut être édité que par un super-admin
+        // TODO revoir ce code, faire un Voter?
         $currentUser = $this->getUser();
         if ($user->hasRole('ROLE_SUPER_ADMIN') && !$currentUser->hasRole('ROLE_SUPER_ADMIN')) {
             $this->get('session')->getFlashBag()->add('notice', "Vous n'êtes pas autorisé à modifier cet utilisateur.");
@@ -51,6 +46,7 @@ class AccountController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $userManager = $this->get('fos_user.user_manager');
             if ($form->get('submit_delete')->isClicked()) {
                 $userManager->deleteUser($user);
                 $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été supprimé.");
@@ -65,21 +61,19 @@ class AccountController extends Controller
             return $this->redirect($this->generateUrl('donate_admin_users'));
         }
 
-        return [
+        return $this->render('DonateAdminBundle:Account:edit.html.twig', [
             'form'      => $form->createView(),
             'user'      => $user,
-        ];
+        ]);
     }
 
     /**
      * Displays a form to create a new User.
      *
      * @Route("/user/new", name="donate_admin_user_new")
-     * @Template()
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
-        $request = $this->getRequest();
         $roles = $this->getAvailabledRoles();
         $form = $this->createForm(new AccountType($roles, $request->get('_route')), new User());
         $form->handleRequest($request);
@@ -97,9 +91,9 @@ class AccountController extends Controller
             }
         }
 
-        return [
+        return $this->render('DonateAdminBundle:Account:new.html.twig', [
             'form'   => $form->createView()
-        ];
+        ]);
     }
 
     /**
