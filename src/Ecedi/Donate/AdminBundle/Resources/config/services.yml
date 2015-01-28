@@ -1,0 +1,37 @@
+# DonateAdminBundle/Resources/config/services.yml
+# @since 2.1.0
+parameters:
+    donate_admin.analytics.client_id :
+    donate_admin.analytics.data_ids :
+    donate_admin.analytics.api_key :
+
+services:
+    donate_admin.export.customer:
+        class : Ecedi\Donate\AdminBundle\Exporter\CustomerExporter
+        arguments : ['@translator']
+
+    donate_admin.export.intent:
+        class : Ecedi\Donate\AdminBundle\Exporter\IntentExporter
+        arguments: ['@translator']
+
+    donate_admin.form.customer:
+        class : Ecedi\Donate\AdminBundle\Form\CustomerType
+        arguments: ['@service_container']
+        tags:
+            - {name: form.type, alias: customer}
+
+    donate_admin.form.layout:
+        class: Ecedi\Donate\AdminBundle\Form\LayoutType
+        arguments: ['%donate_front.i18n%']
+        tags:
+            - {name: form.type, alias: layout}
+
+    donate_admin.form.block:
+        class: Ecedi\Donate\AdminBundle\Form\BlockType
+        tags:
+            - {name: form.type, alias: block}
+
+    donate_admin.form.affectation:
+        class: Ecedi\Donate\AdminBundle\Form\AffectationType
+        tags:
+            - {name: form.type, alias: affectation}
