@@ -36,7 +36,7 @@ class AppKernel extends Kernel
             new Sp\BowerBundle\SpBowerBundle(),
             new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
-            
+
             //Ecedi bundles
             new Ecedi\Donate\CoreBundle\DonateCoreBundle(),
             new Ecedi\Donate\ApiBundle\DonateApiBundle(),
