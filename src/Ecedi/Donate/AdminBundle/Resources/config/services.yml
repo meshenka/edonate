@@ -6,40 +6,40 @@ parameters:
     donate_admin.analytics.api_key :
 
 services:
-    donate_admin.export.customer:
+    ecollect.export.customer:
         class : Ecedi\Donate\AdminBundle\Exporter\CustomerExporter
         arguments : ['@translator']
 
-    donate_admin.export.intent:
+    ecollect.export.intent:
         class : Ecedi\Donate\AdminBundle\Exporter\IntentExporter
         arguments: ['@translator']
 
-    donate_admin.form.customer:
+    ecollect.form.customer:
         class : Ecedi\Donate\AdminBundle\Form\CustomerType
         tags:
             - {name: form.type, alias: customer}
 
-    donate_admin.form.layout:
+    ecollect.form.layout:
         class: Ecedi\Donate\AdminBundle\Form\LayoutType
         tags:
             - {name: form.type, alias: layout}
 
-    donate_admin.form.block:
+    ecollect.form.block:
         class: Ecedi\Donate\AdminBundle\Form\BlockType
         tags:
             - {name: form.type, alias: block}
 
-    donate_admin.form.affectation:
+    ecollect.form.affectation:
         class: Ecedi\Donate\AdminBundle\Form\AffectationType
         tags:
             - {name: form.type, alias: affectation}
 
-    donate_admin.form.customer_filters:
+    ecollect.form.customer_filters:
         class: Ecedi\Donate\AdminBundle\Form\CustomerFiltersType
         tags:
             - {name: form.type, alias: customer_filters}
 
-    donate_admin.form.intent_filters:
+    ecollect.form.intent_filters:
         class: Ecedi\Donate\AdminBundle\Form\IntentFiltersType
         tags:
             - {name: form.type, alias: intent_filters}

@@ -67,7 +67,7 @@ EOF
 
         $qb = $em->getRepository('DonateCoreBundle:Intent')->getQBIntentsListBy($parameters);
         // Appel du service pour formater les données du csv
-        $exporter = $this->getContainer()->get('donate_admin.export.intent');
+        $exporter = $this->getContainer()->get('ecollect.export.intent');
         $exporter->setExportQb($qb);
         $data = $exporter->getCsvContent();
         // Création du fichier

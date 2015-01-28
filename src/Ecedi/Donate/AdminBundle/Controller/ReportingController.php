@@ -39,7 +39,7 @@ class ReportingController extends Controller
         // gestion de l'export
         if ($intentForm->isValid()) {
             if ($intentForm->get('submit_export')->isClicked()) {
-                $exporter = $this->get('donate_admin.export.intent');
+                $exporter = $this->get('ecollect.export.intent');
                 $exporter->setExportQb($queryBuilder);
                 $content = $exporter->getCsvContent();
 
@@ -97,7 +97,7 @@ class ReportingController extends Controller
         // gestion de l'export
         if ($customerForm->isValid()) {
             if ($customerForm->get('submit_export')->isClicked()) {
-                $exporter = $this->get('donate_admin.export.customer');
+                $exporter = $this->get('ecollect.export.customer');
                 $exporter->setExportQuery($query);
                 $content = $exporter->getCsvContent();
 
