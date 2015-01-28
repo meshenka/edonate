@@ -109,7 +109,9 @@ class BlockController extends Controller
      */
     public function editLayoutAction(Request $request, Layout $layout)
     {
-        $form = $this->createForm('layout', $layout);
+        $form = $this->createForm('layout', $layout, [
+            'language' => $this->container->getParameter('donate_front.i18n'),
+        ]);
 
         $form->handleRequest($request);
 
@@ -149,14 +151,16 @@ class BlockController extends Controller
     public function newLayoutAction(Request $request)
     {
         $layout = new Layout();
-        $form = $this->createForm('layout', $layout);
+        $form = $this->createForm('layout', $layout, [
+            'language' => $this->container->getParameter('donate_front.i18n'),
+        ]);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($layout);
-            $em->flush();
+            $entityMgr = $this->getDoctrine()->getManager();
+            $entityMgr->persist($layout);
+            $entityMgr->flush();
 
             return $this->redirect($this->generateUrl('donate_admin_block_list', ['id' => $layout->getId()]));
         }

@@ -22,7 +22,6 @@ services:
 
     donate_admin.form.layout:
         class: Ecedi\Donate\AdminBundle\Form\LayoutType
-        arguments: ['%donate_front.i18n%']
         tags:
             - {name: form.type, alias: layout}
 

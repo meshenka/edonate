@@ -6,19 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Ecedi\Donate\CoreBundle\Entity\Layout;
-use Symfony\Component\Intl\Intl;
 /**
  * Une classe pour le formulaire des comptes utilisateurs
  */
 class LayoutType extends AbstractType
 {
-    private $configuredLocales;
-
-    public function __construct(array $configuredLocales)
-    {
-        $this->configuredLocales = $configuredLocales;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', 'text', array(
@@ -97,7 +89,7 @@ class LayoutType extends AbstractType
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',
             'data_class' => 'Ecedi\Donate\CoreBundle\Entity\Layout',
-            'language' => $this->getConfiguredLocales(),
+            'language' => [],
             'skins' => array(
                     Layout::SKIN_DEFAULT => Layout::SKIN_DEFAULT,
                     Layout::SKIN_CUSTOM => Layout::SKIN_CUSTOM,
@@ -114,17 +106,5 @@ class LayoutType extends AbstractType
     public function getName()
     {
         return 'layout';
-    }
-
-    protected function getConfiguredLocales()
-    {
-        //$i18n = $this->container->getParameter('donate_front.i18n');
-        $locales = [];
-
-        foreach ($this->configuredLocales as $locale) {
-            $locales[$locale] = Intl::getLocaleBundle()->getLocaleName($locale);
-        }
-
-        return $locales;
     }
 }
