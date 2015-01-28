@@ -8,8 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use Ecedi\Donate\AdminBundle\Form\IntentFiltersType;
-use Ecedi\Donate\AdminBundle\Form\CustomerFiltersType;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Doctrine\ORM\Query;
 
@@ -27,7 +25,7 @@ class ReportingController extends Controller
     public function intentsAction()
     {
         $request = $this->getRequest();
-        $intentForm = $this->createForm(new IntentFiltersType());
+        $intentForm = $this->createForm('intent_filters');
 
         $parameters = $request->query->get('intent_filters');// Récupération des valeures de nos filtres
 
@@ -88,7 +86,7 @@ class ReportingController extends Controller
     public function customersAction()
     {
         $request = $this->getRequest();
-        $customerForm = $this->createForm(new CustomerFiltersType());
+        $customerForm = $this->createForm('customer_filters');
 
         $parameters = $request->query->get('customer_filters');// Récupération des valeures de nos filtres
 
