@@ -16,7 +16,6 @@ services:
 
     donate_admin.form.customer:
         class : Ecedi\Donate\AdminBundle\Form\CustomerType
-        arguments: ['@service_container']
         tags:
             - {name: form.type, alias: customer}
 

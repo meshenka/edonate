@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Ecedi\Donate\AdminBundle\Form\IntentFiltersType;
 use Ecedi\Donate\AdminBundle\Form\CustomerFiltersType;
-use Ecedi\Donate\AdminBundle\Form\CustomerType;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Doctrine\ORM\Query;
 
@@ -142,18 +141,16 @@ class ReportingController extends Controller
      * @Route("/customer/{id}/edit" , name="donate_admin_reporting_customer_edit", defaults={"id" = 0})
      * @Template()
      */
-    public function customerEditAction($id)
+    public function customerEditAction(Request $request, Customer $customer)
     {
-        $request = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
-        $customer = $em->getRepository('DonateCoreBundle:Customer')->find($id);
-
-        $editForm = $this->createForm(new CustomerType(), $customer);
+        $editForm = $this->createForm('customer', $customer);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($customer);
-            $em->flush();
+            $entityMgr = $this->getDoctrine()->getManager();
+
+            $entityMgr->persist($customer);
+            $entityMgr->flush();
             $noticeMsg = $this->get('translator')->trans("Donator has been updated");
             $this->get('session')->getFlashBag()->set('notice', $noticeMsg);
 
