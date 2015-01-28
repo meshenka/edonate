@@ -4,7 +4,6 @@ namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -21,7 +20,6 @@ class ReportingController extends Controller
 {
     /**
      * @Route("/intents" , name="donate_admin_reporting_intents")
-     * @Template()
      */
     public function intentsAction(Request $request)
     {
@@ -49,15 +47,14 @@ class ReportingController extends Controller
 
         $pagination = $this->getPagination($request, $queryBuilder->getQuery(), 20);
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:intents.html.twig', [
             'pagination'    => $pagination,
             'intentForm'    => $intentForm->createView()
-        ];
+        ]);
     }
 
     /**
      * @Route("/intent/{id}/show" , name="donate_admin_reporting_intent_show", defaults={"id" = 0})
-     * @Template()
      */
     public function intentShowAction(Request $request, Intent $intent)
     {
@@ -65,21 +62,20 @@ class ReportingController extends Controller
         $entityMgr = $this->getDoctrine()->getManager();
 
         $paymentsQuery = $entityMgr->getRepository('DonateCoreBundle:Payment')->getPaymentsListByIntent(['intentId' => $intent->getId()]);
-        $customerOtherIntentsQuery = $entityMgr->getRepository('DonateCoreBundle:Intent')->getIntentsListByCustomer(['customerId' => $customerId], 5, $intent->getId());
-        $customerOtherIntents = $customerOtherIntentsQuery->getResult();
+        $otherIntentsQuery = $entityMgr->getRepository('DonateCoreBundle:Intent')->getIntentsListByCustomer(['customerId' => $customerId], 5, $intent->getId());
+        $otherIntents = $otherIntentsQuery->getResult();
 
         $pagination = $this->getPagination($request, $paymentsQuery, 12);
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:intentShow.html.twig', [
             'intent'                => $intent,
             'pagination'            => $pagination,
-            'customerOtherIntents'  => $customerOtherIntents,
-        ];
+            'customerOtherIntents'  => $otherIntents,
+        ]);
     }
 
     /**
      * @Route("/customers" , name="donate_admin_reporting_customers")
-     * @Template()
      */
     public function customersAction(Request $request)
     {
@@ -107,15 +103,14 @@ class ReportingController extends Controller
 
         $pagination = $this->getPagination($request, $query, 20);
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:customers.html.twig', [
             'pagination'    => $pagination,
             'customerForm'  => $customerForm->createView()
-        ];
+        ]);
     }
 
     /**
      * @Route("/customer/{id}/show" , name="donate_admin_reporting_customer_show", defaults={"id" = 0})
-     * @Template()
      */
     public function customerShowAction(Request $request, Customer $customer)
     {
@@ -124,15 +119,14 @@ class ReportingController extends Controller
 
         $pagination = $this->getPagination($request, $intentsQuery, 10);
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:customerShow.html.twig', [
             'customer'          => $customer,
             'pagination'        => $pagination,
-        ];
+        ]);
     }
 
     /**
      * @Route("/customer/{id}/edit" , name="donate_admin_reporting_customer_edit", defaults={"id" = 0})
-     * @Template()
      */
     public function customerEditAction(Request $request, Customer $customer)
     {
@@ -150,19 +144,18 @@ class ReportingController extends Controller
             return $this->redirect($this->generateUrl('donate_admin_reporting_customer_show', array('id' => $customer->getId())));
         }
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:customerEdit.html.twig', [
             'editForm'  => $editForm->createView()
-        ];
+        ]);
     }
 
     /**
-     * @Template()
      */
     public function customerInfoAction(Customer $customer)
     {
-        return [
+        return $this->render('DonateAdminBundle:Reporting:customerInfo.html.twig', [
             'customer'  => $customer
-        ];
+        ]);
     }
 
     /**
