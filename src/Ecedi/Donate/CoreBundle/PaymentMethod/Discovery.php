@@ -52,7 +52,7 @@ class Discovery
      *
      * @param TranslatorInterface $newtranslator Translator service
      */
-    public function setTranslator($translator)
+    public function setTranslator(TranslatorInterface $translator)
     {
         $this->translator = $translator;
 
