@@ -4,7 +4,6 @@ namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,45 +11,39 @@ class DashboardController extends Controller
 {
     /**
      * @Route("/" , name="donate_admin_dashboard")
-     * @Template()
      */
     public function indexAction()
     {
-        return [];
+        return $this->render('DonateAdminBundle:Dashboard:index.html.twig');
     }
 
     /**
-     * @Template()
      */
     public function lastIntentsAction()
     {
         $em = $this->getDoctrine()->getManager();
         $lastIntents = $em->getRepository('DonateCoreBundle:Intent')->getLastIntentsByLimit(5);
 
-        return [
+        return $this->render('DonateAdminBundle:Dashboard:lastIntents.html.twig', [
             'id'            => 'last-intents',
             'title'         => $this->get('translator')->trans('Last donations'),
             'lastIntents'   => $lastIntents,
-        ];
+        ]);
     }
 
     /**
-     *
-     * @Template()
      */
     public function errorIntentsAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $intents = $em->getRepository('DonateCoreBundle:Intent')->findBy(
+        $intents = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Intent')->findBy(
             ['status' => Intent::STATUS_ERROR],
             ['createdAt' => 'DESC'], 5, 0);
 
-        return [
+        return $this->render('DonateAdminBundle:Dashboard:errorIntents.html.twig', [
             'id'        => 'error-intents',
             'title'     => $this->get('translator')->trans('Last donations in error'),
             'intents'   => $intents,
-        ];
+        ]);
     }
 
     /**
@@ -77,65 +70,55 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Template()
      */
     public function statsGaAction()
     {
-        return [
+        return $this->render('DonateAdminBundle:Dashboard:statsGa.html.twig', [
             'id'        => 'stats-ga',
             'title'     => $this->get('translator')->trans('Visits'), //'Fréquentation',
             'apiKey'    => $this->container->getParameter('donate_admin.analytics.api_key'),
             'dataIds'   => $this->container->getParameter('donate_admin.analytics.data_ids'),
             'clientId'  => $this->container->getParameter('donate_admin.analytics.client_id'),
-        ];
+        ]);
     }
 
     /**
-     * @Template()
      */
     public function highestSpotIntentsAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $results = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Intent')->getHighestSpotDonatorIntent(5);
 
-        $results = $em->getRepository('DonateCoreBundle:Intent')->getHighestSpotDonatorIntent(5);
-
-        return [
+        return $this->render('DonateAdminBundle:Dashboard:highestSpotIntents.html.twig', [
             'id'        => 'highest-spot-intents',
             'title'     => $this->get('translator')->trans('Top five spot donators'), //'TOP FIVE des donateurs ponctuels',
             'results'   => $results,
-        ];
+        ]);
     }
 
     /**
-     * @Template()
      */
     public function highestRecurringIntentsAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $results = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Intent')->getHighestRecurringDonatorIntent(5);
 
-        $results = $em->getRepository('DonateCoreBundle:Intent')->getHighestRecurringDonatorIntent(5);
-
-        return [
+        return $this->render('DonateAdminBundle:Dashboard:highestRecurringIntents.html.twig', [
             'id'        => 'highest-recurrin-intents',
             'title'     => $this->get('translator')->trans('Top five recurring donators'), //'TOP FIVE des donateurs réguliers'
             'results'   => $results,
-        ];
+        ]);
     }
 
     /**
      *
-     * @Template()
      */
     public function bestDonatorsAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $results = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Payment')->getHighestDonatorPayment(5);
 
-        $results = $em->getRepository('DonateCoreBundle:Payment')->getHighestDonatorPayment(5);
-
-        return [
+        return $this->render('DonateAdminBundle:Dashboard:bestDonators.html.twig', [
             'id'        => 'best-donators',
             'title'     => $this->get('translator')->trans('Top five donators'), //'TOP FIVE des plus gros donateurs'
             'results'   => $results,
-        ];
+        ]);
     }
 }
