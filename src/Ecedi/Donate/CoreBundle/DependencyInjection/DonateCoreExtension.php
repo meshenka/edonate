@@ -23,8 +23,8 @@ class DonateCoreExtension extends Extension
 
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
 
         $container->setParameter('donate_core.equivalence', $config['equivalence']);
         $container->setParameter('donate_core.mail.donator', $config['mail']['donator']);
