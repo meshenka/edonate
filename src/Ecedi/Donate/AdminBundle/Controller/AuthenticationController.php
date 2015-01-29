@@ -11,7 +11,6 @@ class AuthenticationController extends Controller
 {
     /**
      * @Route("/_login" , name="donate_admin_login")
-     * @Template()
      *
      * @see http://symfony.com/doc/current/book/security.html
      */
@@ -30,10 +29,10 @@ class AuthenticationController extends Controller
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        return [
+        return $this->render('DonateAdminBundle:Authentication:login.html.twig', [
                 'last_username' => $session->get(SecurityContext::LAST_USERNAME),
                 'error'         => $error,
-            ];
+            ]);
     }
 
     /**
