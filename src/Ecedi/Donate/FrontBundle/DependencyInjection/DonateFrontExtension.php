@@ -22,14 +22,13 @@ class DonateFrontExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
 
         $container->setParameter('donate_front.form.civility', $config['form']['civility']);
         $container->setParameter('donate_front.google_analytics', $config['google_analytics']);
         $container->setParameter('donate_front.google_analytics.prefix', $config['google_analytics_prefix']);
         $container->setParameter('donate_front.i18n', $config['i18n']);
-        //$container->setParameter('donate_front.payment_methods', $config['payment_methods']);
         $container->setParameter('donate_front.campaign', $config['campaign']);
     }
 }
