@@ -13,13 +13,3 @@ services:
     ecollect.export.intent:
         class : Ecedi\Donate\AdminBundle\Exporter\IntentExporter
         arguments: ['@translator']
-
-    ecollect.form.customer_filters:
-        class: Ecedi\Donate\AdminBundle\Form\CustomerFiltersType
-        tags:
-            - {name: form.type, alias: customer_filters}
-
-    ecollect.form.intent_filters:
-        class: Ecedi\Donate\AdminBundle\Form\IntentFiltersType
-        tags:
-            - {name: form.type, alias: intent_filters}

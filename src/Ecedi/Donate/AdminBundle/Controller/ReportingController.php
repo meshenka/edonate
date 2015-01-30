@@ -11,7 +11,8 @@ use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Doctrine\ORM\Query;
 use Ecedi\Donate\AdminBundle\Form\CustomerType;
-
+use Ecedi\Donate\AdminBundle\Form\CustomerFiltersType;
+use Ecedi\Donate\AdminBundle\Form\IntentFiltersType;
 /**
  * Reporting controller.
  *
@@ -24,7 +25,7 @@ class ReportingController extends Controller
      */
     public function intentsAction(Request $request)
     {
-        $intentForm = $this->createForm('intent_filters');
+        $intentForm = $this->createForm(new IntentFiltersType());
 
         $parameters = $request->query->get('intent_filters');// Récupération des valeures de nos filtres
 
@@ -80,7 +81,7 @@ class ReportingController extends Controller
      */
     public function customersAction(Request $request)
     {
-        $customerForm = $this->createForm('customer_filters');
+        $customerForm = $this->createForm(new CustomerFiltersType());
 
         $parameters = $request->query->get('customer_filters');// Récupération des valeures de nos filtres
 
