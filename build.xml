@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 
-<project name="eCollecte" default="update" basedir="." description="eCollecte.">
+<project name="eCollecte" default="build" basedir="." description="eCollecte.">
+     <property file="./build.properties" />
+
+    <property name="symfony.env"  value="${symfony.env}" override="true" />
+
 	<!-- Prepare build folders -->
 	<target name="prepare" description="Create directories">
 		<mkdir dir="docs"/>
@@ -9,15 +13,8 @@
 		<echo msg="Making docs, report and build directories"/>		
 	</target>
 
-	<!-- Update codebase (on current checkouted branch) -->
-	<target name="codebase-update" description="Update codebase">
-		<!-- git update -->
-		<gitpull repository="." all="true"/>
-		<echo msg="git pull."/>	
-	</target>	
-
 	<!-- run all symfony related commands to update local installation -->
-	<target name="update" depends="prepare, codebase-update" description="Update codebase">
+	<target name="build" depends="prepare" description="Build application from codebase">
 
 		<!-- composer install -->
 		<composer command="install" composer="/usr/local/bin/composer"/>
@@ -32,10 +29,14 @@
 		<!-- dump assets -->
 		<SymfonyConsole command="assetic:dump"/>
 		<echo msg="app/console assetic:dump"/>		
+
+        <!-- clear cache -->
+        <SymfonyConsole command="cache:clear"/>
+        <echo msg="app/console cache:clear"/>      
 	</target>
 	
 	<!-- generate documentation	 -->
-	<target name="doc" depends="prepare, codebase-update" description="Generate documentation">
+	<target name="doc" depends="prepare" description="Generate documentation">
 		<phpdoc2 title="eCollecte" destdir="docs">
 			<fileset dir="src">
 				<include name="**/*.php"/>
@@ -45,7 +46,7 @@
 	</target>
 
 	<!-- Run unit tests -->
-	<target name="unit-test" depends="update" description="Run unit tests">
+	<target name="unit-test" depends="prepare" description="Run unit tests">
 		<exec command="./bin/phpspec --ansi" output="reports/specs.log"/>
 		<echo msg="run phpspec"/>		
 	</target>
