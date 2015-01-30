@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Ecedi\Donate\AdminBundle\Form\LayoutType;
 use Ecedi\Donate\AdminBundle\Form\BlockType;
+use Ecedi\Donate\FrontBundle\Form\Type\DonationType;
 
 class BlockController extends Controller
 {
@@ -58,7 +59,7 @@ class BlockController extends Controller
         $request->setLocale($layout->getLanguage());
 
         $data = new Customer();
-        $form = $this->createForm('donate', $data, [
+        $form = $this->createForm(new DonationType($this->get('translator')), $data, [
             'civilities' => $this->container->getParameter('donate_front.form.civility'),
             'equivalences' => $this->container->get('donate_core.equivalence.factory')->getAll(),
             'payment_methods' => $this->container->get('donate_core.payment_method_discovery')->getEnabledMethods(),

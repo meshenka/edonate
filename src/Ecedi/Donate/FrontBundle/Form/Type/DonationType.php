@@ -28,7 +28,7 @@ class DonationType extends AbstractType
             }
         }
 
-        $form->add($tunnel, 'amount_selector', [
+        $form->add($tunnel, new AmountType($this->translator), [
                 'mapped'        => false,
                 'label'         => false,
                 'required'      => true,

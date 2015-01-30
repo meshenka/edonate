@@ -9,18 +9,6 @@ parameters:
         campaign: ~
 
 services:
-    ecollect.form.donate:
-        class: Ecedi\Donate\FrontBundle\Form\Type\DonationType
-        arguments: ['@translator']
-        tags:
-            - {name: form.type, alias: donate}
-
-    ecollect.from.amount:
-        class: Ecedi\Donate\FrontBundle\Form\Type\AmountType
-        arguments: ['@translator']
-        tags:
-            - {name: form.type, alias: amount_selector}
-
     ecollect.twig.i18n:
         class: Ecedi\Donate\FrontBundle\Twig\I18nTwigExtension
         arguments: ['@service_container']
