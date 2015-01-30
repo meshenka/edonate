@@ -14,11 +14,6 @@ services:
         class : Ecedi\Donate\AdminBundle\Exporter\IntentExporter
         arguments: ['@translator']
 
-    ecollect.form.block:
-        class: Ecedi\Donate\AdminBundle\Form\BlockType
-        tags:
-            - {name: form.type, alias: block}
-
     ecollect.form.customer_filters:
         class: Ecedi\Donate\AdminBundle\Form\CustomerFiltersType
         tags:

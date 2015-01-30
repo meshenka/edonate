@@ -10,6 +10,7 @@ use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Ecedi\Donate\AdminBundle\Form\LayoutType;
+use Ecedi\Donate\AdminBundle\Form\BlockType;
 
 class BlockController extends Controller
 {
@@ -161,7 +162,7 @@ class BlockController extends Controller
      */
     public function editBlockAction(Request $request, Layout $layout, Block $block)
     {
-        $form = $this->createForm('block', $block);
+        $form = $this->createForm(new BlockType(), $block);
 
         $form->handleRequest($request);
 
