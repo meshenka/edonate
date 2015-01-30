@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Ecedi\Donate\CoreBundle\Entity\Layout;
 use Ecedi\Donate\CoreBundle\Entity\Affectation;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Ecedi\Donate\AdminBundle\Form\AffectationType;
 
 /**
  * @since  2.0.0
@@ -37,7 +38,7 @@ class AffectationController extends Controller
     {
         $affectation = new Affectation();
 
-        $form = $this->createForm('affectation', $affectation);
+        $form = $this->createForm(new AffectationType(), $affectation);
 
         $form->handleRequest($request);
 
@@ -64,7 +65,7 @@ class AffectationController extends Controller
      */
     public function editAction(Request $request, Layout $layout, Affectation $affectation)
     {
-        $form = $this->createForm('affectation', $affectation);
+        $form = $this->createForm(new AffectationType(), $affectation);
 
         $form->handleRequest($request);
 
