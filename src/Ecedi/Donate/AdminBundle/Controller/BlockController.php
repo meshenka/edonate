@@ -9,6 +9,7 @@ use Ecedi\Donate\CoreBundle\Entity\Layout;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Ecedi\Donate\AdminBundle\Form\LayoutType;
 
 class BlockController extends Controller
 {
@@ -95,7 +96,7 @@ class BlockController extends Controller
      */
     public function editLayoutAction(Request $request, Layout $layout)
     {
-        $form = $this->createForm('layout', $layout, [
+        $form = $this->createForm(new LayoutType(), $layout, [
             'language' => $this->container->getParameter('donate_front.i18n'),
         ]);
 
@@ -135,7 +136,7 @@ class BlockController extends Controller
     public function newLayoutAction(Request $request)
     {
         $layout = new Layout();
-        $form = $this->createForm('layout', $layout, [
+        $form = $this->createForm(new LayoutType(), $layout, [
             'language' => $this->container->getParameter('donate_front.i18n'),
         ]);
 

@@ -14,11 +14,6 @@ services:
         class : Ecedi\Donate\AdminBundle\Exporter\IntentExporter
         arguments: ['@translator']
 
-    ecollect.form.layout:
-        class: Ecedi\Donate\AdminBundle\Form\LayoutType
-        tags:
-            - {name: form.type, alias: layout}
-
     ecollect.form.block:
         class: Ecedi\Donate\AdminBundle\Form\BlockType
         tags:
