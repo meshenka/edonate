@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Doctrine\ORM\Query;
+use Ecedi\Donate\AdminBundle\Form\CustomerType;
 
 /**
  * Reporting controller.
@@ -130,7 +131,7 @@ class ReportingController extends Controller
      */
     public function customerEditAction(Request $request, Customer $customer)
     {
-        $editForm = $this->createForm('customer', $customer);
+        $editForm = $this->createForm(new CustomerType(), $customer);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {

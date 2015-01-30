@@ -14,11 +14,6 @@ services:
         class : Ecedi\Donate\AdminBundle\Exporter\IntentExporter
         arguments: ['@translator']
 
-    ecollect.form.customer:
-        class : Ecedi\Donate\AdminBundle\Form\CustomerType
-        tags:
-            - {name: form.type, alias: customer}
-
     ecollect.form.layout:
         class: Ecedi\Donate\AdminBundle\Form\LayoutType
         tags:
@@ -28,11 +23,6 @@ services:
         class: Ecedi\Donate\AdminBundle\Form\BlockType
         tags:
             - {name: form.type, alias: block}
-
-    # ecollect.form.affectation:
-    #     class: Ecedi\Donate\AdminBundle\Form\AffectationType
-    #     tags:
-    #         - {name: form.type, alias: affectation}
 
     ecollect.form.customer_filters:
         class: Ecedi\Donate\AdminBundle\Form\CustomerFiltersType
