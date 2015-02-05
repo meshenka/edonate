@@ -4,7 +4,6 @@ namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class AuthenticationController extends Controller
@@ -37,7 +36,6 @@ class AuthenticationController extends Controller
 
     /**
      * @Route("/_login_check" , name="donate_admin_login_check")
-     * @Template()
      */
     public function loginCheckAction()
     {
@@ -47,7 +45,6 @@ class AuthenticationController extends Controller
     /**
      * @see http://symfony.com/fr/doc/current/book/security.html#se-deconnecter
      * @Route("/_logout" , name="donate_admin_logout")
-     * @Template()
      */
     public function logoutAction()
     {
