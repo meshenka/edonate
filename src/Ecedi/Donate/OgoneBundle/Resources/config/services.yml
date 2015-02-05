@@ -17,7 +17,7 @@ services:
     # Plugin de payment methode
     ecollect.pm.ogone:
         class: Ecedi\Donate\OgoneBundle\Service\OgonePaymentMethod
-        parent: donate_core.base_payment_method
+        parent: ecollect.payment_method
         tags:
             - {name: donate.payment_method}
 

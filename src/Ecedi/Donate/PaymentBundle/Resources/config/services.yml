@@ -5,13 +5,13 @@ parameters:
 services:
     ecollect.check_promise:
         class: Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\CheckPromisePaymentMethod
-        parent: donate_core.base_payment_method
+        parent: ecollect.payment_method
         tags:
             - {name: donate.payment_method}
 
     ecollect.sepa_offine:
         class: Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod
-        parent: donate_core.base_payment_method
+        parent: ecollect.payment_method
         tags:
             - {name: donate.payment_method}
 

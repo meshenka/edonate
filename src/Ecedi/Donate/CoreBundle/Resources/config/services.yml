@@ -9,7 +9,7 @@ parameters:
         payment_methods: ~
 
 services:
-    donate_core.base_payment_method:
+    ecollect.payment_method:
         abstract:  true
         calls:
             - [setTemplating, ['@templating']]
