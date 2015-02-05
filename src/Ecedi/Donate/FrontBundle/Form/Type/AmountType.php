@@ -17,10 +17,12 @@ class AmountType extends AbstractType
         $this->translator = $translator;
     }
 
+    //TODO find a way to remove @translator
+    //TODO move validation translations to validators
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Ajout d'un champ de saisi manuel si voulu
-        $options['choices']['manual'] = $this->translator->trans('Other amount');
+        $options['choices']['manual'] = 'Other amount';
         $builder
             ->addViewTransformer(new AmountChoiceToIntentAmountTransformer([
                 'manual',

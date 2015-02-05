@@ -71,7 +71,7 @@ class DonationType extends AbstractType
 
         $builder->add('email', 'repeated', [
             'type' => 'email',
-            'invalid_message' => $this->translator->trans('The email fields must match.'),
+            'invalid_message' => 'The email fields must match.',
             'required' => true,
             'first_options'  => array('label' => 'Email'),
             'second_options' => array('label' => 'Repeat Email'),
