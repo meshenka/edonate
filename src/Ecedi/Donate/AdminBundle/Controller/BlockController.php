@@ -51,19 +51,6 @@ class BlockController extends Controller
     }
 
     /**
-     * @Route("/cms/layout/{id}" , name="donate_admin_layout_show", requirements={"id" = "\d+"}, defaults={"id" = 0})
-     * @Template()
-     */
-    public function showLayoutAction(Request $request, Layout $layout)
-    {
-        $data = new Customer();
-
-        $form = $this->createForm('donate', $data);
-
-        return ['layout' => $layout];
-    }
-
-    /**
      * @Route("/cms/layout/{id}/preview" , name="donate_admin_layout_preview", requirements={"id" = "\d+"}, defaults={"id" = 0})
      * @Template()
      */
@@ -72,7 +59,12 @@ class BlockController extends Controller
         $request->setLocale($layout->getLanguage());
 
         $data = new Customer();
-        $form = $this->createForm('donate', $data);
+        $form = $this->createForm('donate', $data, array(
+            'civilities' => $this->container->getParameter('donate_front.form.civility'),
+            'equivalences' => $this->get('donate_core.equivalence.factory')->getAll(),
+            'payment_methods' => $this->get('donate_core.payment_method_discovery')->getEnabledMethods(),
+            'affectations' =>  $layout->getAffectations(),
+        ));
 
         return [
             'layout' => $layout,

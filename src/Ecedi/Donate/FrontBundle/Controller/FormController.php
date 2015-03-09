@@ -28,8 +28,8 @@ class FormController extends Controller
 
         $form = $this->createForm('donate', $data, array(
             'civilities' => $this->container->getParameter('donate_front.form.civility'),
-            'equivalences' => $this->container->get('donate_core.equivalence.factory')->getAll(),
-            'payment_methods' => $this->container->get('donate_core.payment_method_discovery')->getEnabledMethods(),
+            'equivalences' => $this->get('donate_core.equivalence.factory')->getAll(),
+            'payment_methods' => $this->get('donate_core.payment_method_discovery')->getEnabledMethods(),
             'affectations' =>  $layout->getAffectations(),
         ));
 

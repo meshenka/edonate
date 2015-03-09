@@ -11,8 +11,8 @@ class EquivalenceFactorySpec extends ObjectBehavior
     {
         $this->beConstructedWith([
             PaymentMethodInterface::TUNNEL_SPOT => [
-                ['amount' => 10, 'label' => '10', 'currency' => 'USD'],
-                ['amount' => 20, 'label' => '20', 'currency' => 'EUR'],
+                ['amount' => 10, 'label' => '10', 'currency' => 'USD', 'default' => true],
+                ['amount' => 20, 'label' => '20', 'currency' => 'EUR', 'default' => false],
             ],
         ]);
     }
