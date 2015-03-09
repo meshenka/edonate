@@ -1,3 +1,6 @@
+v2.0.1
+  * Fix bug in Layout Preview
+
 v2.0.0
   * new presentation for form submittion (one button per payment methods)
   * support for recurring payment method
