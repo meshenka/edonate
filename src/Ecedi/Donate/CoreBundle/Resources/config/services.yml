@@ -1,0 +1,44 @@
+#since 2.1.0
+parameters:
+    donate_core:
+        equivalence: ~
+        mail:
+            donator: ~
+            webmaster: ~
+            noreply: noreply@ecedi.fr 
+        payment_methods: ~
+
+services:
+    ecollect.payment_method:
+        abstract:  true
+        calls:
+            - [setTemplating, ['@templating']]
+            - [setDoctrine, ['@doctrine']]
+            - [setRouter, ['@router']]
+
+    donate_core.analytics.cookieparser:
+        class: Ecedi\Donate\CoreBundle\Analytics\GoogleCookieParser
+
+    donate_core.payment_method_discovery:
+        class: Ecedi\Donate\CoreBundle\PaymentMethod\Discovery
+        arguments : ['@translator', '%donate_core.payment_methods%']
+
+    donate_core.equivalence.factory:
+        class: Ecedi\Donate\CoreBundle\Equivalence\EquivalenceFactory
+        arguments: ['%donate_core.equivalence%']
+
+    donate_core.intent_manager:
+        class: Ecedi\Donate\CoreBundle\IntentManager\DefaultIntentManager
+        arguments: ['@service_container']
+
+    donate_core.layout.manager:
+        class: Ecedi\Donate\CoreBundle\Layout\LayoutManager
+        arguments: ['@doctrine.orm.entity_manager']
+
+    ecollect.listener.campaign:
+        class: Ecedi\Donate\CoreBundle\EventListener\CampaignTrackerListener
+        arguments: ['%donate_front.campaign%']
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - {name: kernel.event_subscriber}

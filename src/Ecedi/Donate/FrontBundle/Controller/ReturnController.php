@@ -4,7 +4,6 @@ namespace Ecedi\Donate\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Component\HttpFoundation\Response;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
@@ -13,7 +12,6 @@ class ReturnController extends Controller
 {
     /**
      * @Route("/{_locale}/completed", name="donate_front_completed", defaults={"_locale"="fr"}, requirements = {"_locale" = "fr|en"})
-     * @Template()
      */
     public function completedAction()
     {
@@ -24,7 +22,9 @@ class ReturnController extends Controller
             $intentId = $session->get('intentId');
             $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
-            return ['intent' => $intentRepo->find($intentId)];
+            return $this->render('DonateFrontBundle:Return:completed.html.twig', [
+                'intent' => $intentRepo->find($intentId)
+            ]);
         }
 
         //en env de dev on peut afficher la page avec un payment OK
@@ -33,7 +33,9 @@ class ReturnController extends Controller
 
             $payment = $paymentRepo->findOneBy(array('status' => Payment::STATUS_PAYED));
             if ($payment) {
-                return ['intent' => $payment->getIntent()];
+                return $this->render('DonateFrontBundle:Return:completed.html.twig', [
+                    'intent' => $payment->getIntent()
+                ]);
             }
         }
 
@@ -47,32 +49,28 @@ class ReturnController extends Controller
 
     /**
      * @Route("/{_locale}/canceled", name="donate_front_canceled", defaults={"_locale"="fr"}, requirements = {"_locale" = "fr|en"})
-     * @Template()
      * @Cache(public="true", maxage="3600", smaxage="3600")
-     *
      */
     public function canceledAction()
     {
-        return [];
+        return $this->render('DonateFrontBundle:Return:canceled.html.twig');
     }
 
     /**
      * @Route("/{_locale}/denied", name="donate_front_denied", defaults={"_locale"="fr"}, requirements = {"_locale" = "fr|en"})
-     * @Template()
      * @Cache(public="true", maxage="3600", smaxage="3600")
      */
     public function deniedAction()
     {
-        return [];
+        return $this->render('DonateFrontBundle:Return:denied.html.twig');
     }
 
     /**
      * @Route("/{_locale}/failed", name="donate_front_failed", defaults={"_locale"="fr"}, requirements = {"_locale" = "fr|en"})
-     * @Template()
      * @Cache(public="true", maxage="3600", smaxage="3600")
      */
     public function failedAction()
     {
-        return [];
+        return $this->render('DonateFrontBundle:Return:failed.html.twig');
     }
 }

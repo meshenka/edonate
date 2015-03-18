@@ -22,7 +22,7 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
  * @example
  * <services>
  *
- *   <service id="donate_core.base_payment_method" abstract="true">
+ *   <service id="ecollect.payment_method" abstract="true">
  *       <call method="setTemplating">
  *            <argument type="service" id="templating" />
  *       </call>
@@ -33,7 +33,7 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
  *            <argument type="service" id="router" />
  *       </call>
  *   </service>
- *   <service id="donate_ogone.payment_method" class="%donate_ogone.payment_method.class%" parent="donate_core.base_payment_method">
+ *   <service id="donate_ogone.payment_method" class="%donate_ogone.payment_method.class%" parent="ecollect.payment_method">
  *       <tag name="donate.payment_method" />
  *   </service>
  * </services>

@@ -1,3 +1,9 @@
+v2.1.0
+  * Refactor some of the code and config to apply http://symfony.com/doc/current/best_practices/index.html
+  
+v2.0.1
+  * Fix bug in Layout Preview
+
 v2.0.0
   * new presentation for form submittion (one button per payment methods)
   * support for recurring payment method

@@ -9,7 +9,6 @@ namespace Ecedi\Donate\PaymentBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\CheckPromisePaymentMethod;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +17,6 @@ class CheckPromiseController extends Controller
 {
     /**
      * @Route("/check/completed", name="donate_payment_check_promise_completed")
-     * @Template()
      */
     public function payAction()
     {
@@ -29,14 +27,18 @@ class CheckPromiseController extends Controller
         if ($session->has('intentId')) {
             $intentId = $session->get('intentId');
 
-            return ['intent' => $intentRepo->find($intentId)];
+            return $this->render('DonatePaymentBundle:CheckPromise:pay.html.twig', [
+                'intent' => $intentRepo->find($intentId)
+            ]);
         }
 
         //en env de dev on peut afficher la page avec un payment OK
         if ($this->container->getParameter('kernel.environment') === 'dev') {
             $intent = $intentRepo->findOneBy(['status' => Intent::STATUS_DONE, 'paymentMethod' => CheckPromisePaymentMethod::ID]);
             if ($intent) {
-                return ['intent' => $intent];
+                return $this->render('DonatePaymentBundle:CheckPromise:pay.html.twig', [
+                    'intent' => $intent
+                ]);
             }
         }
         //gerer par une 404 l'accès à la page sans sessions

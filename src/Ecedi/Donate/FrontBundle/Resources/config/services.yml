@@ -1,0 +1,28 @@
+#@since 2.1.0
+parameters:
+    donate_front:
+        google_analytics: ~
+        google_analytics.prefix: ~
+        form:
+            civility: ~
+        i18n: ~
+        campaign: ~
+
+services:
+    ecollect.twig.i18n:
+        class: Ecedi\Donate\FrontBundle\Twig\I18nTwigExtension
+        arguments: ['@service_container']
+        tags:
+            - {name: twig.extension}
+
+    ecollect.twig.layout:
+        class: Ecedi\Donate\FrontBundle\Twig\Extension\LayoutExtension
+        arguments: ['@donate_core.layout.manager', '@service_container']
+        tags:
+            - {name: twig.extension}
+
+    ecollect.listener.thanks_email:
+        class: Ecedi\Donate\FrontBundle\EventListener\ThanksEmailEventListener
+        arguments: ['@templating', '@mailer', '@translator', '%donate_core.mail.noreply%']
+        tags:
+            - {name: kernel.event_subscriber}

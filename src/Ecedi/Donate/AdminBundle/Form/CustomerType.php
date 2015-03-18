@@ -4,7 +4,6 @@ namespace Ecedi\Donate\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -13,22 +12,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CustomerType extends AbstractType
 {
-    private $container;
-
-    /*public function __construct(Container $container)
-    {
-        $this->container = $container;
-    }*/
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        //$params['civility'] = $this->container->getParameter('donate_front.form.civility');
-
-        /*$builder->add('civility', 'choice', array(
-            'choices'   => $params['civility'],
-            'required'  => false,
-            'label'     => 'Civility'
-        ));*/
         $builder
             ->add('company', 'text', array(
                 'required'  => FALSE,
@@ -100,6 +85,6 @@ class CustomerType extends AbstractType
      */
     public function getName()
     {
-        return 'donate_admin_customer_edit';
+        return 'customer';
     }
 }

@@ -29,7 +29,7 @@ class AffectationType extends AbstractType
             ));
 
         $builder->add('submit', 'submit', array(
-                'label'     => 'Valider',
+                'label'     => 'Submit',
             ));
     }
 

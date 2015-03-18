@@ -1,0 +1,29 @@
+# @since 2.1.0
+parameters:
+    sepa.rum.prefix: 'ECOLLECT'
+
+services:
+    ecollect.check_promise:
+        class: Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\CheckPromisePaymentMethod
+        parent: ecollect.payment_method
+        tags:
+            - {name: donate.payment_method}
+
+    ecollect.sepa_offine:
+        class: Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod
+        parent: ecollect.payment_method
+        tags:
+            - {name: donate.payment_method}
+
+    sepa.rum.empty:
+        class: Ecedi\Donate\PaymentBundle\Rum\EmptyRumGenerator
+
+    sepa.rum.preformated:
+        class: Ecedi\Donate\PaymentBundle\Rum\PreformatedRumGenerator
+        arguments: ['%sepa.rum.prefix%']
+
+    ecollect.listener.sepa.pdf:
+        class: Ecedi\Donate\PaymentBundle\EventListener\GenerateSepaPdfListener
+        arguments: ['@sepa.rum.preformated', '@kernel']
+        tags:
+            - {name: kernel.event_listener, event: donate.payment.document.generated, method: generate }
