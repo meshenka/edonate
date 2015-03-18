@@ -10,12 +10,6 @@ use Ecedi\Donate\OgoneBundle\Exception\UnauthorizedPostSaleException;
 use Ecedi\Donate\OgoneBundle\Exception\CannotDetermineOrderIdException;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 use Symfony\Component\DependencyInjection\ContainerAware;
-use Ecedi\Donate\CoreBundle\Event\DonateEvents;
-use Ecedi\Donate\CoreBundle\Event\PaymentFailedEvent;
-use Ecedi\Donate\CoreBundle\Event\PaymentCompletedEvent;
-use Ecedi\Donate\CoreBundle\Event\PaymentDeniedEvent;
-use Ecedi\Donate\CoreBundle\Event\PaymentCanceledEvent;
-use Ecedi\Donate\CoreBundle\Event\PaymentAuthorizedEvent;
 
 class PostSaleManager extends ContainerAware
 {
@@ -58,28 +52,8 @@ class PostSaleManager extends ContainerAware
                         //TODO le payment p-e ok, mais il est orphelin
                 }
 
-            $im = $this->container->get('donate_core.intent_manager');
-            $im->attachPayment($intentId, $payment);
-
-                //Throw events according to status
-                switch ($payment->getStatus()) {
-                    case Payment::STATUS_INVALID:
-                        $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_FAILED, new PaymentFailedEvent($payment));
-                        break;
-                    case Payment::STATUS_CANCELED:
-                        $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_CANCELED, new PaymentCanceledEvent($payment));
-                        break;
-                    case Payment::STATUS_PAYED:
-                        $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_COMPLETED, new PaymentCompletedEvent($payment));
-                        break;
-                    case Payment::STATUS_DENIED:
-                        $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_DENIED, new PaymentDeniedEvent($payment));
-                        break;
-                    case  Payment::STATUS_AUTHORIZED:
-                        $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_AUTHORIZED, new PaymentAuthorizedEvent($payment));
-                        break;
-
-                }
+            $intentMgr = $this->container->get('donate_core.intent_manager');
+            $intentMgr->attachPayment($intentId, $payment);
 
             return $this;
         }

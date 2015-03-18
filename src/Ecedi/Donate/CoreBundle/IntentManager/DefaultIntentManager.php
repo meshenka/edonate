@@ -210,6 +210,26 @@ class DefaultIntentManager implements IntentManagerInterface
             $em->persist($intent);
         }
 
+        //Throw events according to status
+        switch ($payment->getStatus()) {
+            case Payment::STATUS_INVALID:
+                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_FAILED, new PaymentFailedEvent($payment));
+                break;
+            case Payment::STATUS_CANCELED:
+                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_CANCELED, new PaymentCanceledEvent($payment));
+                break;
+            case Payment::STATUS_PAYED:
+                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_COMPLETED, new PaymentCompletedEvent($payment));
+                break;
+            case Payment::STATUS_DENIED:
+                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_DENIED, new PaymentDeniedEvent($payment));
+                break;
+            case  Payment::STATUS_AUTHORIZED:
+                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_AUTHORIZED, new PaymentAuthorizedEvent($payment));
+                break;
+
+        }
+
         $em->persist($payment);
         $em->flush();
     }
