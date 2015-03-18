@@ -1,38 +1,36 @@
 <?php
 /**
- * @author Alexandre Fayolle <afayolle@ecedi.fr>
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
  * @package Ecollecte
  */
 
-namespace Ecedi\Donate\PayboxBundle\Paybox;
-
-use Lexik\Bundle\PayboxBundle\Event\PayboxResponseEvent;
-use Ecedi\Donate\CoreBundle\Entity\Payment;
+namespace Ecedi\Donate\PayboxBundle\Model;
 
 /**
- * Paybox Response Manager
+ * IpnData is a simple Wrapper around Paybox Ipn response
  *
- * Pour plus d'informations sur les valeures retournées par Paybox
- * @see : http://www1.paybox.com/espace-integrateur-documentation/dictionnaire-des-donnees/paybox-system/
+ * this class is statefull, it cannot be a service
+ * It is a Value Object, immutable
  *
  * @since 2.2.0
  */
-class PayboxResponseManager
+class IpnData
 {
     /**
      * Paybox Response Variables in array.
      *
      * @var array $data
      */
-    protected $data;
+    private $data;
+
     /**
      * Instanciate a reponse
      *
      */
-    public function __construct(PayboxResponseEvent $event)
+    public function __construct($data)
     {
-        $this->data = $event->getData();
+        $this->data = $data;
     }
     /**
      * Retrieve all the response's datas.
@@ -262,53 +260,5 @@ class PayboxResponseManager
         $intentId = str_replace('DON-', '', $this->data['R']);
 
         return is_numeric($intentId) ? $intentId : false;
-    }
-    /**
-    * Matching Status with Ecollecte payment status
-    *
-    */
-    public function getPaymentStatus()
-    {
-        switch ($this->getErrorCode()) {
-            case '00000':
-                return Payment::STATUS_PAYED;
-                break;
-            case '00004':
-            case '00010':
-            case '00011':
-            case '00021':
-            case '00033':
-            case '00040':
-                return Payment::STATUS_DENIED;
-                break;
-            case '00008':
-            case '00029':
-                return Payment::STATUS_INVALID;
-                break;
-            case '00001':
-            case '00003':
-            case '00006':
-            case '00009':
-            case '00015':
-            case '00016':
-            case '00030':
-                return Payment::STATUS_FAILED;
-                break;
-            case '00031':
-            case '00032':
-                return Payment::STATUS_UNKNOWN;
-                break;
-            case '99999':
-                return Payment::STATUS_NEW;
-                break;
-            default:
-                if (substr($this->getErrorCode(), 0, 3) == '001') { // Paiement refusé par le centre d'autorisation
-                    return Payment::STATUS_DENIED;
-                    break;
-                } else {
-                    return Payment::STATUS_UNKNOWN;
-                    break;
-                }
-        }
     }
 }

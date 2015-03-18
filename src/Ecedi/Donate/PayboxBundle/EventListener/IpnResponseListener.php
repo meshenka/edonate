@@ -10,8 +10,8 @@ namespace Ecedi\Donate\PayboxBundle\EventListener;
 use Lexik\Bundle\PayboxBundle\Event\PayboxResponseEvent;
 use Ecedi\Donate\CoreBundle\IntentManager\IntentManagerInterface;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
-use Ecedi\Donate\PayboxBundle\Paybox\PayboxResponseManager;
-
+use Ecedi\Donate\PayboxBundle\Model\IpnData;
+use Ecedi\Donate\PayboxBundle\Paybox\StatusNormalizer;
 /**
  * Listener that manage Paybox IPN response
  *
@@ -20,10 +20,12 @@ use Ecedi\Donate\PayboxBundle\Paybox\PayboxResponseManager;
 class IpnResponseListener
 {
     private $intentManager;
+    private $normalizer;
 
-    public function __construct(IntentManagerInterface $intentManager)
+    public function __construct(IntentManagerInterface $intentManager, StatusNormalizer $normalizer)
     {
         $this->IntentManager = $intentManager;
+        $this->normalizer = $normalizer;
     }
     /**
      * Handle paybox Response listener
@@ -32,26 +34,18 @@ class IpnResponseListener
      */
     public function onPayboxIpnResponse(PayboxResponseEvent $event)
     {
-        $responseManager = new PayboxResponseManager($event);
-        $payment = $this->handlePayment($responseManager);
-    }
-    /**
-     * Handle paybox Response listener
-     *
-     * @param PayboxResponseManager $responseManager
-     */
-    private function handlePayment(PayboxResponseManager $responseManager)
-    {
+        $ipnData = new IpnData($event->getData());
+
         $payment = new Payment();
 
-        $payment->setAutorisation($responseManager->getAuthorisationId()) //n° autorisation
-                ->setTransaction($responseManager->getTransactionId()) //numéro transaction
-                ->setResponseCode($responseManager->getErrorCode()) //status paybox
-                ->setResponse($responseManager->getData())
-                ->setStatus($responseManager->getPaymentStatus());
+        $payment->setAutorisation($ipnData->getAuthorisationId()) //n° autorisation
+                ->setTransaction($ipnData->getTransactionId()) //numéro transaction
+                ->setResponseCode($ipnData->getErrorCode()) //status paybox
+                ->setResponse($ipnData->getData())
+                ->setStatus($this->normalizer->normalize($ipnData->getErrorCode());
 
         // On attache le paiement à l'intent
-        $this->intentManager->attachPayment($responseManager->getIntentId(), $payment);
+        $this->intentManager->attachPayment($ipnData->getIntentId(), $payment);
 
         return $payment;
     }

@@ -38,6 +38,8 @@ class PayboxController extends Controller
             }
 
             $paybox = $this->get('lexik_paybox.request_handler');
+            //@TODO rendre le PBX_CMD configurable et adapter le code de l'IpnData
+
             $paybox->setParameters(array(
                 'PBX_CMD'          => 'DON-'.$intent->getId(),
                 'PBX_DEVISE'       => '978',

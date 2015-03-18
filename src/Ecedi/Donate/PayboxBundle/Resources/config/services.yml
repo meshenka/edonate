@@ -7,6 +7,8 @@ services:
 
     ecollect.paybox.ipn:
         class: Ecedi\Donate\PayboxBundle\EventListener\IpnResponseListener
-        arguments: ['@donate_core.intent_manager']
+        arguments: ['@donate_core.intent_manager', '@ecollect.paybox.status_normalizer']
         tags:
             - {name: kernel.event_listener, event: paybox.ipn_response, method: onPayboxIpnResponse }
+    ecollect.paybox.status_normalizer:
+        class: Ecedi\Donate\PayboxBundle\Paybox\StatusNormalizer
