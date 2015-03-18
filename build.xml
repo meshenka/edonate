@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 
 <project name="eCollecte" default="build" basedir="." description="eCollecte.">
-     <property file="./build.properties" />
+    <property file="./build.properties" />
 
-    <property name="symfony.env"  value="${symfony.env}" override="true" />
 
 	<!-- Prepare build folders -->
 	<target name="prepare" description="Create directories">
@@ -17,7 +16,7 @@
 	<target name="build" depends="prepare" description="Build application from codebase">
 
 		<!-- composer install -->
-		<composer command="install" composer="/usr/local/bin/composer"/>
+		<composer command="install" composer="${composer.bin.path}"/>
 		<echo msg="composer install."/>		
 
 		<!-- database update -->
@@ -27,11 +26,18 @@
 		<echo msg="app/console doctrine:schema:update --force"/>		
 
 		<!-- dump assets -->
-		<SymfonyConsole command="assetic:dump"/>
+		<SymfonyConsole command="assetic:dump">
+            <arg name="env" value="${symfony.env}" />
+        </SymfonyConsole>
+
 		<echo msg="app/console assetic:dump"/>		
 
         <!-- clear cache -->
-        <SymfonyConsole command="cache:clear"/>
+        <SymfonyConsole command="cache:clear">
+            <arg name="env" value="${symfony.env}" />
+        </SymfonyConsole>
+
+
         <echo msg="app/console cache:clear"/>      
 	</target>
 	

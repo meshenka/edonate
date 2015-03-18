@@ -25,3 +25,4 @@
 /reports
 /src/Ecedi/Donate/CoreBundle/Resources/public/components/*
 /coverage/
+build.properties
