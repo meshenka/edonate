@@ -38,7 +38,8 @@
         "trsteel/ckeditor-bundle": "~1.6",
         "helios-ag/fm-elfinder-bundle": "~3.4",
         "campaignmonitor/createsend-php": "4.*",
-        "zendframework/zendpdf": "2.*"
+        "zendframework/zendpdf": "2.*",
+        "lexik/paybox-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.5",

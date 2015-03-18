@@ -1,0 +1,32 @@
+{% extends "DonateFrontBundle::layout.html.twig" %}
+{% import 'LexikPayboxBundle:Macro:paybox.html.twig' as paybox %}
+{#
+Départ vers paybox, formulaire avec tous les champs en Hidden
+#}
+{% block main_content %}
+{% spaceless %}
+
+<form  id="goto-paybox" action="{{ url }}">
+    {{ paybox.form(form) }}
+
+    <div class="textinfo">
+        <p>
+            {{'In a few seconds, you will be led to the payment page.'|trans}}
+        </p>
+        <p>
+            {{ 'If it is not the case, please '| trans }} <input value="{{ 'Click here'|trans }}" type="submit" class="btn btn-primary"/>
+        </p>
+    </div>
+</form>
+
+{% endspaceless %}
+{% endblock %}
+
+{% block end %}
+    {{ parent() }}
+    <script  type="text/javascript">
+        $(function() {
+            $("#goto-paybox").submit();
+        });
+    </script>
+{% endblock %}
