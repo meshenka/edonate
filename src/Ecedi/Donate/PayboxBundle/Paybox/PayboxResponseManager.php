@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Alexandre Fayolle <afayolle@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
+
 namespace Ecedi\Donate\PayboxBundle\Paybox;
 
 use Lexik\Bundle\PayboxBundle\Event\PayboxResponseEvent;
@@ -10,7 +16,7 @@ use Ecedi\Donate\CoreBundle\Entity\Payment;
  * Pour plus d'informations sur les valeures retournées par Paybox
  * @see : http://www1.paybox.com/espace-integrateur-documentation/dictionnaire-des-donnees/paybox-system/
  *
- * @author Alexandre FAYOLLE <alf@ecedi.fr>
+ * @since 2.2.0
  */
 class PayboxResponseManager
 {

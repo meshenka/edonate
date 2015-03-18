@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
 
 namespace Ecedi\Donate\PayboxBundle\DependencyInjection;
 
@@ -11,6 +16,7 @@ use Symfony\Component\DependencyInjection\Loader;
  * This is the class that loads and manages your bundle configuration
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * @since  2.2.0
  */
 class DonatePayboxExtension extends Extension
 {

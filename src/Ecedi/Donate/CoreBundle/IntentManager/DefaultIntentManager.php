@@ -211,6 +211,7 @@ class DefaultIntentManager implements IntentManagerInterface
         }
 
         //Throw events according to status
+        // @since 2.2.0
         switch ($payment->getStatus()) {
             case Payment::STATUS_INVALID:
                 $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_FAILED, new PaymentFailedEvent($payment));

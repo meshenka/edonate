@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Alexandre Fayolle <afayolle@ecedi.fr>
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
 
 namespace Ecedi\Donate\PayboxBundle\Controller;
 
@@ -7,6 +13,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * this controller display payment redirect form
+ * @since  2.2.0
+ */
 class PayboxController extends Controller
 {
     /**

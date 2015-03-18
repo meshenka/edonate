@@ -1,22 +1,28 @@
 <?php
+/**
+ * @author Alexandre Fayolle <afayolle@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
 
 namespace Ecedi\Donate\PayboxBundle\EventListener;
 
 use Lexik\Bundle\PayboxBundle\Event\PayboxResponseEvent;
-use Ecedi\Donate\CoreBundle\IntentManager/IntentManagerInterface;
+use Ecedi\Donate\CoreBundle\IntentManager\IntentManagerInterface;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 use Ecedi\Donate\PayboxBundle\Paybox\PayboxResponseManager;
 
 /**
  * Listener that manage Paybox IPN response
  *
- * @author Alexandre FAYOLLE <afayolle@ecedi.fr>
+ * @since 2.2.0
  */
-class IpnResponseListener {
-
+class IpnResponseListener
+{
     private $intentManager;
 
-    public function __construct(IntentManagerInterface $intentManager) {
+    public function __construct(IntentManagerInterface $intentManager)
+    {
         $this->IntentManager = $intentManager;
     }
     /**
