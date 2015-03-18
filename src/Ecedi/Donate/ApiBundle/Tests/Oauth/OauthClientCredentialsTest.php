@@ -149,7 +149,7 @@ class OauthClientCredentialsTest extends WebTestCase
 
         //extract token
         $content = $client->getResponse()->getContent();
-        print_r($content);
+        //print_r($content);
         $data = json_decode($content);
         //try to access using this token
         $crawler = $client->request('GET', '/api/v1/customers', array(

@@ -14,8 +14,11 @@
     bootstrap                   = "bootstrap.php.cache" >
 
     <testsuites>
-        <testsuite name="Ecollect Integration Tests">
+        <testsuite name="integration">
             <directory>../src/Ecedi/Donate/*Bundle/Tests</directory>
+        </testsuite>
+        <testsuite name="smoke">
+            <directory>../src/Ecedi/Donate/*Bundle/Tests/Smoke/</directory>
         </testsuite>
     </testsuites>
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="b651efdb98a5d6bd2b3935d0c3f4a5e2" resname="Required">
+        <source>Required</source>
+        <target>requis</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -4,16 +4,15 @@ namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use Ecedi\Donate\AdminBundle\Form\IntentFiltersType;
-use Ecedi\Donate\AdminBundle\Form\CustomerFiltersType;
-use Ecedi\Donate\AdminBundle\Form\CustomerType;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
+use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Doctrine\ORM\Query;
-
+use Ecedi\Donate\AdminBundle\Form\CustomerType;
+use Ecedi\Donate\AdminBundle\Form\CustomerFiltersType;
+use Ecedi\Donate\AdminBundle\Form\IntentFiltersType;
 /**
  * Reporting controller.
  *
@@ -23,11 +22,9 @@ class ReportingController extends Controller
 {
     /**
      * @Route("/intents" , name="donate_admin_reporting_intents")
-     * @Template()
      */
-    public function intentsAction()
+    public function intentsAction(Request $request)
     {
-        $request = $this->getRequest();
         $intentForm = $this->createForm(new IntentFiltersType());
 
         $parameters = $request->query->get('intent_filters');// Récupération des valeures de nos filtres
@@ -36,59 +33,54 @@ class ReportingController extends Controller
             $intentForm->bind($request);// application des filtres sélectionnées au formulaire
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $qb = $em->getRepository('DonateCoreBundle:Intent')->getQBIntentsListBy($parameters);
+        $entityMgr = $this->getDoctrine()->getManager();
+        $queryBuilder = $entityMgr->getRepository('DonateCoreBundle:Intent')->getQBIntentsListBy($parameters);
 
         // gestion de l'export
         if ($intentForm->isValid()) {
             if ($intentForm->get('submit_export')->isClicked()) {
-                $exporter = $this->get('donate_admin.export.intent');
-                $exporter->setExportQb($qb);
+                $exporter = $this->get('ecollect.export.intent');
+                $exporter->setExportQb($queryBuilder);
                 $content = $exporter->getCsvContent();
 
                 return $this->getCsvResponse($content, 'export_dons', 'ISO-8859-1');
             }
         }
 
-        $pagination = $this->getPagination($request, $qb->getQuery(), 20);
+        $pagination = $this->getPagination($request, $queryBuilder->getQuery(), 20);
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:intents.html.twig', [
             'pagination'    => $pagination,
             'intentForm'    => $intentForm->createView()
-        ];
+        ]);
     }
 
     /**
      * @Route("/intent/{id}/show" , name="donate_admin_reporting_intent_show", defaults={"id" = 0})
-     * @Template()
      */
-    public function intentShowAction($id)
+    public function intentShowAction(Request $request, Intent $intent)
     {
-        $request = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
-        $intent = $em->getRepository('DonateCoreBundle:Intent')->find($id);
         $customerId = $intent->getCustomer()->getId();
+        $entityMgr = $this->getDoctrine()->getManager();
 
-        $paymentsQuery = $em->getRepository('DonateCoreBundle:Payment')->getPaymentsListByIntent(['intentId' => $id]);
-        $customerOtherIntentsQuery = $em->getRepository('DonateCoreBundle:Intent')->getIntentsListByCustomer(['customerId' => $customerId], 5, $id);
-        $customerOtherIntents = $customerOtherIntentsQuery->getResult();
+        $paymentsQuery = $entityMgr->getRepository('DonateCoreBundle:Payment')->getPaymentsListByIntent(['intentId' => $intent->getId()]);
+        $otherIntentsQuery = $entityMgr->getRepository('DonateCoreBundle:Intent')->getIntentsListByCustomer(['customerId' => $customerId], 5, $intent->getId());
+        $otherIntents = $otherIntentsQuery->getResult();
 
         $pagination = $this->getPagination($request, $paymentsQuery, 12);
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:intentShow.html.twig', [
             'intent'                => $intent,
             'pagination'            => $pagination,
-            'customerOtherIntents'  => $customerOtherIntents,
-        ];
+            'customerOtherIntents'  => $otherIntents,
+        ]);
     }
 
     /**
      * @Route("/customers" , name="donate_admin_reporting_customers")
-     * @Template()
      */
-    public function customersAction()
+    public function customersAction(Request $request)
     {
-        $request = $this->getRequest();
         $customerForm = $this->createForm(new CustomerFiltersType());
 
         $parameters = $request->query->get('customer_filters');// Récupération des valeures de nos filtres
@@ -97,13 +89,13 @@ class ReportingController extends Controller
             $customerForm->bind($request);// application des filtres sélectionnées au formulaire
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->getRepository('DonateCoreBundle:Customer')->getCustomersListBy($parameters);
+        $entityMgr = $this->getDoctrine()->getManager();
+        $query = $entityMgr->getRepository('DonateCoreBundle:Customer')->getCustomersListBy($parameters);
 
         // gestion de l'export
         if ($customerForm->isValid()) {
             if ($customerForm->get('submit_export')->isClicked()) {
-                $exporter = $this->get('donate_admin.export.customer');
+                $exporter = $this->get('ecollect.export.customer');
                 $exporter->setExportQuery($query);
                 $content = $exporter->getCsvContent();
 
@@ -113,69 +105,59 @@ class ReportingController extends Controller
 
         $pagination = $this->getPagination($request, $query, 20);
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:customers.html.twig', [
             'pagination'    => $pagination,
             'customerForm'  => $customerForm->createView()
-        ];
+        ]);
     }
 
     /**
      * @Route("/customer/{id}/show" , name="donate_admin_reporting_customer_show", defaults={"id" = 0})
-     * @Template()
      */
-    public function customerShowAction($id)
+    public function customerShowAction(Request $request, Customer $customer)
     {
-        $request = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
-        $customer = $em->getRepository('DonateCoreBundle:Customer')->find($id);
-        $intentsQuery = $em->getRepository('DonateCoreBundle:Intent')->getIntentsListByCustomer(['customerId' => $id]);
+        $entityMgr = $this->getDoctrine()->getManager();
+        $intentsQuery = $entityMgr->getRepository('DonateCoreBundle:Intent')->getIntentsListByCustomer(['customerId' => $customer->getId()]);
 
         $pagination = $this->getPagination($request, $intentsQuery, 10);
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:customerShow.html.twig', [
             'customer'          => $customer,
             'pagination'        => $pagination,
-        ];
+        ]);
     }
 
     /**
      * @Route("/customer/{id}/edit" , name="donate_admin_reporting_customer_edit", defaults={"id" = 0})
-     * @Template()
      */
-    public function customerEditAction($id)
+    public function customerEditAction(Request $request, Customer $customer)
     {
-        $request = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
-        $customer = $em->getRepository('DonateCoreBundle:Customer')->find($id);
-
         $editForm = $this->createForm(new CustomerType(), $customer);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($customer);
-            $em->flush();
+            $entityMgr = $this->getDoctrine()->getManager();
+
+            $entityMgr->persist($customer);
+            $entityMgr->flush();
             $noticeMsg = $this->get('translator')->trans("Donator has been updated");
             $this->get('session')->getFlashBag()->set('notice', $noticeMsg);
 
             return $this->redirect($this->generateUrl('donate_admin_reporting_customer_show', array('id' => $customer->getId())));
         }
 
-        return [
+        return $this->render('DonateAdminBundle:Reporting:customerEdit.html.twig', [
             'editForm'  => $editForm->createView()
-        ];
+        ]);
     }
 
     /**
-     * @Template()
      */
-    public function customerInfoAction($id)
+    public function customerInfoAction(Customer $customer)
     {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('DonateCoreBundle:Customer')->find($id);
-
-        return [
-            'customer'  => $entity
-        ];
+        return $this->render('DonateAdminBundle:Reporting:customerInfo.html.twig', [
+            'customer'  => $customer
+        ]);
     }
 
     /**

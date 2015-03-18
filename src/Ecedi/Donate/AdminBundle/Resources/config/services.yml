@@ -1,0 +1,15 @@
+# DonateAdminBundle/Resources/config/services.yml
+# @since 2.1.0
+parameters:
+    donate_admin.analytics.client_id :
+    donate_admin.analytics.data_ids :
+    donate_admin.analytics.api_key :
+
+services:
+    ecollect.export.customer:
+        class : Ecedi\Donate\AdminBundle\Exporter\CustomerExporter
+        arguments : ['@translator']
+
+    ecollect.export.intent:
+        class : Ecedi\Donate\AdminBundle\Exporter\IntentExporter
+        arguments: ['@translator']

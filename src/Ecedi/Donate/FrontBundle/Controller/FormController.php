@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
+use Ecedi\Donate\FrontBundle\Form\Type\DonationType;
 
 class FormController extends Controller
 {
@@ -26,7 +27,7 @@ class FormController extends Controller
 
         $layout = $layoutMgr->getDefault($_locale);
 
-        $form = $this->createForm('donate', $data, array(
+        $form = $this->createForm(new DonationType($this->get('translator')), $data, array(
             'civilities' => $this->container->getParameter('donate_front.form.civility'),
             'equivalences' => $this->get('donate_core.equivalence.factory')->getAll(),
             'payment_methods' => $this->get('donate_core.payment_method_discovery')->getEnabledMethods(),

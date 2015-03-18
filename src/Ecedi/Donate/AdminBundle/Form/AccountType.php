@@ -55,6 +55,7 @@ class AccountType extends AbstractType
                 'label'     => 'Submit',
             ));
             // gestion des champs différents selon le type de formulaire (edition ou création)
+            // TODO revoir ce code, on ne devrait pas dépendre de la la route
             if ($this->route == 'donate_admin_user_new') {
                 $builder
                     ->add('password', 'repeated', array(

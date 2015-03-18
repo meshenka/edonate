@@ -9,7 +9,6 @@ namespace Ecedi\Donate\PaymentBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +24,6 @@ class SepaOfflineController extends Controller
 {
     /**
      * @Route("/sepa-offline/completed", name="donate_payment_sepa_offline_completed")
-     * @Template()
      * @since  2.0.0
      * @return mixed array of twig variables, or a manual Symfony\Component\HttpFoundation\Response
      */
@@ -38,14 +36,18 @@ class SepaOfflineController extends Controller
         if ($session->has('intentId')) {
             $intentId = $session->get('intentId');
 
-            return ['intent' => $intentRepo->find($intentId)];
+            return $this->render('DonatePaymentBundle:SepaOffline:autorize.html.twig', [
+                'intent' => $intentRepo->find($intentId)
+            ]);
         }
 
         //en env de dev on peut afficher la page avec un payment OK
         if ($this->container->getParameter('kernel.environment') === 'dev') {
             $intent = $intentRepo->findOneBy(['status' => Intent::STATUS_DONE, 'paymentMethod' => SepaOfflinePaymentMethod::ID]);
             if ($intent) {
-                return ['intent' => $intent];
+                return $this->render('DonatePaymentBundle:SepaOffline:autorize.html.twig', [
+                    'intent' => $intent
+                ]);
             }
         }
 

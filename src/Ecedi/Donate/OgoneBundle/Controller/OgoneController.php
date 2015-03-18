@@ -4,7 +4,6 @@ namespace Ecedi\Donate\OgoneBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +17,6 @@ class OgoneController extends Controller
 {
     /**
      * @Route("/pay",  name="donate_ogone_pay")
-     * @Template()
      */
     public function payAction(Request $request)
     {
@@ -37,7 +35,9 @@ class OgoneController extends Controller
 
                 $factory = $this->get('donate_ogone.request.factory');
 
-                return ['ogone' => $factory->build($intent), 'intent' => $intent];
+                return $this->render('DonateOgoneBundle:Ogone:pay.html.twig', [
+                    'ogone' => $factory->build($intent), 'intent' => $intent
+                ]);
             }
         }
 

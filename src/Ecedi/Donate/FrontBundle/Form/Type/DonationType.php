@@ -28,7 +28,7 @@ class DonationType extends AbstractType
             }
         }
 
-        $form->add($tunnel, 'amount_selector', [
+        $form->add($tunnel, new AmountType($this->translator), [
                 'mapped'        => false,
                 'label'         => false,
                 'required'      => true,
@@ -43,80 +43,77 @@ class DonationType extends AbstractType
     private function buildPersonnalDetails(FormBuilderInterface $builder, array $options)
     {
         // Info perso
-        $builder->add('civility', 'choice',
-            [
-                'choices'   => $options['civilities'],
-                'required'  => false,
-                'label' => $this->translator->trans('Civility')
-            ]
-        );
+        $builder->add('civility', 'choice', [
+            'choices'   => $options['civilities'],
+            'required'  => false,
+            'label' => 'Civility'
+        ]);
 
-        $builder->add('company', 'text', array(
+        $builder->add('company', 'text', [
             'required' => FALSE,
-            'label' => $this->translator->trans('Company'), ));
+            'label' => 'Company'
+        ]);
 
-        $builder->add('firstName', 'text', array(
+        $builder->add('firstName', 'text', [
             'required' => TRUE,
-            'label' => $this->translator->trans('First name'), ));
+            'label' => 'First name'
+        ]);
 
-        $builder->add('lastName', 'text', array(
+        $builder->add('lastName', 'text', [
             'required' => TRUE,
-            'label' => $this->translator->trans('Last name'), ));
+            'label' => 'Last name'
+        ]);
 
-        $builder->add('phone', 'text', array(
+        $builder->add('phone', 'text', [
             'required' => FALSE,
-            'label' => $this->translator->trans('Phone'), ));
+            'label' => 'Phone'
+        ]);
 
-        $builder->add('email', 'repeated', array(
+        $builder->add('email', 'repeated', [
             'type' => 'email',
-            'invalid_message' => $this->translator->trans('The email fields must match.'),
-            'options' => array(
-                'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => "xxx@yyyy.fr",
-                    ), ),
+            'invalid_message' => 'The email fields must match.',
             'required' => true,
-            'first_options'  => array('label' => $this->translator->trans('Email')),
-            'second_options' => array('label' => $this->translator->trans('Repeat Email')),
-            ));
+            'first_options'  => array('label' => 'Email'),
+            'second_options' => array('label' => 'Repeat Email'),
+        ]);
 
         //Address
-        $builder->add('addressStreet', 'text', array(
+        $builder->add('addressStreet', 'text', [
             'required'  => true,
-            'label' => $this->translator->trans('Address'),
-            ));
+            'label' => 'Address'
+        ]);
 
-        $builder->add('addressPb', 'text', array(
+        $builder->add('addressPb', 'text', [
             'required'  => false,
-            'label' => $this->translator->trans('Locality, post box'),
-            ));
+            'label' => 'Locality, post box'
+        ]);
 
-        $builder->add('addressLiving', 'text', array(
+        $builder->add('addressLiving', 'text', [
             'required'  => false,
-            'label' => $this->translator->trans('Living with'),
-            ));
+            'label' => 'Living with'
+        ]);
 
-        $builder->add('addressExtra', 'text', array(
+        $builder->add('addressExtra', 'text', [
             'required'  => false,
-            'label' => $this->translator->trans('Apartment, floor numbers'),
-            ));
+            'label' => 'Apartment, floor numbers'
+        ]);
 
-        $builder->add('addressZipcode', 'number', array(
+        $builder->add('addressZipcode', 'number', [
             'required'  => true,
-            'label' => $this->translator->trans('Zipcode'),
-            ));
+            'label' => 'Zipcode'
+        ]);
 
-        $builder->add('addressCity', 'text', array(
+        $builder->add('addressCity', 'text', [
             'required'  => true,
-            'label' => $this->translator->trans('City'),
-            ));
+            'label' => 'City'
+        ]);
 
-        $builder->add('addressCountry', 'country', array(
+        $builder->add('addressCountry', 'country', [
             'required'  => true,
             'preferred_choices' => array('FR'),
             'data' => 'FR',
-            'label' => $this->translator->trans('Country'),
-            ));
+            'label' => 'Country'
+        ]);
     }
 
     /**
@@ -171,7 +168,7 @@ class DonationType extends AbstractType
                  'required'  => true,
                  'expanded' => true,
                  'multiple' => false,
-                 'label' => $this->translator->trans('I want to'),
+                 'label' => 'I want to',
                  'data' => $affectations[0]->getCode(),
                  'mapped' => false,
             ]);
@@ -198,13 +195,13 @@ class DonationType extends AbstractType
 
         $builder->add('erf', 'choice', [
             'choices'   => [
-                0 => $this->translator->trans('by email'),
-                1 => $this->translator->trans('by post'),
+                0 => 'by email',
+                1 => 'by post',
             ],
             'required'  => true,
             'expanded' => true,
             'multiple' => false,
-            'label' => $this->translator->trans('I prefer to receive my tax receipt'),
+            'label' => 'I prefer to receive my tax receipt',
             'data' => 0,
             'mapped' => false,
             ]
@@ -212,7 +209,7 @@ class DonationType extends AbstractType
 
         $builder->add('optin', 'checkbox', [
             'required' => false,
-            'label' => $this->translator->trans('I agree to receive informations from Association XY'),
+            'label' => 'I agree to receive informations from Association XY',
         ]);
 
         // payment methods for each tunnels subform
@@ -240,7 +237,7 @@ class DonationType extends AbstractType
         foreach ($equivalences[$tunnel] as $equivalence) {
             $options[$equivalence->getAmount()] = $equivalence->getLabel();
         }
-        $options['manual'] = $this->translator->trans('Other amount');
+        $options['manual'] = 'Other amount';
 
         return $options;
     }
