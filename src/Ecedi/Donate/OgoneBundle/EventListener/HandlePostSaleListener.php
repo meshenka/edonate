@@ -1,23 +1,22 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
 
 namespace Ecedi\Donate\OgoneBundle\EventListener;
 
 use Ecedi\Donate\OgoneBundle\Ogone\PostSale\PostSaleManager;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Psr\Log\LoggerInterface;
-use Ecedi\Donate\CoreBundle\Event\PaymentReceivedEvent;
 use Ecedi\Donate\OgoneBundle\OgoneEvents;
+use Ecedi\Donate\OgoneBundle\Event\PostSaleEvent;
 
 /**
- * Sends emails for the memory spool.
- *
- * Emails are sent on the kernel.terminate event.
- *
- * @author Fabien Potencier <fabien@symfony.com>
- *
- * TODO attention avec les evenements il faut les traiter que quand cela est pertinant
+ * this listener manage post sale and generate Payments
+ * @since  2.2.0 listen to OgoneEvents::POSTSALE and receive a
  */
-class HandlePostSaleListener implements EventSubscriberInterface
+class HandlePostSaleListener implements EventSubscriberInterfacePostSaleEvent
 {
     private $manager;
     private $logger;
@@ -28,10 +27,11 @@ class HandlePostSaleListener implements EventSubscriberInterface
         $this->logger = $logger;
     }
 
-    public function onPostSale(PaymentReceivedEvent $event)
+    public function onPostSale(PostSaleEvent $event)
     {
         $this->logger->debug('before postsale manager');
-        $this->manager->handle($event->getResponse());
+        $payment = $this->manager->handle($event->getResponse());
+        $event->setPayment($payment);
     }
 
     public static function getSubscribedEvents()

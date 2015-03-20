@@ -1,7 +1,10 @@
 <?php
 /**
- * @author sgogel@ecedi.fr
- * Le RequestBuilder est un service type "Factory"
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2014
+ * @package Ecollecte
+ *
+ *  Le RequestBuilder est un service type "Factory"
  * qui génère des Ogone\Request à partir d'un Intent et de la configuration du bundle
  *
  */

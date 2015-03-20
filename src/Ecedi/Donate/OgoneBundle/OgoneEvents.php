@@ -8,6 +8,7 @@ namespace Ecedi\Donate\OgoneBundle;
 
 /**
  * Ogone Specifics Events
+ * @since  2.2.0
  */
 final class OgoneEvents
 {

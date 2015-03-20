@@ -1,6 +1,8 @@
 <?php
 /**
- * @author sgogel@ecedi.fr
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2014
+ * @package Ecollecte
  */
 namespace Ecedi\Donate\OgoneBundle\EventListener;
 
@@ -13,8 +15,10 @@ use Ecedi\Donate\OgoneBundle\Event\PostSaleEvent;
 /**
  * Ce Subscriber envoi des emails lors de la réception de post-sale quand le code status de la réponse Ogone
  * Indique qu'une action humaine est nécessaire.
- * TODO attention avec les evenements il faut les traiter que quand cela est pertinant
  *
+ * @since  2.2.0 listen to OgoneEvents::POSTSALE
+ *
+ * @TODO remove ContainerAware
  */
 class NotifyPostSaleStatusListener extends ContainerAware implements EventSubscriberInterface
 {

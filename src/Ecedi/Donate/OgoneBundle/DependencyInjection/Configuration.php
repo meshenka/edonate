@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2014
+ * @package Ecollecte
+ */
 namespace Ecedi\Donate\OgoneBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -14,6 +18,7 @@ class Configuration implements ConfigurationInterface
 {
     /**
      * {@inheritDoc}
+     * @since  2.2.0 async_postsale has been removed
      */
     public function getConfigTreeBuilder()
     {
@@ -29,7 +34,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('pspid')->isRequired()->end()
                 ->booleanNode('prod')->defaultFalse()->end()
                 ->scalarNode('currency')->defaultValue('EUR')->end()
-                ->scalarNode('prefix')->defaultValue('DEV')->end()
+                ->scalarNode('prefix')->defaultValue('EC')->end()
                 ->arrayNode('security')->children()
                     ->scalarNode('sha1_in')->isRequired()->end()
                     ->scalarNode('sha1_out')->isRequired()->end()

@@ -186,6 +186,8 @@ class DefaultIntentManager implements IntentManagerInterface
      */
     protected function dispatchPaymentStatusEvent($payment)
     {
+        $this->get('event_dispatcher')->dispatch(Ev\DonateEvents::PAYMENT_RECEIVED, new Ev\PaymentReceivedEvent($payment));
+
         //Throw events according to status
         // @since 2.2.0
         switch ($payment->getStatus()) {

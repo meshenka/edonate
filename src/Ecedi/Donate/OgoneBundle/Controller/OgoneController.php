@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2014
+ * @package Ecollecte
+ */
 namespace Ecedi\Donate\OgoneBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,8 +13,6 @@ use Ecedi\Donate\CoreBundle\Entity\Payment;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Ecedi\Donate\CoreBundle\Event\DonateEvents;
-use Ecedi\Donate\CoreBundle\Event\PaymentReceivedEvent;
 use Ecedi\Donate\OgoneBundle\Ogone\Response as OgoneResponse;
 use Ecedi\Donate\OgoneBundle\OgoneEvents;
 use Ecedi\Donate\OgoneBundle\Event\PostSaleEvent;
@@ -45,14 +47,7 @@ class OgoneController extends Controller
 
     /**
      * @Route("/api/postsale",  name="donate_ogone_postsale")
-     *
-     * TODO solution type BEN
-     * Sur la post-sale on ne fait que enregistrer les informations
-     * validation/vérification/association à un intent se fera plus tard
-     *   - soit via un Handler d'Event DonateEventes:PAYMENT_RECEIVED
-     *   - soit via une commande batch (mais du coup il faut savoir si une post-sale a été traité ou non)
-     *
-     *  Option, ajouter une Entity pour la capture de la réponse Ogone en couplage léger avec Payment ?
+     * @since  2.2.0 this router delegate all business logic to PostSaleManager via a OgoneEvents::POSTSALE event
      */
     public function postsaleAction(Request $request)
     {
@@ -64,11 +59,10 @@ class OgoneController extends Controller
 
         $payment = $postSaleEvent->getPayment();
 
-        $this->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_RECEIVED,  new PaymentReceivedEvent($payment));
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($payment);
-        $em->flush();
+        //i think this part is optionnal as already done in IntentManager::attachPayment()
+        $entityMgr = $this->getDoctrine()->getManager();
+        $entityMgr->persist($payment);
+        $entityMgr->flush();
 
         return new JsonResponse(['status' => 'OK']);
     }

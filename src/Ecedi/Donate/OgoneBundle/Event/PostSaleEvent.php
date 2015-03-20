@@ -13,7 +13,7 @@ use Ecedi\Donate\CoreBundle\Entity\Payment;
 /**
  * Ogone Post Sale Hook event
  *
- * @since  2.2.0
+ * @since  2.2.0 new class
  */
 class PostSaleEvent extends Event
 {

@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2014
+ * @package Ecollecte
+ */
 namespace Ecedi\Donate\OgoneBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -16,6 +20,7 @@ class DonateOgoneExtension extends Extension
 {
     /**
      * {@inheritDoc}
+     * @since  2.2.0 async_postsale has been removed
      */
     public function load(array $configs, ContainerBuilder $container)
     {

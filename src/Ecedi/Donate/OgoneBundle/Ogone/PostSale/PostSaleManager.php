@@ -61,8 +61,9 @@ class PostSaleManager
     /**
      * [handle description]
      * @param  Ecedi\Donate\OgoneBundle\Ogone\Response $response the OgoneResponse
-     * @return [type]                                  [description]
+     * @return Payment                                 [description]
      * @since  2.2.0 use a Ecedi\Donate\OgoneBundle\Ogone\Response object are argument
+     * @since  2.2.0 return a Payment instance instead of this
      */
     public function handle(Response $response)
     {
@@ -73,7 +74,7 @@ class PostSaleManager
      * traitement réel du paiement
      *
      * @param  Ecedi\Donate\OgoneBundle\Ogone\Response $response
-     * @return PostSaleManager                         this object (for chaining)
+     * @return Payment                                 the payment instance
      */
     protected function doHandle(Response $response)
     {
@@ -107,8 +108,7 @@ class PostSaleManager
                 //TODO le payment p-e ok, mais il est orphelin
         }
 
-        $intentMgr = $this->container->get('donate_core.intent_manager');
-        $intentMgr->attachPayment($intentId, $payment);
+        $this->intentManager->attachPayment($intentId, $payment);
 
         return $payment;
     }
