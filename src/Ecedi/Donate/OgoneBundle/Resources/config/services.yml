@@ -7,12 +7,13 @@ parameters:
         security:
             sha1_in: ~
             sha1_out: ~
-        async_postsale: false
+        # @since 2.2.0 asynchronous post-sale handling is droped
+        #async_postsale: false  
 
 services:
     # normalisation des status ogone vers les status de paiement
     donate_ogone.status_normalizer:
-        class: Ecedi\Donate\OgoneBundle\Ogone\OgoneStatusNormalizer
+        class: Ecedi\Donate\OgoneBundle\Ogone\StatusNormalizer
 
     # Plugin de payment methode
     ecollect.pm.ogone:
@@ -26,16 +27,9 @@ services:
 #        tags:
 #            - {name: donate.payment_method}
 
-    #Service de gestion de la PostSale (validation de la post-sale et rattachement à l'intent d'origine )
-    #   use class Ecedi\Donate\OgoneBundle\Ogone\PostSale\PostSaleManager to handle the post sale inside the controller
-    #   use class Ecedi\Donate\OgoneBundle\Ogone\PostSale\MemorySpoolPostSaleManager to handle the post sale on Terminate event (after response is sent)
     donate_ogone.postsale.manager:
-        # do post sale handling onTerminate
-        class: Ecedi\Donate\OgoneBundle\Ogone\PostSale\MemorySpoolPostSaleManager
-        # do post sale handing immediately
-        #class: Ecedi\Donate\OgoneBundle\Ogone\PostSale\PostSaleManager
-        calls: 
-            - [setContainer, ['@service_container']]
+        class: Ecedi\Donate\OgoneBundle\Ogone\PostSale\PostSaleManager
+        arguments: ['@donate_core.intent_manager', '@donate_ogone.status_normalizer', '%donate_ogone.security.sha1_out%', '%donate_ogone.prefix%', '@logger']
 
     # generateur de Requete Ogone
     donate_ogone.request.factory:
@@ -56,13 +50,6 @@ services:
     ecollect.listener.handle_postsale:
         class: Ecedi\Donate\OgoneBundle\EventListener\HandlePostSaleListener
         arguments: ['@donate_ogone.postsale.manager', '@logger']
-        tags:
-            - {name: kernel.event_subscriber}
-
-    #Observateur traite les post-sale délégué après la réponse HTTP
-    ecollect.listener.spooled_postsale:
-        class: Ecedi\Donate\OgoneBundle\EventListener\HandleSpooledPostSaleListener
-        arguments: ['@service_container']
         tags:
             - {name: kernel.event_subscriber}
 

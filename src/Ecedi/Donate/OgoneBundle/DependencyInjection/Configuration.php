@@ -28,7 +28,6 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('pspid')->isRequired()->end()
                 ->booleanNode('prod')->defaultFalse()->end()
-                ->booleanNode('async_postsale')->defaultFalse()->end()
                 ->scalarNode('currency')->defaultValue('EUR')->end()
                 ->scalarNode('prefix')->defaultValue('DEV')->end()
                 ->arrayNode('security')->children()

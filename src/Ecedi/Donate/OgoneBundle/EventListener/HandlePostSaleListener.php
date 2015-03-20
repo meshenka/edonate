@@ -5,8 +5,8 @@ namespace Ecedi\Donate\OgoneBundle\EventListener;
 use Ecedi\Donate\OgoneBundle\Ogone\PostSale\PostSaleManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Psr\Log\LoggerInterface;
-use Ecedi\Donate\CoreBundle\Event\DonateEvents;
 use Ecedi\Donate\CoreBundle\Event\PaymentReceivedEvent;
+use Ecedi\Donate\OgoneBundle\OgoneEvents;
 
 /**
  * Sends emails for the memory spool.
@@ -31,12 +31,12 @@ class HandlePostSaleListener implements EventSubscriberInterface
     public function onPostSale(PaymentReceivedEvent $event)
     {
         $this->logger->debug('before postsale manager');
-        $this->manager->handle($event->getPayment());
+        $this->manager->handle($event->getResponse());
     }
 
     public static function getSubscribedEvents()
     {
-        return array(DonateEvents::PAYMENT_RECEIVED => array(
+        return array(OgoneEvents::POSTSALE => array(
                 array('onPostSale', 10),
             ),
         );

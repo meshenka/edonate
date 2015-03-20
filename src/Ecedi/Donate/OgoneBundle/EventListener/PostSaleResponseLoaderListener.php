@@ -19,8 +19,8 @@ class PostSaleResponseLoaderListener
 
         if ($entity instanceof Payment) {
             if ($entity->getResponse()) {
-                $r = OgoneResponse::createFromArray($entity->getResponse());
-                $entity->setResponse($r);
+                //$r = OgoneResponse::createFromArray($entity->getResponse());
+                //$entity->setResponse($r);
             }
         }
     }

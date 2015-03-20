@@ -1,10 +1,18 @@
 <?php
-
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2014
+ * @package Ecollecte
+ */
 namespace Ecedi\Donate\OgoneBundle\Ogone;
 
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 
-class OgoneStatusNormalizer
+/**
+ * @since  2.2.0 class OgoneStatusNormalizer renamed StatusNormalizer
+ *
+ */
+class StatusNormalizer
 {
     /**
      * Cette méthode convertie un code de status Ogone en un status de l'intent

@@ -58,24 +58,15 @@ class OgoneController extends Controller
     {
         $response = OgoneResponse::createFromRequest($request);
 
-        $this->get('event_dispatcher')->dispatch(OgoneEvents::POSTSALE,  new PostSaleEvent($response));
+        $postSaleEvent =  new PostSaleEvent($response);
 
-        //initialize payment
-        $payment = new Payment();
-        $payment->setAutorisation($response->getAcceptance()) //n° autorisation
-            ->setTransaction($response->getPayId()) //no transaction
-            ->setResponseCode($response->getStatus()) //status ogone
-            ->setResponse($response);
+        $this->get('event_dispatcher')->dispatch(OgoneEvents::POSTSALE, $postSaleEvent);
+
+        $payment = $postSaleEvent->getPayment();
+
+        $this->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_RECEIVED,  new PaymentReceivedEvent($payment));
 
         $em = $this->getDoctrine()->getManager();
-
-        //si nous somme en mode asynchrone, alors c'est via la commande donate:ogone:postsale que seront envoyés
-        // les events
-        if ($this->container->getParameter('donate_ogone.async_postsale') == false) {
-            $this->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_RECEIVED,  new PaymentReceivedEvent($payment));
-            $this->get('logger')->debug(DonateEvents::PAYMENT_RECEIVED.' dispatched');
-        }
-
         $em->persist($payment);
         $em->flush();
 
