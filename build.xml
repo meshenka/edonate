@@ -16,7 +16,9 @@
 	<target name="build" depends="prepare" description="Build application from codebase">
 
 		<!-- composer install -->
-		<composer command="install" composer="${composer.bin.path}"/>
+		<composer command="install" composer="${composer.bin.path}">
+             <arg value="--optimize-autoloader" />
+        </composer>
 		<echo msg="composer install."/>		
 
 		<!-- database update -->
