@@ -11,10 +11,7 @@ namespace Ecedi\Donate\CoreBundle\IntentManager;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Ecedi\Donate\CoreBundle\Event\DonateEvents;
-use Ecedi\Donate\CoreBundle\Event\DonationRequestedEvent;
-use Ecedi\Donate\CoreBundle\Event\PaymentRequestedEvent;
-use Ecedi\Donate\CoreBundle\Event\AutorizationRequestedEvent;
+use Ecedi\Donate\CoreBundle\Event as Ev;
 use Ecedi\Donate\CoreBundle\Exception\UnknownPaymentMethodException;
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 
@@ -66,10 +63,10 @@ class DefaultIntentManager implements IntentManagerInterface
         $session = $request->getSession();
         $session->set('intentId', $intent->getId());
 
-            // try to see if the locale has been set as a _locale routing parameter
-            if ($locale = $request->getLocale()) {
-                $session->set('_locale', $locale);
-            }
+        // try to see if the locale has been set as a _locale routing parameter
+        if ($locale = $request->getLocale()) {
+            $session->set('_locale', $locale);
+        }
     }
 
     /**
@@ -91,13 +88,13 @@ class DefaultIntentManager implements IntentManagerInterface
     public function handle(Intent $intent)
     {
         $this->preHandle($intent);
-        $pm = $this->discovery->getMethod($intent->getPaymentMethod());
-        if ($pm) {
-            if (($pm->getTunnel() === PaymentMethodInterface::TUNNEL_RECURING) || ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPONSORSHIP)) {
+        $paymentMethod = $this->discovery->getMethod($intent->getPaymentMethod());
+        if ($paymentMethod) {
+            if (($paymentMethod->getTunnel() === PaymentMethodInterface::TUNNEL_RECURING) || ($paymentMethod->getTunnel() === PaymentMethodInterface::TUNNEL_SPONSORSHIP)) {
                 return $this->handleAutorize($intent);
             }
 
-            if ($pm->getTunnel() === PaymentMethodInterface::TUNNEL_SPOT) {
+            if ($paymentMethod->getTunnel() === PaymentMethodInterface::TUNNEL_SPOT) {
                 return $this->handlePay($intent);
             }
         }
@@ -114,11 +111,11 @@ class DefaultIntentManager implements IntentManagerInterface
     protected function handleAutorize(Intent $intent)
     {
         //find used PaymentMethod and send if
-        $pm = $this->discovery->getMethod($intent->getPaymentMethod());
+        $paymentMethod = $this->discovery->getMethod($intent->getPaymentMethod());
 
-        $this->container->get('event_dispatcher')->dispatch(DonateEvents::AUTORIZATION_REQUESTED, new AutorizationRequestedEvent($intent));
+        $this->container->get('event_dispatcher')->dispatch(Ev\DonateEvents::AUTORIZATION_REQUESTED, new Ev\AutorizationRequestedEvent($intent));
 
-        return $pm->autorize($intent);
+        return $paymentMethod->autorize($intent);
     }
 
     /**
@@ -131,11 +128,11 @@ class DefaultIntentManager implements IntentManagerInterface
     protected function handlePay(Intent $intent)
     {
         //find used PaymentMethod and send if
-        $pm = $this->discovery->getMethod($intent->getPaymentMethod());
+        $paymentMethod = $this->discovery->getMethod($intent->getPaymentMethod());
 
-        $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_REQUESTED, new PaymentRequestedEvent($intent));
+        $this->container->get('event_dispatcher')->dispatch(Ev\DonateEvents::PAYMENT_REQUESTED, new Ev\PaymentRequestedEvent($intent));
 
-        return $pm->pay($intent);
+        return $paymentMethod->pay($intent);
     }
 
     /**
@@ -145,14 +142,17 @@ class DefaultIntentManager implements IntentManagerInterface
      * @todo  i'm not even sure this method should stay, should probably move to entity class
      * @param  Intent an intent
      * @return current object for chainability
+     * @deprecated Deprecated since version 2.2.0, to be removed in 2.4.0. Use $intent->setStatus(Intent::STATUS_PENDING) directly instead.
      */
     public function pending(Intent $intent)
     {
         $intent->setStatus(Intent::STATUS_PENDING);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($intent);
-        $em->flush();
+        $entityMgr = $this->getDoctrine()->getManager();
+        $entityMgr->persist($intent);
+        $entityMgr->flush();
+
+        trigger_error('DefaultIntentManager::pending() is deprecated since version 2.2.0 and will be removed in 2.4. Use $intent->setStatus(Intent::STATUS_PENDING) directly instead.', E_USER_DEPRECATED);
 
         return $this;
     }
@@ -173,11 +173,40 @@ class DefaultIntentManager implements IntentManagerInterface
     {
         $intent = new Intent($amount, $paymentMethodId);
 
-        $this->container->get('event_dispatcher')->dispatch(DonateEvents::DONATION_REQUESTED, new DonationRequestedEvent($intent));
+        $this->container->get('event_dispatcher')->dispatch(Ev\DonateEvents::DONATION_REQUESTED, new Ev\DonationRequestedEvent($intent));
 
         return $intent;
     }
 
+    /**
+     * dispatch event according to payment status
+     *
+     * @since 2.2.0
+     * @param Payment $payment
+     */
+    protected function dispatchPaymentStatusEvent($payment)
+    {
+        //Throw events according to status
+        // @since 2.2.0
+        switch ($payment->getStatus()) {
+            case Payment::STATUS_INVALID:
+                $this->container->get('event_dispatcher')->dispatch(Ev\DonateEvents::PAYMENT_FAILED, new Ev\PaymentFailedEvent($payment));
+                break;
+            case Payment::STATUS_CANCELED:
+                $this->container->get('event_dispatcher')->dispatch(Ev\DonateEvents::PAYMENT_CANCELED, new Ev\PaymentCanceledEvent($payment));
+                break;
+            case Payment::STATUS_PAYED:
+                $this->container->get('event_dispatcher')->dispatch(Ev\DonateEvents::PAYMENT_COMPLETED, new Ev\PaymentCompletedEvent($payment));
+                break;
+            case Payment::STATUS_DENIED:
+                $this->container->get('event_dispatcher')->dispatch(Ev\DonateEvents::PAYMENT_DENIED, new Ev\PaymentDeniedEvent($payment));
+                break;
+            case  Payment::STATUS_AUTHORIZED:
+                $this->container->get('event_dispatcher')->dispatch(Ev\DonateEvents::PAYMENT_AUTHORIZED, new Ev\PaymentAuthorizedEvent($payment));
+                break;
+
+        }
+    }
     /**
      * Association d'un Intent et d'un paiement, avec envoie des evenements
      * @since  1.0.0
@@ -190,7 +219,7 @@ class DefaultIntentManager implements IntentManagerInterface
     {
         $intentRepository = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
-        $em = $this->getDoctrine()->getManager();
+        $entityMgr = $this->getDoctrine()->getManager();
 
         if ($intentId && $intent = $intentRepository->find($intentId)) {
             $intent->addPayment($payment);
@@ -198,40 +227,36 @@ class DefaultIntentManager implements IntentManagerInterface
             $payment->setIntent($intent);
             $this->logger->debug('Set Intent on payment');
 
-            if ($intent->getType() == Intent::TYPE_SPOT && $intent->getStatus() == Intent::STATUS_PENDING) {
-                //Propagation de l'état du paiement vers l'intent
-                $intent->setStatus(Intent::STATUS_DONE);
-                $this->logger->debug('set intent status to DONE');
-            } else {
-                //on reçoit plusieurs post-sale pour le même spot order...
-                $this->logger->notice('another post sale for this intent');
-            }
+            // @since 2.2.0
+            $this->updateIntentStatus($intent);
 
-            $em->persist($intent);
+            $entityMgr->persist($intent);
         }
 
         //Throw events according to status
         // @since 2.2.0
-        switch ($payment->getStatus()) {
-            case Payment::STATUS_INVALID:
-                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_FAILED, new PaymentFailedEvent($payment));
-                break;
-            case Payment::STATUS_CANCELED:
-                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_CANCELED, new PaymentCanceledEvent($payment));
-                break;
-            case Payment::STATUS_PAYED:
-                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_COMPLETED, new PaymentCompletedEvent($payment));
-                break;
-            case Payment::STATUS_DENIED:
-                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_DENIED, new PaymentDeniedEvent($payment));
-                break;
-            case  Payment::STATUS_AUTHORIZED:
-                $this->container->get('event_dispatcher')->dispatch(DonateEvents::PAYMENT_AUTHORIZED, new PaymentAuthorizedEvent($payment));
-                break;
+        $this->dispatchPaymentStatusEvent($payment);
 
+        $entityMgr->persist($payment);
+        $entityMgr->flush();
+    }
+
+    /**
+     * change status of intent to done for spot intent
+     *
+     * @param Intent $intent
+     * @since  2.2.0
+     */
+    protected function updateIntentStatus(Intent $intent)
+    {
+        if ($intent->getType() == Intent::TYPE_SPOT && $intent->getStatus() == Intent::STATUS_PENDING) {
+            //Propagation de l'état du paiement vers l'intent
+            $intent->setStatus(Intent::STATUS_DONE);
+            $this->logger->debug('set intent status to DONE');
+
+            return;
         }
-
-        $em->persist($payment);
-        $em->flush();
+        //on reçoit plusieurs post-sale pour le même spot order...
+        $this->logger->notice('another post sale for this intent');
     }
 }

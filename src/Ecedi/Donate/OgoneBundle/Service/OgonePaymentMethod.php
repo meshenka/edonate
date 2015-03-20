@@ -44,13 +44,16 @@ class OgonePaymentMethod extends AbstractPaymentMethod
     public function pay(Intent $intent)
     {
         if ($intent->getStatus() === Intent::STATUS_NEW) {
-            return new RedirectResponse($this->router->generate('donate_ogone_pay'));
-        } else {
-            $response = new Response();
-            $response->setStatusCode(500);
+            $intent->setStatus(Intent::STATUS_PENDING);
 
-            return $response;
+            $entityMgr = $this->doctine->getManager();
+            $entityMgr->persist($intent);
+            $entityMgr->flush();
+
+            return new RedirectResponse($this->router->generate('donate_ogone_pay'));
         }
+
+        return new Response('', 500);
     }
 
     public function getTunnel()

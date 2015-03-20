@@ -24,15 +24,11 @@ class OgoneController extends Controller
         $request->setlocale($session->get('_locale'));
 
         if ($intentId = $session->get('intentId')) {
-            $ir = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
+            $intentRepository = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
-            $intent = $ir->find($intentId);
+            $intent = $intentRepository->find($intentId);
 
-            //if ($intent->getStatus() == Intent::STATUS_NEW ) {
             if ($intent->getStatus() == Intent::STATUS_NEW || $intent->getStatus() == Intent::STATUS_PENDING) {
-                $im = $this->get('donate_core.intent_manager');
-                $im->pending($intent);
-
                 $factory = $this->get('donate_ogone.request.factory');
 
                 return $this->render('DonateOgoneBundle:Ogone:pay.html.twig', [
@@ -42,10 +38,7 @@ class OgoneController extends Controller
         }
 
         //else this Intent is already managed, or not in session
-        $response = new Response();
-        $response->setStatusCode(403);
-
-        return $response;
+        return new Response('', 403);
     }
 
     /**

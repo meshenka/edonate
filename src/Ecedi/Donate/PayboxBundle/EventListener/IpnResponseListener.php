@@ -20,13 +20,24 @@ use Psr\Log\LoggerInterface;
  */
 class IpnResponseListener
 {
+    /**
+     * @var IntentManagerInterface
+     */
     private $intentManager;
+
+    /**
+     * @var StatusNormalizer
+     */
     private $normalizer;
+
+    /**
+     * @var LoggerInterface
+     */
     private $logger;
 
     public function __construct(IntentManagerInterface $intentManager, StatusNormalizer $normalizer, LoggerInterface $logger)
     {
-        $this->IntentManager = $intentManager;
+        $this->intentManager = $intentManager;
         $this->normalizer = $normalizer;
         $this->logger = $logger;
     }
@@ -37,7 +48,8 @@ class IpnResponseListener
      */
     public function onPayboxIpnResponse(PayboxResponseEvent $event)
     {
-        if ($event->isVerified()) { 
+        if ($event->isVerified()) {
+            $this->logger->info('Verified Ipn received, payment is stored.');
             $ipnData = new IpnData($event->getData());
 
             $payment = new Payment();
@@ -46,15 +58,16 @@ class IpnResponseListener
                     ->setTransaction($ipnData->getTransactionId()) //numéro transaction
                     ->setResponseCode($ipnData->getErrorCode()) //status paybox
                     ->setResponse($ipnData->getData())
-                    ->setStatus($this->normalizer->normalize($ipnData->getErrorCode());
+                    ->setStatus($this->normalizer->normalize($ipnData->getErrorCode()));
 
             // On attache le paiement à l'intent
             $this->intentManager->attachPayment($ipnData->getIntentId(), $payment);
-            return
+
+            return;
         }
 
         //unverified ipn... we just log it as warning
         //@TODO do something smartter to keep track of thoses
-        $this->logger->warning('Unverified Ipn received, content is ignored')
+        $this->logger->warning('Unverified Ipn received, content is ignored.');
     }
 }
