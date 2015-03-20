@@ -7,8 +7,8 @@ namespace Ecedi\Donate\OgoneBundle\EventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Ecedi\Donate\OgoneBundle\Ogone\Response;
-use Ecedi\Donate\CoreBundle\Event\DonateEvents;
-use Ecedi\Donate\CoreBundle\Event\PaymentReceivedEvent;
+use Ecedi\Donate\OgoneBundle\OgoneEvents;
+use Ecedi\Donate\OgoneBundle\Event\PostSaleEvent;
 
 /**
  * Ce Subscriber envoi des emails lors de la réception de post-sale quand le code status de la réponse Ogone
@@ -20,7 +20,7 @@ class NotifyPostSaleStatusListener extends ContainerAware implements EventSubscr
 {
     public static function getSubscribedEvents()
     {
-        return array(DonateEvents::PAYMENT_RECEIVED => array(
+        return array(OgoneEvents::POSTSALE => array(
                 array('onPostSale', 10),
             ),
         );
@@ -30,20 +30,21 @@ class NotifyPostSaleStatusListener extends ContainerAware implements EventSubscr
      * Réaction à la post-sale, on vérifie que le code de retour est sur 2 digits et on test le dernier pour
      * définir le message à envoyer
      *
-     * @param
+     * @param PostSaleEvent $event the post sale Event
+     * @since  2.2.0 it listen to OgoneEvents::POSTSALE instead of DonateEvents::PAYMENT_RECEIVED as it is Ogone Specific
      */
-    public function onPostSale(PaymentReceivedEvent $event)
+    public function onPostSale(PostSaleEvent $event)
     {
         //send email to webmaster on certain response code
-        $status = $event->getPayment()->getResponse()->getStatus();
+        $status = $event->getResponse()->getStatus();
 
         if (strlen($status) == 2) {
             if (substr($status, -1) == '2') {
-                $this->sendErrorMessage($event->getPayment()->getResponse());
+                $this->sendErrorMessage($event->getResponse());
             }
 
             if (substr($status, -1) == '3') {
-                $this->sendRefusedMessage($event->getPayment()->getResponse());
+                $this->sendRefusedMessage($event->getResponse());
             }
         }
         $this->container->get('logger')->debug('status test called');

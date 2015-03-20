@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Ecedi\Donate\CoreBundle\Event\DonateEvents;
 use Ecedi\Donate\CoreBundle\Event\PaymentReceivedEvent;
 use Ecedi\Donate\OgoneBundle\Ogone\Response as OgoneResponse;
+use Ecedi\Donate\OgoneBundle\OgoneEvents;
+use Ecedi\Donate\OgoneBundle\Event\PostSaleEvent;
 
 class OgoneController extends Controller
 {
@@ -55,6 +57,8 @@ class OgoneController extends Controller
     public function postsaleAction(Request $request)
     {
         $response = OgoneResponse::createFromRequest($request);
+
+        $this->get('event_dispatcher')->dispatch(OgoneEvents::POSTSALE,  new PostSaleEvent($response));
 
         //initialize payment
         $payment = new Payment();
