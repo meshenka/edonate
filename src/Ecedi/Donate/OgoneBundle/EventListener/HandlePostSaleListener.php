@@ -11,12 +11,12 @@ use Ecedi\Donate\OgoneBundle\Ogone\PostSale\PostSaleManager;
 use Psr\Log\LoggerInterface;
 use Ecedi\Donate\OgoneBundle\OgoneEvents;
 use Ecedi\Donate\OgoneBundle\Event\PostSaleEvent;
-
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * this listener manage post sale and generate Payments
  * @since  2.2.0 listen to OgoneEvents::POSTSALE and receive a
  */
-class HandlePostSaleListener implements EventSubscriberInterfacePostSaleEvent
+class HandlePostSaleListener implements EventSubscriberInterface
 {
     private $manager;
     private $logger;
