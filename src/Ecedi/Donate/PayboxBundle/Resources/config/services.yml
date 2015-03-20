@@ -3,13 +3,13 @@ services:
         class: Ecedi\Donate\PayboxBundle\PaymentMethod\Plugin\PayboxPaymentMethod
         parent: ecollect.payment_method
         tags:
-            - {name: donate.payment_method}
+            - { name: donate.payment_method }
 
     ecollect.paybox.ipn:
         class: Ecedi\Donate\PayboxBundle\EventListener\IpnResponseListener
         arguments: ['@donate_core.intent_manager', '@ecollect.paybox.status_normalizer', '@logger']
         tags:
-            - {name: kernel.event_listener, event: paybox.ipn_response, method: onPayboxIpnResponse }
+            - { name: kernel.event_listener, event: paybox.ipn_response, method: onPayboxIpnResponse }
 
     ecollect.paybox.status_normalizer:
         class: Ecedi\Donate\PayboxBundle\Paybox\StatusNormalizer
