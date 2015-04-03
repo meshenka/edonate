@@ -1,6 +1,10 @@
+v2.1.1
+  * Update to Symfony 2.6.6 to fix
+    * http://symfony.com/blog/cve-2015-2308-esi-code-injection
+    * http://symfony.com/blog/cve-2015-2309-unsafe-methods-in-the-request-class
 v2.1.0
   * Refactor some of the code and config to apply http://symfony.com/doc/current/best_practices/index.html
-  
+
 v2.0.1
   * Fix bug in Layout Preview
 
@@ -14,6 +18,7 @@ v2.0.0
 v1.1.3
   * manage custom urls for GA tracking in cross domain env
     (in cross domain env instead of tracking real URLS we will prefix them all to easy identification, ecollect by default)
+
 v1.1.2
   * change path of prod log to /var/log/ecollecte/prod.log to allow easy zabbix template agent
 
