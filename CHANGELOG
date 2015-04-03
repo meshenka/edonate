@@ -1,6 +1,10 @@
+v2.1.1
+  * Update to Symfony 2.6.6 to fix
+    * http://symfony.com/blog/cve-2015-2308-esi-code-injection
+    * http://symfony.com/blog/cve-2015-2309-unsafe-methods-in-the-request-class
 v2.1.0
   * Refactor some of the code and config to apply http://symfony.com/doc/current/best_practices/index.html
-  
+
 v2.0.1
   * Fix bug in Layout Preview
 
@@ -20,7 +24,7 @@ v1.1.2
 
 v1.1.1
   * add thanks email on payment completed or authorized
-  
+
 v1.1.0
   * Refactoring of the payment code to use Domain Events from Ecedi\Donate\CoreBundle\Event namespace
   * support ogone post-sale on terminate event
