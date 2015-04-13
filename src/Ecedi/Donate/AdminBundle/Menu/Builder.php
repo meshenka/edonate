@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
+
 namespace Ecedi\Donate\AdminBundle\Menu;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -29,7 +35,9 @@ class Builder extends ContainerAware
         $this->addIntentMenuItems($menu);
         // Donateurs
         $this->addCustomerMenuItems($menu);
+
         // Utilisateurs
+        // @since 2.3 we user voters to check authorization instead of being ROLE based
         if ($this->container->get('security.authorization_checker')->isGranted('list users')) {
             $this->addUserMenuItems($menu);
         }
@@ -37,6 +45,7 @@ class Builder extends ContainerAware
         $this->addMyAccountMenuItems($menu);
 
         // CMS
+        // @since 2.3 we user voters to check authorization instead of being ROLE based
         if ($this->container->get('security.authorization_checker')->isGranted('CMS')) {
             $this->addCmsMenuItems($menu);
         }

@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
 
 namespace Ecedi\Donate\AdminBundle\Form;
 
@@ -8,9 +13,16 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Une classe pour le formulaire des comptes utilisateurs
+ * @since 2.3  class no more use constructor argument, we switch to options
  */
 class AccountType extends AbstractType
 {
+    /**
+     *
+     * @since 2.3  class no more use constructor argument, we switch to options
+     * @param FormBuilderInterface $builder [description]
+     * @param array                $options [description]
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -41,6 +53,7 @@ class AccountType extends AbstractType
             ));
 
             // gestion des champs différents selon le type de formulaire (edition ou création)
+            // @since 2.3  we use option 'action' instead of _route to dedure form fields
             if ($options['action'] == 'new') {
                 $builder
                     ->add('password', 'repeated', array(
@@ -60,6 +73,11 @@ class AccountType extends AbstractType
                 ));
     }
 
+    /**
+     * default form options
+     * @since 2.3  we use options roles and action instead of constructor arguments
+     * @param OptionsResolverInterface $resolver [description]
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -72,6 +90,7 @@ class AccountType extends AbstractType
      * Get name
      *
      * @see Symfony\Component\Form.FormTypeInterface::getName()
+     * @since 2.3  renamed to ecollect_account (instead of donate_admin_new_account)
      */
     public function getName()
     {

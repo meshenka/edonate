@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
 namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,6 +22,7 @@ class AccountController extends Controller
      */
     public function indexAction(Request $request)
     {
+        // @since 2.3 we user voters to check authorization instead of being ROLE based
         if (false === $this->get('security.authorization_checker')->isGranted('list users')) {
             throw new AccessDeniedException('Unauthorised access!');
         }
@@ -48,6 +53,7 @@ class AccountController extends Controller
 
             //DELETE
             if ($form->get('submit_delete')->isClicked()) {
+                // @since 2.3 we user voters to check authorization instead of being ROLE based
                 if (false === $this->get('security.authorization_checker')->isGranted('delete', $user)) {
                     throw new AccessDeniedException('Unauthorised access!');
                 }
@@ -60,6 +66,7 @@ class AccountController extends Controller
 
             //EDIT
             if ($form->get('submit_save')->isClicked()) {
+                // @since 2.3 we user voters to check authorization instead of being ROLE based
                 if (false === $this->get('security.authorization_checker')->isGranted('edit', $user)) {
                     throw new AccessDeniedException('Unauthorised access!');
                 }
@@ -72,6 +79,8 @@ class AccountController extends Controller
         }
 
         //view
+        // @since 2.3 we user voters to check authorization instead of being ROLE based
+
         if (false === $this->get('security.authorization_checker')->isGranted('view', $user)) {
             throw new AccessDeniedException('Unauthorised access!');
         }
@@ -89,6 +98,7 @@ class AccountController extends Controller
      */
     public function newAction(Request $request)
     {
+        // @since 2.3 we user voters to check authorization instead of being ROLE based
         if (false === $this->get('security.authorization_checker')->isGranted('create users')) {
             throw new AccessDeniedException('Unauthorised access!');
         }
@@ -139,25 +149,24 @@ class AccountController extends Controller
     }
 
     /**
-    * Fonction qui retourne les rôles pouvant être assignés par l'utilisateur
-    *
-    * @return $roles -- tableau contenant les rôles povant être assigné par un administrateur
-    */
+     * Fonction qui retourne les rôles pouvant être assignés par l'utilisateur
+     * @since  2.3 the function roles are hardcoded instead of been deduced from role_hierarchy
+     * @return $roles -- tableau contenant les rôles povant être assigné par un administrateur
+     */
     private function getAvailabledRoles()
     {
         return array(
-            'ROLE_USER' => 'ROLE_USER',
-            'ROLE_ADMIN' => 'ROLE_ADMIN',
+            'ROLE_USER' => 'Utilisateur',
+            'ROLE_ADMIN' => 'Administrateur',
         );
     }
 
     /**
     * Fonction permettant de savoir si un utilisateur existe déja selon son username et email
-    *
+    * @since 2.3 fourth argument id has ben removed
     * @param UserManager $userManager
     * @param string $username
     * @param string $userMail
-    * @param int $id -- Facultatif -- id de l'utilisateur en cours d'édition (pour l'exclure du résultat)
     */
     private function userAlreadyExist(UserManager $userManager, $username, $userMail)
     {
