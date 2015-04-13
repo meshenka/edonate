@@ -1,3 +1,6 @@
+v2.3.0
+  * refactore Back Office permission based on Voters instead of ROLES
+
 v2.2.0
   * Add Ecedi\Donate\PayboxBundle for Paybox TPE Support
   * Remove Support for asynchronous post-sale handling from Ecedi\Donate\OgoneBundle
