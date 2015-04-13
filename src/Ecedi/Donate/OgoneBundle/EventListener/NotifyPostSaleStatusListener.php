@@ -7,21 +7,56 @@
 namespace Ecedi\Donate\OgoneBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Ecedi\Donate\OgoneBundle\Ogone\Response;
 use Ecedi\Donate\OgoneBundle\OgoneEvents;
 use Ecedi\Donate\OgoneBundle\Event\PostSaleEvent;
-
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Templating\EngineInterface;
 /**
  * Ce Subscriber envoi des emails lors de la réception de post-sale quand le code status de la réponse Ogone
  * Indique qu'une action humaine est nécessaire.
  *
  * @since  2.2.0 listen to OgoneEvents::POSTSALE
+ * @since  2.3.0 no more extends Symfony\Component\DependencyInjection\ContainerAware
  *
- * @TODO remove ContainerAware
  */
-class NotifyPostSaleStatusListener extends ContainerAware implements EventSubscriberInterface
+class NotifyPostSaleStatusListener implements EventSubscriberInterface
 {
+    /**
+     *
+     * @var \Swift_Mailer
+     */
+    private $mailer;
+
+    /**
+     *
+     * @var string
+     */
+    private $webmasterEmail;
+
+    /**
+     * Template Engine
+     * @var Symfony\Component\Templating\EngineInterface
+     */
+    protected $templating;
+
+    /**
+     * @var Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @since  2.3 use constructor arguments instead of ContainerAware
+     * @param LoggerInterface $logger [description]
+     */
+    public function __construct(EngineInterface $templating, $webmasterEmail, \Swift_Mailer $mailer, LoggerInterface $logger)
+    {
+        $this->templating = $templating;
+        $this->webmasterEmail = $webmasterEmail;
+        $this->logger = $logger;
+        $this->mailer = $mailer;
+    }
+
     public static function getSubscribedEvents()
     {
         return array(OgoneEvents::POSTSALE => array(
@@ -51,7 +86,7 @@ class NotifyPostSaleStatusListener extends ContainerAware implements EventSubscr
                 $this->sendRefusedMessage($event->getResponse());
             }
         }
-        $this->container->get('logger')->debug('status test called');
+        $this->logger->debug('status test called');
     }
 
     protected function sendErrorMessage(Response $response)
@@ -69,19 +104,17 @@ class NotifyPostSaleStatusListener extends ContainerAware implements EventSubscr
 
     protected function sendMail(Response $response, $body)
     {
-        if ($this->container->getParameter('donate_core.mail.webmaster')) {
-            $message = \Swift_Message::newInstance()
+        $message = \Swift_Message::newInstance()
             ->setSubject('[ECollecte] une post-sale Ogone require votre attention')
             ->setFrom('ecollecte@ecedi.fr')
-            ->setTo($this->container->getParameter('donate_core.mail.webmaster'))
+            ->setTo($this->webmasterEmail)
             ->setBody(
-                $this->container->get('templating')->render(
+                $this->templating->render(
                     'DonateOgoneBundle:Mail:ogone.txt.twig',
                     array('response' => $response, 'message' => $body)
                 )
             );
 
-            $this->container->get('mailer')->send($message);
-        }
+        $this->mailer->send($message);
     }
 }
