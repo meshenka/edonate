@@ -113,17 +113,6 @@ class DefaultIntentManagerSpec extends ObjectBehavior
     }
 
     /**
-     * l'IntentManager manipule et persiste l'état d'un Intent
-     */
-    public function it_should_set_pending_status_on_intent(Intent $intent)
-    {
-        $this->manager->persist($intent)->shouldBeCalled();
-        $this->manager->flush()->shouldBeCalled();
-        $intent->setStatus(Intent::STATUS_PENDING)->shouldBeCalled();
-        $this->pending($intent);
-    }
-
-    /**
      * L'IntentManager intialise des Intent et dispatch un event DonateEvents::POST_NEW_INTENT
      */
     public function it_should_dispatch_event_on_intent_creation()
