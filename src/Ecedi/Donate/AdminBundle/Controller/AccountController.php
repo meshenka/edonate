@@ -36,9 +36,11 @@ class AccountController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $roles = $this->getAvailabledRoles();
+        $form = $this->createForm(new AccountType(), $user, array(
+            'roles' => $this->getAvailabledRoles(),
+            'action' => 'edit',
+        ));
 
-        $form = $this->createForm(new AccountType($roles, $request->get('_route')), $user);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -91,8 +93,11 @@ class AccountController extends Controller
             throw new AccessDeniedException('Unauthorised access!');
         }
 
-        $roles = $this->getAvailabledRoles();
-        $form = $this->createForm(new AccountType($roles, $request->get('_route')), new User());
+        $form = $this->createForm(new AccountType(), new User(), array(
+            'roles' => $this->getAvailabledRoles(),
+            'action' => 'new',
+        ));
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
