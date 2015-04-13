@@ -158,6 +158,8 @@ class AccountController extends Controller
         return array(
             'ROLE_USER' => 'Utilisateur',
             'ROLE_ADMIN' => 'Administrateur',
+            'ROLE_CMS' => 'Editeur CMS',
+            'ROLE_AFFECTATION' => 'Gestionnaire Affectation',
         );
     }
 

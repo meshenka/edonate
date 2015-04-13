@@ -10,7 +10,6 @@ namespace Ecedi\Donate\CoreBundle\Security\Authorization\Voter;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * Permision for Features
  * @since  2.3
@@ -66,15 +65,8 @@ class CmsFeatureVoter implements VoterInterface
             return VoterInterface::ACCESS_DENIED;
         }
 
-        switch ($attribute) {
-            case self::CMS:
-
-                if ($currentUser->hasRole('ROLE_ADMIN')) {
-                    return VoterInterface::ACCESS_GRANTED;
-                }
-
-                //others cannot view others
-                break;
+        if ($currentUser->hasRole('ROLE_CMS')) {
+            return VoterInterface::ACCESS_GRANTED;
         }
 
         return VoterInterface::ACCESS_DENIED;
