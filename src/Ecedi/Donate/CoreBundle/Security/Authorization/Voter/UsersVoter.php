@@ -12,14 +12,14 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Voter for view / edit / delete of an existing user
+ * View list of users and
  * @since  2.3
+ *
  */
-class UserVoter implements VoterInterface
+class UsersVoter implements VoterInterface
 {
-    const VIEW = 'view';
-    const EDIT = 'edit';
-    const DELETE = 'delete';
+    const LIST_USERS = 'list users';
+    const CREATE_USERS = 'create users';
 
     /**
      * List of supported attributes
@@ -29,29 +29,21 @@ class UserVoter implements VoterInterface
     public function supportsAttribute($attribute)
     {
         return in_array($attribute, array(
-            self::VIEW,
-            self::EDIT,
-            self::DELETE,
+            self::LIST_USERS,
+            self::CREATE_USERS,
         ));
     }
 
     public function supportsClass($class)
     {
-        $supportedClass = 'Ecedi\Donate\CoreBundle\Entity\User';
-
-        return $supportedClass === $class || is_subclass_of($class, $supportedClass);
+        return true;
     }
 
     /**
      * @var Ecedi\Donate\CoreBundle\Entity\User
      */
-    public function vote(TokenInterface $token, $user, array $attributes)
+    public function vote(TokenInterface $token, $object, array $attributes)
     {
-        // check if class of this object is supported by this voter
-        if (!$this->supportsClass(get_class($user))) {
-            return VoterInterface::ACCESS_ABSTAIN;
-        }
-
         // check if the voter is used correct, only allow one attribute
         // this isn't a requirement, it's just one easy way for you to
         // design your voter
@@ -78,14 +70,8 @@ class UserVoter implements VoterInterface
         }
 
         switch ($attribute) {
-            case self::VIEW:
+            case self::LIST_USERS:
 
-                // * can view self
-                if ($currentUser->isUser($user)) {
-                    return VoterInterface::ACCESS_GRANTED;
-                }
-
-                // * super admin can viex any other users
                 if ($currentUser->hasRole('ROLE_ADMIN')) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
@@ -93,39 +79,11 @@ class UserVoter implements VoterInterface
                 //others cannot view others
                 break;
 
-            case self::EDIT:
-                // * can edit self
-                if ($currentUser->isUser($user)) {
-                    return VoterInterface::ACCESS_GRANTED;
-                }
-
-                // * super admin can edit any other users
+            case self::CREATE_USERS:
                 if ($currentUser->hasRole('ROLE_ADMIN')) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
 
-                break;
-            case self::DELETE:
-                // * cannot delete self
-                if ($currentUser->isUser($user)) {
-                    return VoterInterface::ACCESS_DENIED;
-                }
-
-                // * standard user cannot delete anyone
-                if ($currentUser->hasRole('ROLE_USER')) {
-                    return VoterInterface::ACCESS_DENIED;
-                }
-
-                // * super admin can delete any other users
-                if ($currentUser->hasRole('ROLE_ADMIN')) {
-                    return VoterInterface::ACCESS_GRANTED;
-                }
-
-                // we assume that our data object has a method getOwner() to
-                // get the current owner user entity for this data object
-                // if ($user->getId() === $post->getOwner()->getId()) {
-                //     return VoterInterface::ACCESS_GRANTED;
-                // }
                 break;
         }
 
