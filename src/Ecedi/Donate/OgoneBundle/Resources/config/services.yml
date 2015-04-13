@@ -8,7 +8,7 @@ parameters:
             sha1_in: ~
             sha1_out: ~
         # @since 2.2.0 asynchronous post-sale handling is droped
-        #async_postsale: false  
+        #async_postsale: false
 
 services:
     # normalisation des status ogone vers les status de paiement
@@ -34,13 +34,13 @@ services:
     # generateur de Requete Ogone
     donate_ogone.request.factory:
         class: Ecedi\Donate\OgoneBundle\Ogone\RequestBuilder
-        calls: 
+        calls:
             - [setContainer, ['@service_container']]
 
     # Observateur qui envoie des emails au Webmaster quand les status sont en erreur
     ecollect.listener.notify_postsale:
         class: Ecedi\Donate\OgoneBundle\EventListener\NotifyPostSaleStatusListener
-        calls: 
+        calls:
             - [setContainer, ['@service_container']]
         tags:
             - {name: kernel.event_subscriber}
@@ -52,12 +52,5 @@ services:
         arguments: ['@donate_ogone.postsale.manager', '@logger']
         tags:
             - {name: kernel.event_subscriber}
-
-    # the TPE response is stored serialized, this listener automaticaly deserialize response
-    # when a payment is hydrated from Doctine
-    ecollect.listener.response_autoloader:
-        class: Ecedi\Donate\OgoneBundle\EventListener\PostSaleResponseLoaderListener
-        tags:
-            - {name: doctrine.event_listener, event: postLoad, connection: default}
 
 

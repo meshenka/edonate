@@ -63,10 +63,10 @@ class DefaultIntentManager implements IntentManagerInterface
         $session = $request->getSession();
         $session->set('intentId', $intent->getId());
 
-        // try to see if the locale has been set as a _locale routing parameter
-        if ($locale = $request->getLocale()) {
-            $session->set('_locale', $locale);
-        }
+            // try to see if the locale has been set as a _locale routing parameter
+            if ($locale = $request->getLocale()) {
+                $session->set('_locale', $locale);
+            }
     }
 
     /**
@@ -148,11 +148,10 @@ class DefaultIntentManager implements IntentManagerInterface
     {
         $intent->setStatus(Intent::STATUS_PENDING);
 
-        $entityMgr = $this->getDoctrine()->getManager();
-        $entityMgr->persist($intent);
-        $entityMgr->flush();
-
-        trigger_error('DefaultIntentManager::pending() is deprecated since version 2.2.0 and will be removed in 2.4. Use $intent->setStatus(Intent::STATUS_PENDING) directly instead.', E_USER_DEPRECATED);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($intent);
+        $em->flush();
+        trigger_error('pending() is deprecated since version 2.2.0, to be removed in 2.4.0. Use $intent->setStatus(Intent::STATUS_PENDING) directly instead.', E_USER_DEPRECATED);
 
         return $this;
     }
@@ -182,12 +181,10 @@ class DefaultIntentManager implements IntentManagerInterface
      * dispatch event according to payment status
      *
      * @since 2.2.0
-     * @param Payment $payment
+     * @param Payemnt $payment a payment instance
      */
     protected function dispatchPaymentStatusEvent($payment)
     {
-        $this->get('event_dispatcher')->dispatch(Ev\DonateEvents::PAYMENT_RECEIVED, new Ev\PaymentReceivedEvent($payment));
-
         //Throw events according to status
         // @since 2.2.0
         switch ($payment->getStatus()) {
@@ -221,7 +218,7 @@ class DefaultIntentManager implements IntentManagerInterface
     {
         $intentRepository = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
-        $entityMgr = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
         if ($intentId && $intent = $intentRepository->find($intentId)) {
             $intent->addPayment($payment);
@@ -229,36 +226,21 @@ class DefaultIntentManager implements IntentManagerInterface
             $payment->setIntent($intent);
             $this->logger->debug('Set Intent on payment');
 
-            // @since 2.2.0
-            $this->updateIntentStatus($intent);
+            if ($intent->getType() == Intent::TYPE_SPOT && $intent->getStatus() == Intent::STATUS_PENDING) {
+                //Propagation de l'état du paiement vers l'intent
+                $intent->setStatus(Intent::STATUS_DONE);
+                $this->logger->debug('set intent status to DONE');
+            } else {
+                //on reçoit plusieurs post-sale pour le même spot order...
+                $this->logger->notice('another post sale for this intent');
+            }
 
-            $entityMgr->persist($intent);
+            $em->persist($intent);
         }
 
-        //Throw events according to status
-        // @since 2.2.0
         $this->dispatchPaymentStatusEvent($payment);
 
-        $entityMgr->persist($payment);
-        $entityMgr->flush();
-    }
-
-    /**
-     * change status of intent to done for spot intent
-     *
-     * @param Intent $intent
-     * @since  2.2.0
-     */
-    protected function updateIntentStatus(Intent $intent)
-    {
-        if ($intent->getType() == Intent::TYPE_SPOT && $intent->getStatus() == Intent::STATUS_PENDING) {
-            //Propagation de l'état du paiement vers l'intent
-            $intent->setStatus(Intent::STATUS_DONE);
-            $this->logger->debug('set intent status to DONE');
-
-            return;
-        }
-        //on reçoit plusieurs post-sale pour le même spot order...
-        $this->logger->notice('another post sale for this intent');
+        $em->persist($payment);
+        $em->flush();
     }
 }
