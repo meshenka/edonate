@@ -88,11 +88,6 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
-liip_theme:
-    themes: ['default']
-    active_theme: 'default'
-    load_controllers: false
-
 sensio_framework_extra:
     view:       { annotations:  false }
     router:     { annotations:  true }

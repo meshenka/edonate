@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "51e213f4cebe6191d89128841bc0f964",
+    "hash": "2223f4cf86699bf85278c053fb672b72",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2667,65 +2667,6 @@
                 "imagine"
             ],
             "time": "2015-04-08 16:45:02"
-        },
-        {
-            "name": "liip/theme-bundle",
-            "version": "dev-master",
-            "target-dir": "Liip/ThemeBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/liip/LiipThemeBundle.git",
-                "reference": "4bb3d2830b2c6cdac0c9ded56fac338ab7dba379"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipThemeBundle/zipball/4bb3d2830b2c6cdac0c9ded56fac338ab7dba379",
-                "reference": "4bb3d2830b2c6cdac0c9ded56fac338ab7dba379",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "psr/log": "~1.0",
-                "symfony/framework-bundle": "~2.0"
-            },
-            "require-dev": {
-                "kriswallsmith/assetic": "~1.1",
-                "phpunit/phpunit": "~4.5",
-                "symfony/console": "~2.0",
-                "symfony/expression-language": "~2.6",
-                "twig/twig": "~1.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Liip\\ThemeBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/liip/LiipThemeBundle/contributors"
-                },
-                {
-                    "name": "Liip AG",
-                    "homepage": "http://www.liip.ch/"
-                }
-            ],
-            "description": "Provides theming support for #Symfony2 Bundles",
-            "keywords": [
-                "themes",
-                "theming"
-            ],
-            "time": "2015-04-13 06:13:46"
         },
         {
             "name": "michelf/php-markdown",
@@ -5673,7 +5614,6 @@
         "friendsofsymfony/user-bundle": 20,
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
-        "liip/theme-bundle": 20,
         "liip/imagine-bundle": 20,
         "stof/doctrine-extensions-bundle": 20,
         "jms/translation-bundle": 20,
