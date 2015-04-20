@@ -18,14 +18,14 @@ donate_payment:
     type:     annotation
     prefix:   /payment
 
-donate_oauth_login:
-    resource: Ecedi\Donate\ApiBundle\Controller\SecurityController
-    type:     annotation
+# donate_oauth_login:
+#     resource: Ecedi\Donate\ApiBundle\Controller\SecurityController
+#     type:     annotation
 
+# donate_admin:
+#     resource: "@DonateApiBundle/Resources/config/routing.xml"
+#     prefix: /api/v1
 
-#liip_theme:
-#    resource: "@LiipThemeBundle/Resources/config/routing.xml"
-#    prefix: /theme
 
 #FOSUser
 fos_user_security:
@@ -38,32 +38,12 @@ fos_user_resetting:
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix: /secured/profile 
+    prefix: /secured/profile
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /secured/change-password
 
-customers:
-    type:       rest
-    resource:   Ecedi\Donate\ApiBundle\Controller\CustomersController
-    prefix:     /api/v1 
-
-intents:
-    type:       rest
-    resource:   Ecedi\Donate\ApiBundle\Controller\IntentsController
-    prefix:     /api/v1
-
-payments:
-    type:       rest
-    resource:   Ecedi\Donate\ApiBundle\Controller\PaymentsController
-    prefix:     /api/v1
-
-fos_oauth_server_token:
-    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
-
-fos_oauth_server_authorize:
-    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"

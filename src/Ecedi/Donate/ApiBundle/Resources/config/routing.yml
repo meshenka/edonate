@@ -1,0 +1,23 @@
+##
+## routing.yml
+##
+customers:
+    type:       rest
+    resource:   Ecedi\Donate\ApiBundle\Controller\CustomersController
+    prefix:     /api/v1
+
+intents:
+    type:       rest
+    resource:   Ecedi\Donate\ApiBundle\Controller\IntentsController
+    prefix:     /api/v1
+
+payments:
+    type:       rest
+    resource:   Ecedi\Donate\ApiBundle\Controller\PaymentsController
+    prefix:     /api/v1
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
