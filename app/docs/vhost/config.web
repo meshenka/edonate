@@ -1,0 +1,83 @@
+##
+## This is a nginx vhost sample configuration
+##
+## ECOLLECT_HOSTNAME is the name of the host ex www.ecollecte.fr
+## ECOLLECT_DOCROOT is the absolute path to the symfony web folder (without leading /) ex: /var/www/www.ecollecte.fr/web
+##
+
+server {
+    listen 80;
+    server_name ECOLLECT_HOSTNAME;
+    limit_conn arbeit 32;
+    root ECOLLECT_DOCROOT;
+    access_log /var/log/nginx/ECOLLECT_HOSTNAME/access.log;
+    error_log /var/log/nginx/ECOLLECT_HOSTNAME/error.log;
+
+    ##
+    ## if you want to limit access by ip
+    ##
+    #include restricted_access;
+
+
+    ##
+    ## default location for symfony production environment
+    ##
+    location / {
+        index app.php;
+        try_files $uri /app.php?$args;
+    }
+
+    ##
+    ## app_dev.php bootstrap is unaccessible in production
+    ##
+    location ~ ^/app_dev\.php$ {
+        deny all;
+    }
+
+    ##
+    ## the location for production bootstrap
+    ## notice we also allow config.php, it should probably be disabled in production
+    ##
+    location ~ ^/(app|config)\.php$ {
+        include fastcgi_params;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+        #fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        ##
+        ## it is required to set HTTPS on if you are using https location
+        ## otherwise php thread won't be aware of the scheme and may produce bad absolute url
+        ##
+        fastcgi_param HTTPS off;
+        fastcgi_param SYMFONY_ENV prod;
+
+        ##
+        ## You will have to manage your php fcgi pool
+        ##
+        fastcgi_pass phpcgi-ECOLLECT_HOSTNAME;
+    }
+
+    location ~* \.(?:css|gif|htc|ico|js|jpe?g|png|swf|woff|bmp|otf|ttf)$ {
+        expires max;
+        log_not_found off;
+        access_log off;
+        ## No need to bleed constant updates. Send the all shebang in one
+        ## fell swoop.
+        tcp_nodelay off;
+        ## Set the OS file cache.
+        open_file_cache max=1000 inactive=120s;
+        open_file_cache_valid 45s;
+        open_file_cache_min_uses 2;
+        open_file_cache_errors off;
+
+        ##
+        ## this last line is very important
+        ## LiipImagineBundle use a route /media/cache/resolve/[FILTER_NAME]/[IMAGE_NAME]
+        ## that will match this location, so the try_files directive
+        ## will try to serve the file directly and if it fails will try to resolve the route.
+        ## If you do not set this, imagine won't work (filtered image won't be generated)
+        ##
+        try_files $uri /app.php?$args;
+    }
+}
