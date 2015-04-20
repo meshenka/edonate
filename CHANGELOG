@@ -1,3 +1,9 @@
+v2.2.2
+  * hotfix remove useless configuration (removed in 2.2.0) donate_ogone:async_postale
+  * update dependencies
+  * disable ApiBundle by default
+  * remove LiipTheme from project
+
 v2.2.1
   * Add sample vhost configuration for Apache 2.2 and Nginx in app/docs
 
