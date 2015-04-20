@@ -22,7 +22,6 @@
         "knplabs/knp-menu":"dev-master",
         "knplabs/knp-menu-bundle":"dev-master",
         "leafo/lessphp": "~0.5",
-        "liip/theme-bundle" : "dev-master",
         "liip/imagine-bundle" : "dev-master",
         "jms/serializer-bundle" : "0.13.*",
         "stof/doctrine-extensions-bundle" : "~1.1@dev",

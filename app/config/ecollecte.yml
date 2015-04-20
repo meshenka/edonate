@@ -37,7 +37,6 @@ donate_ogone:
     pspid: %ogone.pspid%
     prod: false
     prefix: %ogone.prefix%
-    async_postsale: %ogone.async_postsale%
     security:
         sha1_in: %ogone.sha1_in%
         sha1_out: %ogone.sha1_out%

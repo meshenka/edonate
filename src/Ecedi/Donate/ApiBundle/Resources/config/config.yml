@@ -1,0 +1,14 @@
+#
+# FosOauthServer Configuration for ecollect
+# add it to app/config/config.yml
+#
+
+fos_oauth_server:
+    db_driver:  orm
+    client_class:        Ecedi\Donate\ApiBundle\Entity\Client
+    access_token_class:  Ecedi\Donate\ApiBundle\Entity\AccessToken
+    refresh_token_class: Ecedi\Donate\ApiBundle\Entity\RefreshToken
+    auth_code_class:     Ecedi\Donate\ApiBundle\Entity\AuthCode
+
+    service:
+        user_provider: fos_user.user_manager

@@ -17,23 +17,23 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        oauth_token:
-            pattern:    ^/oauth/v2/token
-            security:   false
+        # oauth_token:
+        #     pattern:    ^/oauth/v2/token
+        #     security:   false
 
-        oauth_authorize:
-            pattern:    ^/oauth/v2/auth
-            # Add your favorite authentication process here
-            form_login:
-                provider: fos_userbundle
-                check_path: /oauth/v2/auth_login_check
-                login_path: /oauth/v2/auth_login
-            anonymous: true
-        api:
-            pattern:    ^/api
-            fos_oauth:  true
-            stateless:  true
-            anonymous:  true # note that anonymous access is now enabled
+        # oauth_authorize:
+        #     pattern:    ^/oauth/v2/auth
+        #     # Add your favorite authentication process here
+        #     form_login:
+        #         provider: fos_userbundle
+        #         check_path: /oauth/v2/auth_login_check
+        #         login_path: /oauth/v2/auth_login
+        #     anonymous: true
+        # api:
+        #     pattern:    ^/api
+        #     fos_oauth:  true
+        #     stateless:  true
+        #     anonymous:  true # note that anonymous access is now enabled
 
         secured:
             pattern: ^/secured
@@ -41,10 +41,10 @@ security:
                 provider:               fos_userbundle
                 csrf_provider:          form.csrf_provider
                 login_path:             fos_user_security_login
-                check_path:             fos_user_security_check             
-            logout:       
+                check_path:             fos_user_security_check
+            logout:
                 path:                   fos_user_security_logout
-                target:                 /                    
+                target:                 /
             anonymous:    true
             remember_me:
                 key:      "%secret%"
