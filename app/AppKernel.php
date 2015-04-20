@@ -16,12 +16,10 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Liip\ThemeBundle\LiipThemeBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
@@ -39,7 +37,10 @@ class AppKernel extends Kernel
 
             //Ecedi bundles
             new Ecedi\Donate\CoreBundle\DonateCoreBundle(),
-            new Ecedi\Donate\ApiBundle\DonateApiBundle(),
+
+            // new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            // new Ecedi\Donate\ApiBundle\DonateApiBundle(),
+
             new Ecedi\Donate\AdminBundle\DonateAdminBundle(),
             new Ecedi\Donate\FrontBundle\DonateFrontBundle(),
             new Ecedi\Donate\OgoneBundle\DonateOgoneBundle(),

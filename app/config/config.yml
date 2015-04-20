@@ -88,11 +88,6 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
-liip_theme:
-    themes: ['default']
-    active_theme: 'default'
-    load_controllers: false
-
 sensio_framework_extra:
     view:       { annotations:  false }
     router:     { annotations:  true }
@@ -100,7 +95,7 @@ sensio_framework_extra:
 
 fos_rest:
 #    routing_loader:
-#        default_format: 
+#        default_format:
 #        include_format:                 false
     param_fetcher_listener:     true
     body_listener:              true
@@ -108,7 +103,7 @@ fos_rest:
         enabled:                true
     format_listener:
         rules:
-            - 
+            -
                 path: ^/
                 prefer_extension:       false
                 priorities:             [html,json,xml]
@@ -137,22 +132,22 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig     # sliding pagination controls template
 
-# FOSUserBundle Configuration       
+# FOSUserBundle Configuration
 fos_user:
-    db_driver:      orm                        
+    db_driver:      orm
     firewall_name:  secured     # Le nom du firewall derrière lequel on utilisera ces utilisateurs
     user_class:     Ecedi\Donate\CoreBundle\Entity\User
     use_listener:   false       # If you always save the user through the user manager, you may want to disable it to improve performance.
 
-fos_oauth_server:
-    db_driver:  orm
-    client_class:        Ecedi\Donate\ApiBundle\Entity\Client
-    access_token_class:  Ecedi\Donate\ApiBundle\Entity\AccessToken
-    refresh_token_class: Ecedi\Donate\ApiBundle\Entity\RefreshToken
-    auth_code_class:     Ecedi\Donate\ApiBundle\Entity\AuthCode
+# fos_oauth_server:
+#     db_driver:  orm
+#     client_class:        Ecedi\Donate\ApiBundle\Entity\Client
+#     access_token_class:  Ecedi\Donate\ApiBundle\Entity\AccessToken
+#     refresh_token_class: Ecedi\Donate\ApiBundle\Entity\RefreshToken
+#     auth_code_class:     Ecedi\Donate\ApiBundle\Entity\AuthCode
 
-    service:
-        user_provider: fos_user.user_manager
+#     service:
+#         user_provider: fos_user.user_manager
 
 knp_markdown:
     parser:
@@ -238,7 +233,7 @@ fm_elfinder:
    instances:
         default:
             relative_path: false
-            locale: %locale% 
+            locale: %locale%
             editor: ckeditor # other choices are tinymce or simple
             include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
             connector:
