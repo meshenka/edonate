@@ -17,7 +17,7 @@ eCollecte est une application Full Stack Symfony2 pour la production de formulai
   * composer (gestion des dépendences PHP)
 
 Optionnel
-  * Une instance memcache pour la gestion des sessions php  
+  * Une instance memcache pour la gestion des sessions php
 
 
 ### récuperer le code source
@@ -90,3 +90,7 @@ Promotion de l'utilisateur au role super admin:
     $ app/console donate:generate:layout
 
 Maintenant vous pouvez aller voir le front office
+
+## Host configuration
+
+See some sample configurations in app/docs/vhost

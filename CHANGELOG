@@ -1,3 +1,6 @@
+v2.2.1
+  * Add sample vhost configuration for Apache 2.2 and Nginx in app/docs
+
 v2.2.0
   * Add Ecedi\Donate\PayboxBundle for Paybox TPE Support
   * Remove Support for asynchronous post-sale handling from Ecedi\Donate\OgoneBundle
