@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
 namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,6 +13,7 @@ use Ecedi\Donate\AdminBundle\Form\AccountType;
 use Ecedi\Donate\CoreBundle\Entity\User as User;
 use FOS\UserBundle\Model\UserManager;
 use FOS\UserBundle\Util\UserManipulator;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AccountController extends Controller
 {
@@ -17,8 +22,13 @@ class AccountController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->getRepository('DonateCoreBundle:User')->getAllUsers();
+        // @since 2.3 we user voters to check authorization instead of being ROLE based
+        if (false === $this->get('security.authorization_checker')->isGranted('list users')) {
+            throw new AccessDeniedException('Unauthorised access!');
+        }
+
+        $entityMgr = $this->getDoctrine()->getManager();
+        $query = $entityMgr->getRepository('DonateCoreBundle:User')->getAllUsers();
         $pagination = $this->getPagination($request, $query, 10);
 
         return $this->render('DonateAdminBundle:Account:index.html.twig', [
@@ -31,34 +41,48 @@ class AccountController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $roles = $this->getAvailabledRoles();
-        //$user = $userManager->findUserBy(['id' => $id]);
-        // Un super-admin ne peut être édité que par un super-admin
-        // TODO revoir ce code, faire un Voter?
-        $currentUser = $this->getUser();
-        if ($user->hasRole('ROLE_SUPER_ADMIN') && !$currentUser->hasRole('ROLE_SUPER_ADMIN')) {
-            $this->get('session')->getFlashBag()->add('notice', "Vous n'êtes pas autorisé à modifier cet utilisateur.");
+        $form = $this->createForm(new AccountType(), $user, array(
+            'roles' => $this->getAvailabledRoles(),
+            'action' => 'edit',
+        ));
 
-            return $this->redirect($this->generateUrl('donate_admin_users'));
-        }
-
-        $form = $this->createForm(new AccountType($roles, $request->get('_route')), $user);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $userManager = $this->get('fos_user.user_manager');
+
+            //DELETE
             if ($form->get('submit_delete')->isClicked()) {
+                // @since 2.3 we user voters to check authorization instead of being ROLE based
+                if (false === $this->get('security.authorization_checker')->isGranted('delete', $user)) {
+                    throw new AccessDeniedException('Unauthorised access!');
+                }
+
                 $userManager->deleteUser($user);
                 $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été supprimé.");
-            } else {
-                $data = $form->getData();
-                if (!$this->userAlreadyExist($userManager, $data->getUsername(), $data->getEmail(), $id)) {
-                    $userManager->updateUser($user);
-                    $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été mis à jour.");
-                }
+
+                return $this->redirect($this->generateUrl('donate_admin_users'));
             }
 
-            return $this->redirect($this->generateUrl('donate_admin_users'));
+            //EDIT
+            if ($form->get('submit_save')->isClicked()) {
+                // @since 2.3 we user voters to check authorization instead of being ROLE based
+                if (false === $this->get('security.authorization_checker')->isGranted('edit', $user)) {
+                    throw new AccessDeniedException('Unauthorised access!');
+                }
+
+                $userManager->updateUser($user);
+                $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été mis à jour.");
+
+                return $this->redirect($this->generateUrl('donate_admin_users'));
+            }
+        }
+
+        //view
+        // @since 2.3 we user voters to check authorization instead of being ROLE based
+
+        if (false === $this->get('security.authorization_checker')->isGranted('view', $user)) {
+            throw new AccessDeniedException('Unauthorised access!');
         }
 
         return $this->render('DonateAdminBundle:Account:edit.html.twig', [
@@ -74,8 +98,16 @@ class AccountController extends Controller
      */
     public function newAction(Request $request)
     {
-        $roles = $this->getAvailabledRoles();
-        $form = $this->createForm(new AccountType($roles, $request->get('_route')), new User());
+        // @since 2.3 we user voters to check authorization instead of being ROLE based
+        if (false === $this->get('security.authorization_checker')->isGranted('create users')) {
+            throw new AccessDeniedException('Unauthorised access!');
+        }
+
+        $form = $this->createForm(new AccountType(), new User(), array(
+            'roles' => $this->getAvailabledRoles(),
+            'action' => 'new',
+        ));
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -117,54 +149,38 @@ class AccountController extends Controller
     }
 
     /**
-    * Fonction qui retourne les rôles pouvant être assignés par l'utilisateur
-    *
-    * @return $roles -- tableau contenant les rôles povant être assigné par un administrateur
-    */
+     * Fonction qui retourne les rôles pouvant être assignés par l'utilisateur
+     * @since  2.3 the function roles are hardcoded instead of been deduced from role_hierarchy
+     * @return $roles -- tableau contenant les rôles povant être assigné par un administrateur
+     */
     private function getAvailabledRoles()
     {
-        $roles = [];
-        $rolesHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
-        // Un utilisateur ne peut pas assigner ces rôles à d'autres utilisateur
-        // ! Le ROLE_SUPER_ADMIN ne doit etre créé qu'en ligne de commandes !
-        $unAvailabledRoles = ['ROLE_SUPER_ADMIN', 'ROLE_ALLOWED_TO_SWITCH'];
-
-        // Parcours de l'arbre de la hiérachie des rôles
-        foreach ($rolesHierarchy as $parentRole => $row) {
-            if (!in_array($parentRole, $unAvailabledRoles)) {
-                $roles[$parentRole] = $parentRole;
-            }
-            foreach ($row as $childRole) {
-                if (!in_array($childRole, $unAvailabledRoles)) {
-                    $roles[$childRole] = $childRole;
-                }
-            }
-        }
-
-        $roles = array_unique($roles); // Suppression de la redondance des roles (si plusieurs parents ont des enfants communs)
-
-        return $roles;
+        return array(
+            'ROLE_USER' => 'Utilisateur',
+            'ROLE_ADMIN' => 'Administrateur',
+            'ROLE_CMS' => 'Editeur CMS',
+            'ROLE_AFFECTATION' => 'Gestionnaire Affectation',
+        );
     }
 
     /**
     * Fonction permettant de savoir si un utilisateur existe déja selon son username et email
-    *
+    * @since 2.3 fourth argument id has ben removed
     * @param UserManager $userManager
     * @param string $username
     * @param string $userMail
-    * @param int $id -- Facultatif -- id de l'utilisateur en cours d'édition (pour l'exclure du résultat)
     */
-    private function userAlreadyExist(UserManager $userManager, $username, $userMail, $id = false)
+    private function userAlreadyExist(UserManager $userManager, $username, $userMail)
     {
         $alreadyExist = false;
         $userByUsername = $userManager->findUserByUsername($username);
         $userByUserMail = $userManager->findUserByEmail($userMail);
 
-        if (isset($userByUsername) && $userByUsername->getId() != $id) {
+        if (isset($userByUsername)) {
             $this->get('session')->getFlashBag()->add('notice', "Le nom d'utilisateur est déjà utilisé.");
             $alreadyExist = true;
         }
-        if (isset($userByUserMail) && $userByUserMail->getId() != $id) {
+        if (isset($userByUserMail)) {
             $this->get('session')->getFlashBag()->add('notice', "L'adresse e-mail est déjà utilisée.");
             $alreadyExist = true;
         }

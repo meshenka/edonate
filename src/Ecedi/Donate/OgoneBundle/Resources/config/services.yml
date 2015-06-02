@@ -40,8 +40,7 @@ services:
     # Observateur qui envoie des emails au Webmaster quand les status sont en erreur
     ecollect.listener.notify_postsale:
         class: Ecedi\Donate\OgoneBundle\EventListener\NotifyPostSaleStatusListener
-        calls:
-            - [setContainer, ['@service_container']]
+        arguments: ['@templating', '%donate_core.mail.webmaster%', '@mailer', '@logger']
         tags:
             - {name: kernel.event_subscriber}
 

@@ -35,6 +35,7 @@ class OgonePaymentMethodSpec extends ObjectBehavior
 
     public function it_should_return_a_response(Intent $intent)
     {
+        $intent->setStatus(Intent::STATUS_PENDING)->willReturn($intent);
         $intent->getStatus()->willReturn(Intent::STATUS_NEW);
         $intent->getId()->willReturn(666);
 
