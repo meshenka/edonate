@@ -21,8 +21,8 @@ monolog:
 assetic:
     use_controller: false
 
-#swiftmailer:
-#    delivery_address: me@example.com
+swiftmailer:
+    delivery_address: %donate_core.email.webmaster%
 
 raul_fraile_ladybug:
     theme: modern

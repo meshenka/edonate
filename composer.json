@@ -4,7 +4,7 @@
     "type": "project",
     "description": "eCollecte standard edition, by Agence Ecedi http://ecedi.fr",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-4": { "": "src/", "SymfonyStandard\\": "app/" }
     },
     "require": {
         "php": ">=5.3.3",
