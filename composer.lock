@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0bd84808d938636b910d6da9847b26e2",
+    "hash": "d023d7b73fd48ffaf2a7147a9ce352e3",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -5619,6 +5619,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
+        "knplabs/knp-paginator-bundle": 20,
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "liip/imagine-bundle": 20,

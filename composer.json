@@ -20,7 +20,7 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "knplabs/knp-paginator-bundle": "2.4.*",
+        "knplabs/knp-paginator-bundle": "2.4.*@dev",
         "knplabs/knp-menu":"dev-master",
         "knplabs/knp-menu-bundle":"dev-master",
         "leafo/lessphp": "~0.5",
