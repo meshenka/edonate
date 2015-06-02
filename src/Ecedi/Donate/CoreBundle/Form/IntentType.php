@@ -4,7 +4,7 @@ namespace Ecedi\Donate\CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class IntentType extends AbstractType
 {
@@ -26,9 +26,10 @@ class IntentType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * {@inheritdoc}
+     * @since 3.1 use new method signatire since sf 2.7
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class'        => 'Ecedi\Donate\CoreBundle\Entity\Intent',

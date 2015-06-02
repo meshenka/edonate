@@ -5,7 +5,7 @@ namespace Ecedi\Donate\AdminBundle\Form;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class pour le formulaire de filtres des intents (dons en cours)
@@ -73,8 +73,9 @@ class IntentFiltersType extends AbstractType
 
     /**
      * {@inheritdoc}
+     * @since 3.1 use new method signatire since sf 2.7
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'csrf_protection'       => false,

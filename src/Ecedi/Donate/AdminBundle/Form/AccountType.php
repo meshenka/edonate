@@ -10,6 +10,7 @@ namespace Ecedi\Donate\AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver
 
 /**
  * Une classe pour le formulaire des comptes utilisateurs
@@ -76,9 +77,10 @@ class AccountType extends AbstractType
     /**
      * default form options
      * @since 2.3  we use options roles and action instead of constructor arguments
-     * @param OptionsResolverInterface $resolver [description]
+     * @since 3.1 use new method signatire since sf 2.7
+     * @param OptionsResolver $resolver [description]
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',

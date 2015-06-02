@@ -3,7 +3,7 @@ namespace Ecedi\Donate\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Doctrine\Common\Collections\Collection;
@@ -256,10 +256,12 @@ class DonationType extends AbstractType
 
         return $tunnels;
     }
+
     /**
-    * {@inheritdoc}
-    */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+     * {@inheritdoc}
+     * @since 3.1 use new method signatire since sf 2.7
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'csrf_protection'   => false,
