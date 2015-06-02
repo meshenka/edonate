@@ -1,3 +1,6 @@
+v2.3.0
+  * refactore Back Office permission based on Voters instead of ROLES
+
 v2.2.2
   * hotfix remove useless configuration (removed in 2.2.0) donate_ogone:async_postale
   * update dependencies

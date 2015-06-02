@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package Ecollecte
+ */
 
 namespace Ecedi\Donate\AdminBundle\Form;
 
@@ -8,24 +13,16 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Une classe pour le formulaire des comptes utilisateurs
+ * @since 2.3  class no more use constructor argument, we switch to options
  */
 class AccountType extends AbstractType
 {
-    private $roles;
-
-    private $route;
-
     /**
-     * Construction du formulaire
      *
-     * @see Symfony\Component\Form.AbstractType::buildForm()
+     * @since 2.3  class no more use constructor argument, we switch to options
+     * @param FormBuilderInterface $builder [description]
+     * @param array                $options [description]
      */
-    public function __construct($roles, $route)
-    {
-        $this->roles = $roles;
-        $this->route = $route;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -39,7 +36,7 @@ class AccountType extends AbstractType
             ));
         $builder
             ->add('roles', 'choice', array(
-                'choices'           => $this->roles,
+                'choices'           => $options['roles'],
                 'required'          => true,
                 'multiple'          => true,
                 'expanded'          => true,
@@ -54,9 +51,10 @@ class AccountType extends AbstractType
              ->add('submit_save', 'submit', array(
                 'label'     => 'Submit',
             ));
+
             // gestion des champs différents selon le type de formulaire (edition ou création)
-            // TODO revoir ce code, on ne devrait pas dépendre de la la route
-            if ($this->route == 'donate_admin_user_new') {
+            // @since 2.3  we use option 'action' instead of _route to dedure form fields
+            if ($options['action'] == 'new') {
                 $builder
                     ->add('password', 'repeated', array(
                         'type'              => 'password',
@@ -65,27 +63,37 @@ class AccountType extends AbstractType
                         'second_name'       => "Confirmation_mot_de_passe",
                         'options'           => array(),
                     ));
-            } else {
-                $builder
-                    ->add('submit_delete', 'submit', array(
-                        'label'     => 'Delete',
-                    ));
+
+                return;
             }
+
+        $builder
+                ->add('submit_delete', 'submit', array(
+                    'label'     => 'Delete',
+                ));
     }
 
+    /**
+     * default form options
+     * @since 2.3  we use options roles and action instead of constructor arguments
+     * @param OptionsResolverInterface $resolver [description]
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',
+            'roles' => array('ROLE_USER' => 'ROLE_USER'),
+            'action' => 'new', //or edit
         ));
     }
     /**
      * Get name
      *
      * @see Symfony\Component\Form.FormTypeInterface::getName()
+     * @since 2.3  renamed to ecollect_account (instead of donate_admin_new_account)
      */
     public function getName()
     {
-        return 'donate_admin_account_new';
+        return 'ecollect_account';
     }
 }
