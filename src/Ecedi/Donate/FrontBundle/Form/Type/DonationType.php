@@ -40,13 +40,20 @@ class DonationType extends AbstractType
             ]);
     }
 
+    /**
+     * @since 3.1 flip keys and values and add choices_as_values option
+     * @param  FormBuilderInterface $builder [description]
+     * @param  array                $options [description]
+     * @return [type]               [description]
+     */
     private function buildPersonnalDetails(FormBuilderInterface $builder, array $options)
     {
         // Info perso
         $builder->add('civility', 'choice', [
-            'choices'   => $options['civilities'],
+            'choices'   => array_flip($options['civilities']),
             'required'  => false,
-            'label' => 'Civility'
+            'label' => 'Civility',
+            'choices_as_values' => true,
         ]);
 
         $builder->add('company', 'text', [
@@ -118,7 +125,7 @@ class DonationType extends AbstractType
 
     /**
      * @since  2.0.0
-     *
+     * @since 3.1 flip keys and values and add choices_as_values option
      * @param  Collection $affectations [description]
      * @return array      [description]
      */
@@ -129,14 +136,14 @@ class DonationType extends AbstractType
             $choices[$aff->getCode()] = $aff->getLabel();
         }
 
-        return $choices;
+        return array_flip($choices);
     }
 
     /**
      * Add affectation field according to options
      *
      * @since 2.0.0
-     *
+     * @since 3.1 flip keys and values and add choices_as_values option
      * @param FormBuilderInterface $builder [description]
      * @param array                $options [description]
      */
@@ -171,12 +178,19 @@ class DonationType extends AbstractType
                  'label' => 'I want to',
                  'data' => $affectations[0]->getCode(),
                  'mapped' => false,
+                 'choices_as_values' => true,
             ]);
 
             return;
         }
     }
 
+    /**
+     * @since 3.1 flip keys and values and add choices_as_values option
+     * @param  FormBuilderInterface $builder [description]
+     * @param  array                $options [description]
+     * @return [type]               [description]
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $tunnels = $this->paymentMethodsToTunnels($options['payment_methods']);
@@ -195,8 +209,8 @@ class DonationType extends AbstractType
 
         $builder->add('erf', 'choice', [
             'choices'   => [
-                0 => 'by email',
-                1 => 'by post',
+                'by email' => 0,
+                'by post' => 1,
             ],
             'required'  => true,
             'expanded' => true,
@@ -204,6 +218,7 @@ class DonationType extends AbstractType
             'label' => 'I prefer to receive my tax receipt',
             'data' => 0,
             'mapped' => false,
+            'choices_as_values' => true,
             ]
         );
 
@@ -230,6 +245,13 @@ class DonationType extends AbstractType
         return 'donate';
     }
 
+    /**
+     * @since 3.1 flip keys and values and add choices_as_values option
+     *
+     * @param  [type] $equivalences [description]
+     * @param  [type] $tunnel       [description]
+     * @return [type] [description]
+     */
     protected function getEquivalencesOptions($equivalences, $tunnel = PaymentMethodInterface::TUNNEL_SPOT)
     {
         $options = [];
@@ -239,7 +261,7 @@ class DonationType extends AbstractType
         }
         $options['manual'] = 'Other amount';
 
-        return $options;
+        return array_flip($options);
     }
 
     /**

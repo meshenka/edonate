@@ -20,7 +20,8 @@ class AccountType extends AbstractType
 {
     /**
      *
-     * @since 2.3  class no more use constructor argument, we switch to options
+     * @since 2.3 class no more use constructor argument, we switch to options
+     * @since 3.1 flip keys and values and add choices_as_values option
      * @param FormBuilderInterface $builder [description]
      * @param array                $options [description]
      */
@@ -41,13 +42,15 @@ class AccountType extends AbstractType
                 'required'          => true,
                 'multiple'          => true,
                 'expanded'          => true,
+                'choices_as_values' => true,
             ))
             ->add('enabled', 'choice', array(
-                'choices'           => array("No", "Yes"),
+                'choices'           => array('No' => 0, 'Yes' => 1),
                 'required'          => true,
                 'multiple'          => false,
                 'expanded'          => true,
                 'label'             => 'Enabled',
+                'choices_as_values' => true,
             ))
              ->add('submit_save', 'submit', array(
                 'label'     => 'Submit',

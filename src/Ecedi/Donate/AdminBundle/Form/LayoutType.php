@@ -11,6 +11,13 @@ use Ecedi\Donate\CoreBundle\Entity\Layout;
  */
 class LayoutType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     * @since 3.1 flip keys and values and add choices_as_values option
+     * @param  FormBuilderInterface $builder [description]
+     * @param  array                $options [description]
+     * @return [type]               [description]
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', 'text', array(
@@ -22,16 +29,17 @@ class LayoutType extends AbstractType
             'label'     => 'Langue',
             'choices' => $options['language'],
             'required' => true,
-            //'preferred_choices' => array('fr'),
             'empty_value' => false,
             'expanded' => false,
             'multiple' => false,
+            'choices_as_values' => true,
         ));
 
         $builder->add('skin', 'choice', array(
                 'choices'           => $options['skins'],
                 'required'          => true,
                 'label'             => 'Theme',
+                'choices_as_values' => true,
             ));
 
         $builder->add('baseline', 'text', array(

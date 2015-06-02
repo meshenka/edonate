@@ -19,6 +19,12 @@ class AmountType extends AbstractType
 
     //TODO find a way to remove @translator
     //TODO move validation translations to validators
+    /**
+     * @since 3.1 flip keys and values and add choices_as_values option
+     * @param  FormBuilderInterface $builder [description]
+     * @param  array                $options [description]
+     * @return [type]               [description]
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Ajout d'un champ de saisi manuel si voulu
@@ -35,6 +41,7 @@ class AmountType extends AbstractType
                 'multiple'    => false,
                 'label'    => false,
                 'data'        => $options['default'],
+                'choices_as_values' => true,
             ])
             ->add('manual', 'money', [
                 'currency'    => 'EUR',

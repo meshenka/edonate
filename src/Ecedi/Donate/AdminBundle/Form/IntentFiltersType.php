@@ -14,29 +14,32 @@ class IntentFiltersType extends AbstractType
 {
     /**
      * {@inheritdoc}
+     * @since 3.1 flip keys and values and add choices_as_values option
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $types = Intent::getTypesLabel();
-        $status = Intent::getStatusLabel();
+        $types = array_flip(Intent::getTypesLabel());
+        $status = array_flip(Intent::getStatusLabel());
 
         $builder
             ->add('type', 'choice', array(
-                'label'         => "Donation types",
+                'label'         => 'Donation types',
                 'choices'       => $types,
                 'required'      => true,
                 'multiple'      => true,
                 'expanded'      => true,
-                'data'          => array_keys($types),
+                'data'          => array_values($types),
                 'translation_domain' => 'forms',
+                'choices_as_values' => true,
             ))
             ->add('status', 'choice', array(
-                'label'         => "Status",
+                'label'         => 'Status',
                 'choices'       => $status,
                 'required'      => true,
                 'multiple'      => true,
                 'expanded'      => true,
-                'data'          => array_keys($status),
+                'data'          => array_values($status),
+                'choices_as_values' => true,
             ))
             ->add('email', 'text', array(
                 'label'         => "Email",

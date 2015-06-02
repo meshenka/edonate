@@ -9,6 +9,7 @@ use Ecedi\Donate\CoreBundle\Entity\Block;
 
 /**
  * Une classe pour le formulaire des comptes utilisateurs
+ * @since 3.1 flip keys and values and add choices_as_values option
  */
 class BlockType extends AbstractType
 {
@@ -20,10 +21,12 @@ class BlockType extends AbstractType
                 'label'     => 'Nom machine',
             ));
 
+        //@since 3.1 flip keys and values and add choices_as_values option
         $builder->add('enabled', 'choice', array(
-                'choices'           => array(0 => 'Non', 1 => 'Oui'),
+                'choices'           => array('Non' => 0, 'Oui' => 1),
                 'required'          => true,
                 'label'             => 'Activé',
+                'choices_as_values' => true,
             ));
 
         $builder->add('position', 'text', array(
@@ -63,14 +66,21 @@ class BlockType extends AbstractType
                 'transformers' => array('html_purifier'),
 
             ));
+
+        // @since 3.1 flip keys and values and add choices_as_values option
         $builder->add('format', 'choice', array(
                 'label'     => 'Format',
-                'choices' => array(Block::FORMAT_HTML => 'HTML', Block::FORMAT_MARKDOWN => 'Markdown', Block::FORMAT_RAW => 'Brut'),
+                'choices' => array(
+                    'HTML' => Block::FORMAT_HTML,
+                    'Markdown', Block::FORMAT_MARKDOWN,
+                    'Brut', Block::FORMAT_RAW,
+                ),
                 'required' => true,
-                'preferred_choices' => array('html'),
+                'preferred_choices' => array(Block::FORMAT_HTML),
                 'empty_value' => false,
                 'expanded' => false,
                 'multiple' => false,
+                'choices_as_values' => true,
             ));
 
         $builder->add('submit', 'submit', array(
