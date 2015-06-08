@@ -3,7 +3,7 @@
  * @author Alexandre Fayolle <afayolle@ecedi.fr>
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package Ecollecte
+ * @package eDonate
  */
 
 namespace Ecedi\Donate\PayboxBundle\Controller;

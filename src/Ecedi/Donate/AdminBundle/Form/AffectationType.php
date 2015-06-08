@@ -2,7 +2,7 @@
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright 2015 Ecedi
- * @package eCollecte
+ * @package eDonate
  *
  */
 namespace Ecedi\Donate\AdminBundle\Form;

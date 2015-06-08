@@ -1,7 +1,7 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package Ecollecte
+ * @package eDonate
  * @subpackage Check
  * @copyright Agence Ecedi 2014
  */

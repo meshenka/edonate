@@ -2,7 +2,7 @@
 /**
  * @author Alexandre Fayolle <afayolle@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package Ecollecte
+ * @package eDonate
  */
 
 namespace Ecedi\Donate\PayboxBundle\DependencyInjection;

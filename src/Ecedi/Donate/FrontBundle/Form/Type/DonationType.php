@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright 2015 Agence Ecedi
+ * @package eDonate
+ * @license MIT http://opensource.org/licenses/MIT
+ */
 namespace Ecedi\Donate\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -133,10 +139,10 @@ class DonationType extends AbstractType
     {
         $choices = [];
         foreach ($affectations as $aff) {
-            $choices[$aff->getCode()] = $aff->getLabel();
+            $choices[$aff->getLabel()] = $aff->getCode();
         }
 
-        return array_flip($choices);
+        return $choices;
     }
 
     /**
