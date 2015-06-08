@@ -26,7 +26,28 @@ class ReportingController extends Controller
     public function intentsAction(Request $request)
     {
         $intentForm = $this->createForm(new IntentFiltersType());
+        $entityMgr = $this->getDoctrine()->getManager();
+        $intentForm->handleRequest($request);
 
+        if ($intentForm->isValid()) {
+            if ($intentForm->get('submit_export')->isClicked()) {
+                $exporter = $this->get('ecollect.export.intent');
+                $exporter->setExportQb($queryBuilder);
+                $content = $exporter->getCsvContent();
+
+                return $this->getCsvResponse($content, 'export_dons', 'ISO-8859-1');
+            }
+        }
+
+        $queryBuilder = $entityMgr->getRepository('DonateCoreBundle:Intent')->getQBIntentsListBy([]);
+        $pagination = $this->getPagination($request, $queryBuilder->getQuery(), 20);
+
+        return $this->render('DonateAdminBundle:Reporting:intents.html.twig', [
+            'pagination'    => $pagination,
+            'intentForm'    => $intentForm->createView()
+        ]);
+
+        /*
         $parameters = $request->query->get('intent_filters');// Récupération des valeures de nos filtres
 
         if ($parameters) {
@@ -53,6 +74,7 @@ class ReportingController extends Controller
             'pagination'    => $pagination,
             'intentForm'    => $intentForm->createView()
         ]);
+        */
     }
 
     /**

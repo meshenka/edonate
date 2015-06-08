@@ -59,7 +59,7 @@ class BlockController extends Controller
 
         $data = new Customer();
         $form = $this->createForm('donate', $data, array(
-            'civilities' => $this->container->getParameter('donate_front.form.civility'),
+            'civilities' => $this->getParameter('donate_front.form.civility'),
             'equivalences' => $this->get('donate_core.equivalence.factory')->getAll(),
             'payment_methods' => $this->get('donate_core.payment_method_discovery')->getEnabledMethods(),
             'affectations' =>  $layout->getAffectations(),
@@ -98,7 +98,7 @@ class BlockController extends Controller
     public function editLayoutAction(Request $request, Layout $layout)
     {
         $form = $this->createForm(new LayoutType(), $layout, [
-            'language' => $this->container->getParameter('donate_front.i18n'),
+            'language' => $this->getParameter('donate_front.i18n'),
         ]);
 
         $form->handleRequest($request);
@@ -138,7 +138,7 @@ class BlockController extends Controller
     {
         $layout = new Layout();
         $form = $this->createForm(new LayoutType(), $layout, [
-            'language' => $this->container->getParameter('donate_front.i18n'),
+            'language' => $this->getParameter('donate_front.i18n'),
         ]);
 
         $form->handleRequest($request);
