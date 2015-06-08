@@ -29,7 +29,7 @@ class AccountType extends AbstractType
     {
         $builder
             ->add('username', 'text', array(
-                'label'             => "Username",
+                'label'             => 'Username',
                  'required'          => true,
             ))
             ->add('email', 'text', array(
@@ -63,8 +63,8 @@ class AccountType extends AbstractType
                     ->add('password', 'repeated', array(
                         'type'              => 'password',
                         'invalid_message'   => "Passwords don't match",
-                        'first_name'        => "Mot_de_passe",
-                        'second_name'       => "Confirmation_mot_de_passe",
+                        'first_name'        => 'Mot_de_passe',
+                        'second_name'       => 'Confirmation_mot_de_passe',
                         'options'           => array(),
                     ));
 
