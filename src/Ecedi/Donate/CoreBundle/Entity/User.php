@@ -4,7 +4,7 @@ namespace Ecedi\Donate\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * User

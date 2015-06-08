@@ -9,13 +9,13 @@ namespace Ecedi\Donate\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Une classe pour le formulaire des comptes utilisateurs
  * @since 2.3  class no more use constructor argument, we switch to options
  */
+
 class AccountType extends AbstractType
 {
     /**
