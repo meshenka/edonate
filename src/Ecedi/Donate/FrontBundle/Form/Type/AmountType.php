@@ -47,7 +47,7 @@ class AmountType extends AbstractType
                 'currency'    => 'EUR',
                 'required'  => false,
                 'label'    => false,
-                'precision' => 0,
+                'scale' => 0,
                 'constraints' => [
                     new Assert\Range(
                         [

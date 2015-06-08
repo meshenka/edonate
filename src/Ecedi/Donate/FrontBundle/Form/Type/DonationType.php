@@ -202,7 +202,7 @@ class DonationType extends AbstractType
         $tunnels = $this->paymentMethodsToTunnels($options['payment_methods']);
 
         // equivalences for each tunnels subform
-        $tunnelForm = $builder->create('tunnels', 'form', array('virtual' => true, 'label' => false));
+        $tunnelForm = $builder->create('tunnels', 'form', array('inherit_data' => true, 'label' => false));
 
         foreach (array_keys($tunnels) as $key) {
             $this->buildAmountSelectorSubForm($tunnelForm, $key, $options);
@@ -234,7 +234,7 @@ class DonationType extends AbstractType
         ]);
 
         // payment methods for each tunnels subform
-        $pmForm = $builder->create('payment_method', 'form', ['virtual' => true, 'label' => false]);
+        $pmForm = $builder->create('payment_method', 'form', ['inherit_data' => true, 'label' => false]);
 
         foreach ($options['payment_methods'] as $pm) {
             $pmForm->add($pm->getId(), 'submit', [
