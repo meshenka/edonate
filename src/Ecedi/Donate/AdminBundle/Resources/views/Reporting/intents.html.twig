@@ -10,7 +10,7 @@
 
 <div class="form-filter">
 <h3>{{ "Search" | trans }}</h3>
-{{ form_start(intentForm,  { 'action': '', 'method': 'GET', 'attr': {'role': 'form'} }) }}
+{{ form_start(intentForm,  { 'attr': {'role': 'form'} }) }}
     {{ form_errors(intentForm) }}
 
     <div class="form-group">
@@ -78,6 +78,7 @@
         {% endif %}
     </div>
 </div>
+
 {{ form_end(intentForm) }}
 
 <div class="count">
