@@ -18,9 +18,11 @@ monolog:
             action_level: warning
             handler:      nested
         nested:
-           type:  stream
-           path:  /var/log/ecollecte/%kernel.environment%.log
-           level: warning
+            type:  rotating_file
+            path:  /var/log/ecollecte/%kernel.environment%.log
+            level: warning
+            max_files: 3
+
         # info:
         #     type: stream
         #     path:  %kernel.logs_dir%/%kernel.environment%-info.log
