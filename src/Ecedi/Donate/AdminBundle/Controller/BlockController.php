@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
+
 namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,7 +18,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Ecedi\Donate\AdminBundle\Form\LayoutType;
 use Ecedi\Donate\AdminBundle\Form\BlockType;
+use Ecedi\Donate\FrontBundle\Form\Type\DonationType;
 
+/**
+ * Routing for layout, block and affectations
+ * TODO split in 3 controllers
+ */
 class BlockController extends Controller
 {
     /**
@@ -57,8 +69,7 @@ class BlockController extends Controller
     {
         $request->setLocale($layout->getLanguage());
 
-        $data = new Customer();
-        $form = $this->createForm('donate', $data, array(
+        $form = $this->createForm(new DonationType($this->get('translator')), new Customer(), array(
             'civilities' => $this->getParameter('donate_front.form.civility'),
             'equivalences' => $this->get('donate_core.equivalence.factory')->getAll(),
             'payment_methods' => $this->get('donate_core.payment_method_discovery')->getEnabledMethods(),

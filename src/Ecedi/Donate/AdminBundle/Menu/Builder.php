@@ -1,8 +1,10 @@
 <?php
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @author Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
  * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
  */
 
 namespace Ecedi\Donate\AdminBundle\Menu;
@@ -11,6 +13,12 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\MenuItem;
 
+/**
+ * Build menu for Admin
+ *
+ * @since  2.4 refactor the way parameters are found from the request by using request attributes instead of request GET parameters
+ * @since  2.4 refactor code to reduce complexity
+ */
 class Builder extends ContainerAware
 {
     /**

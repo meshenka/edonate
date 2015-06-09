@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 
 namespace Ecedi\Donate\FrontBundle\Controller;
 
@@ -47,7 +53,7 @@ class FormController extends Controller
                     $intent = $intentMgr->newIntent($amount, $pm->getId());
                     $intent->setFiscalReceipt($form['erf']->getData());
 
-                    //TODO add affectation if any
+                    //add affectation if any
                     $intent->setAffectationCode($form['affectations']->getData());
 
                     $data->addIntent($intent);
