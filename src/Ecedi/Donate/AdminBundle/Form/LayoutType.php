@@ -12,6 +12,17 @@ use Ecedi\Donate\CoreBundle\Entity\Layout;
 class LayoutType extends AbstractType
 {
     /**
+     * @since 2.4 convert i18n options to a usable ChoiceType choices
+     *
+     * @param  array $languages languages as extracted from config donate_front.i18n
+     * @return array key is the Label, value is the language code
+     */
+    protected function languagesToOptions($languages)
+    {
+        return  array_combine($languages, $languages);
+    }
+
+    /**
      * {@inheritdoc}
      * @since 3.1 flip keys and values and add choices_as_values option
      * @param  FormBuilderInterface $builder [description]
@@ -27,7 +38,7 @@ class LayoutType extends AbstractType
 
         $builder->add('language', 'choice', array(
             'label'     => 'Langue',
-            'choices' => $options['language'],
+            'choices' => $this->languagesToOptions($options['language']),
             'required' => true,
             'empty_value' => false,
             'expanded' => false,
