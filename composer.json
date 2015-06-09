@@ -36,7 +36,7 @@
         "knplabs/knp-gaufrette-bundle" : "dev-master",
         "friendsofsymfony/jsrouting-bundle": "@stable",
         "sp/bower-bundle": "~0",
-        "trsteel/ckeditor-bundle": "~1.6",
+        "trsteel/ckeditor-bundle": "~1",
         "helios-ag/fm-elfinder-bundle": "~3.4",
         "campaignmonitor/createsend-php": "4.*",
         "zendframework/zendpdf": "2.*",

@@ -23,7 +23,7 @@ class BlockType extends AbstractType
 
         //@since 2.4 flip keys and values and add choices_as_values option
         $builder->add('enabled', 'choice', array(
-                'choices'           => array('Non' => 0, 'Oui' => 1),
+                'choices'           => array('No' => 0, 'Yes' => 1),
                 'required'          => true,
                 'label'             => 'Activé',
                 'choices_as_values' => true,
@@ -70,13 +70,13 @@ class BlockType extends AbstractType
         // @since 2.4 flip keys and values and add choices_as_values option
         $builder->add('format', 'choice', array(
                 'label'     => 'Format',
-                'choices' => array(
+                'choices' => [
                     'HTML' => Block::FORMAT_HTML,
-                    'Markdown', Block::FORMAT_MARKDOWN,
-                    'Brut', Block::FORMAT_RAW,
-                ),
+                    'Markdown' => Block::FORMAT_MARKDOWN,
+                    'Brut' => Block::FORMAT_RAW,
+                ],
                 'required' => true,
-                'preferred_choices' => array(Block::FORMAT_HTML),
+                //'preferred_choices' => array(Block::FORMAT_HTML),
                 'empty_value' => false,
                 'expanded' => false,
                 'multiple' => false,
