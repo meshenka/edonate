@@ -76,7 +76,7 @@ class BlockType extends AbstractType
                     'Brut' => Block::FORMAT_RAW,
                 ],
                 'required' => true,
-                //'preferred_choices' => array(Block::FORMAT_HTML),
+                'preferred_choices' => array(Block::FORMAT_HTML),
                 'empty_value' => false,
                 'expanded' => false,
                 'multiple' => false,
