@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 
 namespace Ecedi\Donate\AdminBundle\Form;
 
@@ -70,11 +76,7 @@ class BlockType extends AbstractType
         // @since 2.4 flip keys and values and add choices_as_values option
         $builder->add('format', 'choice', array(
                 'label'     => 'Format',
-                'choices' => [
-                    'HTML' => Block::FORMAT_HTML,
-                    'Markdown' => Block::FORMAT_MARKDOWN,
-                    'Brut' => Block::FORMAT_RAW,
-                ],
+                'choices' => $options['body_formats'],
                 'required' => true,
                 'preferred_choices' => array(Block::FORMAT_HTML),
                 'empty_value' => false,
@@ -97,6 +99,11 @@ class BlockType extends AbstractType
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',
             'data_class' => 'Ecedi\Donate\CoreBundle\Entity\Block',
+            'body_formats' => [
+                'HTML' => Block::FORMAT_HTML,
+                'Markdown' => Block::FORMAT_MARKDOWN,
+                'Brut' => Block::FORMAT_RAW,
+            ],
         ));
     }
     /**
