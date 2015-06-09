@@ -21,7 +21,7 @@ class Builder extends ContainerAware
      *
      * @return \Knp\Menu\MenuItem
     */
-    public function adminMenu(FactoryInterface $factory, array $options)
+    public function adminMenu(FactoryInterface $factory)
     {
         $trans = $this->container->get('translator');
 
@@ -57,6 +57,71 @@ class Builder extends ContainerAware
         return $menu;
     }
 
+    /**
+     * extract a value from the current route in the request
+     *
+     * @param  string $param   name of the route param
+     * @param  mixed  $default default value if param is not found
+     * @return mixed  the value
+     */
+    protected function getRouteParam($param, $default = false)
+    {
+        $request = $this->container->get('request');
+
+        return (isset($request->attributes->get('_route_params')[$param])) ? $request->attributes->get('_route_params')[$param] : $default;
+    }
+
+    private function addCmsLayoutBlockMenuItems($menu)
+    {
+        $id = $this->getRouteParam('id', 0);
+        $layout = $this->getRouteParam('layout', $id);
+        $block = $this->getRouteParam('block', $id);
+
+        $menu['CMS']['Editer Gabarit']->addChild('Editer Block', array(
+            'route' => 'donate_admin_block_edit',
+            'routeParameters' => array(
+                'layout' => $layout,
+                'block' => $block,
+            ), ))
+            ->setAttribute('data-icon', 'glyphicon glyphicon-edit');
+
+        $menu['CMS']['Editer Gabarit']->addChild('Voir Block', array(
+            'route' => 'donate_admin_block_list',
+            'routeParameters' => array(
+                'id' => $layout,
+            ), ))
+            ->setAttribute('data-icon', 'glyphicon glyphicon-info-sign');
+    }
+
+    private function addCmsLayoutAffectationsMenuItems($menu)
+    {
+        $id = $this->getRouteParam('id', 0);
+        $layout = $this->getRouteParam('layout', $id);
+        $affectation = $this->getRouteParam('affectation', $id);
+
+        $menu['CMS']['Editer Gabarit']->addChild('Voir Affectations', array(
+            'route' => 'donate_admin_affectation_show',
+            'routeParameters' => array(
+                'layout' => $layout,
+            ), ))
+            ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
+
+        $menu['CMS']['Editer Gabarit']->addChild('Nouvelle affectation', array(
+            'route' => 'donate_admin_affectation_add',
+            'routeParameters' => array(
+                'layout' => $layout,
+            ), ))
+            ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
+
+        $menu['CMS']['Editer Gabarit']->addChild('Editer Affectations', array(
+            'route' => 'donate_admin_affectation_edit',
+            'routeParameters' => array(
+                'layout' => $layout,
+                'affectation' => $affectation,
+            ), ))
+            ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
+    }
+
    /**
     * Ajout des éléments du menu relatif au CMS
     *
@@ -64,12 +129,8 @@ class Builder extends ContainerAware
     */
     private function addCmsMenuItems($menu)
     {
-        $request = $this->container->get('request');
-
-        $id = !is_null($request->get('id')) ? $request->get('id') : 0;
-        $layout = !is_null($request->get('layout')) ? $request->get('layout') : false;
-        $block = !is_null($request->get('block')) ? $request->get('block') : false;
-        $affectation = !is_null($request->get('affectation')) ? $request->get('affectation') : false;
+        $id = $this->getRouteParam('id', 0);
+        $layout = $this->getRouteParam('layout', $id);
 
         $menu->addChild('CMS', array('route' => 'donate_admin_layout_list'))
             ->setAttribute('data-icon', 'glyphicon glyphicon-pencil') // Permet l'ajout d'une icone (via un span) dans le lien
@@ -79,47 +140,15 @@ class Builder extends ContainerAware
         $menu['CMS']->addChild('Editer Gabarit', array(
             'route' => 'donate_admin_layout_edit',
             'routeParameters' => array(
-                'id' => ($layout) ? $layout->getId() : $id,
+                'id' => $layout,
             ), ))
             ->setAttribute('data-icon', 'glyphicon glyphicon-edit');
 
-        $menu['CMS']['Editer Gabarit']->addChild('Editer Block', array(
-            'route' => 'donate_admin_block_edit',
-            'routeParameters' => array(
-                'layout' => ($layout) ? $layout->getId() : $id,
-                'block' => ($block) ? $block->getId() : $id,
-            ), ))
-            ->setAttribute('data-icon', 'glyphicon glyphicon-edit');
-
-        $menu['CMS']['Editer Gabarit']->addChild('Voir Block', array(
-            'route' => 'donate_admin_block_list',
-            'routeParameters' => array(
-                'id' => ($layout) ? $layout->getId() : $id,
-            ), ))
-            ->setAttribute('data-icon', 'glyphicon glyphicon-info-sign');
+        //blocks
+        $this->addCmsLayoutBlockMenuItems($menu);
 
         //Affectations
-        $menu['CMS']['Editer Gabarit']->addChild('Voir Affectations', array(
-            'route' => 'donate_admin_affectation_show',
-            'routeParameters' => array(
-                'layout' => ($layout) ? $layout->getId() : $id,
-            ), ))
-            ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
-
-        $menu['CMS']['Editer Gabarit']->addChild('Nouvelle affectation', array(
-            'route' => 'donate_admin_affectation_add',
-            'routeParameters' => array(
-                'layout' => ($layout) ? $layout->getId() : $id,
-            ), ))
-            ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
-
-        $menu['CMS']['Editer Gabarit']->addChild('Editer Affectations', array(
-            'route' => 'donate_admin_affectation_edit',
-            'routeParameters' => array(
-                'layout' => ($layout) ? $layout->getId() : $id,
-                'affectation' => ($affectation) ? $affectation->getId() : $id,
-            ), ))
-            ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
+        $this->addCmsLayoutAffectationsMenuItems($menu);
     }
 
     /**
@@ -143,8 +172,7 @@ class Builder extends ContainerAware
     */
     private function addCustomerMenuItems($menu)
     {
-        $request = $this->container->get('request');
-        $id = !is_null($request->get('id')) ? $request->get('id') : 0; // paramètres par défault pour les routes de détail
+        $customerId =  $this->getRouteParam('id', 0);
 
         $menu->addChild('Donateurs', array('route' => 'donate_admin_reporting_customers'))
              ->setAttribute('data-icon', 'glyphicon glyphicon-info-sign') // Permet l'ajout d'une icone (via un span) dans le lien
@@ -153,7 +181,7 @@ class Builder extends ContainerAware
         $menu['Donateurs']
             ->addChild('Détail du donateur', array(
                 'route'           => 'donate_admin_reporting_customer_show',
-                'routeParameters' => array('id' => $id),
+                'routeParameters' => array('id' => $customerId),
             ))
                 ->addChild("Editer", array('route' => 'donate_admin_reporting_customer_edit')); // N3
     }
