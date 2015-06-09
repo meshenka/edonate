@@ -9,7 +9,7 @@ use Ecedi\Donate\CoreBundle\Entity\Block;
 
 /**
  * Une classe pour le formulaire des comptes utilisateurs
- * @since 3.1 flip keys and values and add choices_as_values option
+ * @since 2.4 flip keys and values and add choices_as_values option
  */
 class BlockType extends AbstractType
 {
@@ -21,7 +21,7 @@ class BlockType extends AbstractType
                 'label'     => 'Nom machine',
             ));
 
-        //@since 3.1 flip keys and values and add choices_as_values option
+        //@since 2.4 flip keys and values and add choices_as_values option
         $builder->add('enabled', 'choice', array(
                 'choices'           => array('Non' => 0, 'Oui' => 1),
                 'required'          => true,
@@ -67,7 +67,7 @@ class BlockType extends AbstractType
 
             ));
 
-        // @since 3.1 flip keys and values and add choices_as_values option
+        // @since 2.4 flip keys and values and add choices_as_values option
         $builder->add('format', 'choice', array(
                 'label'     => 'Format',
                 'choices' => array(
@@ -89,7 +89,7 @@ class BlockType extends AbstractType
     }
 
     /**
-     * @since 3.1 use new method signatire since sf 2.7
+     * @since 2.4 use new method signatire since sf 2.7
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)

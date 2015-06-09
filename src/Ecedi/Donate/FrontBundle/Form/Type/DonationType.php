@@ -47,7 +47,7 @@ class DonationType extends AbstractType
     }
 
     /**
-     * @since 3.1 flip keys and values and add choices_as_values option
+     * @since 2.4 flip keys and values and add choices_as_values option
      * @param  FormBuilderInterface $builder [description]
      * @param  array                $options [description]
      * @return [type]               [description]
@@ -131,7 +131,7 @@ class DonationType extends AbstractType
 
     /**
      * @since  2.0.0
-     * @since 3.1 flip keys and values and add choices_as_values option
+     * @since 2.4 flip keys and values and add choices_as_values option
      * @param  Collection $affectations [description]
      * @return array      [description]
      */
@@ -149,7 +149,7 @@ class DonationType extends AbstractType
      * Add affectation field according to options
      *
      * @since 2.0.0
-     * @since 3.1 flip keys and values and add choices_as_values option
+     * @since 2.4 flip keys and values and add choices_as_values option
      * @param FormBuilderInterface $builder [description]
      * @param array                $options [description]
      */
@@ -192,7 +192,7 @@ class DonationType extends AbstractType
     }
 
     /**
-     * @since 3.1 flip keys and values and add choices_as_values option
+     * @since 2.4 flip keys and values and add choices_as_values option
      * @param  FormBuilderInterface $builder [description]
      * @param  array                $options [description]
      * @return [type]               [description]
@@ -252,7 +252,7 @@ class DonationType extends AbstractType
     }
 
     /**
-     * @since 3.1 flip keys and values and add choices_as_values option
+     * @since 2.4 flip keys and values and add choices_as_values option
      *
      * @param  [type] $equivalences [description]
      * @param  [type] $tunnel       [description]
@@ -287,7 +287,7 @@ class DonationType extends AbstractType
 
     /**
      * {@inheritdoc}
-     * @since 3.1 use new method signatire since sf 2.7
+     * @since 2.4 use new method signatire since sf 2.7
      */
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -20,7 +20,7 @@ class AmountType extends AbstractType
     //TODO find a way to remove @translator
     //TODO move validation translations to validators
     /**
-     * @since 3.1 flip keys and values and add choices_as_values option
+     * @since 2.4 flip keys and values and add choices_as_values option
      * @param  FormBuilderInterface $builder [description]
      * @param  array                $options [description]
      * @return [type]               [description]
@@ -64,7 +64,7 @@ class AmountType extends AbstractType
 
     /**
      * {@inheritdoc}
-     * @since 3.1 use new method signatire since sf 2.7
+     * @since 2.4 use new method signatire since sf 2.7
      */
     public function configureOptions(OptionsResolver $resolver)
     {

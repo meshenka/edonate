@@ -150,7 +150,7 @@ class AccountController extends Controller
     /**
      * Fonction qui retourne les rôles pouvant être assignés par l'utilisateur
      * @since  2.3 the function roles are hardcoded instead of been deduced from role_hierarchy
-     * @since 3.1 flip keys and values and add choices_as_values option
+     * @since 2.4 flip keys and values and add choices_as_values option
      * @return $roles -- tableau contenant les rôles povant être assigné par un administrateur
      */
     private function getAvailabledRoles()

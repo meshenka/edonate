@@ -21,7 +21,7 @@ class AccountType extends AbstractType
     /**
      *
      * @since 2.3 class no more use constructor argument, we switch to options
-     * @since 3.1 flip keys and values and add choices_as_values option
+     * @since 2.4 flip keys and values and add choices_as_values option
      * @param FormBuilderInterface $builder [description]
      * @param array                $options [description]
      */
@@ -79,7 +79,7 @@ class AccountType extends AbstractType
     /**
      * default form options
      * @since 2.3  we use options roles and action instead of constructor arguments
-     * @since 3.1 use new method signatire since sf 2.7
+     * @since 2.4 use new method signatire since sf 2.7
      * @param OptionsResolver $resolver [description]
      */
     public function configureOptions(OptionsResolver $resolver)
