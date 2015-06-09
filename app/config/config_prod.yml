@@ -21,7 +21,7 @@ monolog:
             type:  rotating_file
             path:  /var/log/ecollecte/%kernel.environment%.log
             level: warning
-            max_files: 3
+            max_files: 21
 
         # info:
         #     type: stream

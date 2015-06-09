@@ -30,13 +30,12 @@ class AccountType extends AbstractType
         $builder
             ->add('username', 'text', array(
                 'label'             => 'Username',
-                 'required'          => true,
+                'required'          => true,
             ))
             ->add('email', 'text', array(
                 'label'             => "Email",
                 'required'          => true,
-            ));
-        $builder
+            ))
             ->add('roles', 'choice', array(
                 'choices'           => $options['roles'],
                 'required'          => true,
@@ -45,7 +44,7 @@ class AccountType extends AbstractType
                 'choices_as_values' => true,
             ))
             ->add('enabled', 'choice', array(
-                'choices'           => array('No' => 0, 'Yes' => 1),
+                'choices'           => ['No' => false, 'Yes' => true],
                 'required'          => true,
                 'multiple'          => false,
                 'expanded'          => true,

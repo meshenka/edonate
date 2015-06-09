@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Ecedi\Donate\AdminBundle\Form\AccountType;
-use Ecedi\Donate\CoreBundle\Entity\User as User;
+use Ecedi\Donate\CoreBundle\Entity\User;
 use FOS\UserBundle\Model\UserManager;
 use FOS\UserBundle\Util\UserManipulator;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -60,8 +60,6 @@ class AccountController extends Controller
 
                 $userManager->deleteUser($user);
                 $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été supprimé.");
-
-                return $this->redirect($this->generateUrl('donate_admin_users'));
             }
 
             //EDIT
@@ -71,11 +69,12 @@ class AccountController extends Controller
                     throw new AccessDeniedException('Unauthorised access!');
                 }
 
+                $this->get('logger')->info('We save the user');
                 $userManager->updateUser($user);
                 $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été mis à jour.");
-
-                return $this->redirect($this->generateUrl('donate_admin_users'));
             }
+
+            return $this->redirect($this->generateUrl('donate_admin_users'));
         }
 
         //view
