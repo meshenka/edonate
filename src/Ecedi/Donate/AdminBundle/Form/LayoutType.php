@@ -31,6 +31,8 @@ class LayoutType extends AbstractType
     /**
      * {@inheritdoc}
      * @since 2.4 flip keys and values and add choices_as_values option
+     * @since  2.4 use placeholder instead of empty_value. see  http://symfony.com/doc/current/reference/forms/types/choice.html#placeholder
+     *
      * @param  FormBuilderInterface $builder [description]
      * @param  array                $options [description]
      * @return [type]               [description]
@@ -46,7 +48,7 @@ class LayoutType extends AbstractType
             'label'     => 'Langue',
             'choices' => $this->languagesToOptions($options['language']),
             'required' => true,
-            'empty_value' => false,
+            'placeholder' => false,
             'expanded' => false,
             'multiple' => false,
             'choices_as_values' => true,

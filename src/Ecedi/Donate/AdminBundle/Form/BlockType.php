@@ -16,6 +16,7 @@ use Ecedi\Donate\CoreBundle\Entity\Block;
 /**
  * Une classe pour le formulaire des comptes utilisateurs
  * @since 2.4 flip keys and values and add choices_as_values option
+ * @since 2.4 use placeholder instead of empty_value. see  http://symfony.com/doc/current/reference/forms/types/choice.html#placeholder
  */
 class BlockType extends AbstractType
 {
@@ -79,7 +80,7 @@ class BlockType extends AbstractType
                 'choices' => $options['body_formats'],
                 'required' => true,
                 'preferred_choices' => array(Block::FORMAT_HTML),
-                'empty_value' => false,
+                'placeholder' => false,
                 'expanded' => false,
                 'multiple' => false,
                 'choices_as_values' => true,
