@@ -1,22 +1,27 @@
 'use strict';
 /* global require */
 /* global console */
+/* global __dirname */
 
 //require
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var header = require('gulp-header');
-// var autoprefixer = require('gulp-autoprefixer');
+var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
-//var concatCss = require('gulp-concat-css');
+var LessPluginCleanCSS = require('less-plugin-clean-css'),
+    cleancss = new LessPluginCleanCSS({ advanced: true });
 
-// var less = require('gulp-less');
+
+var path = require('path');
+
+// var autoprefixer = require('gulp-autoprefixer');
+//var concatCss = require('gulp-concat-css');
 // var minifyCSS = require('gulp-minify-css');
 // var LessPluginCleanCSS = require('less-plugin-clean-css');
 // // var cleancss = new LessPluginCleanCSS({ advanced: true });
 // // var livereload = require('gulp-livereload');
-// var header = require('gulp-header');
 
 var jsDest = 'web/js/build';
 var cssDest = 'web/css/build';
@@ -30,7 +35,9 @@ gulp.task('default', [
     'fonts:bootstrap',
     'js:front:footer',
     'js:front:header',
-
+    'css:front:style',
+    'css:front:ie',
+    'fonts:front'
     ],
     function() {
 });
@@ -202,3 +209,74 @@ gulp.task('js:front:footer', function(){
     .pipe(header(banner))
     .pipe(gulp.dest(jsDest));
 });
+
+
+/**
+ *         {% stylesheets
+ *           '@fix_bootstrap_css'
+ *           'bundles/donatecore/css/*.min.css'
+ *           'bundles/donatefront/css/chosen.css'
+ *           'bundles/donatefront/css/*.less'
+ *       filter='cssrewrite,uglifycss' output='css/style.css'%}
+ *       <link rel="stylesheet" href="{{ asset_url }}" />
+ *      {% endstylesheets %}
+ */
+gulp.task('css:front:style', function(){
+    var cssSrc = 'web/bundles/';
+
+    var bootstrapCss = cssSrc + 'donatecore/components/bootstrap/dist/css/bootstrap.css';
+    var coreMinCsss = cssSrc + 'donatecore/css/*.min.css';
+    var chosenCss = cssSrc + 'donatefront/css/chosen.css';
+    var frontLess = cssSrc + 'donatefront/css/front.less';
+
+    gulp.src([
+        bootstrapCss,
+        coreMinCsss,
+        chosenCss,
+        frontLess
+    ])
+    .pipe(less({
+        plugins: [cleancss],
+        paths: [ path.join(__dirname, cssSrc, 'donatefront/css/') ]
+    }))
+    .pipe(concat('style.css'))
+    .pipe(minifyCSS())
+    .pipe(header(banner))
+    .pipe(gulp.dest(cssDest));
+
+
+});
+
+/*
+        {% stylesheets
+            'bundles/donatefront/css/ie.css'
+            filter='cssrewrite,uglifycss' output='css/ie.css'%}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+ */
+gulp.task('css:front:ie', function() {
+    var cssSrc = 'web/bundles/';
+
+    var ieCss = cssSrc + 'donatefront/css/ie.css';
+
+    gulp.src(ieCss)
+    .pipe(concat('ie.css'))
+    .pipe(minifyCSS())
+    .pipe(header(banner))
+    .pipe(gulp.dest(cssDest));
+
+
+
+});
+
+
+/**
+ * move fonts to right folder
+ */
+gulp.task('fonts:front', function() {
+    return gulp.src(src + 'FrontBundle/Resources/public/css/polices/*')
+        // Copy files to destination
+        .pipe(gulp.dest('web/css/build/polices'));
+});
+

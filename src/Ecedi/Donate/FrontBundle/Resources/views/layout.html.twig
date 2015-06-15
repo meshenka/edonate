@@ -27,21 +27,10 @@
         <![endif]-->
 
         <!-- head css -->
-        {% stylesheets
-            '@fix_bootstrap_css'
-            'bundles/donatecore/css/*.min.css'
-            'bundles/donatefront/css/chosen.css'
-            'bundles/donatefront/css/*.less'
-        filter='cssrewrite,uglifycss' output='css/style.css'%}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+        <link rel="stylesheet" href="/css/build/style.css" />
 
         <!--[if lt IE 9]>
-        {% stylesheets
-            'bundles/donatefront/css/ie.css'
-            filter='cssrewrite,uglifycss' output='css/ie.css'%}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+            <link rel="stylesheet" href="/css/build/ie.css" />
         <![endif]-->
 
         <!-- extra head markup -->
