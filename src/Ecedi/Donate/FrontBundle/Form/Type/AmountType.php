@@ -3,7 +3,7 @@ namespace Ecedi\Donate\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Translation\TranslatorInterface;
 use Ecedi\Donate\FrontBundle\Form\DataTransformer\AmountChoiceToIntentAmountTransformer;
@@ -19,10 +19,16 @@ class AmountType extends AbstractType
 
     //TODO find a way to remove @translator
     //TODO move validation translations to validators
+    /**
+     * @since 2.4 flip keys and values and add choices_as_values option
+     * @param  FormBuilderInterface $builder [description]
+     * @param  array                $options [description]
+     * @return [type]               [description]
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Ajout d'un champ de saisi manuel si voulu
-        $options['choices']['manual'] = 'Other amount';
+        $options['choices']['Other amount'] = 'manual';
         $builder
             ->addViewTransformer(new AmountChoiceToIntentAmountTransformer([
                 'manual',
@@ -35,12 +41,17 @@ class AmountType extends AbstractType
                 'multiple'    => false,
                 'label'    => false,
                 'data'        => $options['default'],
+                //'placeholder' => false,
+                'choices_as_values' => true,
+                'choice_value' => function ($choice) {
+                    return $choice;
+                },
             ])
             ->add('manual', 'money', [
                 'currency'    => 'EUR',
                 'required'  => false,
                 'label'    => false,
-                'precision' => 0,
+                'scale' => 0,
                 'constraints' => [
                     new Assert\Range(
                         [
@@ -55,7 +66,11 @@ class AmountType extends AbstractType
         );
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    /**
+     * {@inheritdoc}
+     * @since 2.4 use new method signature since sf 2.7
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'choices'        => [],

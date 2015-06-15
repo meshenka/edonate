@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 
 namespace Ecedi\Donate\AdminBundle\Controller;
 
@@ -76,9 +82,9 @@ class DashboardController extends Controller
         return $this->render('DonateAdminBundle:Dashboard:statsGa.html.twig', [
             'id'        => 'stats-ga',
             'title'     => $this->get('translator')->trans('Visits'), //'Fréquentation',
-            'apiKey'    => $this->container->getParameter('donate_admin.analytics.api_key'),
-            'dataIds'   => $this->container->getParameter('donate_admin.analytics.data_ids'),
-            'clientId'  => $this->container->getParameter('donate_admin.analytics.client_id'),
+            'apiKey'    => $this->getParameter('donate_admin.analytics.api_key'),
+            'dataIds'   => $this->getParameter('donate_admin.analytics.data_ids'),
+            'clientId'  => $this->getParameter('donate_admin.analytics.client_id'),
         ]);
     }
 

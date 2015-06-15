@@ -4,21 +4,23 @@
     "type": "project",
     "description": "eCollecte standard edition, by Agence Ecedi http://ecedi.fr",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-4": { "": "src/", "SymfonyStandard\\": "app/" }
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.*",
-        "doctrine/orm": "~2.2,>=2.2.3",
-        "doctrine/doctrine-bundle": "~1.2",
+        "symfony/symfony": "2.7.*",
+        "doctrine/orm": "~2.2,>=2.2.3,<2.5",
+        "doctrine/dbal": "<2.5",
+        "doctrine/doctrine-bundle": "~1.4",
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
-        "sensio/framework-extra-bundle": "~3.0",
+        "sensio/distribution-bundle": "~3.0,>=3.0.12",
+        "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
-        "friendsofsymfony/user-bundle": "~2.0@dev",
-        "knplabs/knp-paginator-bundle": "2.4.*",
+        "friendsofsymfony/user-bundle": "~1.3",
+        "knplabs/knp-paginator-bundle": "2.4.*@dev",
         "knplabs/knp-menu":"dev-master",
         "knplabs/knp-menu-bundle":"dev-master",
         "leafo/lessphp": "~0.5",
@@ -33,29 +35,33 @@
         "vich/uploader-bundle": "dev-master",
         "knplabs/knp-gaufrette-bundle" : "dev-master",
         "friendsofsymfony/jsrouting-bundle": "@stable",
-        "sp/bower-bundle": "dev-master",
-        "trsteel/ckeditor-bundle": "~1.6",
+        "sp/bower-bundle": "~0",
+        "trsteel/ckeditor-bundle": "~1",
         "helios-ag/fm-elfinder-bundle": "~3.4",
         "campaignmonitor/createsend-php": "4.*",
         "zendframework/zendpdf": "2.*",
         "lexik/paybox-bundle": "dev-master"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.5",
+        "sensio/generator-bundle": "~2.3",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "raulfraile/ladybug-bundle": "dev-master",
         "phpspec/phpspec": "2.0.*@dev",
-        "sensio/distribution-bundle": "~3.0.12",
         "phpmd/phpmd" : "@stable" ,
         "henrikbjorn/phpspec-code-coverage": "~1.0"
     },
     "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
             "Sp\\BowerBundle\\Composer\\ScriptHandler::bowerInstall"
         ],
         "post-update-cmd": [
@@ -64,6 +70,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
             "Sp\\BowerBundle\\Composer\\ScriptHandler::bowerInstall"
         ]
     },
@@ -80,7 +88,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "2.3-dev"
+            "dev-master": "2.7-dev"
         }
     }
 }

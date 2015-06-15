@@ -1,7 +1,7 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package ECollecte
+ * @package eDonate
  * @copyright Agence Ecedi 2015
  */
 namespace Ecedi\Donate\OgoneBundle;

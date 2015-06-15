@@ -1,7 +1,7 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package ECollecte
+ * @package eDonate
  * @subpackage PaymentMethod
  */
 
@@ -66,6 +66,11 @@ abstract class AbstractPaymentMethod implements PaymentMethodInterface
         return $this;
     }
 
+    public function getTemplating()
+    {
+        return $this->templating;
+    }
+
     public function setDoctrine(RegistryInterface $doctrine)
     {
         $this->doctrine = $doctrine;
@@ -73,11 +78,21 @@ abstract class AbstractPaymentMethod implements PaymentMethodInterface
         return $this;
     }
 
+    public function getDoctrine()
+    {
+        return $this->doctrine;
+    }
+
     public function setRouter(RouterInterface $router)
     {
         $this->router = $router;
 
         return $this;
+    }
+
+    public function getRouter()
+    {
+        return $this->router;
     }
 
     /**

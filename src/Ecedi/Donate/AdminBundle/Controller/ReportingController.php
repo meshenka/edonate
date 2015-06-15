@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 
 namespace Ecedi\Donate\AdminBundle\Controller;
 
@@ -25,18 +31,18 @@ class ReportingController extends Controller
      */
     public function intentsAction(Request $request)
     {
-        $intentForm = $this->createForm(new IntentFiltersType());
+        $filters = array();
+        $intentForm = $this->createForm(new IntentFiltersType(), $filters, [
+            'method' => 'GET',
+            ]);
 
-        $parameters = $request->query->get('intent_filters');// Récupération des valeures de nos filtres
+        $intentForm->handleRequest($request);
 
-        if ($parameters) {
-            $intentForm->bind($request);// application des filtres sélectionnées au formulaire
-        }
+        $filters = $intentForm->getData();
 
         $entityMgr = $this->getDoctrine()->getManager();
-        $queryBuilder = $entityMgr->getRepository('DonateCoreBundle:Intent')->getQBIntentsListBy($parameters);
+        $queryBuilder = $entityMgr->getRepository('DonateCoreBundle:Intent')->getQBIntentsListBy($filters);
 
-        // gestion de l'export
         if ($intentForm->isValid()) {
             if ($intentForm->get('submit_export')->isClicked()) {
                 $exporter = $this->get('ecollect.export.intent');
@@ -81,6 +87,36 @@ class ReportingController extends Controller
      */
     public function customersAction(Request $request)
     {
+        $filters = array();
+        $customerForm = $this->createForm(new CustomerFiltersType(), $filters, [
+            'method' => 'GET'
+        ]);
+
+        $customerForm->handleRequest($request);
+
+        $filters = $customerForm->getData();
+
+        $entityMgr = $this->getDoctrine()->getManager();
+        $query = $entityMgr->getRepository('DonateCoreBundle:Customer')->getCustomersListBy($filters);
+
+        if ($customerForm->isValid()) {
+            if ($customerForm->get('submit_export')->isClicked()) {
+                $exporter = $this->get('ecollect.export.customer');
+                $exporter->setExportQuery($query);
+                $content = $exporter->getCsvContent();
+
+                return $this->getCsvResponse($content, 'export_donateurs', 'ISO-8859-1');
+            }
+        }
+
+        $pagination = $this->getPagination($request, $query, 20);
+
+        return $this->render('DonateAdminBundle:Reporting:customers.html.twig', [
+            'pagination'    => $pagination,
+            'customerForm'  => $customerForm->createView()
+        ]);
+
+        /*
         $customerForm = $this->createForm(new CustomerFiltersType());
 
         $parameters = $request->query->get('customer_filters');// Récupération des valeures de nos filtres
@@ -109,6 +145,7 @@ class ReportingController extends Controller
             'pagination'    => $pagination,
             'customerForm'  => $customerForm->createView()
         ]);
+        */
     }
 
     /**
