@@ -31,7 +31,7 @@ class LayoutType extends AbstractType
     /**
      * {@inheritdoc}
      * @since 2.4 flip keys and values and add choices_as_values option
-     * @since  2.4 use placeholder instead of empty_value. see  http://symfony.com/doc/current/reference/forms/types/choice.html#placeholder
+     * @since 2.4 use placeholder instead of empty_value. see  http://symfony.com/doc/current/reference/forms/types/choice.html#placeholder
      *
      * @param  FormBuilderInterface $builder [description]
      * @param  array                $options [description]

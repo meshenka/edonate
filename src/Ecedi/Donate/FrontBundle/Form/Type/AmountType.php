@@ -64,7 +64,7 @@ class AmountType extends AbstractType
 
     /**
      * {@inheritdoc}
-     * @since 2.4 use new method signatire since sf 2.7
+     * @since 2.4 use new method signature since sf 2.7
      */
     public function configureOptions(OptionsResolver $resolver)
     {
