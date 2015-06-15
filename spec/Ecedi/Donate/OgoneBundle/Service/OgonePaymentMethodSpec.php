@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
+use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Ogone PaymentMethod Spec
@@ -19,11 +20,13 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
  */
 class OgonePaymentMethodSpec extends ObjectBehavior
 {
-    public function let(RegistryInterface $doctrine, RouterInterface $router, EngineInterface $templating)
+    public function let(RegistryInterface $doctrine, RouterInterface $router, EngineInterface $templating, ObjectManager $entityMgr)
     {
         $this->setDoctrine($doctrine);
         $this->setRouter($router);
         $this->setTemplating($templating);
+
+        $doctrine->getManager()->willReturn($entityMgr);
 
         $router->generate('donate_ogone_pay')->willReturn('test');
     }

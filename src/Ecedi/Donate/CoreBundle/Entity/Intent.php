@@ -480,6 +480,7 @@ class Intent
     public function addPayment(Payment $payments)
     {
         $this->payments[] = $payments;
+        $payments->setIntent($this);
 
         return $this;
     }
