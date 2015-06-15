@@ -1,9 +1,9 @@
 <?php
 /**
- * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @copyright 2015 Ecedi
- * @package eCollecte
- *
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
  */
 
 namespace Ecedi\Donate\AdminBundle\Controller;
@@ -102,7 +102,7 @@ class AffectationController extends Controller
     }
 
     /**
-     * @Route("/cms/layout/{layout}/affectations/sort" , name="donate_admin_affectation_sort", requirements={"layout" = "\d+","_method" = "POST"}, defaults={"layout" = 0})
+     * @Route("/cms/layout/{layout}/affectations/sort" , name="donate_admin_affectation_sort", requirements={"layout" = "\d+","methods" = "POST"}, defaults={"layout" = 0})
      */
     public function sortAction(Request $request, Layout $layout)
     {

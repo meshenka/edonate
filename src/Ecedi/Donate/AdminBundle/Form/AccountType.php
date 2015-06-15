@@ -2,24 +2,27 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package Ecollecte
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
  */
 
 namespace Ecedi\Donate\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Une classe pour le formulaire des comptes utilisateurs
  * @since 2.3  class no more use constructor argument, we switch to options
  */
+
 class AccountType extends AbstractType
 {
     /**
      *
-     * @since 2.3  class no more use constructor argument, we switch to options
+     * @since 2.3 class no more use constructor argument, we switch to options
+     * @since 2.4 flip keys and values and add choices_as_values option
      * @param FormBuilderInterface $builder [description]
      * @param array                $options [description]
      */
@@ -27,26 +30,27 @@ class AccountType extends AbstractType
     {
         $builder
             ->add('username', 'text', array(
-                'label'             => "Username",
-                 'required'          => true,
+                'label'             => 'Username',
+                'required'          => true,
             ))
             ->add('email', 'text', array(
                 'label'             => "Email",
                 'required'          => true,
-            ));
-        $builder
+            ))
             ->add('roles', 'choice', array(
                 'choices'           => $options['roles'],
                 'required'          => true,
                 'multiple'          => true,
                 'expanded'          => true,
+                'choices_as_values' => true,
             ))
             ->add('enabled', 'choice', array(
-                'choices'           => array("No", "Yes"),
+                'choices'           => ['No' => false, 'Yes' => true],
                 'required'          => true,
                 'multiple'          => false,
                 'expanded'          => true,
                 'label'             => 'Enabled',
+                'choices_as_values' => true,
             ))
              ->add('submit_save', 'submit', array(
                 'label'     => 'Submit',
@@ -59,8 +63,8 @@ class AccountType extends AbstractType
                     ->add('password', 'repeated', array(
                         'type'              => 'password',
                         'invalid_message'   => "Passwords don't match",
-                        'first_name'        => "Mot_de_passe",
-                        'second_name'       => "Confirmation_mot_de_passe",
+                        'first_name'        => 'Mot_de_passe',
+                        'second_name'       => 'Confirmation_mot_de_passe',
                         'options'           => array(),
                     ));
 
@@ -76,9 +80,10 @@ class AccountType extends AbstractType
     /**
      * default form options
      * @since 2.3  we use options roles and action instead of constructor arguments
-     * @param OptionsResolverInterface $resolver [description]
+     * @since 2.4 use new method signatire since sf 2.7
+     * @param OptionsResolver $resolver [description]
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',

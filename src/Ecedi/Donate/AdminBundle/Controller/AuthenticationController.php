@@ -1,10 +1,16 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 
 namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Security;
 
 class AuthenticationController extends Controller
 {
@@ -12,6 +18,7 @@ class AuthenticationController extends Controller
      * @Route("/_login" , name="donate_admin_login")
      *
      * @see http://symfony.com/doc/current/book/security.html
+     * @since  2.4 SecurityContext is deprecated, use Symfony\Component\Security\Core\Security for constants
      */
     public function loginAction()
     {
@@ -19,17 +26,17 @@ class AuthenticationController extends Controller
         $session = $request->getSession();
 
         // get the login error if there is one
-        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+        if ($request->attributes->has(Security::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(
-                SecurityContext::AUTHENTICATION_ERROR
+                Security::AUTHENTICATION_ERROR
             );
         } else {
-            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
-            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+            $error = $session->get(Security::AUTHENTICATION_ERROR);
+            $session->remove(Security::AUTHENTICATION_ERROR);
         }
 
         return $this->render('DonateAdminBundle:Authentication:login.html.twig', [
-                'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+                'last_username' => $session->get(Security::LAST_USERNAME),
                 'error'         => $error,
             ]);
     }

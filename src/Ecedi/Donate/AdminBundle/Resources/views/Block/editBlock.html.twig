@@ -10,7 +10,8 @@
 
         var format = $('#block_format');
 
-        if( 'html' != format.val() )  {
+        //0 is html
+        if( '0' != format.val() )  {
             //si pas HTML alors on desactive directement ckeditor
             CKEDITOR.instances.block_body.destroy();
         }
@@ -18,7 +19,7 @@
         //quand le format change on active/desactive aloha
         format.change(function(e) {
             var _this = $(this);
-            if( 'html' == _this.val() )  {
+            if( '0' == _this.val() )  {
                 console.log('format change to  html, we activate ckeditor');
                 if(CKEDITOR.instances && !CKEDITOR.instances.block_body ) {
                     CKEDITOR.replace('block_body', trsteelConfig);
@@ -71,8 +72,5 @@
     <div class="form-group"><div class="control-group">
 	{{ form_row(form.format, { 'attr': {'class': 'form-control'}}) }}
     </div></div>
-
-    {{ form_rest(form) }}
-
 {{ form_end(form) }}
 {% endblock %}

@@ -8,7 +8,7 @@
 {% block sidebar %}
 <div class="form-filter">
 <h3>{{ "Search" | trans }}</h3>
-{{ form_start(customerForm,  { 'action': '', 'method': 'GET', 'attr': {'role': 'form'} }) }}
+{{ form_start(customerForm,  { 'attr': {'role': 'form'} }) }}
     {{ form_errors(customerForm) }}
 
     <div class="form-group">

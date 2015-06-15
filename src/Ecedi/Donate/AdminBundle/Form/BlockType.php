@@ -1,14 +1,22 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 
 namespace Ecedi\Donate\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ecedi\Donate\CoreBundle\Entity\Block;
 
 /**
  * Une classe pour le formulaire des comptes utilisateurs
+ * @since 2.4 flip keys and values and add choices_as_values option
+ * @since 2.4 use placeholder instead of empty_value. see  http://symfony.com/doc/current/reference/forms/types/choice.html#placeholder
  */
 class BlockType extends AbstractType
 {
@@ -20,10 +28,12 @@ class BlockType extends AbstractType
                 'label'     => 'Nom machine',
             ));
 
+        //@since 2.4 flip keys and values and add choices_as_values option
         $builder->add('enabled', 'choice', array(
-                'choices'           => array(0 => 'Non', 1 => 'Oui'),
+                'choices'           => array('No' => 0, 'Yes' => 1),
                 'required'          => true,
                 'label'             => 'Activé',
+                'choices_as_values' => true,
             ));
 
         $builder->add('position', 'text', array(
@@ -63,14 +73,17 @@ class BlockType extends AbstractType
                 'transformers' => array('html_purifier'),
 
             ));
+
+        // @since 2.4 flip keys and values and add choices_as_values option
         $builder->add('format', 'choice', array(
                 'label'     => 'Format',
-                'choices' => array(Block::FORMAT_HTML => 'HTML', Block::FORMAT_MARKDOWN => 'Markdown', Block::FORMAT_RAW => 'Brut'),
+                'choices' => $options['body_formats'],
                 'required' => true,
-                'preferred_choices' => array('html'),
-                'empty_value' => false,
+                'preferred_choices' => array(Block::FORMAT_HTML),
+                'placeholder' => false,
                 'expanded' => false,
                 'multiple' => false,
+                'choices_as_values' => true,
             ));
 
         $builder->add('submit', 'submit', array(
@@ -78,11 +91,20 @@ class BlockType extends AbstractType
             ));
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    /**
+     * @since 2.4 use new method signatire since sf 2.7
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',
             'data_class' => 'Ecedi\Donate\CoreBundle\Entity\Block',
+            'body_formats' => [
+                'HTML' => Block::FORMAT_HTML,
+                'Markdown' => Block::FORMAT_MARKDOWN,
+                'Brut' => Block::FORMAT_RAW,
+            ],
         ));
     }
     /**

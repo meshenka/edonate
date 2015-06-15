@@ -1,7 +1,7 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package ECollecte
+ * @package eDonate
  * @subpackage Core
  * @copyright Agence Ecedi 2014
  *
@@ -223,8 +223,6 @@ class DefaultIntentManager implements IntentManagerInterface
         if ($intentId && $intent = $intentRepository->find($intentId)) {
             $intent->addPayment($payment);
             $this->logger->debug('addPayment to intent');
-            $payment->setIntent($intent);
-            $this->logger->debug('Set Intent on payment');
 
             if ($intent->getType() == Intent::TYPE_SPOT && $intent->getStatus() == Intent::STATUS_PENDING) {
                 //Propagation de l'état du paiement vers l'intent

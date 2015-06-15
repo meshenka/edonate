@@ -146,12 +146,12 @@ class DefaultIntentManagerSpec extends ObjectBehavior
     public function it_should_add_payment_to_intent(Intent $intent, Payment $payment)
     {
         $this->intentRepository->find(10)->willReturn($intent);
+        $payment->getStatus()->willReturn(Payment::STATUS_PAYED);
         $intent->getType()->willReturn(Intent::TYPE_SPOT);
         $intent->getStatus()->willReturn(Intent::STATUS_PENDING);
 
         //on ajoute bien le payment a l'intent
         $intent->addPayment($payment)->shouldBeCalled();
-        $payment->setIntent($intent)->shouldBeCalled();
 
         //on change le status de l'intent
         $intent->setStatus(Intent::STATUS_DONE)->shouldBeCalled();
@@ -168,6 +168,7 @@ class DefaultIntentManagerSpec extends ObjectBehavior
         //on ajoute bien le payment a l'intent
         $intent->addPayment($payment)->shouldNotBeCalled();
         $payment->setIntent($intent)->shouldNotBeCalled();
+        $payment->getStatus()->willReturn(Payment::STATUS_PAYED);
 
         //on change le status de l'intent
         $intent->setStatus(Intent::STATUS_DONE)->shouldNotBeCalled();

@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 
 namespace Ecedi\Donate\FrontBundle\Controller;
 
@@ -28,7 +34,7 @@ class FormController extends Controller
         $layout = $layoutMgr->getDefault($_locale);
 
         $form = $this->createForm(new DonationType($this->get('translator')), $data, array(
-            'civilities' => $this->container->getParameter('donate_front.form.civility'),
+            'civilities' => $this->getParameter('donate_front.form.civility'),
             'equivalences' => $this->get('donate_core.equivalence.factory')->getAll(),
             'payment_methods' => $this->get('donate_core.payment_method_discovery')->getEnabledMethods(),
             'affectations' =>  $layout->getAffectations(),
@@ -38,7 +44,7 @@ class FormController extends Controller
         if ($form->isValid()) {
             $intentMgr = $this->get('donate_core.intent_manager');
 
-            $paymentMethods = $this->container->get('donate_core.payment_method_discovery')->getEnabledMethods();
+            $paymentMethods = $this->get('donate_core.payment_method_discovery')->getEnabledMethods();
 
             foreach ($paymentMethods as $pm) {
                 if ($form->get('payment_method')->get($pm->getId())->isClicked()) {
@@ -47,7 +53,7 @@ class FormController extends Controller
                     $intent = $intentMgr->newIntent($amount, $pm->getId());
                     $intent->setFiscalReceipt($form['erf']->getData());
 
-                    //TODO add affectation if any
+                    //add affectation if any
                     $intent->setAffectationCode($form['affectations']->getData());
 
                     $data->addIntent($intent);

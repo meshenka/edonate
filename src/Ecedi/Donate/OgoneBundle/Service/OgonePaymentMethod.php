@@ -2,7 +2,7 @@
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package ECollecte
+ * @package eDonate
  * @subpackage PaymentMethod
  */
 namespace Ecedi\Donate\OgoneBundle\Service;
@@ -47,11 +47,11 @@ class OgonePaymentMethod extends AbstractPaymentMethod
         if ($intent->getStatus() === Intent::STATUS_NEW) {
             $intent->setStatus(Intent::STATUS_PENDING);
 
-            $entityMgr = $this->doctine->getManager();
+            $entityMgr = $this->getDoctrine()->getManager();
             $entityMgr->persist($intent);
             $entityMgr->flush();
 
-            return new RedirectResponse($this->router->generate('donate_ogone_pay'));
+            return new RedirectResponse($this->getRouter()->generate('donate_ogone_pay'));
         }
 
         return new Response('', 500);

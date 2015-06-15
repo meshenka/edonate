@@ -1,16 +1,42 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 
 namespace Ecedi\Donate\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ecedi\Donate\CoreBundle\Entity\Layout;
 /**
  * Une classe pour le formulaire des comptes utilisateurs
  */
 class LayoutType extends AbstractType
 {
+    /**
+     * @since 2.4 convert i18n options to a usable ChoiceType choices
+     *
+     * @param  array $languages languages as extracted from config donate_front.i18n
+     * @return array key is the Label, value is the language code
+     */
+    protected function languagesToOptions($languages)
+    {
+        return  array_combine($languages, $languages);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 2.4 flip keys and values and add choices_as_values option
+     * @since 2.4 use placeholder instead of empty_value. see  http://symfony.com/doc/current/reference/forms/types/choice.html#placeholder
+     *
+     * @param  FormBuilderInterface $builder [description]
+     * @param  array                $options [description]
+     * @return [type]               [description]
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', 'text', array(
@@ -20,18 +46,19 @@ class LayoutType extends AbstractType
 
         $builder->add('language', 'choice', array(
             'label'     => 'Langue',
-            'choices' => $options['language'],
+            'choices' => $this->languagesToOptions($options['language']),
             'required' => true,
-            //'preferred_choices' => array('fr'),
-            'empty_value' => false,
+            'placeholder' => false,
             'expanded' => false,
             'multiple' => false,
+            'choices_as_values' => true,
         ));
 
         $builder->add('skin', 'choice', array(
                 'choices'           => $options['skins'],
                 'required'          => true,
                 'label'             => 'Theme',
+                'choices_as_values' => true,
             ));
 
         $builder->add('baseline', 'text', array(
@@ -84,7 +111,11 @@ class LayoutType extends AbstractType
             ));
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    /**
+     * {@inheritdoc}
+     * @since 2.4 use new method signatire since sf 2.7
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',

@@ -28,7 +28,7 @@ class ReturnController extends Controller
         }
 
         //en env de dev on peut afficher la page avec un payment OK
-        if ($this->container->getParameter('kernel.environment') === 'dev') {
+        if ($this->getParameter('kernel.environment') === 'dev') {
             $paymentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Payment');
 
             $payment = $paymentRepo->findOneBy(array('status' => Payment::STATUS_PAYED));

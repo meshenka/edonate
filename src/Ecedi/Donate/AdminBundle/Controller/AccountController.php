@@ -1,8 +1,10 @@
 <?php
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @author  Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package Ecollecte
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
  */
 namespace Ecedi\Donate\AdminBundle\Controller;
 
@@ -10,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Ecedi\Donate\AdminBundle\Form\AccountType;
-use Ecedi\Donate\CoreBundle\Entity\User as User;
+use Ecedi\Donate\CoreBundle\Entity\User;
 use FOS\UserBundle\Model\UserManager;
 use FOS\UserBundle\Util\UserManipulator;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -60,8 +62,6 @@ class AccountController extends Controller
 
                 $userManager->deleteUser($user);
                 $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été supprimé.");
-
-                return $this->redirect($this->generateUrl('donate_admin_users'));
             }
 
             //EDIT
@@ -71,11 +71,12 @@ class AccountController extends Controller
                     throw new AccessDeniedException('Unauthorised access!');
                 }
 
+                $this->get('logger')->info('We save the user');
                 $userManager->updateUser($user);
                 $this->get('session')->getFlashBag()->add('notice', "L'utilisateur ".$user->getUsername()." a été mis à jour.");
-
-                return $this->redirect($this->generateUrl('donate_admin_users'));
             }
+
+            return $this->redirect($this->generateUrl('donate_admin_users'));
         }
 
         //view
@@ -151,16 +152,17 @@ class AccountController extends Controller
     /**
      * Fonction qui retourne les rôles pouvant être assignés par l'utilisateur
      * @since  2.3 the function roles are hardcoded instead of been deduced from role_hierarchy
+     * @since 2.4 flip keys and values and add choices_as_values option
      * @return $roles -- tableau contenant les rôles povant être assigné par un administrateur
      */
     private function getAvailabledRoles()
     {
-        return array(
-            'ROLE_USER' => 'Utilisateur',
-            'ROLE_ADMIN' => 'Administrateur',
-            'ROLE_CMS' => 'Editeur CMS',
-            'ROLE_AFFECTATION' => 'Gestionnaire Affectation',
-        );
+        return [
+            'Utilisateur' => 'ROLE_USER',
+            'Administrateur' => 'ROLE_ADMIN',
+            'Editeur CMS' => 'ROLE_CMS',
+            'Gestionnaire Affectation' => 'ROLE_AFFECTATION',
+        ];
     }
 
     /**

@@ -2,7 +2,7 @@
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright 2015 Ecedi
- * @package eCollecte
+ * @package eDonate
  *
  */
 
@@ -480,6 +480,7 @@ class Intent
     public function addPayment(Payment $payments)
     {
         $this->payments[] = $payments;
+        $payments->setIntent($this);
 
         return $this;
     }
