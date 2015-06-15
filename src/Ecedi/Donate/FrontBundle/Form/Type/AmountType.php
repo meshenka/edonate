@@ -28,7 +28,7 @@ class AmountType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Ajout d'un champ de saisi manuel si voulu
-        $options['choices']['manual'] = 'Other amount';
+        $options['choices']['Other amount'] = 'manual';
         $builder
             ->addViewTransformer(new AmountChoiceToIntentAmountTransformer([
                 'manual',
@@ -41,7 +41,11 @@ class AmountType extends AbstractType
                 'multiple'    => false,
                 'label'    => false,
                 'data'        => $options['default'],
+                //'placeholder' => false,
                 'choices_as_values' => true,
+                'choice_value' => function ($choice) {
+                    return $choice;
+                },
             ])
             ->add('manual', 'money', [
                 'currency'    => 'EUR',
