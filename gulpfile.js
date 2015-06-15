@@ -13,6 +13,7 @@ var minifyCSS = require('gulp-minify-css');
 var LessPluginCleanCSS = require('less-plugin-clean-css'),
     cleancss = new LessPluginCleanCSS({ advanced: true });
 
+var livereload = require('gulp-livereload');
 
 var path = require('path');
 
@@ -37,7 +38,8 @@ gulp.task('default', [
     'js:front:header',
     'css:front:style',
     'css:front:ie',
-    'fonts:front'
+    'fonts:front',
+    'image:front'
     ],
     function() {
 });
@@ -280,3 +282,30 @@ gulp.task('fonts:front', function() {
         .pipe(gulp.dest('web/css/build/polices'));
 });
 
+
+gulp.task('image:front', function() {
+    return gulp.src(src + 'FrontBundle/Resources/public/images/*')
+        // Copy files to destination
+        .pipe(gulp.dest('web/css/images'));
+
+});
+
+/**
+ * watch
+ *
+ * TODO ajuster tous ca!!
+ */
+gulp.task('watch', function() {
+
+    // Folders to watch and tasks to execute
+    gulp.watch([src + '/fonts/*'], ['fonts']);
+    gulp.watch([src + '/less/*'], ['less']);
+    gulp.watch([src + '/js/*'], ['js']);
+    gulp.watch([src + '/img/*'], ['img']);
+    gulp.watch([src + '/html/*'], ['html']);
+    gulp.watch([bower_dir + '/**/*.css'], ['libJS', 'libCSS', 'libFonts']);
+
+    livereload.listen();
+    // When dest changes, tell the browser to reload
+    gulp.watch(dest + '/**').on('change', livereload.changed);
+});
