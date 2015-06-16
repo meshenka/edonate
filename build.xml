@@ -9,7 +9,7 @@
 		<mkdir dir="docs"/>
 		<mkdir dir="reports"/>
 		<mkdir dir="build"/>
-		<echo msg="Making docs, report and build directories"/>		
+		<echo msg="Making docs, report and build directories"/>
 	</target>
 
 	<!-- run all symfony related commands to update local installation -->
@@ -19,20 +19,24 @@
 		<composer command="install" composer="${composer.bin.path}">
              <arg value="--optimize-autoloader" />
         </composer>
-		<echo msg="composer install."/>		
+		<echo msg="composer install."/>
 
 		<!-- database update -->
 		<SymfonyConsole command="doctrine:schema:update">
 			<arg name="force"/>
 		</SymfonyConsole>
-		<echo msg="app/console doctrine:schema:update --force"/>		
+		<echo msg="app/console doctrine:schema:update --force"/>
 
 		<!-- dump assets -->
 		<SymfonyConsole command="assetic:dump">
             <arg name="env" value="${symfony.env}" />
         </SymfonyConsole>
 
-		<echo msg="app/console assetic:dump"/>		
+		<echo msg="app/console assetic:dump"/>
+
+        <!-- produce gulp resources -->
+        <exec command="gulp" dir="." />
+        <echo msg="glup compilation task"/>
 
         <!-- clear cache -->
         <SymfonyConsole command="cache:clear">
@@ -40,9 +44,9 @@
         </SymfonyConsole>
 
 
-        <echo msg="app/console cache:clear"/>      
+        <echo msg="app/console cache:clear"/>
 	</target>
-	
+
 	<!-- generate documentation	 -->
 	<target name="doc" depends="prepare" description="Generate documentation">
 		<phpdoc2 title="eCollecte" destdir="docs">
@@ -50,19 +54,19 @@
 				<include name="**/*.php"/>
 			</fileset>
 		</phpdoc2>
-		<echo msg="Generating PhpDoc."/>		
+		<echo msg="Generating PhpDoc."/>
 	</target>
 
 	<!-- Run unit tests -->
 	<target name="unit-test" depends="prepare" description="Run unit tests">
 		<exec command="./bin/phpspec --ansi" output="reports/specs.log"/>
-		<echo msg="run phpspec"/>		
+		<echo msg="run phpspec"/>
 	</target>
 
 	<!-- Run integration test (WARNING: require db reset) -->
 	<target name="integration-test" depends="unit-test" description="Run integration tests">
 		<phpunit codecoverage="true" configuration="app/phpunit.xml">
-		  <formatter todir="reports" type="xml" outfile="integration.xml"/>		 
+		  <formatter todir="reports" type="xml" outfile="integration.xml"/>
 		</phpunit>
 	</target>
 
