@@ -1,3 +1,5 @@
+/app/Resources/assets/
+/app/Resources/Donate*/
 *~
 /web/bundles/*
 /web/assetic/*

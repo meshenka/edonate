@@ -1,3 +1,6 @@
+v2.4.3
+  * Remove app/Resources useless stuff
+
 v2.4.2
   * HOTFIX : bug with date filter in Admin
 
