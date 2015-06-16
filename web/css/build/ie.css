@@ -1,0 +1,10 @@
+/**
+ * WARNING this filed is generated with gulp. Do not modify here!
+ *
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @version 2.4.1
+ * @package eDonate
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @copyright 2015 Agence Ecedi http://ecedi.fr
+ */
+.col-md-3{width:25%;float:left}.col-md-4{width:33.33333333333333%;float:left}.col-md-5{width:41.66666666666667%;float:left}.col-md-6{width:50%;float:left}.col-md-7{width:58.333333333333336%;float:left}.col-md-8{width:66.6667%;float:left}.col-md-9{width:75%;float:left}.col-md-12{width:100%}#calculator,#cartouche,#montant .control-group.manual,.control-group label,.panel{position:relative;zoom:1;behavior:url(pie.htc)},#autreMtt,#autreMtt .control-group,#autreMtt input,#cartoucheDr,#i18n{zoom:1;behavior:url(pie.htc)}#sidebar{width:30%}#cartoucheDr{right:-10px}#montant .control-group{margin-left:-24px}#montant .control-group label{min-height:45px;margin-left:24px}#montant .control-group label.manual{margin-left:20px;min-height:48px}#calculator{min-height:140px}#autreMtt{min-height:58px}
