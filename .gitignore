@@ -1,10 +1,8 @@
 *~
 /web/bundles/*
 /web/assetic/*
-/web/css/*
 /web/images/*
 /web/uploads/*
-/web/js/*
 /web/media/*
 /app/bootstrap.php.cache
 /app/cache/*

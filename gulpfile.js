@@ -10,11 +10,9 @@ var uglify = require('gulp-uglify');
 var header = require('gulp-header');
 var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
-var LessPluginCleanCSS = require('less-plugin-clean-css'),
-    cleancss = new LessPluginCleanCSS({ advanced: true });
-
+var LessPluginCleanCSS = require('less-plugin-clean-css');
+var cleancss = new LessPluginCleanCSS({ advanced: true });
 var livereload = require('gulp-livereload');
-
 var path = require('path');
 
 // var autoprefixer = require('gulp-autoprefixer');
