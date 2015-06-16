@@ -1,3 +1,6 @@
+v2.4.2
+  * HOTFIX : bug with date filter in Admin
+
 v2.4.1
   * use gulp for assets building instead of assetic (still needed for some images)
 

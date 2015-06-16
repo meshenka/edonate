@@ -2,7 +2,7 @@
  * WARNING this filed is generated with gulp. Do not modify here!
  *
  * @author Sylvain Gogel <sgogel@ecedi.fr>
- * @version 2.4.1
+ * @version 2.4.2
  * @package eDonate
  * @license  http://opensource.org/licenses/MIT MIT
  * @copyright 2015 Agence Ecedi http://ecedi.fr
