@@ -14,6 +14,7 @@ var LessPluginCleanCSS = require('less-plugin-clean-css');
 var cleancss = new LessPluginCleanCSS({ advanced: true });
 var livereload = require('gulp-livereload');
 var path = require('path');
+var pkg = require('./package.json');
 
 // var autoprefixer = require('gulp-autoprefixer');
 //var concatCss = require('gulp-concat-css');
@@ -25,7 +26,16 @@ var path = require('path');
 var jsDest = 'web/js/build';
 var cssDest = 'web/css/build';
 var src = 'src/Ecedi/Donate/';
-var banner = '/**\n * WARNING this filed is generated with gulp. Do not modify here!\n */\n';
+var banner = '/**\n'+
+    ' * WARNING this filed is generated with gulp. Do not modify here!\n' +
+    ' *\n' +
+    ' * @author '+ pkg.author + '\n' +
+    ' * @version '+ pkg.version + '\n' +
+    ' * @package '+ pkg.name + '\n' +
+    ' * @build '+ new Date().toString() + '\n' +
+    ' * @license '+ pkg.license + '\n' +
+    ' * @copyright '+ pkg.copyright + '\n' +
+    ' */\n';
 
 gulp.task('default', [
     'js:ie',
