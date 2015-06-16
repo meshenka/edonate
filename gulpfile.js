@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @since 2.4.1
+ * @package eDonate\Build
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @copyright 2015 Agence Ecedi http://ecedi.fr
+ */
+
 'use strict';
 /* global require */
 /* global console */
@@ -16,13 +25,6 @@ var livereload = require('gulp-livereload');
 var path = require('path');
 var pkg = require('./package.json');
 
-// var autoprefixer = require('gulp-autoprefixer');
-//var concatCss = require('gulp-concat-css');
-// var minifyCSS = require('gulp-minify-css');
-// var LessPluginCleanCSS = require('less-plugin-clean-css');
-// // var cleancss = new LessPluginCleanCSS({ advanced: true });
-// // var livereload = require('gulp-livereload');
-
 var jsDest = 'web/js/build';
 var cssDest = 'web/css/build';
 var src = 'src/Ecedi/Donate/';
@@ -34,7 +36,6 @@ var banner = '/**\n'+
     ' * @author '+ pkg.author + '\n' +
     ' * @version '+ pkg.version + '\n' +
     ' * @package '+ pkg.name + '\n' +
-    ' * @build '+ new Date().toString() + '\n' +
     ' * @license '+ pkg.license + '\n' +
     ' * @copyright '+ pkg.copyright + '\n' +
     ' */\n';
@@ -56,8 +57,8 @@ gulp.task('default', [
 
 gulp.task('watch', [
     'watch:js:ie',
-    // 'watch:js:admin',
-    // 'watch:css:admin',
+    'watch:js:admin',
+    'watch:css:admin',
     'watch:fonts:bootstrap',
     'watch:js:front:footer',
     'watch:js:front:header',
@@ -67,28 +68,29 @@ gulp.task('watch', [
     'watch:image:front'
     ],
     function() {
+        gulp.watch('app/Resources/assets/**', ['default']);
+        livereload.listen();
+        // When dest changes, tell the browser to reload
+        gulp.watch('web/**').on('change', livereload.changed);
 });
 
 
-/*
-replace assetic tag
-
-    {% javascripts
-        '@jquery_js'
-        '@DonateCoreBundle/Resources/public/components/modernizr/modernizr.js'
-        '@bootstrap_js'
-        '@jquery_ui_js'
-        '@DonateCoreBundle/Resources/public/components/jquery-ui/ui/minified/datepicker.min.js'
-        '@DonateCoreBundle/Resources/public/components/jquery-ui/ui/minified/i18n/datepicker-fr.min.js'
-        '@DonateAdminBundle/Resources/public/js/admin.js'
-     output='js/admin.js' filter='uglifyjs2' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-*/
-gulp.task('js:admin', function(){
-
-    console.log('build admin.js');
-
+/**
+ * AdminBundle JS
+ *
+ *   {% javascripts
+ *       '@jquery_js'
+ *       '@DonateCoreBundle/Resources/public/components/modernizr/modernizr.js'
+ *       '@bootstrap_js'
+ *       '@jquery_ui_js'
+ *       '@DonateCoreBundle/Resources/public/components/jquery-ui/ui/minified/datepicker.min.js'
+ *       '@DonateCoreBundle/Resources/public/components/jquery-ui/ui/minified/i18n/datepicker-fr.min.js'
+ *       '@DonateAdminBundle/Resources/public/js/admin.js'
+ *    output='js/admin.js' filter='uglifyjs2' %}
+ *       <script type="text/javascript" src="{{ asset_url }}"></script>
+ *   {% endjavascripts %}
+ */
+var jsAdminPath = function(){
     var jqueryJs = src +'CoreBundle/Resources/public/components/jquery/dist/jquery.js';
     var modernizrJs = src + 'CoreBundle/Resources/public/components/modernizr/modernizr.js';
     var bootstrapJs = src +'CoreBundle/Resources/public/components/bootstrap/dist/js/bootstrap.js';
@@ -96,55 +98,75 @@ gulp.task('js:admin', function(){
     var datepickerJs = src + 'CoreBundle/Resources/public/components/jquery-ui/ui/datepicker.js';
     var datepickerL10nFrJs = src + 'CoreBundle/Resources/public/components/jquery-ui/ui/i18n/datepicker-fr.js';
     var adminJs = src + 'AdminBundle/Resources/public/js/admin.js';
+    return [
+        jqueryJs,
+        modernizrJs,
+        bootstrapJs,
+        jqueryUiJs,
+        datepickerJs,
+        datepickerL10nFrJs,
+        adminJs
+    ];
+};
 
-    gulp.src([
-            jqueryJs,
-            modernizrJs,
-            bootstrapJs,
-            jqueryUiJs,
-            datepickerJs,
-            datepickerL10nFrJs,
-            adminJs
-        ])
+gulp.task('js:admin', function(){
+
+    console.log('build admin.js');
+
+    gulp.src(jsAdminPath())
         .pipe(concat('admin.js'))
         .pipe(uglify())
         .pipe(header(banner))
         .pipe(gulp.dest(jsDest));
 });
 
-/*
-        {% stylesheets
-            '@fix_bootstrap_css'
-            'bundles/donateadmin/css/datepicker.css'
-            'bundles/donateadmin/css/admin.css'
-         filter='cssrewrite,uglifycss' output='css/admin.css' combine=true %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+gulp.task('watch:js:admin', function(){
+    return gulp.watch(jsAdminPath(), ['js:admin']);
+});
 
- */
 /**
- * compile admin css
+ * AdminBundle css
+ *      {% stylesheets
+ *           '@fix_bootstrap_css'
+ *           'bundles/donateadmin/css/datepicker.css'
+ *           'bundles/donateadmin/css/admin.css'
+ *        filter='cssrewrite,uglifycss' output='css/admin.css' combine=true %}
+ *       <link rel="stylesheet" href="{{ asset_url }}" />
+ *       {% endstylesheets %}
+ *
  */
-gulp.task('css:admin', function() {
 
-    console.log('build admin.css');
+var cssAdminPath = function() {
 
     var bootstrapCss = cssSrc + 'donatecore/components/bootstrap/dist/css/bootstrap.css';
     var bootstraThemeCss =  cssSrc + 'donatecore/components/bootstrap/dist/css/bootstrap.css';
     var datepickerCss = cssSrc + 'donateadmin/css/datepicker.css';
     var adminCss = cssSrc + 'donateadmin/css/admin.css';
 
-   gulp.src([
-            bootstrapCss,
-            bootstraThemeCss,
-            datepickerCss,
-            adminCss
-        ])
+    return [
+        bootstrapCss,
+        bootstraThemeCss,
+        datepickerCss,
+        adminCss
+    ];
+};
+
+/**
+ * compile admin css
+ */
+gulp.task('css:admin', function() {
+
+
+   gulp.src(cssAdminPath())
         .pipe(concat('admin.css'))
         .pipe(minifyCSS())
         .pipe(header(banner))
         .pipe(gulp.dest(cssDest));
 
+});
+
+gulp.task('watch:css:admin', function() {
+    return  gulp.watch(cssAdminPath(), ['css:admin']);
 });
 
 /**
@@ -153,6 +175,7 @@ gulp.task('css:admin', function() {
 var fontsBoostrapPath = function() {
     return [src + 'CoreBundle/Resources/public/components/bootstrap/fonts/*'];
 };
+
 gulp.task('fonts:bootstrap', function() {
     console.log('copy fonts');
     return gulp.src(fontsBoostrapPath())
