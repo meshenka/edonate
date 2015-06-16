@@ -1,30 +1,37 @@
 /* --------------------------------------------
  * COMMENTAIRE TITRE
  ------------------------------------------- */
- 
+
   /*---------- = Commentaire sous-titre ----------*/
     /* commentaire */
- 
+
 /* On importe le fichier LESS qui liste toutes les variables : */
 @import "variables.less";
 
-/* 
+/*
 ------------------------------------------------------------------------------------------------
 = body, styles généraux...
 ------------------------------------------------------------------------------------------------
 */
 html{.s(100%);}
 
-body { 
-  margin:0; padding:0;
-  .s(0.875em); @ItcBk; color:@defaut;
+body {
   background:url(../images/fd-body.jpg) no-repeat center top #fff; background-size: 100% 496px;
+  color:@defaut;
+  .ItcBk;
+  margin:0; padding:0;
+  .s(0.875em);
 }
 
 img {max-width:100%; .h(auto);}
 
   /*---------- =  TITRES ----------*/
-h1, h2, h3, h1.panel-title, h2.panel-title, h3.panel-title {@normal; @ItcB; @maj; color:@bleu;}
+h1, h2, h3, h1.panel-title, h2.panel-title, h3.panel-title {
+    .normal;
+    .ItcB;
+    .maj;
+    color:@bleu;
+}
 h1, h1.panel-title {margin-top:0; .s(2.571em);}
 h2, h2.panel-title {.s(1.857em);}
 
@@ -35,16 +42,21 @@ h2, h2.panel-title {.s(1.857em);}
 
 .panel-title {.s(1.143em); color:@bleu;}
 
-#sidebar {@ItcD;
-  h2 {margin-top:0; .s(1.143em); @no-maj; 
-    a {color:@bleu;}
-  }
+#sidebar {
+    .ItcD;
+    h2 {
+        margin-top:0;
+        .s(1.143em);
+        .no-maj;
+
+        a { color:@bleu;}
+    }
 }
 
   /*---------- = Liens ----------*/
-a { color:@defaut; 
-  &:link, &:visited { @no-deco; }
-  &:focus, &:hover, &:active { @deco; color:@defaut;}  
+a { color:@defaut;
+  &:link, &:visited { .no-deco; }
+  &:focus, &:hover, &:active { .deco; color:@defaut;}
 }
 
 a, form, input, textarea, select, button, ul, ol, li{
@@ -53,80 +65,119 @@ a, form, input, textarea, select, button, ul, ol, li{
   }
 }
 
-/* 
+/*
 ------------------------------------------------------------------------------------------------
 = STRUCTURE
 ------------------------------------------------------------------------------------------------
 */
-.container {@relative; max-width:1020px;/*border:solid 1px blue;*/}
+.container {.relative; max-width:1020px;}
 
-.page-header {padding:0; margin-top:0; margin-bottom:0; border:0; /*border:solid 1px red;*/}
-.main-content {@relative;}
+.page-header {padding:0; margin-top:0; margin-bottom:0; border:0;}
+.main-content {.relative;}
 
-#cartoucheDr {@absolute; right:-24px; top:38px; padding:9px 12px; .bk(#fff); .box-shadow(0 0 15px 0 rgba(0, 0, 0, 0.6));} 
+#cartoucheDr {
+    .absolute;
+    right:-24px;
+    top:38px;
+    padding:9px 12px;
+    .bk(#fff);
+    .box-shadow(0 0 15px 0 rgba(0, 0, 0, 0.6));
+}
+
 #main { padding-top:13px; background:url(../images/ombre.png) no-repeat center top;}
 
-#content {@f-left; .largeur (680); .bk(#fff);}
-#sidebar { @clearFix; @f-left; .largeur (310); padding:26px 10px 30px 12px; background:url(../images/fd-col-dr.jpg) no-repeat center top; background-size:100% 477px;}
+#content {.f-left; .largeur (680); .bk(#fff);}
+#sidebar {
+    .clearFix;
+    .f-left;
+    .largeur (310);
+    padding:26px 10px 30px 12px;
+    background:url(../images/fd-col-dr.jpg) no-repeat center top;
+    background-size:100% 477px;
+}
 
-#footerInner {@relative; max-width:1020px; margin:0 auto; padding:0 15px;}
+#footerInner {
+    .relative;
+    max-width:1020px;
+    margin:0 auto;
+    padding:0 15px;
+}
 
 
 .notHome #content{padding:23px 30px 0;}
-/* 
+
+/*
 ------------------------------------------------------------------------------------------------
 = HEADER
 ------------------------------------------------------------------------------------------------
 */
-#i18n { @absolute; right:0; top:0; float:none !important; z-index:99; @bold;
-  .list-inline {.box-shadow;
-    & > li {padding:0}
-  }
-  a {@block; min-width:36px; padding:4px 0; @a-center; @maj; .s(0.929em); .bk(#fff); @no-deco; 
-    &.active {.bk(@orange); color:#fff;}
-  }
+#i18n {
+    .absolute;
+    right:0;
+    top:0;
+    float:none !important;
+    z-index:99;
+    .bold;
+    .list-inline {
+        .box-shadow;
+        & > li { padding:0}
+    }
+    a {
+        .block;
+        min-width:36px;
+        padding:4px 0;
+        .a-center;
+        .maj;
+        .s(0.929em);
+        .bk(#fff);
+        .no-deco;
+
+        &.active {.bk(@orange); color:#fff;}
+    }
 }
 
 .img-rounded {padding:20px 0 10px 30px; }
-.slogan { padding:47px 7px 0 67px; .s(2.929em); color:@bleu; @bold;}
+.slogan { padding:47px 7px 0 67px; .s(2.929em); color:@bleu; .bold;}
 
-/* 
+/*
 ------------------------------------------------------------------------------------------------
 = FOOTER
 ------------------------------------------------------------------------------------------------
 */
-#footer{@overflowH; padding:11px 0 8px; .bk(@gris); .s(0.786em);
+#footer{.overflowH; padding:11px 0 8px; .bk(@gris); .s(0.786em);
   /*---------- = Menu ----------*/
-    ul {@inlineB; margin:0; padding:6px 0 0; }
-    li {@inlineB; padding-left:9px; margin-right:5px; list-style:none; @maj; .sprite(left -273px); /*separation*/
+    ul {.inlineB; margin:0; padding:6px 0 0; }
+    li {.inlineB; padding-left:9px; margin-right:5px; list-style:none; .maj; .sprite(left -273px); /*separation*/
         &:first-child {padding-left:0; .bk(none);}
     }
-    
+
   /*---------- = cartouche ----------*/
-  #cartouche {@f-right; padding:4px 9px 9px; .radius; .bk(#fff);}
+  #cartouche {.f-right; padding:4px 9px 9px; .radius; .bk(#fff);}
 }
-/* 
+/*
 ------------------------------------------------------------------------------------------------
 = COLONNE DROITE
 ------------------------------------------------------------------------------------------------
 */
 #sidebar {
-    .block {margin-bottom:30px;
-        a { @deco;
-          &:link, &:visited {@deco; }
-          &:focus, &:hover, &:active {  @no-deco;}  
+    .block {
+        margin-bottom: 30px;
+        a {
+            .deco;
+            &:link, &:visited { .deco; }
+            &:focus, &:hover, &:active {  .no-deco;}
         }
     }
-    
+
     address {margin-bottom:10px;}
     .details {padding-left:0px;}
 }
-   
-.securite {min-height: 87px; .sprite(15px 38px); 
+
+.securite {min-height: 87px; .sprite(15px 38px);
     p {padding-left:65px;}
 }
 
-/* 
+/*
 ------------------------------------------------------------------------------------------------
 = CONTENU
 ------------------------------------------------------------------------------------------------
@@ -134,43 +185,49 @@ a, form, input, textarea, select, button, ul, ol, li{
   /*---------- = general ----------*/
 .euro {color:@vert; .s(1.143em);}
 .notHome .euro {color:@defaut; .s(1em);}
-  
-    /* Panel*/  
+
+    /* Panel*/
 .panel {margin:0; .radius(0); .box-shadow(inherit); border:0;}
 .panel-heading {padding:0 30px; .radius(0);}
 
 .panel-default{
-  & > .panel-heading { border:0; color:@defaut; .bk(none); filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);}
+    & > .panel-heading {
+        border:0;
+        color:@defaut;
+        .bk(none);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    }
 }
 
 .panel-body {padding:21px 30px 0;}
 
-    /* Formulaire*/ 
+    /* Formulaire*/
 span.required {color:@orange;}
-    
-label {@bold; margin-bottom:0;}
+
+label {.bold; margin-bottom:0;}
+
 .control-group label {.radius;}
 
 .form-control {
   .h(auto); .minH(29px); padding:3px 6px;
-  .bk(@gris); border:solid @grisF; border-width:2px 0 0 1px; .box-shadow(inherit); .radius; 
-  color:@defaut; .s(1em); @ItcBk;
-  
+  .bk(@gris); border:solid @grisF; border-width:2px 0 0 1px; .box-shadow(inherit); .radius;
+  color:@defaut; .s(1em); .ItcBk;
+
   &::-moz-placeholder{color:#8d8787;}
   &:focus {border-color:#919090; .box-shadow(0 0 8px rgba(70, 72, 73, 0.6));}
 }
 
-.help-inline {@block; color:@rouge; @bold; }
+.help-inline {.block; color:@rouge; .bold; }
 .error .form-control  {border-color:@rouge;}
 
 
-    /* chosen (select) */ 
+    /* chosen (select) */
 .chosen-container-single .chosen-single {
   .h(auto); .minH(29px); padding: 3px 6px;
   .bk(@gris); border:solid @grisF; border-width:2px 0 0 1px; .box-shadow(inherit); .radius; line-height:inherit;
-  
+
   .chosen-default {color: @defaut;}
-  
+
   div { .w(28px);
     b {.sprite(7px -133px @grisF); /* fleche vers bas*/}
   }
@@ -180,22 +237,22 @@ label {@bold; margin-bottom:0;}
   .chosen-single { border:solid @grisF; border-width:2px 0 0 1px; .box-shadow(inherit);}
 
   &.chosen-with-drop .chosen-single {
-    .bk(@gris); border:solid @grisF; border-width:2px 0 0 1px; .box-shadow(inherit); .radius (5px 5px 0 0); 
-   
+    .bk(@gris); border:solid @grisF; border-width:2px 0 0 1px; .box-shadow(inherit); .radius (5px 5px 0 0);
+
     div b {background-position: -18px -133px; /* fleche vers haut*/}
   }
 }
 
 .chosen-container {width:100% !important; .s(1em);
-  .chosen-drop { 
-    .bk(@gris); border:solid @grisF; border-width:1px; .box-shadow(inherit); .radius (0 0 5px 5px); 
+  .chosen-drop {
+    .bk(@gris); border:solid @grisF; border-width:1px; .box-shadow(inherit); .radius (0 0 5px 5px);
   }
 
-  .chosen-results li.highlighted {.bk(@bleu); }  
+  .chosen-results li.highlighted {.bk(@bleu); }
 }
 .chosen-container .chosen-results { max-height:120px;}
 
-/* 
+/*
 ------------------------------------------------------------------------------------------------
 = HOME
 ------------------------------------------------------------------------------------------------
@@ -205,44 +262,44 @@ label {@bold; margin-bottom:0;}
     /* Montant*/
 #montant{ .minH(308px); .bk(@bleu); color:#fff;
   .panel-title {padding-top:23px; color:#fff;}
-  .panel-body { @ItcD;}
+  .panel-body { .ItcD;}
   .control-group {
-    label { 
-      @relative; @f-left; .w(109px); min-height: 95px; @overflowH; padding: 10px 15px 30px; margin:0 0 0 18px; @a-center;
+    label {
+      .relative; .f-left; .w(109px); min-height: 95px; .overflowH; padding: 10px 15px 30px; margin:0 0 0 18px; .a-center;
       .bk(#fff); color:@vert; .s(2.571em);
-      
+
       &:first-child {margin-left:0;}
       &.checked {.bk(@vert); color:#fff;
         .euro { color:#fff;}
-      }      
+      }
       .euro {.s(0.722em);}
-            
-      &.manual { @v-middle;
-        @clear; .w(50%); .minH(66px); margin:18px 0 0; padding: 20px 0 0 15px; @a-left; 
+
+      &.manual { .v-middle;
+        .clear; .w(50%); .minH(66px); margin:18px 0 0; padding: 20px 0 0 15px; .a-left;
         .radius (5px 0 0 5px); .s(1.286em); color:@defaut;
-        
-        input[type="radio"] {@relative; margin:5px 5px 0 0px; bottom:auto; left:auto;}
-        
+
+        input[type="radio"] {.relative; margin:5px 5px 0 0px; bottom:auto; left:auto;}
+
         &.checked {.bk(#fff);color:@defaut }
       }
     }
-    
-    input[type="radio"] {@absolute; bottom:15px; left:63%;}
+
+    input[type="radio"] {.absolute; bottom:15px; left:63%;}
   }
 }
 
 #amounts {padding-right:0; padding-bottom:15px;}
 
-#autreMtt {@absolute; bottom:15px; right:1px; .w(49%); .minH(66px); padding:10px 10px 0px 0; .bk(#fff); .radius(0 5px 5px 0);
-    .control-group { @clearFix; .minH(46px); padding-top:2px; .bk(@gris); .radius; border:solid @grisF; border-width:2px 0 0 1px; color:@vert; .s(1.857em); 
+#autreMtt {.absolute; bottom:15px; right:1px; .w(49%); .minH(66px); padding:10px 10px 0px 0; .bk(#fff); .radius(0 5px 5px 0);
+    .control-group { .clearFix; .minH(46px); padding-top:2px; .bk(@gris); .radius; border:solid @grisF; border-width:2px 0 0 1px; color:@vert; .s(1.857em);
        &.error {border-color:@rouge;}
     }
-    
-    input {@f-left; .w(78%); margin: 0 6px; .radius(5px 0 0 5px); border:0; color:@defaut;
+
+    input {.f-left; .w(78%); margin: 0 6px; .radius(5px 0 0 5px); border:0; color:@defaut;
         &:focus {.box-shadow(none);outline: thin dotted #919090;}
     }
 
-    .help-inline {@absolute; bottom:-12px; left:-160px; .s(0.54em);}
+    .help-inline {.absolute; bottom:-12px; left:-160px; .s(0.54em);}
 }
 
     /* Calculatrice*/
@@ -256,39 +313,41 @@ label {@bold; margin-bottom:0;}
 }
 
 .isf{
-    input{@f-left;}
+    input{.f-left;}
     label {.w(93.2%);}
 }
 
 /*---------- = formulaire ----------*/
 #reception { margin-bottom:0;
-    .radio {@inlineB; margin:0 0 0 20px;}
+    .radio {.inlineB; margin:0 0 0 20px;}
     .radio + .radio {margin:0 0 0 20px;}
 }
- 
-#accept {@clear; margin-bottom:0;
+
+#accept {.clear; margin-bottom:0;
   div.checkbox { margin:8px 0 20px -4px;}
-  label.checkbox {padding-left:10px; 
+  label.checkbox {padding-left:10px;
     input[type="checkbox"]{margin-left:0}
   }
 }
 
-#btSubmit {@a-right; padding-bottom:15px;}
-.btn-primary {padding-left: 34px; .sprite(15px -184px @vert); @ItcB; .s(1.714em); @maj; border:0;
+#btSubmit {.a-right; padding-bottom:15px;}
+.btn-primary {padding-left: 34px; .sprite(15px -184px @vert); .ItcB; .s(1.714em); .maj; border:0;
 
   &:hover, &:focus, &:active {
     .sprite(15px -184px @vert);
   }
 }
 
-.btn-link {@f-right; border:0;
-    &:hover, &:focus, &:active {border:0; @no-deco;}
+.btn-link {.f-right; border:0;
+    &:hover, &:focus, &:active {border:0; .no-deco;}
     a {color: #fff;}
 }
 
-/* 
+/*
 ------------------------------------------------------------------------------------------------
 = PAGE INTERNE
 ------------------------------------------------------------------------------------------------
 */
 .lead {.s(1.429em);}
+
+@import "media.less";

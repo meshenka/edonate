@@ -15,38 +15,18 @@
         <title>{% block title %}{{'Back Office - Donate to Ecedi'|trans }}{% endblock %}</title>
 
         <!-- js -->
-        {% javascripts
-            '@jquery_js'
-            '@DonateCoreBundle/Resources/public/components/modernizr/modernizr.js'
-            '@bootstrap_js'
-            '@jquery_ui_js'
-            '@DonateCoreBundle/Resources/public/components/jquery-ui/ui/minified/datepicker.min.js'
-            '@DonateCoreBundle/Resources/public/components/jquery-ui/ui/minified/i18n/datepicker-fr.min.js'
-            '@DonateAdminBundle/Resources/public/js/admin.js'
-         output='js/admin.js' filter='uglifyjs2' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        <script type="text/javascript" src="/js/build/admin.js"></script>
+
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-        {% javascripts
-            '@html5shiv_js'
-            '@respond_js'
-         output='js/admin-ie.js' combine=true filter='uglifyjs2' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        <script type="text/javascript" src="/js/build/ie.js"></script>
         <![endif]-->
 
         <!-- head css -->
-        {% stylesheets
-            '@fix_bootstrap_css'
-            'bundles/donateadmin/css/datepicker.css'
-            'bundles/donateadmin/css/admin.css'
-         filter='cssrewrite,uglifycss' output='css/admin.css' combine=true %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+        <link rel="stylesheet" href="/css/build/admin.css" />
 
         <!-- extra head markup -->
         {% block head %}

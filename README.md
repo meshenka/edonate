@@ -1,19 +1,18 @@
-# eCollecte Standard Edition by [Agence Ecedi](http://ecedi.fr)
+# eDonate Standard Edition by [Agence Ecedi](http://ecedi.fr)
 
-eCollecte est une application Full Stack Symfony2 pour la production de formulaire de don
+eDonate est une application Full Stack Symfony2 pour la production de formulaire de don
 
 ## Installation
 
 ### prerequis
 
-  * un SGBDD mysql ou postgreSQL
+  * un SGBDD Mysql ou PostgreSQL
   * php 5.5.\*
   * un serveur HTTP
   * les packages php5-gd php5-sundown (pecl), zend opcache,
-  * node.js
-  * bower pour node.js (gestion des dépendences JS)
-  * uglifyjs2 pour node.js
-  * uglifycss pour node.js
+  * node.js et npm https://nodejs.org/
+  * bower http://bower.io/ pour node.js (gestion des dépendences JS)
+  * gulp http://gulpjs.com/
   * composer (gestion des dépendences PHP)
 
 Optionnel
@@ -68,7 +67,6 @@ Installation de resources public :
 Génération des resources dynamiques :
 
     $ app/console assetic:dump
-
 
 ### Creation du super_user
 

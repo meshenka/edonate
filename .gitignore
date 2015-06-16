@@ -1,10 +1,8 @@
 *~
 /web/bundles/*
 /web/assetic/*
-/web/css/*
 /web/images/*
 /web/uploads/*
-/web/js/*
 /web/media/*
 /app/bootstrap.php.cache
 /app/cache/*
@@ -26,3 +24,4 @@
 /src/Ecedi/Donate/CoreBundle/Resources/public/components/*
 /coverage/
 build.properties
+/node_modules/

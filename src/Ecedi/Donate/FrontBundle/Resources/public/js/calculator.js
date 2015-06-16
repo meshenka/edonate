@@ -1,10 +1,17 @@
 /* global jQuery: false */
+/**
+ *
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @package eDonate
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @copyright 2015 Agence Ecedi http://ecedi.fr
+ */
 'use strict';
 
 (function ($) {
 
   var Donate = {};
-  
+
   Donate.calculator = {
 
     recalc: function() {
@@ -18,7 +25,7 @@
           return s.toFixed(2).replace(/\./,',');
         },
         function (){
-          //var sum = $this.sum();        
+          //var sum = $this.sum();
         }
       );
     },
@@ -34,7 +41,7 @@
           this.css('backgroundColor', '');
         }
       });
-      
+
       //si on coche la case
       $('#checkISF').change(function() {
         if($(this).is(':checked')) {
@@ -45,7 +52,7 @@
           Donate.calculator.recalc();
         }
       });
-  
+
       //quand le montant change
       var amount = $('#calc-amount');
       amount.bind('amount', function(event, amount) {

@@ -19,41 +19,18 @@
         <title>{% block title %}{{ layout.metaTitle }}{% endblock %}</title>
 
         <!-- js -->
-        {% javascripts
-            '@jquery_js'
-            '@bootstrap_js'
-            '@DonateFrontBundle/Resources/public/js/*.min.js'
-            '@DonateFrontBundle/Resources/public/js/jquery-amountselector.js'
-         output='js/main.js' filter='uglifyjs2' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        <script type="text/javascript" src="/js/build/main.js"></script>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-        {% javascripts
-            '@html5shiv_js'
-            '@respond_js'
-         output='js/ie.js' filter='uglifyjs2'%}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        <script type="text/javascript" src="/js/build/ie.js"></script>
         <![endif]-->
 
         <!-- head css -->
-        {% stylesheets
-            '@fix_bootstrap_css'
-            'bundles/donatecore/css/*.min.css'
-            'bundles/donatefront/css/chosen.css'
-            'bundles/donatefront/css/*.less'
-        filter='cssrewrite,uglifycss' output='css/style.css'%}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+        <link rel="stylesheet" href="/css/build/style.css" />
 
         <!--[if lt IE 9]>
-        {% stylesheets
-            'bundles/donatefront/css/ie.css'
-            filter='cssrewrite,uglifycss' output='css/ie.css'%}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+            <link rel="stylesheet" href="/css/build/ie.css" />
         <![endif]-->
 
         <!-- extra head markup -->
@@ -139,13 +116,8 @@
 
 
 
-                <!-- js -->
-        {% javascripts
-            '@DonateFrontBundle/Resources/public/js/calculator.js'
-            '@DonateFrontBundle/Resources/public/js/form.js'
-         output='js/fo.js'  filter='uglifyjs2' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        <!-- js -->
+        <script type="text/javascript" src="/js/build/fo.js"></script>
 
         {% block end %}
         {% endblock %}

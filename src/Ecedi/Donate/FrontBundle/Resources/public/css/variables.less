@@ -3,23 +3,23 @@
  * Variables LESS
  *
  * Ce document regroupe toutes les variables LESS utilisées tout au long du projet
- * 
+ *
  * Pour que ces éléments soient bien appliqués, il ne faut pas oublier d'appeler
  * ce fichier à l'aide de la balise @import :
  *      import "variables.less";
- * 
- * À savoir : 
+ *
+ * À savoir :
  * Les valeurs ne peuvent être combinés avec la propriété !important
  * Ex : div { @maj !important; } ou p {.h(1em) !important;} ne fonctionneront pas !
- * 
+ *
  */
 
 /* Ex commentaire : */
- 
+
 /* --------------------------------------------
  * COMMENTAIRE TITRE
  ------------------------------------------- */
- 
+
   /*---------- = Commentaire sous-titre ----------*/
 
     /* commentaire */
@@ -71,10 +71,10 @@
 }
 
 
-@ItcD { font-family:ItcAvantgardeStdDemi, "Trebuchet MS", Arial, Helvetica, Tahoma; }
-@ItcM { font-family:ItcAvantgardeStdMd, "Trebuchet MS", Arial, Helvetica, Tahoma; ; }
-@ItcB { font-family:ItcAvantgardeStdBold, "Trebuchet MS", Arial, Helvetica, Tahoma; }
-@ItcBk { font-family:ItcAvantgardeStdBk, "Trebuchet MS", Arial, Helvetica, Tahoma;  }
+.ItcD { font-family:ItcAvantgardeStdDemi, "Trebuchet MS", Arial, Helvetica, Tahoma; }
+.ItcM { font-family:ItcAvantgardeStdMd, "Trebuchet MS", Arial, Helvetica, Tahoma; ; }
+.ItcB { font-family:ItcAvantgardeStdBold, "Trebuchet MS", Arial, Helvetica, Tahoma; }
+.ItcBk { font-family:ItcAvantgardeStdBk, "Trebuchet MS", Arial, Helvetica, Tahoma;  }
 
 
   /*---------- = couleurs  ----------*/
@@ -89,53 +89,55 @@
 @rouge : #E61B1B;
 
   /*---------- = styles  ----------*/
-@maj { text-transform:uppercase; } 
-@no-maj { text-transform:none; }
-@bold { font-weight:bold; } 
-@normal { font-weight:normal; } 
-@italic { font-style:italic; }
-@deco { text-decoration:underline; }
-@no-deco { text-decoration:none; } 
-@pointer { cursor: pointer; }
+.maj { text-transform:uppercase; }
+.no-maj { text-transform:none; }
+.bold { font-weight:bold; }
+.normal { font-weight:normal; }
+.italic { font-style:italic; }
+.deco { text-decoration:underline; }
+.no-deco { text-decoration:none; }
+.pointer { cursor: pointer; }
 
   /*---------- = clear  ----------*/
-@clear { clear:both; } 
-@no-clear { clear:none; } 
+.clear { clear:both; }
+.no-clear { clear:none; }
 
   /*---------- = alignement  ----------*/
-@a-center { text-align:center; } 
-@a-left { text-align:left; } 
-@a-right { text-align:right; }
-@f-left { float:left; } 
-@f-right { float:right; } 
-@f-none { float:none;}
-@v-top { vertical-align: top; } 
-@v-middle { vertical-align:middle; }
+.a-center { text-align:center; }
+.a-left { text-align:left; }
+.a-right { text-align:right; }
+.f-left { float:left; }
+.f-right { float:right; }
+.f-none { float:none;}
+.v-top { vertical-align: top; }
+.v-middle { vertical-align:middle; }
 
   /*---------- = display  ----------*/
-@inlineB { display:inline-block; }
-@inlineB4 { display:inline-block; margin:0 0 0 -4px; } /* inline-block qui supprime la pseudo marge de 4px, utile pour les menus */
-@block { display:block; }
-@inline { display:inline; } 
-@none { display:none; } 
+.inlineB { display:inline-block; }
+.inlineB4 { display:inline-block; margin:0 0 0 -4px; } /* inline-block qui supprime la pseudo marge de 4px, utile pour les menus */
+.block { display:block; }
+.inline { display:inline; }
+.none { display:none; }
 
   /*---------- = position  ----------*/
-@relative { position:relative; } 
-@absolute { position:absolute; }
-@fixed { position:fixed; } 
+.relative { position:relative; }
+.absolute { position:absolute; }
+.fixed { position:fixed; }
 
   /*---------- = overflow + min-height ----------*/
-@overflowH { @relative; overflow:hidden; }
-@clearFix {
-	&:after{ @clear; content:'.'; @block; .h(0); visibility:hidden;}
+.overflowH { .relative; overflow:hidden; }
+.clearFix {
+	&:after{ .clear; content:'.'; .block; .h(0); visibility:hidden;}
 }
+
 .minH(@hteur) { min-height:@hteur; }
 
   /*---------- = sprite et background  ----------*/
 .bk(@fond) {
   background:@fond;
 }
-.sprite(@position-couleur: left top) { 
+
+.sprite(@position-couleur: left top) {
   background:url(../images/sprite.png) no-repeat @position-couleur;
 }
 
@@ -152,13 +154,13 @@
   zoom:1;
 }
 
-@box-sizing{
+.box-sizing{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-@noBox-sizing{
+.noBox-sizing{
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -171,17 +173,17 @@
 .lh(@size:1.5em) { line-height:@size; } /* hauteur de la ligne */
 
   /*---------- = element invisible  ----------*/
-@hidden{@absolute; left:-9999px;}
-@visible{@relative; left:inherit;}
+.hidden{.absolute; left:-9999px;}
+.visible{.relative; left:inherit;}
 
 /* --------------------------------------------
  * LESS PERSONNALISÉ
  ------------------------------------------- */
   /*---------- = medias - responsive  ----------*/
 @screen-mobile: ~"(max-width: 767px)";
-@screen-tablet: ~"(max-width: 1023px)"; 
+@screen-tablet: ~"(max-width: 1023px)";
 
 .largeur (@l:990)
 {
-  width:unit((@l/990)*100, '%');
+  width:unit((@l/990)*100, %);
 }
