@@ -4,7 +4,7 @@
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @version 2.4.1
  * @package eDonate
- * @build Tue Jun 16 2015 11:07:50 GMT+0200 (CEST)
+ * @build Tue Jun 16 2015 12:13:16 GMT+0200 (CEST)
  * @license  http://opensource.org/licenses/MIT MIT
  * @copyright 2015 Agence Ecedi http://ecedi.fr
  */

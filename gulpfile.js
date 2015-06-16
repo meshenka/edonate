@@ -26,6 +26,8 @@ var pkg = require('./package.json');
 var jsDest = 'web/js/build';
 var cssDest = 'web/css/build';
 var src = 'src/Ecedi/Donate/';
+var cssSrc = 'web/bundles/';
+
 var banner = '/**\n'+
     ' * WARNING this filed is generated with gulp. Do not modify here!\n' +
     ' *\n' +
@@ -51,6 +53,22 @@ gulp.task('default', [
     ],
     function() {
 });
+
+gulp.task('watch', [
+    'watch:js:ie',
+    // 'watch:js:admin',
+    // 'watch:css:admin',
+    'watch:fonts:bootstrap',
+    'watch:js:front:footer',
+    'watch:js:front:header',
+    'watch:css:front:style',
+    'watch:css:front:ie',
+    'watch:fonts:front',
+    'watch:image:front'
+    ],
+    function() {
+});
+
 
 /*
 replace assetic tag
@@ -110,7 +128,6 @@ gulp.task('js:admin', function(){
 gulp.task('css:admin', function() {
 
     console.log('build admin.css');
-    var cssSrc = 'web/bundles/';
 
     var bootstrapCss = cssSrc + 'donatecore/components/bootstrap/dist/css/bootstrap.css';
     var bootstraThemeCss =  cssSrc + 'donatecore/components/bootstrap/dist/css/bootstrap.css';
@@ -133,69 +150,93 @@ gulp.task('css:admin', function() {
 /**
  * move fonts to right folder
  */
-gulp.task('fonts:bootstrap', ['css:admin'], function() {
+var fontsBoostrapPath = function() {
+    return [src + 'CoreBundle/Resources/public/components/bootstrap/fonts/*'];
+};
+gulp.task('fonts:bootstrap', function() {
     console.log('copy fonts');
-    return gulp.src(src + 'CoreBundle/Resources/public/components/bootstrap/fonts/*')
+    return gulp.src(fontsBoostrapPath())
         // Copy files to destination
         .pipe(gulp.dest('web/css/fonts'));
 });
 
-/*
-   {% javascripts
-        '@html5shiv_js'
-        '@respond_js'
-     output='js/ie.js' filter='uglifyjs2'%}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-*/
+gulp.task('watch:fonts:bootstrap', function() {
+    return gulp.watch(fontsBoostrapPath(), ['fonts:bootstrap']);
+});
+
+/**
+ * Conditionnal JS
+ *
+ *  {% javascripts
+ *       '@html5shiv_js'
+ *       '@respond_js'
+ *    output='js/ie.js' filter='uglifyjs2'%}
+ *       <script type="text/javascript" src="{{ asset_url }}"></script>
+ *   {% endjavascripts %}
+ */
+var jsIePath = function(){
+    var html5shivJs = src +'CoreBundle/Resources/public/components/html5shiv/dist/html5shiv.js';
+    var respondJs = src +'CoreBundle/Resources/public/components/respond/dest/respond.src.js';
+    return [html5shivJs, respondJs];
+};
+
 gulp.task('js:ie', function(){
     console.log('build ie.js');
 
-    var html5shivJs = src +'CoreBundle/Resources/public/components/html5shiv/dist/html5shiv.js';
-    var respondJs = src +'CoreBundle/Resources/public/components/respond/dest/respond.src.js';
-    gulp.src([
-            html5shivJs,
-            respondJs
-        ])
+    gulp.src(jsIePath())
         .pipe(concat('ie.js'))
         .pipe(uglify())
         .pipe(header(banner))
         .pipe(gulp.dest(jsDest));
 });
 
+gulp.task('watch:js:ie', function(){
+    gulp.watch(jsIePath(),['js:ie']);
+});
 
-/*
-        {% javascripts
-            '@jquery_js'
-            '@bootstrap_js'
-            '@DonateFrontBundle/Resources/public/js/*.min.js'
-            '@DonateFrontBundle/Resources/public/js/jquery-amountselector.js'
-         output='js/main.js' filter='uglifyjs2' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-*/
-gulp.task('js:front:header', function(){
-    console.log('build main.js');
+/**
+ * FrontBundle header js
+ *
+ *       {% javascripts
+ *           '@jquery_js'
+ *           '@bootstrap_js'
+ *           '@DonateFrontBundle/Resources/public/js/*.min.js'
+ *           '@DonateFrontBundle/Resources/public/js/jquery-amountselector.js'
+ *        output='js/main.js' filter='uglifyjs2' %}
+ *           <script type="text/javascript" src="{{ asset_url }}"></script>
+ *       {% endjavascripts %}
+ */
 
+var jsFrontHeaderPath = function(){
     var jqueryJs = src +'CoreBundle/Resources/public/components/jquery/dist/jquery.js';
     var bootstrapJs = src +'CoreBundle/Resources/public/components/bootstrap/dist/js/bootstrap.js';
     var frontJs =  src + 'FrontBundle/Resources/public/js/*.min.js';
     var amountJs = src + 'FrontBundle/Resources/public/js/jquery-amountselector.js';
 
-    gulp.src([
+    return [
         jqueryJs,
         bootstrapJs,
         frontJs,
         amountJs
-    ])
+    ];
+};
+
+gulp.task('js:front:header', function(){
+    console.log('build main.js');
+
+    gulp.src(jsFrontHeaderPath())
     .pipe(concat('main.js'))
     .pipe(uglify())
     .pipe(header(banner))
     .pipe(gulp.dest(jsDest));
 });
 
+gulp.task('watch:js:front:header', function() {
+    return gulp.watch(jsFrontHeaderPath(), ['js:front:header']);
+});
 
 /**
+ * FrontBundle Footer JS
  *         {% javascripts
  *           '@DonateFrontBundle/Resources/public/js/calculator.js'
  *           '@DonateFrontBundle/Resources/public/js/form.js'
@@ -204,24 +245,34 @@ gulp.task('js:front:header', function(){
  *        {% endjavascripts %}
  *
  */
-gulp.task('js:front:footer', function(){
-
-    console.log('build fo.js');
+var jsFrontFooterPath = function() {
     var calculatorJs = src + 'FrontBundle/Resources/public/js/calculator.js';
     var formJs = src + 'FrontBundle/Resources/public/js/form.js';
 
-    gulp.src([
+    return [
         calculatorJs,
         formJs,
-    ])
+    ];
+};
+
+gulp.task('js:front:footer', function(){
+
+    console.log('build fo.js');
+
+    gulp.src(jsFrontFooterPath())
     .pipe(concat('fo.js'))
     .pipe(uglify())
     .pipe(header(banner))
     .pipe(gulp.dest(jsDest));
 });
 
+gulp.task('watch:js:front:footer', function(){
+    return gulp.watch(jsFrontFooterPath(), ['js:front:footer']);
+});
 
 /**
+ * FrontBundle css
+ *
  *         {% stylesheets
  *           '@fix_bootstrap_css'
  *           'bundles/donatecore/css/*.min.css'
@@ -231,20 +282,25 @@ gulp.task('js:front:footer', function(){
  *       <link rel="stylesheet" href="{{ asset_url }}" />
  *      {% endstylesheets %}
  */
-gulp.task('css:front:style', function(){
-    var cssSrc = 'web/bundles/';
+var cssFrontStylePath = function() {
 
     var bootstrapCss = cssSrc + 'donatecore/components/bootstrap/dist/css/bootstrap.css';
     var coreMinCsss = cssSrc + 'donatecore/css/*.min.css';
     var chosenCss = cssSrc + 'donatefront/css/chosen.css';
     var frontLess = cssSrc + 'donatefront/css/front.less';
 
-    gulp.src([
+    return [
         bootstrapCss,
         coreMinCsss,
         chosenCss,
         frontLess
-    ])
+    ];
+};
+
+gulp.task('css:front:style', function(){
+
+
+    gulp.src(cssFrontStylePath())
     .pipe(less({
         plugins: [cleancss],
         paths: [ path.join(__dirname, cssSrc, 'donatefront/css/') ]
@@ -257,20 +313,28 @@ gulp.task('css:front:style', function(){
 
 });
 
-/*
-        {% stylesheets
-            'bundles/donatefront/css/ie.css'
-            filter='cssrewrite,uglifycss' output='css/ie.css'%}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+gulp.task('watch:css:front:style', function(){
 
- */
+    return gulp.watch(cssFrontStylePath(), ['css:front:style']);
+});
+
+/**
+  * FrontBundle ie conditionnal css
+  *
+  *      {% stylesheets
+  *          'bundles/donatefront/css/ie.css'
+  *          filter='cssrewrite,uglifycss' output='css/ie.css'%}
+  *          <link rel="stylesheet" href="{{ asset_url }}" />
+  *      {% endstylesheets %}
+  *
+  */
+var cssFrontIePath = function() {
+    return [cssSrc + 'donatefront/css/ie.css'];
+};
+
 gulp.task('css:front:ie', function() {
-    var cssSrc = 'web/bundles/';
 
-    var ieCss = cssSrc + 'donatefront/css/ie.css';
-
-    gulp.src(ieCss)
+    gulp.src(cssFrontIePath())
     .pipe(concat('ie.css'))
     .pipe(minifyCSS())
     .pipe(header(banner))
@@ -280,40 +344,45 @@ gulp.task('css:front:ie', function() {
 
 });
 
+gulp.task('watch:css:front:ie', function() {
+    return gulp.watch(cssFrontIePath(), ['css:front:ie']);
+});
+
 
 /**
- * move fonts to right folder
+ * FrontBundle fonts
  */
+var fontsFrontPath = function() {
+    return [src + 'FrontBundle/Resources/public/css/polices/*'];
+};
+
 gulp.task('fonts:front', function() {
-    return gulp.src(src + 'FrontBundle/Resources/public/css/polices/*')
+    return gulp.src(fontsFrontPath())
         // Copy files to destination
         .pipe(gulp.dest('web/css/build/polices'));
 });
 
 
+gulp.task('watch:fonts:front', function() {
+    return gulp.watch(fontsFrontPath(), ['fonts:front']);
+});
+
+
+/**
+ * FrontBundle Images
+ */
+var imageFrontPaths = function() {
+    return [src + 'FrontBundle/Resources/public/images/*'];
+};
+
 gulp.task('image:front', function() {
-    return gulp.src(src + 'FrontBundle/Resources/public/images/*')
+    return gulp.src(imageFrontPaths())
         // Copy files to destination
         .pipe(gulp.dest('web/css/images'));
 
 });
 
-/**
- * watch
- *
- * TODO ajuster tous ca!!
- */
-gulp.task('watch', function() {
+gulp.task('watch:image:front', function() {
+    return gulp.watch([imageFrontPaths()], ['image:front']);
 
-    // Folders to watch and tasks to execute
-    gulp.watch([src + '/fonts/*'], ['fonts']);
-    gulp.watch([src + '/less/*'], ['less']);
-    gulp.watch([src + '/js/*'], ['js']);
-    gulp.watch([src + '/img/*'], ['img']);
-    gulp.watch([src + '/html/*'], ['html']);
-    gulp.watch([bower_dir + '/**/*.css'], ['libJS', 'libCSS', 'libFonts']);
-
-    livereload.listen();
-    // When dest changes, tell the browser to reload
-    gulp.watch(dest + '/**').on('change', livereload.changed);
 });
