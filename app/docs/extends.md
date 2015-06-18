@@ -10,10 +10,20 @@
 The simple thing to do is to adapt css styles
 
 To do so you can introduce your own css in
-  * app/Resources/assets/css/front/header/[custom].{less|css}
-  * app/Resources/assets/css/front/footer/[custom].{less|css}
-  * app/Resources/assets/css/admin/header/[custom].{less|css}
-  * app/Resources/assets/css/admin/footer/[custom].{less|css}
+  * app/Resources/assets/css/front-header/[custom].{less|sass|css} -- styles for front office what will go in the header
+  * app/Resources/assets/css/front-footer/[custom].{less|sass|css} -- styles for front office what will go in the footer
+  * app/Resources/assets/css/admin-header/[custom].{less|sass|css} -- styles for back office what will go in the footer
+  * app/Resources/assets/css/admin-footer/[custom].{less|sass|css} -- styles for back office what will go in the footer
+  * app/Resources/assets/js/front/[custom].{js} -- javascript for front office
+  * app/Resources/assets/js/admin/[custom].{js} -- javascript fot back office
+
+Tous ces fichiers seront agglomérés par glup et envoyé dans, respectivement
+  * web/css/build/front-header.css
+  * web/css/build/front-footer.css
+  * web/css/build/admin-header.css
+  * web/css/build/admin-footer.css
+  * web/js/build/admin.js
+  * web/js/build/front.js (ex main.js)
 
 Resources like fonts should be placed in
   * app/Resources/assets/fonts
