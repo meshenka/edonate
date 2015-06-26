@@ -20,27 +20,23 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            // new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(), // or new Oneup\FlysystemBundle\OneupFlysystemBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Cnerta\BreadcrumbBundle\CnertaBreadcrumbBundle(),
-
             new Vich\UploaderBundle\VichUploaderBundle(),
-
             new Sp\BowerBundle\SpBowerBundle(),
             new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
 
             //Ecedi bundles
             new Ecedi\Donate\CoreBundle\DonateCoreBundle(),
-
-            // new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             // new Ecedi\Donate\ApiBundle\DonateApiBundle(),
-
             new Ecedi\Donate\AdminBundle\DonateAdminBundle(),
             new Ecedi\Donate\FrontBundle\DonateFrontBundle(),
             new Ecedi\Donate\OgoneBundle\DonateOgoneBundle(),
@@ -53,7 +49,6 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle();
         }
 
         return $bundles;
