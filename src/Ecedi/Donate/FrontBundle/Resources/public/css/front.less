@@ -202,6 +202,11 @@ a, form, input, textarea, select, button, ul, ol, li{
 .panel-body {padding:21px 30px 0;}
 
     /* Formulaire*/
+
+.checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"],
+.radio input[type="radio"], .radio-inline input[type="radio"]
+{position:relative; margin-left:0; }
+
 span.required {color:@orange;}
 
 label {.bold; margin-bottom:0;}
@@ -260,46 +265,63 @@ label {.bold; margin-bottom:0;}
 
   /*---------- = Montant / calculette----------*/
     /* Montant*/
+#amounts {padding-right:0; padding-bottom:15px;}
+
 #montant{ .minH(308px); .bk(@bleu); color:#fff;
   .panel-title {padding-top:23px; color:#fff;}
   .panel-body { .ItcD;}
-  .control-group {
+
+  .control-group {.clearFix;
     label {
       .relative; .f-left; .w(109px); min-height: 95px; .overflowH; padding: 10px 15px 30px; margin:0 0 0 18px; .a-center;
       .bk(#fff); color:@vert; .s(2.571em);
 
-      &:first-child {margin-left:0;}
+      &:first-child {display: none;}
+      &:nth-child(2) {margin-left:0;}
+
       &.checked {.bk(@vert); color:#fff;
         .euro { color:#fff;}
       }
       .euro {.s(0.722em);}
-
-      &.manual { .v-middle;
-        .clear; .w(50%); .minH(66px); margin:18px 0 0; padding: 20px 0 0 15px; .a-left;
-        .radius (5px 0 0 5px); .s(1.286em); color:@defaut;
-
-        input[type="radio"] {.relative; margin:5px 5px 0 0px; bottom:auto; left:auto;}
-
-        &.checked {.bk(#fff);color:@defaut }
-      }
     }
 
-    input[type="radio"] {.absolute; bottom:15px; left:63%;}
+    .manual { .v-middle;
+      .clear; .w(50%); .minH(66px); margin:18px 0 0; padding: 20px 0 0 15px; .a-left;
+      .radius (5px 0 0 5px); .s(1.286em); color:@defaut;
+
+      input[type="radio"] {.relative; margin:5px 5px 0 0px; bottom:auto; left:auto;}
+
+      &.checked {.bk(#fff);color:@defaut }
+    }
+    input[type="radio"] {.absolute; bottom:15px; left:42%;}
+
+    .control-group .control-group:not(.money) { margin-bottom: 18px;}
   }
 }
 
-#amounts {padding-right:0; padding-bottom:15px;}
+    /*autre montant*/
+.amount_selector {position: relative;}
 
-#autreMtt {.absolute; bottom:15px; right:1px; .w(49%); .minH(66px); padding:10px 10px 0px 0; .bk(#fff); .radius(0 5px 5px 0);
-    .control-group { .clearFix; .minH(46px); padding-top:2px; .bk(@gris); .radius; border:solid @grisF; border-width:2px 0 0 1px; color:@vert; .s(1.857em);
-       &.error {border-color:@rouge;}
-    }
+.control-group.money {
+  .absolute; bottom:0; right:1px; padding:10px 10px 0px 0;
+  .w(50%); .minH(66px);
+  .bk(#fff); .radius(0 5px 5px 0);
 
-    input {.f-left; .w(78%); margin: 0 6px; .radius(5px 0 0 5px); border:0; color:@defaut;
-        &:focus {.box-shadow(none);outline: thin dotted #919090;}
-    }
+  label {display: block; .hidden;}
+  input, .euro {display: inline-block; .minH(46px);.bk(@gris); border:solid 2px @grisF; border-width:2px 0 0;}
 
-    .help-inline {.absolute; bottom:-12px; left:-160px; .s(0.54em);}
+  input {
+    .f-left; .w(78%); margin: 0 0 0 6px; padding-left:2px;
+    .radius(5px 0 0 5px); color:@defaut;
+      &:focus {.box-shadow(none);outline: thin dotted #919090;}
+  }
+
+  .euro {padding:0 6px 0 8px; .s(1.857em); border-right:solid 1px @grisF; .radius(0 5px 5px 0);}
+
+  .help-inline {.absolute; bottom:0px; left:-172px; .s(0.857em); }
+
+   &.error {border-color:@rouge;}
+
 }
 
     /* Calculatrice*/
@@ -326,12 +348,12 @@ label {.bold; margin-bottom:0;}
 #accept {.clear; margin-bottom:0;
   div.checkbox { margin:8px 0 20px -4px;}
   label.checkbox {padding-left:10px;
-    input[type="checkbox"]{margin-left:0}
+    //input[type="checkbox"]{margin-left:0}
   }
 }
 
 #btSubmit {.a-right; padding-bottom:15px;}
-.btn-primary {padding-left: 34px; .sprite(15px -184px @vert); .ItcB; .s(1.714em); .maj; border:0;
+.btn-primary {margin-bottom:1em; padding-left: 34px; .sprite(15px -184px @vert); .ItcB; .s(1.714em); .maj; border:0;
 
   &:hover, &:focus, &:active {
     .sprite(15px -184px @vert);
@@ -349,5 +371,4 @@ label {.bold; margin-bottom:0;}
 ------------------------------------------------------------------------------------------------
 */
 .lead {.s(1.429em);}
-
 @import "media.less";
