@@ -10,6 +10,23 @@
         var chosenselectText = {'en': 'Select an option', 'fr': 'Choisissez une option'};
         $('#donate_addressCountry, #donate_civility').chosen({disable_search_threshold: 10, placeholder_text_single: chosenselectText[language]});
 
+        /*attribution de la class checked à l'élément sélectionné par defaut*/
+        var preselectedAmounts = $('#amounts');
+        preselectedAmounts.find('input').each( function() {
+            var _this = $(this);
+            if ( _this.is(':checked'))
+            {
+                 _this.parent('label').addClass('checked');
+            }
+        });
+
+        preselectedAmounts.find('input').click(function(){
+            var _this = $(this);
+            //on remonte une class checked sur le parent
+            preselectedAmounts.find('label').removeClass('checked');
+            _this.parent('label').addClass('checked');
+         });
+
         //plug amountSelector behavior
         var $amountSelector = $('.amount_selector');
         $amountSelector
