@@ -87,7 +87,8 @@
   h2, h2.panel-title {.s(1.857em);}
 
   #content h1, #content  h2, .panel-title {
-    padding:30px 0px 17px; background:url(../images/separation.png) repeat-x left bottom;
+    clear:both; padding:30px 0px 17px;
+    background:url(../images/separation.png) repeat-x left bottom;
   }
   #content h1, h1.panel-title {padding:0px 0 15px;}
 
@@ -265,9 +266,9 @@
   .form-control {
     .h(auto); .minH(29px); padding:3px 6px;
     .bk(@gris); border:solid @grisF; border-width:2px 0 0 1px; .box-shadow(inherit); .radius;
-    color:@defaut; .s(1em);
+    color:@defautForm; .s(1em);
 
-    &::-moz-placeholder{color:#8d8787;}
+    &::-moz-placeholder{color:@placeholder;}
     &:focus {border-color:#919090; .box-shadow(0 0 8px rgba(70, 72, 73, 0.6));}
   }
 
@@ -277,9 +278,11 @@
       /* chosen (select) */
   .chosen-container-single .chosen-single {
     .h(auto); .minH(29px); padding: 3px 6px;
-    .bk(@gris); border:solid @grisF; border-width:2px 0 0 1px; .box-shadow(inherit); .radius; line-height:inherit;
+    .bk(@gris);
+    border:solid @grisF; border-width:2px 0 0 1px; .box-shadow(inherit); .radius;
+    line-height:inherit; color:@defautForm;
 
-    .chosen-default {color: @defaut;}
+    &.chosen-default {color: @placeholder;}
 
     div { .w(28px);
       b {.sprite(7px -133px @grisF); /* fleche vers bas*/}
@@ -304,6 +307,8 @@
     .chosen-results li.highlighted {.bk(@bleu); }
   }
   .chosen-container .chosen-results { max-height:120px;}
+
+  .glyphicon {display: none;}
 
 /*
 ------------------------------------------------------------------------------------------------
@@ -396,14 +401,14 @@
   }
 
   #accept {.clear; margin-bottom:0;
-    div.checkbox { margin:8px 0 20px 10px;}
+    div.checkbox { margin:8px 0 10px 10px;}
     label.checkbox {padding-left:10px;
       //input[type="checkbox"]{margin-left:0}
     }
   }
 
   #btSubmit {.a-right; padding-bottom:15px;}
-  .btn-primary {margin-bottom:1em; padding-left: 34px; .sprite(15px -184px @vert); font-weight: bold; .s(1.714em); .maj; border:0;
+  .btn-primary {margin-bottom:1em; padding-left: 34px; .sprite(15px -186px @vert); font-weight: bold; .s(1.714em); .maj; border:0;
 
     &:hover, &:focus, &:active {
       .sprite(15px -184px @vert);
