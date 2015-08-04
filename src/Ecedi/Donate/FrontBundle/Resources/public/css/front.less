@@ -103,8 +103,9 @@
 
   /*---------- = Liens ----------*/
   a { color:@defaut;
-    &:link, &:visited { .no-deco; }
-    &:focus, &:hover, &:active { .deco; color:@defaut;}
+    &:link, &:visited {.deco;}
+    &:visited {color:@bleu;}
+    &:focus, &:hover, &:active { .no-deco; color:@defaut;}
   }
 
   a, form, input, textarea, select, button, ul, ol, li{
@@ -124,12 +125,9 @@
   .main-content {.relative;}
 
   #cartoucheDr {
-      .absolute;
-      right:-24px;
-      top:38px;
-      padding:9px 12px;
-      .bk(#fff);
-      .box-shadow(0 0 15px 0 rgba(0, 0, 0, 0.6));
+      .absolute; right:-68px; top:82px; padding:12px 9px;
+      .bk(#fff); .box-shadow(0 0 15px 0 rgba(0, 0, 0, 0.6));
+      .rotate (-90deg);
   }
 
   #main {
@@ -152,6 +150,10 @@
       max-width:1020px;
       margin:0 auto;
       padding:0 15px;
+
+      a {.no-deco;
+        &:focus, &:hover, &:active {.deco;}
+      }
   }
 
   .notHome #content{padding:23px 30px 0;}
@@ -182,7 +184,7 @@
           .bk(#fff);
           .no-deco;
 
-          &.active {.bk(@orange); color:#fff;}
+          &.active {.bk(@bleu); color:#fff;}
       }
   }
 
@@ -408,11 +410,13 @@
   }
 
   #btSubmit {.a-right; padding-bottom:15px;}
-  .btn-primary {margin-bottom:1em; padding-left: 34px; .sprite(15px -186px @vert); font-weight: bold; .s(1.714em); .maj; border:0;
 
-    &:hover, &:focus, &:active {
-      .sprite(15px -184px @vert);
-    }
+  .btn-primary {
+    margin-bottom:1em; padding-left: 34px;
+    .sprite(15px -186px @vert);border:0;
+    font-weight: bold; .s(1.714em); .maj;
+
+    &:hover, &:focus, &:active { background-color: @vert;}
 
     span {display: none;}
   }

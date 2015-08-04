@@ -126,6 +126,14 @@
   box-sizing: content-box;
 }
 
+.rotate(@deg:90deg){
+    -webkit-transform: rotate(@deg);
+    -moz-transform: rotate(@deg);
+    -ms-transform: rotate(@deg);
+    -o-transform: rotate(@deg);
+    transform: rotate(@deg);
+}
+
   /*---------- = Taille  ----------*/
 .w(@width:auto) { width:@width; } /* largeur */
 .h(@height:auto){ height:@height; } /* hauteur */
