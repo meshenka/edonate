@@ -3,10 +3,10 @@ _______________________________________________________________________________
 =       SURCHARGE BOOTSTRAP (surcharge de tranches intermédiaire)
 _______________________________________________________________________________
 */
-@media (min-width: 992px) {
-  .container { width:100%; .box-sizing; }
-  .col-xs-7 { width: 58.33333333%;}
-}
+    @media (min-width: 992px) {
+        .container { width:100%; .box-sizing; }
+        .col-xs-7 { width: 58.33333333%;}
+    }
 
 /*
 _______________________________________________________________________________
@@ -16,49 +16,49 @@ _______________________________________________________________________________
 @media screen and @screen-tablet {
 
     input {
-    &[type="text"] { -webkit-appearance: none; border-radius:0; -webkit-border-radius:0}
-  }
+        &[type="text"] { -webkit-appearance: none; border-radius:0; -webkit-border-radius:0}
+    }
 
     /*
     ------------------------------------------------------------------------------------------------
     = STRUCTURE
     ------------------------------------------------------------------------------------------------
     */
-     #content, #sidebar {.f-none; .w(100%);}
-     #footerInner {max-width:100%;}
-     .container {max-width:768px;}
+        #content, #sidebar {.f-none; .w(100%);}
+        #footerInner {max-width:100%;}
+        .container {max-width:768px;}
 
-     #main {padding:9px 10px 0;
+        #main {padding:9px 10px 0;
         /*ombre sur les côtés gauche et droite)*/
         &:before, &:after {top:-7px; width:7px;}
         &:before {left: 33px;}
         &:after {right: 33px;}
-     }
-    .notHome #main {padding:9px 11px 0;}
+        }
+        .notHome #main {padding:9px 11px 0;}
 
-    #main-inner {.box-shadow(0 -15px 17px -21px #000);/*ombre du haut*/ }
+        #main-inner {.box-shadow(0 -15px 17px -21px #000);/*ombre du haut*/ }
 
-    #sidebar .col-sm-6{width:100%;}
+        #sidebar .col-sm-6{width:100%;}
     /*
     ------------------------------------------------------------------------------------------------
     = header, col droite et contenu
     ------------------------------------------------------------------------------------------------
     */
-    .img-rounded {padding-bottom:14px;}
-    .slogan {padding-left:27px;}
-    #cartoucheDr {right:-58px; z-index:2; padding:0px 5px 6px;}
-    .confiance {.clear;}
+        .img-rounded {padding-bottom:14px;}
+        .slogan {padding-left:27px;}
+        #cartoucheDr {right:-58px; z-index:2; padding:0px 5px 6px;}
+        .confiance {.clear;}
 
-    /*---------- = Montant / calculette----------*/
+        /*---------- = Montant / calculette----------*/
         /* Montant*/
-    #montant .control-group label {margin-left:28px;}
-    #autreMtt {left:196px;}
+        #montant .control-group label {margin-left:28px;}
+        #autreMtt {left:196px;}
 
 }/*fin media tablet*/
 
 
 /*________________________________________________________________
-                                MOBILE
+MOBILE
 __________________________________________________________________
 */
 @media screen and @screen-mobile {
@@ -69,26 +69,26 @@ __________________________________________________________________
     = STRUCTURE
     ------------------------------------------------------------------------------------------------
     */
-    #main { padding:0;}
-    #main-inner {box-shadow:none;}
-    #autreMtt {left:197px; right:inherit; }
-    #montant .panel-body {padding-left:10px; padding-right: 10px;
-        > .row{margin:0; width:100%;}
-    }
+        #main { padding:0;}
+        #main-inner {box-shadow:none;}
+        #autreMtt {left:197px; right:inherit; }
+        #montant .panel-body {padding-left:10px; padding-right: 10px;
+            > .row{margin:0; width:100%;}
+        }
 
     /*
     ------------------------------------------------------------------------------------------------
     = HEADER et FOOTER
     ------------------------------------------------------------------------------------------------
     */
-    .img-rounded{padding-left:0}
-    .slogan { padding: 40px 7px 20px 15px; .s(1.571em);}
-    #cartoucheDr {.none;}
+        .img-rounded{padding-left:0}
+        .slogan { padding: 40px 7px 20px 15px; .s(1.571em);}
+        #cartoucheDr {.none;}
 
-    #footer {
-      ul {.block;}
-      #cartouche {margin-top:20px;}
-    }
+        #footer {
+            ul {.block;}
+            #cartouche {margin-top:20px;}
+        }
 
     /*
     ------------------------------------------------------------------------------------------------
@@ -96,51 +96,57 @@ __________________________________________________________________
     ------------------------------------------------------------------------------------------------
     */
 
-    #help-inline {margin:0 15px;}
-      /*---------- = Montant / calculette----------*/
+        #help-inline {margin:0 15px;}
+        /*---------- = Montant / calculette----------*/
 
         /* Montant*/
-    #amounts {padding-bottom:0; padding-left:0;
-        & > .form-group > .input-group {margin:0 auto;}
-    }
+        #amounts {padding-bottom:0; padding-left:0;
+            & > .form-group > .input-group {margin:0 auto;}
+        }
 
-    #montant {padding-bottom:15px;
-      .panel-title {.a-center;}
-      .control-group label {
-        margin-left:8px; padding: 10px 15px 30px; width: 92px; min-height: 85px; font-size: 2.071em;
+        #montant {padding-bottom:15px;
+            .panel-title {.a-center;}
+            .control-group label {
+                margin-left:8px; padding: 10px 15px 30px;
+                width: 92px; min-height: 85px;
+                font-size: 2.071em;
 
-        &.manual, &:last-child { min-height: 56px; width: 54%; margin-top:8px; padding: 17px 0 0 10px; font-size: 1.072em; }
-      }
-    }
+                &.manual, &:last-child {
+                    min-height: 56px; width: 54%;
+                    margin-top:8px; padding: 17px 0 0 10px;
+                    font-size: 1.072em;
+                }
+            }
+        }
 
-    .control-group.money {left:153px; bottom:0; min-height: 56px; width: 48%;
-        .control-group {min-height: 36px; font-size: 1.429em;}
-        input {width: 69%;}
-        .help-inline {  left:-144px;}
+        .control-group.money {left:153px; bottom:0; min-height: 56px; width: 48%;
+            .control-group {min-height: 36px; font-size: 1.429em;}
+            input {width: 69%;}
+            .help-inline {  left:-144px;}
 
-        .euro, input {min-height:39px;}
-    }
+            .euro, input {min-height:39px;}
+        }
 
-    #calculator {.minH(inherit); margin:0 5px;
-        &:before {top:-7px; bottom:inherit; left:0; right:0;}
-    }
+        #calculator {.minH(inherit); margin:0 5px;
+            &:before {top:-7px; bottom:inherit; left:0; right:0;}
+        }
 
-    /*---------- = formulaire ----------*/
-    .btn-primary {
-        padding-left: 10px; padding-right:10px; .s(0.857em);
-         background: @vert;
+        /*---------- = formulaire ----------*/
+        .btn-primary {
+            padding-left: 10px; padding-right:10px; .s(0.857em);
+            background: @vert;
 
-        &:active, &:focus, &:hover {background: @vert;}
-    }
+            &:active, &:focus, &:hover {background: @vert;}
+        }
 
     /*
     ------------------------------------------------------------------------------------------------
     = PAGE INTERNE
     ------------------------------------------------------------------------------------------------
     */
-    .dl-horizontal {
-        dt {.overflowH; clear: left;  .f-left; .w(140px); .a-right;}
-        dd {margin-left:150px;}
-    }
+        .dl-horizontal {
+            dt {.overflowH; clear: left;  .f-left; .w(140px); .a-right;}
+            dd {margin-left:150px;}
+        }
 
 }/*fin media mobile*/
