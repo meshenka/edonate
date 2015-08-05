@@ -131,18 +131,35 @@
   }
 
   #main {
-    padding-top:13px; min-height:470px;
-    background:url(../images/ombre.png) no-repeat center top;
+    position: relative; padding-top:13px;
+
+    /*ombre sur les côtés gauche et droite)*/
+    &:before, &:after {
+      content:""; position: absolute; top:-1px;
+      height:490px; width: 10px;
+    }
+
+    &:before {left: 37px; .box-shadow(-15px 15px 15px 0px #000); .rotate(-1deg);}
+    &:after {right: 37px; .box-shadow(15px 15px 15px 0px #000); .rotate(1deg);}
+  }
+
+  #main-inner {
+    position: relative; .clearFix; z-index:1; min-height:470px;
+    background: #fff; .box-shadow(0 -15px 17px -19px #000); /*ombre du haut*/
   }
 
   #content {.f-left; .largeur (680); .bk(#fff);}
+
   #sidebar {
-      .clearFix;
-      .f-left;
-      .largeur (310);
-      padding:26px 10px 30px 12px;
-      background:url(../images/fd-col-dr.jpg) no-repeat center top;
-      background-size:100% 477px;
+      .clearFix; .f-left;
+      .largeur (310); padding:26px 10px 30px 12px;
+      min-height:47ppx;
+
+      .gradient;
+
+      /*background:url(../images/fd-col-dr.jpg) no-repeat center top;
+      background-size:100% 477px;*/
+
   }
 
   #footerInner {
@@ -381,8 +398,18 @@
   }
 
       /* Calculatrice*/
-  #calculator{.minH(180px); padding:17px 15px 5px 20px; background:url(../images/encoche.gif) no-repeat left center @bleuF; .radius; .fontR;
-      .euro {color:@vertC;}
+  #calculator{
+    position: relative; overflow: hidden; .minH(180px); padding:17px 15px 5px 20px;
+    .radius; background: @bleuF;
+    .fontR;
+
+    &:before {
+      content:""; position: absolute; left:-7px; top:0; bottom:0; margin:auto;
+      height:14px; width:14px;
+      background: @bleu; .rotate(45deg);
+    }
+
+    .euro {color:@vertC;}
   }
 
   .mtt {color:@vertC; .s(1.786em);.fontSb; }
@@ -413,10 +440,11 @@
 
   .btn-primary {
     margin-bottom:1em; padding-left: 34px;
-    .sprite(15px -186px @vert);border:0;
+    .sprite(15px -186px @vert); border:0; .no-deco;
     font-weight: bold; .s(1.714em); .maj;
 
-    &:hover, &:focus, &:active { background-color: @vert;}
+    &:link, &:visited {color:#fff; .no-deco;}
+    &:hover, &:focus, &:active { background-color: @vert; .deco;}
 
     span {display: none;}
   }

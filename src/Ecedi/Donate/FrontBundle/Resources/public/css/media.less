@@ -6,8 +6,17 @@
     */
      #content, #sidebar {.f-none; .w(100%);}
      #footerInner {max-width:100%;}
-     #main {padding:9px 10px 0; background-size:100% auto;}
-     .notHome #main {padding:9px 11px 0;}
+
+     #main {padding:9px 10px 0;
+        /*ombre sur les côtés gauche et droite)*/
+        &:before, &:after {top:-7px; width:7px;}
+        &:before {left: 33px;}
+        &:after {right: 33px;}
+     }
+    .notHome #main {padding:9px 11px 0;}
+
+    #main-inner {.box-shadow(0 -15px 17px -21px #000);/*ombre du haut*/ }
+
 
     /*
     ------------------------------------------------------------------------------------------------
@@ -16,7 +25,7 @@
     */
     .img-rounded {padding-bottom:14px;}
     .slogan {padding-left:27px;}
-    #cartoucheDr {right:-11px; z-index:1; padding: 9px 5px;}
+    #cartoucheDr {right:-61px; z-index:2; padding:1px 5px 7px;}
     .confiance {.clear;}
 
     /*---------- = Montant / calculette----------*/
@@ -32,7 +41,7 @@
 __________________________________________________________________
 */
 @media screen  and @screen-mobile {
-    body {background-size:auto auto; background-position:left top;}
+    body {background-position:left top;}
 
     /*
     ------------------------------------------------------------------------------------------------
@@ -40,6 +49,7 @@ __________________________________________________________________
     ------------------------------------------------------------------------------------------------
     */
     #main {margin:0 -15px; padding:0;}
+    #main-inner {box-shadow:none;}
     #autreMtt {left:197px; right:inherit; }
 
     /*
@@ -86,7 +96,9 @@ __________________________________________________________________
         .euro, input {min-height:39px;}
     }
 
-    #calculator {.minH(inherit); background:url(../images/encoche-mobile.gif) no-repeat center top @bleuF;}
+    #calculator {.minH(inherit);
+        &:before {top:-7px; bottom:inherit; left:0; right:0;}
+    }
 
     /*---------- = formulaire ----------*/
     .btn-primary {

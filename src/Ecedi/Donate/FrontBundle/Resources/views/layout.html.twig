@@ -91,7 +91,7 @@
                     {% endblock %}
                 </div>
 
-                <div id="main" class="col-md-12">
+                <div id="main" class="col-md-12"><div id="main-inner">
                     <div id="content">
                         {% block main_content %}{% endblock %}
                     </div>
@@ -100,7 +100,7 @@
                             {{ render_esi(controller('DonateFrontBundle:Sidebar:show', { 'id' : layout.id })) }}
                         {% endblock %}
                     </aside>
-                </div>
+                </div></div>
             </div>
         </div> <!-- //.container -->
 

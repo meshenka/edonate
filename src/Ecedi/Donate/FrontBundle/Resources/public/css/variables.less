@@ -134,6 +134,16 @@
     transform: rotate(@deg);
 }
 
+.gradient(@colorBase:#eaeef1, @colorTarget:#fff){
+  background-color: @colorBase;
+  background-image: -moz-linear-gradient(top, @colorBase 0%, @colorBase 29%, @colorTarget 100%); /* FF3.6+ */
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@colorBase), color-stop(29%,@colorBase), color-stop(100%,@colorTarget)); /* Chrome,Safari4+ */
+  background-image: -webkit-linear-gradient(top, @colorBase 0%, @colorBase 29%,@colorTarget 100%); /* Chrome10+,Safari5.1+ */
+  background-image: -o-linear-gradient(top, @colorBase 0%, @colorBase 29%,@colorTarget 100%); /* Opera 11.10+ */
+  background-image: -ms-linear-gradient(top, @colorBase 0%, @colorBase 29%,@colorTarget 100%); /* IE10+ */
+  background-image: linear-gradient(top, @colorBase 0%, @colorBase 29%,@colorTarget 100%); /* W3C */
+}
+
   /*---------- = Taille  ----------*/
 .w(@width:auto) { width:@width; } /* largeur */
 .h(@height:auto){ height:@height; } /* hauteur */
