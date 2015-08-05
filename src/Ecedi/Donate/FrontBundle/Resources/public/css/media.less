@@ -1,4 +1,19 @@
-@media screen  and @screen-tablet {
+/*
+_______________________________________________________________________________
+=       SURCHARGE BOOTSTRAP (surcharge de tranches intermédiaire)
+_______________________________________________________________________________
+*/
+@media (min-width: 992px) {
+  .container { width:100%; .box-sizing; }
+  .col-xs-7 { width: 58.33333333%;}
+}
+
+/*
+_______________________________________________________________________________
+=                               TABLETTE
+_______________________________________________________________________________
+*/
+@media screen and @screen-tablet {
     /*
     ------------------------------------------------------------------------------------------------
     = STRUCTURE
@@ -6,6 +21,7 @@
     */
      #content, #sidebar {.f-none; .w(100%);}
      #footerInner {max-width:100%;}
+     .container {max-width:768px;}
 
      #main {padding:9px 10px 0;
         /*ombre sur les côtés gauche et droite)*/
@@ -17,7 +33,7 @@
 
     #main-inner {.box-shadow(0 -15px 17px -21px #000);/*ombre du haut*/ }
 
-
+    #sidebar .col-sm-6{width:100%;}
     /*
     ------------------------------------------------------------------------------------------------
     = header, col droite et contenu
@@ -25,7 +41,7 @@
     */
     .img-rounded {padding-bottom:14px;}
     .slogan {padding-left:27px;}
-    #cartoucheDr {right:-61px; z-index:2; padding:1px 5px 7px;}
+    #cartoucheDr {right:-58px; z-index:2; padding:0px 5px 6px;}
     .confiance {.clear;}
 
     /*---------- = Montant / calculette----------*/
@@ -40,7 +56,7 @@
                                 MOBILE
 __________________________________________________________________
 */
-@media screen  and @screen-mobile {
+@media screen and @screen-mobile {
     body {background-position:left top;}
 
     /*
@@ -48,9 +64,12 @@ __________________________________________________________________
     = STRUCTURE
     ------------------------------------------------------------------------------------------------
     */
-    #main {margin:0 -15px; padding:0;}
+    #main { padding:0;}
     #main-inner {box-shadow:none;}
     #autreMtt {left:197px; right:inherit; }
+    #montant .panel-body {padding-left:10px; padding-right: 10px;
+        > .row{margin:0; width:100%;}
+    }
 
     /*
     ------------------------------------------------------------------------------------------------
@@ -64,7 +83,6 @@ __________________________________________________________________
     #footer {
       ul {.block;}
       #cartouche {margin-top:20px;}
-
     }
 
     /*
@@ -77,7 +95,9 @@ __________________________________________________________________
       /*---------- = Montant / calculette----------*/
 
         /* Montant*/
-    #amounts {padding-bottom:0;}
+    #amounts {padding-bottom:0; padding-left:0;
+        & > .form-group > .input-group {margin:0 auto;}
+    }
 
     #montant {padding-bottom:15px;
       .panel-title {.a-center;}
@@ -96,7 +116,7 @@ __________________________________________________________________
         .euro, input {min-height:39px;}
     }
 
-    #calculator {.minH(inherit);
+    #calculator {.minH(inherit); margin:0 5px;
         &:before {top:-7px; bottom:inherit; left:0; right:0;}
     }
 

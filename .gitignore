@@ -1,6 +1,7 @@
 /app/Resources/assets/
 /app/Resources/Donate*/
 *~
+*.[db]
 /web/bundles/*
 /web/assetic/*
 /web/images/*
