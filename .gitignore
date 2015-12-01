@@ -1,5 +1,4 @@
 /app/Resources/assets/
-/app/Resources/Donate*/
 *~
 *.[db]
 /web/bundles/*
@@ -24,7 +23,6 @@
 /build
 /docs
 /reports
-/src/Ecedi/Donate/CoreBundle/Resources/public/components/*
 /coverage/
 build.properties
 /node_modules/

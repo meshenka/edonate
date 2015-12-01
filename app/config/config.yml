@@ -125,7 +125,7 @@ fos_user:
 
 knp_markdown:
     parser:
-        service: markdown.parser.sundown
+        service: markdown.parser.medium
 
 knp_gaufrette:
     # stream wrappers
@@ -187,10 +187,6 @@ liip_imagine:
 
 fos_js_routing:
     routes_to_expose: [ donate_admin_layout_switch, donate_admin_affectation_sort]
-
-sp_bower:
-    bundles:
-        DonateCoreBundle: ~
 
 trsteel_ckeditor:
     ui_color: '#ffffff'
