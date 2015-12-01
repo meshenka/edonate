@@ -400,7 +400,7 @@
 {# Labels #}
 
 {% block form_label %}
-{% if label is not sameas(false) %}
+{% if label is not same as(false) %}
 {% spaceless %}
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}
@@ -411,7 +411,7 @@
     {% if form_type is defined and form_type == 'horizontal' %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
     {% endif %}
-    {% if label is not sameas(false) %}
+    {% if label is not same as(false) %}
         {% if label is empty %}
             {% set label = name|humanize %}
         {% endif %}
@@ -426,7 +426,7 @@
 {% endblock form_label %}
 
 {% block checkbox_label %}
-{% if label is not sameas(false) %}
+{% if label is not same as(false) %}
 {% spaceless %}
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}
@@ -449,7 +449,7 @@
 {% endblock checkbox_label %}
 
 {% block radio_label %}
-{% if label is not sameas(false) %}
+{% if label is not same as(false) %}
 {% spaceless %}
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}

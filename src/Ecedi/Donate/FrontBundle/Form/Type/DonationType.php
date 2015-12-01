@@ -42,7 +42,9 @@ class DonationType extends AbstractType
                 'min_amount'    => $options['min_amount'],
                 'max_amount'    => $options['max_amount'],
                 'attr'          => ['class' => 'amount_selector tunnel-'.$tunnel], //used in the JS part
-                'default'       => $default
+                'default'       => $default,
+                'title'         => sprintf('block.amount.%s.title', $tunnel)
+
             ]);
     }
 
