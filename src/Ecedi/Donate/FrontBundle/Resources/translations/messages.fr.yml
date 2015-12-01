@@ -1,0 +1,7 @@
+block:
+    amount:
+        spot:
+            title: Donner une fois
+
+        recuring:
+            title: Donner tous les mois

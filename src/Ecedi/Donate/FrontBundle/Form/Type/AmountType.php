@@ -6,6 +6,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormInterface;
 use Ecedi\Donate\FrontBundle\Form\DataTransformer\AmountChoiceToIntentAmountTransformer;
 
 class AmountType extends AbstractType
@@ -66,6 +68,13 @@ class AmountType extends AbstractType
         );
     }
 
+        /**
+     * {@inheritdoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['title'] = $options['title'];
+    }
     /**
      * {@inheritdoc}
      * @since 2.4 use new method signature since sf 2.7
@@ -74,9 +83,10 @@ class AmountType extends AbstractType
     {
         $resolver->setDefaults([
             'choices'        => [],
-            'min_amount'        => 5,
-            'max_amount'        => 4000,
-            'default'            => '',
+            'min_amount'     => 5,
+            'max_amount'     => 4000,
+            'default'        => '',
+            'title'          => '',
         ]);
     }
 

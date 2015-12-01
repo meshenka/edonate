@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * this controller display payment redirect form
@@ -22,9 +23,9 @@ class PayboxController extends Controller
     /**
      * @Route("/pay",  name="donate_paybox_pay")
      */
-    public function payAction()
+    public function payAction(Request $request)
     {
-        $session = $this->getRequest()->getSession();
+        $session = $request->getSession();
 
         $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
