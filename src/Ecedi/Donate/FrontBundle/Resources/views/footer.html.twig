@@ -8,8 +8,10 @@
 
 {% block cartouche_footer %}
   <div id="cartouche">
-    {% image '@DonateFrontBundle/Resources/public/images/ecedi-horizontal.gif' output='images/ecedi-horizontal.gif' %}
-          <img src="{{ asset_url }}" alt="ecedi (e-collecte)"/>
-        {% endimage %}
+    <a href="http://www.e-donate.fr/" title="ecedi (e-donate)">
+      {% image '@DonateFrontBundle/Resources/public/images/ecedi-horizontal.gif' output='images/ecedi-horizontal.gif' %}
+        <img src="{{ asset_url }}" alt="ecedi (e-donate)"/>
+      {% endimage %}
+    </a>
   </div>
 {% endblock %}

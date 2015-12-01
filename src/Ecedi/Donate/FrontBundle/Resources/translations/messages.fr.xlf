@@ -3,16 +3,16 @@
   <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="67154ba0564cd26d8a637a6d20a77cbf" resname="      &#10;  &lt;p&gt;&#10;    By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.&#10;  &lt;/p&gt;&#10;  &lt;p&gt;&#10;    For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.&#10;  &lt;/p&gt;">
-        <source>      
+        <source>
   &lt;p&gt;
     By supporting Association XY, you enjoy an &lt;strong&gt;income tax reduction of 66% of the value of the donation made&lt;/strong&gt;, up to a limit of 20% of the net taxable income. Added to that, a possibility of reporting the surplus of the tax reduction over 5 years.
   &lt;/p&gt;
   &lt;p&gt;
     For people who are subject to French wealth tax (ISF – Impôt de Solidarité sur la Fortune), you enjoy an &lt;strong&gt;income tax reduction of 75% of the value of the donation made&lt;/strong&gt;, up to a limit of 50 000 euros.
   &lt;/p&gt;</source>
-        <target><![CDATA[      
+        <target><![CDATA[
   <p>
-    En supportant l' Association XY, vous bénéficiez d'une <strong>réduction d'impôt de 66% à hauteur du montant de votre don</strong>, dans la limite de 20% de votre revenu imposable. Ajouter à cela, la possibilité de reporter le surplus de la réduction d'impôt sur 5 ans.
+    En supportant l'Association XY, vous bénéficiez d'une <strong>réduction d'impôt de 66% à hauteur du montant de votre don</strong>, dans la limite de 20% de votre revenu imposable. Ajouter à cela, la possibilité de reporter le surplus de la réduction d'impôt sur 5 ans.
   </p>
   <p>
     Pour les personnes qui sont assujettis à l'ISF (ISF – Impôt de Solidarité sur la Fortune), vous bénéficiez d'une <strong>réduction d'impôt de 75% à hauteur du montant de votre don</strong>, dans une limite de 50 000 euros.
@@ -136,7 +136,7 @@
       </trans-unit>
       <trans-unit id="2023ee8c66a3d73b52fb5e2c61135334" resname="I agree to receive informations from Association XY">
         <source>I agree to receive informations from Association XY</source>
-        <target>J'accepte de recevoir des informations de la part de l' Association XY</target>
+        <target>J'accepte de recevoir des informations de la part de l'Association XY</target>
       </trans-unit>
       <trans-unit id="722a738021cdff58684ff0e2dd90f1d5" resname="I prefer to receive my tax receipt">
         <source>I prefer to receive my tax receipt</source>
@@ -156,7 +156,7 @@
       </trans-unit>
       <trans-unit id="f6fcb19b726462d66000a6460073c311" resname="Locality, post box">
         <source>Locality, post box</source>
-        <target>Lieu-dit, boite postale</target>
+        <target>Lieu-dit, boîte postale</target>
       </trans-unit>
       <trans-unit id="fea80f2db003d4ebc4536023814aa885" resname="Lorem ipsum dolor sit amet">
         <source>Lorem ipsum dolor sit amet</source>
@@ -268,7 +268,7 @@
       </trans-unit>
       <trans-unit id="2c9b5b15a6d3cc951ca57c65e4966fd3" resname="Mr">
         <source>Mr</source>
-        <target>Mr</target>
+        <target>M.</target>
       </trans-unit>
       <trans-unit id="78e8eaa33b1930e23d6b57bb4827fd70" resname="Ms">
         <source>Ms</source>

@@ -50,7 +50,7 @@ class AmountType extends AbstractType
             ->add('manual', 'money', [
                 'currency'    => 'EUR',
                 'required'  => false,
-                'label'    => false,
+                'label'    => 'Another amount',
                 'scale' => 0,
                 'constraints' => [
                     new Assert\Range(
