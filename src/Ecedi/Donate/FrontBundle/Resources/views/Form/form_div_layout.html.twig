@@ -122,3 +122,13 @@
         {% endif %}
     {% endspaceless %}
 {% endblock %}
+
+{#
+custom amont_selector_widget to display title
+#}
+{% block amount_selector_widget %}
+    <h3>{{title|trans}}</h3>
+    {% spaceless %}
+         {{ block('form_widget') }}
+    {% endspaceless %}
+{% endblock %}
