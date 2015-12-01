@@ -6,7 +6,7 @@ use Symfony\Component\DependencyInjection\Container;
 /**
  * Cette extension très simple exporte en global la configuration i18n du front.
  */
-class I18nTwigExtension extends \Twig_Extension
+class I18nTwigExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     private $container;
 

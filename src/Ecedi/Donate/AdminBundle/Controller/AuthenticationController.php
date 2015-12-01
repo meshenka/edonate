@@ -11,6 +11,7 @@ namespace Ecedi\Donate\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 class AuthenticationController extends Controller
 {
@@ -20,9 +21,8 @@ class AuthenticationController extends Controller
      * @see http://symfony.com/doc/current/book/security.html
      * @since  2.4 SecurityContext is deprecated, use Symfony\Component\Security\Core\Security for constants
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
-        $request = $this->getRequest();
         $session = $request->getSession();
 
         // get the login error if there is one

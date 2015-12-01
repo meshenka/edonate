@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Exception\InactiveScopeException;
 /**
  * Cette extension très simple exporte en global la configuration i18n du front.
  */
-class LayoutExtension extends \Twig_Extension
+class LayoutExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     private $layoutManager;
     private $container;
