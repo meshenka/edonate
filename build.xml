@@ -34,6 +34,10 @@
 
 		<echo msg="app/console assetic:dump"/>
 
+        <!-- produce bower resources -->
+        <exec command="bower install" dir="." />
+        <echo msg="bower installation task"/>
+
         <!-- produce gulp resources -->
         <exec command="gulp" dir="." />
         <echo msg="glup compilation task"/>
