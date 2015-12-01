@@ -45,7 +45,7 @@
         <!-- TODO faire une css dynamique -->
         <style>
             body {
-                background:url({{ asset(layout.backgroundName | imagine_filter('layout_background')) }}) no-repeat center top #fff; background-size: 100% 496px;
+                background-image:url({{ asset(layout.backgroundName | imagine_filter('layout_background')) }});
                 }
         </style>
 
@@ -64,9 +64,9 @@
             <div class="row main-content">
                 {% block cartouche_right %}
                     <div id="cartoucheDr">
-                      {% image '@DonateFrontBundle/Resources/public/images/ecedi-vertical.gif' output='images/ecedi-vertical.gif' %}
-                        <img src="{{ asset_url }}" alt="ecedi (e-collecte)"/>
-                      {% endimage %}
+                      <a href="http://www.e-donate.fr/" title="ecedi (e-donate)">{% image '@DonateFrontBundle/Resources/public/images/ecedi-horizontal.gif' output='images/ecedi-horizontal.gif' %}
+                        <img src="{{ asset_url }}" alt="ecedi (e-donate)"/>
+                      {% endimage %}</a>
                     </div>
                 {% endblock %}
 
@@ -91,7 +91,7 @@
                     {% endblock %}
                 </div>
 
-                <div id="main" class="col-md-12">
+                <div id="main" class="col-md-12"><div id="main-inner">
                     <div id="content">
                         {% block main_content %}{% endblock %}
                     </div>
@@ -100,7 +100,7 @@
                             {{ render_esi(controller('DonateFrontBundle:Sidebar:show', { 'id' : layout.id })) }}
                         {% endblock %}
                     </aside>
-                </div>
+                </div></div>
             </div>
         </div> <!-- //.container -->
 

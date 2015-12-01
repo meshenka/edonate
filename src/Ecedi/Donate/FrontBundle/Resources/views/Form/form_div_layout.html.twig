@@ -107,3 +107,18 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
+
+{% block money_row %}
+    {% spaceless %}
+        {% if form_type is defined and form_type == 'inline' %}
+            {{ block('inline_row') }}
+        {% elseif form_type is defined and form_type == 'horizontal' %}
+            {{ block('horizontal_row') }}
+        {% else %}
+            <div class="control-group money{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
+            {{ form_label(form) }}
+            {{ form_widget(form) }}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
