@@ -1,4 +1,7 @@
 v2.4.4
+  * Update Symfony to 2.7.2
+  * Remove dependencies to leafo/lessphp, now use gulp/npm
+  * Remove dependencies on ladybugdump, now use Symfony/VarDumper outside of project code; @see http://symfony.com/doc/current/components/var_dumper/introduction.html#installation
   * Update logo to e-donate
 
 v2.4.3
