@@ -17,6 +17,7 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
 use Ecedi\Donate\CoreBundle\Form\CustomerType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
 * @NamePrefix("donate_api_v1_")
@@ -111,14 +112,14 @@ class CustomersController extends Controller
      * @View(statusCode=204) -- "No content" - Retourné quand l'update de l'entité a été réalisé
      * @param int $customerId
      */
-    public function patchCustomerAction($customerId)
+    public function patchCustomerAction(Request $request, $customerId)
     {
         $em = $this->getDoctrine()->getManager();
         $customer = $em->getRepository('DonateCoreBundle:Customer')->find($customerId);
 
         $this->throwNotFoundExceptionIfNotCustomer($customer);  // Contrôle sur l'existence de l'entité
 
-        return $this->processForm($customer, 'PATCH');
+        return $this->processForm($customer, $request, 'PATCH');
     }
 
     /**
@@ -127,10 +128,10 @@ class CustomersController extends Controller
     * @param Customer $customer
     * @param string $method -- la méthode du formulaire pour récupérer les données
     */
-    private function processForm(Customer $customer, $method = 'POST')
+    private function processForm(Customer $customer, Request $request, $method = 'POST')
     {
         $form = $this->createForm(new CustomerType(), $customer, array('method' => $method));
-        $form->handleRequest($this->getRequest());
+        $form->handleRequest($request);
 
         if ($form->isValid()) { // Si les données sont correctes, on enregistre notre Customer
             $em = $this->getDoctrine()->getManager();

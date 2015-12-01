@@ -12,16 +12,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\CheckPromisePaymentMethod;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class CheckPromiseController extends Controller
 {
     /**
      * @Route("/check/completed", name="donate_payment_check_promise_completed")
      */
-    public function payAction()
+    public function payAction(Request $request)
     {
         //cette route est cache-control: private car elle peut contenir des info sur la transaction
-        $session = $this->getRequest()->getSession();
+        $session = $request->getSession();
         $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
         if ($session->has('intentId')) {

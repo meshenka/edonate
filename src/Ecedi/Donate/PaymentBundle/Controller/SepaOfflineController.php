@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Ecedi\Donate\PaymentBundle\Event\IntentDocumentGeneratedEvent;
 use Ecedi\Donate\PaymentBundle\Event\PaymentEvents;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller for display of SEPA Offline return pages
@@ -27,10 +28,10 @@ class SepaOfflineController extends Controller
      * @since  2.0.0
      * @return mixed array of twig variables, or a manual Symfony\Component\HttpFoundation\Response
      */
-    public function autorizeAction()
+    public function autorizeAction(Request $request)
     {
         //cette route est cache-control: private car elle peut contenir des info sur la transaction
-        $session = $this->getRequest()->getSession();
+        $session = $request->getSession();
         $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
         if ($session->has('intentId')) {
@@ -76,9 +77,9 @@ class SepaOfflineController extends Controller
      * @see  http://symfony.com/fr/doc/current/components/http_foundation/introduction.html#retourner-des-fichiers
      * @return Symfony\Component\HttpFoundation\Response an HTTP response with the file, or an HTTP 403 Response
      */
-    public function generatePdf()
+    public function generatePdf(Request $request)
     {
-        $session = $this->getRequest()->getSession();
+        $session = $request->getSession();
         $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
         if ($session->has('intentId')) {

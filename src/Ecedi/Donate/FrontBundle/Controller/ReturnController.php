@@ -7,16 +7,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Component\HttpFoundation\Response;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
+use Symfony\Component\HttpFoundation\Request;
 
 class ReturnController extends Controller
 {
     /**
      * @Route("/{_locale}/completed", name="donate_front_completed", defaults={"_locale"="fr"}, requirements = {"_locale" = "fr|en"})
      */
-    public function completedAction()
+    public function completedAction(Request $request)
     {
         //cette route est cache-control: private car elle peut contenur des info sur la transaction
-         $session = $this->getRequest()->getSession();
+         $session = $request->getSession();
 
         if ($session->has('intentId')) {
             $intentId = $session->get('intentId');

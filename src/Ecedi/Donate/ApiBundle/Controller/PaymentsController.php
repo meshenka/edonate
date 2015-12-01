@@ -15,7 +15,6 @@ use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
-//use Ecedi\Donate\CoreBundle\Form\PaymentType;
 
 /**
 * @NamePrefix("donate_api_v1_")
@@ -30,9 +29,8 @@ class PaymentsController extends Controller
     * @View(serializerGroups={"REST"})
     * @return array
     */
-    public function getPaymentsAction()
+    public function getPaymentsAction(Request $request)
     {
-        $request = Request::createFromGlobals();
         $restParams = $request->query->All();   // On récupère tous les paramètres passés en GET
 
         $em = $this->getDoctrine()->getManager();
@@ -68,14 +66,14 @@ class PaymentsController extends Controller
      * @View(statusCode=204) -- "No content" - Retourné quand l'update de l'entité a été réalisé
      * @param int $paymentId
      */
-    public function patchPaymentAction($paymentId)
+    public function patchPaymentAction(Request $request, $paymentId)
     {
         $em = $this->getDoctrine()->getManager();
         $payment = $em->getRepository('DonateCoreBundle:Payment')->find($paymentId);
 
         $this->throwNotFoundExceptionIfNotPayment($payment);  // Contrôle sur l'existence de l'entité
 
-        return $this->processForm($payment, 'PATCH');
+        return $this->processForm($payment, $request, 'PATCH');
     }
 
     /**
@@ -84,10 +82,10 @@ class PaymentsController extends Controller
     * @param Payment $payment
     * @param string $method -- la méthode du formulaire pour récupérer les données
     */
-    private function processForm(Payment $payment, $method = 'POST')
+    private function processForm(Payment $payment, Request $request, $method = 'POST')
     {
         $form = $this->createForm(new PaymentType(), $payment, array('method' => $method));
-        $form->handleRequest($this->getRequest());
+        $form->handleRequest($request);
 
         if ($form->isValid()) { // Si les données sont correctes, on enregistre notre Payment
             $em = $this->getDoctrine()->getManager();
