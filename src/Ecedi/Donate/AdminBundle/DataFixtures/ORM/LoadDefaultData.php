@@ -27,6 +27,7 @@ class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
      */
     public function load(ObjectManager $manager)
     {
+        return false;
         ini_set('memory_limit', '2048M');
         for ($i = 1; $i <= 6000; $i++) {
             $customer = new Customer();

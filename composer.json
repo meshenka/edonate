@@ -7,7 +7,7 @@
         "psr-4": { "": "src/", "SymfonyStandard\\": "app/" }
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.3.9",
         "symfony/symfony": "2.7.*",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
         "doctrine/dbal": "<2.5",
@@ -43,10 +43,16 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "phpspec/phpspec": "2.0.*@dev",
         "phpmd/phpmd" : "@stable" ,
-        "henrikbjorn/phpspec-code-coverage": "~1.0"
+        "henrikbjorn/phpspec-code-coverage": "~1.0",
+        "behat/behat": "~3.0",
+        "behat/symfony2-extension": "~2.0",
+        "behat/mink-extension": "~2.0",
+        "behat/mink-browserkit-driver": "~1.2",
+        "knplabs/friendly-contexts": "0.5.*",
+        "behatch/contexts": "dev-master"
     },
     "scripts": {
         "post-root-package-install": [
