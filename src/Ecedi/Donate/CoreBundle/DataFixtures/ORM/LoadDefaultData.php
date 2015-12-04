@@ -13,7 +13,8 @@ use Nelmio\Alice\ORM\Doctrine as FixturesORM;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-
+use Ecedi\Donate\CoreBundle\Entity\Payment;
+use Ecedi\Donate\CoreBundle\Entity\Intent;
 /**
  * Génère des données de base pour les tests
  * pour les customers, themes et questions
@@ -34,5 +35,32 @@ class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
 
         $persister = new FixturesORM($manager);
         $persister->persist($objects);
+    }
+
+    public function intentStatus()
+    {
+        return $this->getOne(Intent::getPossibleStatus());
+    }
+
+    public function intentType()
+    {
+        return $this->getOne(Intent::getTypes());
+    }
+
+    public function paymentStatus()
+    {
+        return $this->getOne(Payment::getAllowedStatus());
+    }
+
+    public function paymentMethod()
+    {
+        return $this->getOne(['ogone', 'check_promise', 'sepa_offline']);
+    }
+
+    private function getOne($values)
+    {
+        $one = rand(0, count($values) - 1);
+
+        return $values[$one];
     }
 }

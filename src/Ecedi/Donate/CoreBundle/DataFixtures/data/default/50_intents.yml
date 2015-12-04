@@ -1,0 +1,10 @@
+#50_intents.yml
+##20_affectations.yml
+Ecedi\Donate\CoreBundle\Entity\Intent:
+
+    intent{1..20}:
+        payments: [@payment<current()>]
+        customer: @customer<current()>
+        type: <intentType()>
+        status: <intentStatus()>
+        __construct: [<numberBetween(500, 400000)>, <paymentMethod(), 'EUR']
