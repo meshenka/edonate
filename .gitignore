@@ -27,3 +27,4 @@
 build.properties
 /node_modules/
 .rules/
+.coverage_db

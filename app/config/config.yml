@@ -111,7 +111,7 @@ fos_user:
     db_driver:      orm
     firewall_name:  secured     # Le nom du firewall derrière lequel on utilisera ces utilisateurs
     user_class:     Ecedi\Donate\CoreBundle\Entity\User
-    use_listener:   false       # If you always save the user through the user manager, you may want to disable it to improve performance.
+    use_listener:   true       # If you always save the user through the user manager, you may want to disable it to improve performance.
 
 # fos_oauth_server:
 #     db_driver:  orm

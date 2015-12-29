@@ -1,21 +1,33 @@
 Ecedi\Donate\CoreBundle\Entity\User:
-    user (template):
+    account (template):
         enabled: true
 
-    user_root (extends user):
+    root (extends account):
         username: root
-        roles: [ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_USER]
+        roles: [ROLE_SUPER_ADMIN]
         plainPassword: <(@self->username)>
-        password: <(@self->username)>
         email: <(@self->username)>@ecedi.fr
-        usernameCanonical: <(@self->username)>
-        emailCanonical: <(@self->email)>
 
-    user_bo (extends user):
+    admin (extends account):
+        username: admin
+        roles: [ROLE_ADMIN]
+        plainPassword: <(@self->username)>
+        email: <(@self->username)>@ecedi.fr
+
+    cms (extends account):
+        username: cms
+        roles: [ROLE_CMS]
+        plainPassword: <(@self->username)>
+        email: <(@self->username)>@ecedi.fr
+
+    affectation (extends account):
+        username: affectation
+        roles: [ROLE_AFFECTATION]
+        plainPassword: <(@self->username)>
+        email: <(@self->username)>@ecedi.fr
+
+    user (extends account):
         username: user
         roles: [ROLE_USER]
-        password: <(@self->username)>
         plainPassword: <(@self->username)>
         email: <(@self->username)>@ecedi.fr
-        usernameCanonical: <(@self->username)>
-        emailCanonical: <(@self->email)>

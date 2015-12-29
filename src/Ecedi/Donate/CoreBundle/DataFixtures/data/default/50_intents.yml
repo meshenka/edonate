@@ -7,4 +7,5 @@ Ecedi\Donate\CoreBundle\Entity\Intent:
         customer: @customer<current()>
         type: <intentType()>
         status: <intentStatus()>
-        __construct: [<numberBetween(500, 400000)>, <paymentMethod(), 'EUR']
+        amount: <numberBetween(500, 400000)>
+        __construct: [<numberBetween(500, 400000)>, <paymentMethod()>, 'EUR']

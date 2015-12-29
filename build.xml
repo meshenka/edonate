@@ -5,10 +5,13 @@
 
 
 	<!-- Prepare build folders -->
-	<target name="prepare" description="Create directories">
+	<target name="prepare">
 		<mkdir dir="docs"/>
 		<mkdir dir="reports"/>
-		<mkdir dir="build"/>
+
+        <mkdir dir=".coverage_db"/>
+        <mkdir dir="cov"/>
+
 		<echo msg="Making docs, report and build directories"/>
 	</target>
 
@@ -34,8 +37,12 @@
 
 		<echo msg="app/console assetic:dump"/>
 
+        <!-- npm -->
+        <exec command="npm install" dir="." />
+
         <!-- produce bower resources -->
         <exec command="bower install" dir="." />
+
         <echo msg="bower installation task"/>
 
         <!-- produce gulp resources -->
@@ -61,22 +68,51 @@
 		<echo msg="Generating PhpDoc."/>
 	</target>
 
+    <target name="test" depends="unit-test, integration-test" description="Run all tests">
+    </target>
 	<!-- Run unit tests -->
-	<target name="unit-test" depends="prepare" description="Run unit tests">
-		<exec command="./bin/phpspec --ansi" output="reports/specs.log"/>
+	<target name="unit-test" depends="prepare">
+		<exec command="./bin/phpspec run --format=pretty" output="reports/specs.log"/>
 		<echo msg="run phpspec"/>
 	</target>
 
 	<!-- Run integration test (WARNING: require db reset) -->
-	<target name="integration-test" depends="unit-test" description="Run integration tests">
+	<target name="integration-test" depends="prepare">
+
+        <fileset dir="src" id="php">
+            <include name="*.php"/>
+            <include name="**/*.php"/>
+            <exclude name="*Test.php"/>
+            <exclude name="**/*Test.php"/>
+        </fileset>
+
+        <coverage-setup database=".coverage_db/coverage.db">
+            <fileset refid="php"/>
+        </coverage-setup>
+
 		<phpunit codecoverage="true" configuration="app/phpunit.xml">
 		  <formatter todir="reports" type="xml" outfile="integration.xml"/>
 		</phpunit>
 	</target>
 
+    <target name="fixtures" description="Load Fixture. !!Will drop schema">
+        <SymfonyConsole command="doctrine:schema:drop">
+            <arg name="env" value="${symfony.env}" />
+            <arg name="force"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:schema:create">
+            <arg name="env" value="${symfony.env}" />
+        </SymfonyConsole>
+
+        <SymfonyConsole command="doctrine:fixture:load">
+            <arg name="env" value="${symfony.env}" />
+            <arg name="no-interaction"/>
+        </SymfonyConsole>
+
+    </target>
+
 	<target name="clean">
 		<delete dir="reports"/>
 		<delete dir="docs"/>
-		<delete dir="build"/>
 	</target>
 </project>
