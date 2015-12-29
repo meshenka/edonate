@@ -32,3 +32,7 @@ donate_core:
 
 donate_front:
     campaign: _utm
+
+doctrine:
+    dbal:
+        dbname: "%database_name%_test"

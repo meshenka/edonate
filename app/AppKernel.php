@@ -31,7 +31,6 @@ class AppKernel extends Kernel
 
             new Vich\UploaderBundle\VichUploaderBundle(),
 
-            new Sp\BowerBundle\SpBowerBundle(),
             new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
 

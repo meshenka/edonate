@@ -1,0 +1,8 @@
+Ecedi\Donate\CoreBundle\Entity\Block:
+    block{0..4}:
+        layout: @layout_FR
+        enabled: true
+        title: <title()>
+        body: <paragraph()>
+        format: html
+        __construct: [block-<current()>, <current()>]

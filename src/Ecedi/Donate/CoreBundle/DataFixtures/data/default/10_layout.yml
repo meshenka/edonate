@@ -1,0 +1,30 @@
+#10_layout.yml
+Ecedi\Donate\CoreBundle\Entity\Layout:
+    layout_FR:
+        isDefault: true
+        language: fr
+        name: test-fr
+        skin: light
+        logoName: test-logo.png
+        logoUrl: http://ecedi.fr
+        logoAlt: Logo Ecedi
+        logoTitle: Ecedi, Agence Digitale
+        baseLine: Association de test
+        backgroundName: test-bg.png
+        metaDescription: <paragraph()>
+        metaKeywords: Ecedi, Symfony, Test
+        metaTitle: Association de test
+    layout_EN:
+        isDefault: true
+        language: en
+        name: test-en
+        skin: light
+        logoName: test-logo.png
+        logoUrl: http://ecedi.fr
+        logoAlt: Logo Ecedi
+        logoTitle: Ecedi, Agence Digitale
+        baseLine: Association de test
+        backgroundName: test-bg.png
+        metaDescription: <paragraph()>
+        metaKeywords: Ecedi, Symfony, Test
+        metaTitle: Association de test

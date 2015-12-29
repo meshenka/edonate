@@ -1,0 +1,10 @@
+#20_affectations.yml
+Ecedi\Donate\CoreBundle\Entity\Payment:
+
+    payment{1..20}:
+        status: <paymentStatus()>
+        transaction: <uuid()>
+        autorisation: <uuid()>
+        alias: ALIAS-TEST<uuid()>
+
+

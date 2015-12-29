@@ -1,0 +1,13 @@
+#20_affectations.yml
+Ecedi\Donate\CoreBundle\Entity\Affectation:
+    affectation_ALL:
+        code: ALL
+        weight: 0
+        label: Tous
+        layout: @layout_FR
+
+    affectation_TEST:
+        code: TEST
+        weight: 10
+        label: Test
+        layout: @layout_FR
