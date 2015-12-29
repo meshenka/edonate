@@ -8,4 +8,7 @@ Ecedi\Donate\CoreBundle\Entity\Intent:
         type: <intentType()>
         status: <intentStatus()>
         amount: <numberBetween(500, 400000)>
-        __construct: [<numberBetween(500, 400000)>, <paymentMethod()>, 'EUR']
+        currency: 'EUR'
+        paymentMethod: <paymentMethod()>
+        fiscal_receipt: 0
+        __construct: false
