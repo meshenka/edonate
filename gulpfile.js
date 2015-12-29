@@ -26,6 +26,7 @@ var path = require('path');
 var pkg = require('./package.json');
 
 var jsDest = 'web/js/build';
+var bowerSrc = 'app/Resources/assets/vendor/';
 var cssDest = 'web/css/build';
 var src = 'src/Ecedi/Donate/';
 var cssSrc = 'web/bundles/';
@@ -91,12 +92,12 @@ gulp.task('watch', [
  *   {% endjavascripts %}
  */
 var jsAdminPath = function(){
-    var jqueryJs = src +'CoreBundle/Resources/public/components/jquery/dist/jquery.js';
-    var modernizrJs = src + 'CoreBundle/Resources/public/components/modernizr/modernizr.js';
-    var bootstrapJs = src +'CoreBundle/Resources/public/components/bootstrap/dist/js/bootstrap.js';
-    var jqueryUiJs = src + 'CoreBundle/Resources/public/components/jquery-ui/jquery-ui.js';
-    var datepickerJs = src + 'CoreBundle/Resources/public/components/jquery-ui/ui/datepicker.js';
-    var datepickerL10nFrJs = src + 'CoreBundle/Resources/public/components/jquery-ui/ui/i18n/datepicker-fr.js';
+    var jqueryJs = bowerSrc +'jquery/dist/jquery.js';
+    var modernizrJs = bowerSrc + 'modernizr/modernizr.js';
+    var bootstrapJs = bowerSrc +'bootstrap/dist/js/bootstrap.js';
+    var jqueryUiJs = bowerSrc + 'jquery-ui/jquery-ui.js';
+    var datepickerJs = bowerSrc + 'jquery-ui/ui/datepicker.js';
+    var datepickerL10nFrJs = bowerSrc + 'jquery-ui/ui/i18n/datepicker-fr.js';
     var adminJs = src + 'AdminBundle/Resources/public/js/admin.js';
     return [
         jqueryJs,
@@ -138,14 +139,12 @@ gulp.task('watch:js:admin', function(){
 
 var cssAdminPath = function() {
 
-    var bootstrapCss = cssSrc + 'donatecore/components/bootstrap/dist/css/bootstrap.css';
-    var bootstraThemeCss =  cssSrc + 'donatecore/components/bootstrap/dist/css/bootstrap.css';
+    var bootstrapCss = bowerSrc + 'bootstrap/dist/css/bootstrap.css';
     var datepickerCss = cssSrc + 'donateadmin/css/datepicker.css';
     var adminCss = cssSrc + 'donateadmin/css/admin.css';
 
     return [
         bootstrapCss,
-        bootstraThemeCss,
         datepickerCss,
         adminCss
     ];
@@ -173,7 +172,7 @@ gulp.task('watch:css:admin', function() {
  * move fonts to right folder
  */
 var fontsBoostrapPath = function() {
-    return [src + 'CoreBundle/Resources/public/components/bootstrap/fonts/*'];
+    return [bowerSrc + 'bootstrap/fonts/*'];
 };
 
 gulp.task('fonts:bootstrap', function() {
@@ -198,8 +197,8 @@ gulp.task('watch:fonts:bootstrap', function() {
  *   {% endjavascripts %}
  */
 var jsIePath = function(){
-    var html5shivJs = src +'CoreBundle/Resources/public/components/html5shiv/dist/html5shiv.js';
-    var respondJs = src +'CoreBundle/Resources/public/components/respond/dest/respond.src.js';
+    var html5shivJs = bowerSrc +'html5shiv/dist/html5shiv.js';
+    var respondJs = bowerSrc +'respond/dest/respond.src.js';
     return [html5shivJs, respondJs];
 };
 
@@ -231,8 +230,8 @@ gulp.task('watch:js:ie', function(){
  */
 
 var jsFrontHeaderPath = function(){
-    var jqueryJs = src +'CoreBundle/Resources/public/components/jquery/dist/jquery.js';
-    var bootstrapJs = src +'CoreBundle/Resources/public/components/bootstrap/dist/js/bootstrap.js';
+    var jqueryJs = bowerSrc +'jquery/dist/jquery.js';
+    var bootstrapJs = bowerSrc +'bootstrap/dist/js/bootstrap.js';
     var frontJs =  src + 'FrontBundle/Resources/public/js/*.min.js';
     var amountJs = src + 'FrontBundle/Resources/public/js/jquery-amountselector.js';
 
@@ -307,7 +306,7 @@ gulp.task('watch:js:front:footer', function(){
  */
 var cssFrontStylePath = function() {
 
-    var bootstrapCss = cssSrc + 'donatecore/components/bootstrap/dist/css/bootstrap.css';
+    var bootstrapCss = bowerSrc + 'bootstrap/dist/css/bootstrap.css';
     var coreMinCsss = cssSrc + 'donatecore/css/*.min.css';
     var chosenCss = cssSrc + 'donatefront/css/chosen.css';
     var frontLess = cssSrc + 'donatefront/css/front.less';

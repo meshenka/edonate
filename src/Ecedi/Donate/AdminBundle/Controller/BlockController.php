@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Ecedi\Donate\AdminBundle\Form\LayoutType;
 use Ecedi\Donate\AdminBundle\Form\BlockType;
 use Ecedi\Donate\FrontBundle\Form\Type\DonationType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Routing for layout, block and affectations
@@ -28,6 +29,7 @@ class BlockController extends Controller
     /**
      * @Route("/cms/layout/{id}/switch" , name="donate_admin_layout_switch", requirements={"id" = "\d+"}, defaults={"id" = 0})
      * ajax callback to switch default Status
+     * @Security("has_role('ROLE_CMS')")
      */
     public function switchLayoutAction(Layout $layout)
     {
@@ -63,6 +65,7 @@ class BlockController extends Controller
 
     /**
      * @Route("/cms/layout/{id}/preview" , name="donate_admin_layout_preview", requirements={"id" = "\d+"}, defaults={"id" = 0})
+     * @Security("has_role('ROLE_CMS')")
      */
     public function previewLayoutAction(Request $request, Layout $layout)
     {
@@ -83,6 +86,7 @@ class BlockController extends Controller
 
     /**
      * @Route("/cms/layout/{id}/blocks" , name="donate_admin_block_list", requirements={"id" = "\d+"}, defaults={"id" = 0})
+     * @Security("has_role('ROLE_CMS')")
      */
     public function listBlocksAction(Layout $layout)
     {
@@ -91,6 +95,7 @@ class BlockController extends Controller
 
     /**
      * @Route("/cms/layouts" , name="donate_admin_layout_list")
+     * @Security("has_role('ROLE_CMS')")
      */
     public function listLayoutsAction(Request $request)
     {
@@ -104,6 +109,7 @@ class BlockController extends Controller
 
     /**
      * @Route("/cms/layout/{id}/edit", name="donate_admin_layout_edit", requirements={"id" = "\d+"}, defaults={"id" = 0})
+     * @Security("has_role('ROLE_CMS')")
      */
     public function editLayoutAction(Request $request, Layout $layout)
     {
@@ -131,6 +137,7 @@ class BlockController extends Controller
 
     /**
      * @Route("/cms/layout/{id}/delete", name="donate_admin_layout_delete", requirements={"id" = "\d+"}, defaults={"id" = 0})
+     * @Security("has_role('ROLE_CMS')")
      */
     public function deleteLayoutAction(Layout $layout)
     {
@@ -143,6 +150,7 @@ class BlockController extends Controller
 
     /**
      * @Route("/cms/layout/new", name="donate_admin_layout_new")
+     * @Security("has_role('ROLE_CMS')")
      */
     public function newLayoutAction(Request $request)
     {
@@ -169,6 +177,7 @@ class BlockController extends Controller
 
     /**
      * @Route("/cms/layout/{layout}/block/{block}/edit" , name="donate_admin_block_edit", requirements={"layout" = "\d+","block" = "\d+"}, defaults={"layout" = 0, "block" = 0})
+     * @Security("has_role('ROLE_CMS')")
      */
     public function editBlockAction(Request $request, Layout $layout, Block $block)
     {

@@ -1,6 +1,6 @@
 {
-  "name": "ecedi/donatecore",
-  "version": "1.0.0",
+  "name": "ecedi/donate",
+  "version": "2.4.6",
   "dependencies": {
     "jquery": "latest",
     "jquery-ui": "latest",

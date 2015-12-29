@@ -1,0 +1,11 @@
+Ecedi\Donate\CoreBundle\Entity\Customer:
+    customer{1..20}:
+        firstName: <firstName()>
+        lastName: <lastName()>
+        civility: <title()>
+        email: <email()>
+        phone: <phoneNumber()>
+        addressStreet: <streetAddress()>
+        addressCity: <city()>
+        addressCountry: <country()>
+        addressZipcode: <postcode()>

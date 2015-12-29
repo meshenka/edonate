@@ -85,7 +85,7 @@ class UserVoter implements VoterInterface
                     return VoterInterface::ACCESS_GRANTED;
                 }
 
-                // * super admin can viex any other users
+                // * super admin can view any other users
                 if ($currentUser->hasRole('ROLE_ADMIN')) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
@@ -111,14 +111,14 @@ class UserVoter implements VoterInterface
                     return VoterInterface::ACCESS_DENIED;
                 }
 
-                // * standard user cannot delete anyone
-                if ($currentUser->hasRole('ROLE_USER')) {
-                    return VoterInterface::ACCESS_DENIED;
-                }
-
                 // * super admin can delete any other users
                 if ($currentUser->hasRole('ROLE_ADMIN')) {
                     return VoterInterface::ACCESS_GRANTED;
+                }
+
+                // * standard user cannot delete anyone
+                if ($currentUser->hasRole('ROLE_USER')) {
+                    return VoterInterface::ACCESS_DENIED;
                 }
 
                 // we assume that our data object has a method getOwner() to
