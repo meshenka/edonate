@@ -49,12 +49,6 @@ services:
         tags:
            - { name: security.voter }
 
-    ecollect.security.access.users_voter:
-        class:      Ecedi\Donate\CoreBundle\Security\Authorization\Voter\UsersVoter
-        public:     false
-        tags:
-           - { name: security.voter }
-
     ecollect.security.access.cms_voter:
         class:      Ecedi\Donate\CoreBundle\Security\Authorization\Voter\CmsFeatureVoter
         public:     false

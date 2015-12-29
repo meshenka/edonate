@@ -46,7 +46,8 @@ class Builder extends ContainerAware
 
         // Utilisateurs
         // @since 2.3 we user voters to check authorization instead of being ROLE based
-        if ($this->container->get('security.authorization_checker')->isGranted('list users')) {
+        // @since 2.4.7 we use ROLE_ADMIN as User Manager
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $this->addUserMenuItems($menu);
         }
         // Mon compte

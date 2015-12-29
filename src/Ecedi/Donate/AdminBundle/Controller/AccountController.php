@@ -25,7 +25,8 @@ class AccountController extends Controller
     public function indexAction(Request $request)
     {
         // @since 2.3 we user voters to check authorization instead of being ROLE based
-        if (false === $this->get('security.authorization_checker')->isGranted('list users')) {
+        // @since 2.4.7 we use ROLE_ADMIN as User Manager
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException('Unauthorised access!');
         }
 
@@ -100,7 +101,8 @@ class AccountController extends Controller
     public function newAction(Request $request)
     {
         // @since 2.3 we user voters to check authorization instead of being ROLE based
-        if (false === $this->get('security.authorization_checker')->isGranted('create users')) {
+        // @since 2.4.7 we use ROLE_ADMIN as User Manager
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException('Unauthorised access!');
         }
 
