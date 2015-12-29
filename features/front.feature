@@ -1,4 +1,4 @@
-Feature: Test homepage
+Feature: Test Front Pages
 
   @reset-schema
   @fixtures

@@ -16,20 +16,17 @@ use Ecedi\Donate\CoreBundle\Entity\User;
 use FOS\UserBundle\Model\UserManager;
 use FOS\UserBundle\Util\UserManipulator;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AccountController extends Controller
 {
     /**
      * @Route("/users" , name="donate_admin_users")
+     * @Security("has_role('ROLE_ADMIN')")
+     * @since 2.4.7 we use ROLE_ADMIN as User Manager
      */
     public function indexAction(Request $request)
     {
-        // @since 2.3 we user voters to check authorization instead of being ROLE based
-        // @since 2.4.7 we use ROLE_ADMIN as User Manager
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException('Unauthorised access!');
-        }
-
         $entityMgr = $this->getDoctrine()->getManager();
         $query = $entityMgr->getRepository('DonateCoreBundle:User')->getAllUsers();
         $pagination = $this->getPagination($request, $query, 10);
@@ -41,6 +38,8 @@ class AccountController extends Controller
 
     /**
      * @Route("/user/{id}/edit" , name="donate_admin_user_edit", defaults={"id" = 0})
+     * @Security("has_role('ROLE_ADMIN')")
+     * @since 2.4.7 we use ROLE_ADMIN as User Manager
      */
     public function editAction(Request $request, User $user)
     {
@@ -97,15 +96,11 @@ class AccountController extends Controller
      * Displays a form to create a new User.
      *
      * @Route("/user/new", name="donate_admin_user_new")
+     * @Security("has_role('ROLE_ADMIN')")
+     * @since 2.4.7 we use ROLE_ADMIN as User Manager
      */
     public function newAction(Request $request)
     {
-        // @since 2.3 we user voters to check authorization instead of being ROLE based
-        // @since 2.4.7 we use ROLE_ADMIN as User Manager
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException('Unauthorised access!');
-        }
-
         $form = $this->createForm(new AccountType(), new User(), array(
             'roles' => $this->getAvailabledRoles(),
             'action' => 'new',
