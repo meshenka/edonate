@@ -28,3 +28,5 @@ build.properties
 /node_modules/
 .rules/
 .coverage_db
+/web/css/build/*
+/web/js/build/*
