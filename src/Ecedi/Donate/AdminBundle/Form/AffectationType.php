@@ -19,17 +19,17 @@ class AffectationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('code', 'text', array(
+        $builder->add('code', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => true,
                 'label'     => 'Code',
             ));
 
-        $builder->add('label', 'text', array(
+        $builder->add('label', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'          => true,
                 'label'          => 'Label',
             ));
 
-        $builder->add('submit', 'submit', array(
+        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                 'label'     => 'Submit',
             ));
     }
@@ -45,15 +45,5 @@ class AffectationType extends AbstractType
             'translation_domain' => 'forms',
             'data_class' => 'Ecedi\Donate\CoreBundle\Entity\Affectation',
         ));
-    }
-
-    /**
-     * Get name
-     *
-     * @see Symfony\Component\Form.FormTypeInterface::getName()
-     */
-    public function getName()
-    {
-        return 'affectation';
     }
 }

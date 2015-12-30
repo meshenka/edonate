@@ -2,7 +2,7 @@ Ecedi\Donate\CoreBundle\Entity\Block:
     block{0..4}:
         layout: @layout_FR
         enabled: true
-        title: <title()>
+        title: <sentence(4)>
         body: <paragraph()>
         format: html
         __construct: [block-<current()>, <current()>]

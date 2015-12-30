@@ -23,26 +23,26 @@ class CustomerFiltersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', 'text', array(
+            ->add('email', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label'         => "Email",
                 'required'      => false,
             ))
-            ->add('lastName', 'text', array(
+            ->add('lastName', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label'         => "Name",
                 'required'      => false,
             ))
-            ->add('addressZipcode', 'text', array(
+            ->add('addressZipcode', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label'         => "ZipCode",
                 'required'      => false,
             ))
-            ->add('addressCity', 'text', array(
+            ->add('addressCity', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label'         => "City",
                 'required'      => false,
             ))
-            ->add('submit_filter', 'submit', array(
+            ->add('submit_filter', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                 'label'         => 'Filter',
             ))
-            ->add('submit_export', 'submit', array(
+            ->add('submit_export', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                 'label'         => 'Export',
             ));
     }
@@ -57,13 +57,5 @@ class CustomerFiltersType extends AbstractType
             'csrf_protection'       => false,
             'translation_domain'    => 'forms',
         ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'customer_filters';
     }
 }

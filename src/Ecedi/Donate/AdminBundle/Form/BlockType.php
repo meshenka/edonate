@@ -22,49 +22,49 @@ class BlockType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text', array(
+        $builder->add('name', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'disabled'  => true,
                 'required'  => true,
                 'label'     => 'Nom machine',
             ));
 
         //@since 2.4 flip keys and values and add choices_as_values option
-        $builder->add('enabled', 'choice', array(
+        $builder->add('enabled', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'           => array('No' => 0, 'Yes' => 1),
                 'required'          => true,
                 'label'             => 'Activé',
                 'choices_as_values' => true,
             ));
 
-        $builder->add('position', 'text', array(
+        $builder->add('position', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'          => true,
                 'label'          => 'Position',
             ));
 
-        $builder->add('type', 'text', array(
+        $builder->add('type', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'          => true,
                 'disabled'           => true,
                 'label'          => 'Type',
             ));
 
-        $builder->add('title', 'text', array(
+        $builder->add('title', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => false,
                 'label'     => 'Titre',
             ));
 
-        $builder->add('title_url', 'url', array(
+        $builder->add('title_url', 'Symfony\Component\Form\Extension\Core\Type\UrlType', array(
             'required'  => false,
             'label'     => 'Lien du Titre',
 
         ));
 
-        $builder->add('title_url_title', 'text', array(
+        $builder->add('title_url_title', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
             'required'  => false,
             'label'     => 'Titre du lien',
 
         ));
 
-        $builder->add('body', 'ckeditor', array(
+        $builder->add('body', 'Trsteel\CkeditorBundle\Form\Type\CkeditorType', array(
                 'required'  => false,
                 'label'     => 'Contenu',
                 'attr' => array(
@@ -75,7 +75,7 @@ class BlockType extends AbstractType
             ));
 
         // @since 2.4 flip keys and values and add choices_as_values option
-        $builder->add('format', 'choice', array(
+        $builder->add('format', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'label'     => 'Format',
                 'choices' => $options['body_formats'],
                 'required' => true,
@@ -86,7 +86,7 @@ class BlockType extends AbstractType
                 'choices_as_values' => true,
             ));
 
-        $builder->add('submit', 'submit', array(
+        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                 'label'     => 'Valider',
             ));
     }
@@ -106,14 +106,5 @@ class BlockType extends AbstractType
                 'Brut' => Block::FORMAT_RAW,
             ],
         ));
-    }
-    /**
-     * Get name
-     *
-     * @see Symfony\Component\Form.FormTypeInterface::getName()
-     */
-    public function getName()
-    {
-        return 'block';
     }
 }

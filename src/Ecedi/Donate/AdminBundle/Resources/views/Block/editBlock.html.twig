@@ -6,33 +6,37 @@
  {% block footer_js %}
 	{{ parent() }}
     <script  type="text/javascript">
-    $(function(){
+    (function($, CKEDITOR, console){
+        $(function(){
 
-        var format = $('#block_format');
+            var $format = $('#block_format');
 
-        //0 is html
-        if( '0' != format.val() )  {
-            //si pas HTML alors on desactive directement ckeditor
-            CKEDITOR.instances.block_body.destroy();
-        }
-
-        //quand le format change on active/desactive aloha
-        format.change(function(e) {
-            var _this = $(this);
-            if( '0' == _this.val() )  {
-                console.log('format change to  html, we activate ckeditor');
-                if(CKEDITOR.instances && !CKEDITOR.instances.block_body ) {
-                    CKEDITOR.replace('block_body', trsteelConfig);
-                    CKEDITOR.instances["block_body"].rawConfig = trsteelConfig;
-                }
-            } else {
-                console.log('format change, we deactivate ckeditor');
-                if(CKEDITOR.instances && CKEDITOR.instances.block_body ) {
-                    CKEDITOR.instances.block_body.destroy();
-                }
+            //0 is html
+            if( 'html' != $format.val() )  {
+                //si pas HTML alors on desactive directement ckeditor
+                CKEDITOR.instances.block_body.destroy();
             }
+
+            //quand le format change on active/desactive aloha
+            $format.change(function(e) {
+                var $_this = $(this);
+
+                if( 'html' == $_this.val() )  {
+                    console.log('format change to  html, we activate ckeditor');
+                    if(CKEDITOR.instances && !CKEDITOR.instances.block_body ) {
+                        CKEDITOR.replace('block_body', trsteelConfig);
+                        CKEDITOR.instances['block_body'].rawConfig = trsteelConfig;
+                    }
+                } else {
+                    console.log('format change, we deactivate ckeditor');
+                    if(CKEDITOR.instances && CKEDITOR.instances.block_body ) {
+                        CKEDITOR.instances.block_body.destroy();
+                    }
+                }
+            });
         });
-    });
+
+    })(jQuery, CKEDITOR, console);
     </script>
 {% endblock %}
 

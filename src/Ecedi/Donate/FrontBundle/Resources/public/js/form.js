@@ -8,7 +8,7 @@
         //chosen
         var language = $('html').attr('lang');
         var chosenselectText = {'en': 'Select an option', 'fr': 'Choisissez une option'};
-        $('#donate_addressCountry, #donate_civility').chosen({disable_search_threshold: 10, placeholder_text_single: chosenselectText[language]});
+        $('#donation_addressCountry, #donation_civility').chosen({disable_search_threshold: 10, placeholder_text_single: chosenselectText[language]});
 
         /*attribution de la class checked à l'élément sélectionné par defaut*/
         var preselectedAmounts = $('#amounts');
@@ -42,7 +42,7 @@
             var matches = this.className.match(/tunnel\-([a-zA-Z0-9\-_]*)/);
 
             if(matches) {
-                $('#donate_payment_method button').each(function() {
+                $('#donation_payment_method button').each(function() {
                     var $_this = $(this);
 
                     if($_this.hasClass(matches[0])) {

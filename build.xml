@@ -68,16 +68,22 @@
 		<echo msg="Generating PhpDoc."/>
 	</target>
 
-    <target name="test" depends="unit-test, integration-test" description="Run all tests">
+    <target name="test" depends="phpspec, behat" description="Run all tests">
     </target>
 	<!-- Run unit tests -->
-	<target name="unit-test" depends="prepare">
-		<exec command="./bin/phpspec run --format=pretty" output="reports/specs.log"/>
+	<target name="phpspec" depends="prepare">
+		<exec command="./bin/phpspec run --format=pretty" output="reports/phpspec.log"/>
 		<echo msg="run phpspec"/>
 	</target>
 
+    <!-- Run unit tests -->
+    <target name="behat" depends="prepare">
+        <exec command="./bin/behat  --format=pretty" output="reports/behat.log"/>
+        <echo msg="run phpspec"/>
+    </target>
+
 	<!-- Run integration test (WARNING: require db reset) -->
-	<target name="integration-test" depends="prepare">
+	<target name="coverage-test" depends="prepare">
 
         <fileset dir="src" id="php">
             <include name="*.php"/>
@@ -93,6 +99,7 @@
 		<phpunit codecoverage="true" configuration="app/phpunit.xml">
 		  <formatter todir="reports" type="xml" outfile="integration.xml"/>
 		</phpunit>
+
 	</target>
 
     <target name="fixtures" description="Load Fixture. !!Will drop schema">

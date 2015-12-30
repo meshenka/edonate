@@ -28,7 +28,7 @@ class IntentFiltersType extends AbstractType
         $status = array_flip(Intent::getStatusLabel());
 
         $builder
-            ->add('type', 'choice', array(
+            ->add('type', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'label'         => 'Donation types',
                 'choices'       => $types,
                 'required'      => true,
@@ -38,7 +38,7 @@ class IntentFiltersType extends AbstractType
                 'translation_domain' => 'forms',
                 'choices_as_values' => true,
             ))
-            ->add('status', 'choice', array(
+            ->add('status', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'label'         => 'Status',
                 'choices'       => $status,
                 'required'      => true,
@@ -47,35 +47,35 @@ class IntentFiltersType extends AbstractType
                 'data'          => array_values($status),
                 'choices_as_values' => true,
             ))
-            ->add('email', 'text', array(
+            ->add('email', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label'         => "Email",
                 'required'      => false,
             ))
-            ->add('minAmount', 'text', array(
+            ->add('minAmount', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label'         => "Min amount",
                 'required'      => false,
             ))
-            ->add('maxAmount', 'text', array(
+            ->add('maxAmount', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label'         => "Max amount",
                 'required'      => false,
             ))
-            ->add('minCreatedAt', 'date', array(
+            ->add('minCreatedAt', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'label'         => 'Donation submitted', //Dons soumis
                 'input'         => 'datetime',
                 'widget'        => 'single_text',
                 'format'        => "dd/MM/yyyy",
                 'required'      => false,
             ))
-            ->add('maxCreatedAt', 'date', array(
+            ->add('maxCreatedAt', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'input'         => 'datetime',
                 'widget'        => 'single_text',
                 'format'        => "dd/MM/yyyy",
                 'required'      => false,
             ))
-            ->add('submit_filter', 'submit', array(
+            ->add('submit_filter', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                 'label'         => 'Filter',
             ))
-            ->add('submit_export', 'submit', array(
+            ->add('submit_export', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                 'label'         => 'Export',
             ));
     }
@@ -90,13 +90,5 @@ class IntentFiltersType extends AbstractType
             'csrf_protection'       => false,
             'translation_domain'    => 'forms',
         ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'intent_filters';
     }
 }

@@ -39,12 +39,12 @@ class LayoutType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text', array(
+        $builder->add('name', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => true,
                 'label'     => 'Nom',
             ));
 
-        $builder->add('language', 'choice', array(
+        $builder->add('language', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
             'label'     => 'Langue',
             'choices' => $this->languagesToOptions($options['language']),
             'required' => true,
@@ -54,59 +54,59 @@ class LayoutType extends AbstractType
             'choices_as_values' => true,
         ));
 
-        $builder->add('skin', 'choice', array(
+        $builder->add('skin', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'           => $options['skins'],
                 'required'          => true,
                 'label'             => 'Theme',
                 'choices_as_values' => true,
             ));
 
-        $builder->add('baseline', 'text', array(
+        $builder->add('baseline', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'          => true,
                 'label'          => 'Baseline',
             ));
 
-        $builder->add('meta_title', 'text', array(
+        $builder->add('meta_title', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'          => true,
                 'label'          => 'Meta Title',
             ));
 
-        $builder->add('meta_description', 'text', array(
+        $builder->add('meta_description', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'          => true,
                 'label'          => 'Meta Description',
             ));
 
-        $builder->add('meta_keywords', 'text', array(
+        $builder->add('meta_keywords', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'          => true,
                 'label'          => 'Meta Keywords',
             ));
 
-        $builder->add('logo', 'file', array(
+        $builder->add('logo', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
                 'required'          => false,
                 'label'          => 'Logo',
             ));
 
-        $builder->add('logoAlt', 'text', array(
+        $builder->add('logoAlt', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'          => false,
                 'label'          => 'Texte alternatif du logo',
             ));
 
-        $builder->add('logoUrl', 'url', array(
+        $builder->add('logoUrl', 'Symfony\Component\Form\Extension\Core\Type\UrlType', array(
                 'required'          => false,
                 'label'          => 'Url du logo',
             ));
 
-        $builder->add('logoTitle', 'text', array(
+        $builder->add('logoTitle', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'          => false,
                 'label'          => 'Titre du lien sur le logo',
             ));
 
-        $builder->add('background', 'file', array(
+        $builder->add('background', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
                 'required'          => false,
                 'label'          => 'Background',
             ));
 
-        $builder->add('submit', 'submit', array(
+        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                 'label'     => 'Valider',
             ));
     }
@@ -128,14 +128,5 @@ class LayoutType extends AbstractType
                     Layout::SKIN_DARK => Layout::SKIN_DARK,
                 ),
         ));
-    }
-    /**
-     * Get name
-     *
-     * @see Symfony\Component\Form.FormTypeInterface::getName()
-     */
-    public function getName()
-    {
-        return 'layout';
     }
 }

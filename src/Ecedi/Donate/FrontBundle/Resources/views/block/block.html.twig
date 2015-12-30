@@ -13,7 +13,7 @@
 	{% endif %}
     {% if block.format == 'html'%}
     	{% autoescape false %}
-    	{{ block.body}}
+    	{{ block.body | raw}}
     	{% endautoescape %}
     {% endif %}
     {% if block.format == 'raw'%}
@@ -21,7 +21,7 @@
     {% endif %}
     {% if block.format == 'md'%}
         {% autoescape false %}
-        {{ block.body|markdown }}
+        {{ block.body| markdown  | raw}}
         {% endautoescape %}
     {% endif %}
 
