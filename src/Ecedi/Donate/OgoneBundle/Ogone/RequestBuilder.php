@@ -14,10 +14,14 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Ecedi\Donate\OgoneBundle\Ogone\Request as OgoneRequest;
 use Ecedi\Donate\OgoneBundle\Exception\CannotSignRequestException;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class RequestBuilder  extends ContainerAware
+/**
+ * @since  2.5.0 use ContainerAwareInterface and ContainerAwareTrait
+ */
+class RequestBuilder
 {
+    use ContainerAwareTrait;
     /**
      * On gènère une Ecedi\Donate\OgoneBundle\Ogone\Request à partir d'un Intent
      *
