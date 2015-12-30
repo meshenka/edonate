@@ -28,7 +28,7 @@ class LayoutController extends Controller
     /**
      * @Route("/cms/layout/{id}/switch" , name="donate_admin_layout_switch", requirements={"id" = "\d+"}, defaults={"id" = 0})
      * ajax callback to switch default Status
-     * @Security("has_role('ROLE_CMS')")
+     * @Security("is_granted('ROLE_CMS')")
      */
     public function switchLayoutAction(Layout $layout)
     {
@@ -64,7 +64,7 @@ class LayoutController extends Controller
 
     /**
      * @Route("/cms/layout/{id}/preview" , name="donate_admin_layout_preview", requirements={"id" = "\d+"}, defaults={"id" = 0})
-     * @Security("has_role('ROLE_CMS')")
+     * @Security("is_granted('ROLE_CMS')")
      */
     public function previewLayoutAction(Request $request, Layout $layout)
     {
@@ -85,7 +85,7 @@ class LayoutController extends Controller
 
     /**
      * @Route("/cms/layouts" , name="donate_admin_layout_list")
-     * @Security("has_role('ROLE_CMS')")
+     * @Security("is_granted('ROLE_CMS')")
      */
     public function listLayoutsAction(Request $request)
     {
@@ -99,7 +99,7 @@ class LayoutController extends Controller
 
     /**
      * @Route("/cms/layout/{id}/edit", name="donate_admin_layout_edit", requirements={"id" = "\d+"}, defaults={"id" = 0})
-     * @Security("has_role('ROLE_CMS')")
+     * @Security("is_granted('ROLE_CMS')")
      */
     public function editLayoutAction(Request $request, Layout $layout)
     {
@@ -127,7 +127,7 @@ class LayoutController extends Controller
 
     /**
      * @Route("/cms/layout/{id}/delete", name="donate_admin_layout_delete", requirements={"id" = "\d+"}, defaults={"id" = 0})
-     * @Security("has_role('ROLE_CMS')")
+     * @Security("is_granted('ROLE_CMS')")
      */
     public function deleteLayoutAction(Layout $layout)
     {
@@ -140,7 +140,7 @@ class LayoutController extends Controller
 
     /**
      * @Route("/cms/layout/new", name="donate_admin_layout_new")
-     * @Security("has_role('ROLE_CMS')")
+     * @Security("is_granted('ROLE_CMS')")
      */
     public function newLayoutAction(Request $request)
     {

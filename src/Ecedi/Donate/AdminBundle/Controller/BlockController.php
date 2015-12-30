@@ -24,7 +24,7 @@ class BlockController extends Controller
 {
     /**
      * @Route("/cms/layout/{id}/blocks" , name="donate_admin_block_list", requirements={"id" = "\d+"}, defaults={"id" = 0})
-     * @Security("has_role('ROLE_CMS')")
+     * @Security("is_granted('ROLE_CMS')")
      */
     public function listBlocksAction(Layout $layout)
     {
@@ -33,7 +33,7 @@ class BlockController extends Controller
 
     /**
      * @Route("/cms/layout/{layout}/block/{block}/edit" , name="donate_admin_block_edit", requirements={"layout" = "\d+","block" = "\d+"}, defaults={"layout" = 0, "block" = 0})
-     * @Security("has_role('ROLE_CMS')")
+     * @Security("is_granted('ROLE_CMS')")
      */
     public function editBlockAction(Request $request, Layout $layout, Block $block)
     {

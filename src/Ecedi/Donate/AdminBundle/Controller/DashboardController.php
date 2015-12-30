@@ -18,7 +18,7 @@ class DashboardController extends Controller
 {
     /**
      * @Route("/" , name="donate_admin_dashboard")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function indexAction()
     {

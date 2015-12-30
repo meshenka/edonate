@@ -30,7 +30,7 @@ class ReportingController extends Controller
 {
     /**
      * @Route("/intents" , name="donate_admin_reporting_intents")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function intentsAction(Request $request)
     {
@@ -66,7 +66,7 @@ class ReportingController extends Controller
 
     /**
      * @Route("/intent/{id}/show" , name="donate_admin_reporting_intent_show", defaults={"id" = 0})
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function intentShowAction(Request $request, Intent $intent)
     {
@@ -88,7 +88,7 @@ class ReportingController extends Controller
 
     /**
      * @Route("/customers" , name="donate_admin_reporting_customers")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function customersAction(Request $request)
     {
@@ -124,7 +124,7 @@ class ReportingController extends Controller
 
     /**
      * @Route("/customer/{id}/show" , name="donate_admin_reporting_customer_show", defaults={"id" = 0})
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function customerShowAction(Request $request, Customer $customer)
     {
@@ -141,7 +141,7 @@ class ReportingController extends Controller
 
     /**
      * @Route("/customer/{id}/edit" , name="donate_admin_reporting_customer_edit", defaults={"id" = 0})
-     * @Security("has_role('ROLE_DONATION_EDITOR')")
+     * @Security("is_granted('ROLE_DONATION_EDITOR')")
      */
     public function customerEditAction(Request $request, Customer $customer)
     {

@@ -1,9 +1,6 @@
 /* jshint undef: true, unused: true */
-/* global Modernizr: false */
 /* global confirm: false */
 /* global jQuery: false */
-/* global Ecollect: true */
-/* global console: true */
 'use strict';
 
 (function ($) {
@@ -16,9 +13,9 @@
 			});
 		}
     // Confirmation de suppression utilisateur
-	if($('#donate_admin_account_new_submit_delete').length > 0) {
+	if($('#account_submit_delete').length > 0) {
       var deleteUser = true;
-      $('#donate_admin_account_new_submit_delete').click(function(event){
+      $('#account_submit_delete').click(function(event){
         deleteUser = confirm('Etes-vous sûr de vouloir supprimer cet utilisateur ?');
         if(!deleteUser) {
           event.preventDefault();

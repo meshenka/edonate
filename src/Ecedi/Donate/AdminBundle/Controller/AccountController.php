@@ -22,7 +22,7 @@ class AccountController extends Controller
 {
     /**
      * @Route("/users" , name="donate_admin_users")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @since 2.4.7 we use ROLE_ADMIN as User Manager
      */
     public function indexAction(Request $request)
@@ -38,7 +38,7 @@ class AccountController extends Controller
 
     /**
      * @Route("/user/{id}/edit" , name="donate_admin_user_edit", defaults={"id" = 0})
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @since 2.4.7 we use ROLE_ADMIN as User Manager
      */
     public function editAction(Request $request, User $user)
@@ -96,7 +96,7 @@ class AccountController extends Controller
      * Displays a form to create a new User.
      *
      * @Route("/user/new", name="donate_admin_user_new")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @since 2.4.7 we use ROLE_ADMIN as User Manager
      */
     public function newAction(Request $request)
