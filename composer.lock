@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2e15277d863a34b9a16715ab8adf18cb",
-    "content-hash": "91f9c582530877ed20f842a461caae0b",
+    "hash": "4365dd7e2042df020757f7858981f260",
+    "content-hash": "51e6bb493287447a471fe276126cbacb",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2318,26 +2318,26 @@
         },
         {
             "name": "knplabs/knp-paginator-bundle",
-            "version": "2.4.2",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle.git",
-                "reference": "800eb12f225573869b6f04d77a6e329a6da9110f"
+                "reference": "5147740faff4d32e6f42acf64475314c35320fa4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/800eb12f225573869b6f04d77a6e329a6da9110f",
-                "reference": "800eb12f225573869b6f04d77a6e329a6da9110f",
+                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/5147740faff4d32e6f42acf64475314c35320fa4",
+                "reference": "5147740faff4d32e6f42acf64475314c35320fa4",
                 "shasum": ""
             },
             "require": {
                 "knplabs/knp-components": "~1.2",
                 "php": ">=5.3.3",
-                "symfony/framework-bundle": "~2.0",
-                "twig/twig": "~1.5"
+                "symfony/framework-bundle": "~2.3|~3.0",
+                "twig/twig": "~1.12|~2"
             },
             "require-dev": {
-                "symfony/expression-language": "~2.4"
+                "symfony/expression-language": "~2.4|~3.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -2375,7 +2375,7 @@
                 "pagination",
                 "paginator"
             ],
-            "time": "2015-05-20 15:09:02"
+            "time": "2015-11-23 17:51:40"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2570,12 +2570,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "19eda155dd4dd71fa1428efcdebecbb9142b0388"
+                "reference": "ae747e18207d5196bc9f6b5219a1d45953a375e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/19eda155dd4dd71fa1428efcdebecbb9142b0388",
-                "reference": "19eda155dd4dd71fa1428efcdebecbb9142b0388",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/ae747e18207d5196bc9f6b5219a1d45953a375e3",
+                "reference": "ae747e18207d5196bc9f6b5219a1d45953a375e3",
                 "shasum": ""
             },
             "require": {
@@ -2635,7 +2635,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2015-12-29 09:47:49"
+            "time": "2015-12-30 10:09:07"
         },
         {
             "name": "michelf/php-markdown",
@@ -6636,7 +6636,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "knplabs/knp-paginator-bundle": 20,
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "liip/imagine-bundle": 20,

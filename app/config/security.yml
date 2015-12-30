@@ -62,7 +62,7 @@ security:
                 target:                 /
             anonymous:    true
             remember_me:
-                key:      "%secret%"
+                secret:      "%secret%"
                 lifetime:  2592000 # 30 days in seconds
                 path:     /
                 domain:   ~ # Defaults to the current domain from $_SERVER
