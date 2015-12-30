@@ -1,3 +1,31 @@
+v2.5.0
+  * Update Symfony to 2.8.1
+  * Better role management
+    * ROLE_DONATION_EDITOR : Can edit customer details (will later be able to add/edit intent)
+  * Integration tests with behat
+  * Update phing tasks
+
+v2.4.7
+  * install behat
+  * better role hierarchy
+    * ROLE_SUPER_ADMIN : all powers,
+    * ROLE_ADMIN : manager user accounts
+    * ROLE_CMS : Manage blocks, layouts and affectations,
+    * ROLE_AFFECTATION : Manage affectations
+    * ROLE_USER : Acces dashboard, customer and intent details
+
+v2.4.6
+  * Update to Symfony 2.7.7
+  * Remove any deprecation warning in application code
+  * Add a title to any tunnel Amount box in front office (Donate once / Donate each month)
+
+
+v2.4.5
+   * use better suited fonts,
+   * fix amount styles
+   * fix styles of buttons
+
+
 v2.4.4
   * Update Symfony to 2.7.2
   * Remove dependencies to leafo/lessphp, now use gulp/npm
