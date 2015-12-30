@@ -64,7 +64,7 @@ class BlockType extends AbstractType
 
         ));
 
-        $builder->add('body', 'ckeditor', array(
+        $builder->add('body', 'Trsteel\CkeditorBundle\Form\Type\CkeditorType', array(
                 'required'  => false,
                 'label'     => 'Contenu',
                 'attr' => array(
