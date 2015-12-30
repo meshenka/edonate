@@ -81,7 +81,6 @@ class AccountController extends Controller
 
         //view
         // @since 2.3 we user voters to check authorization instead of being ROLE based
-
         if (false === $this->get('security.authorization_checker')->isGranted('view', $user)) {
             throw new AccessDeniedException('Unauthorised access!');
         }

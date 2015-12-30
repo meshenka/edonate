@@ -20,6 +20,7 @@ Feature: Test secured url response code
       | /secured/customer/1/edit                  | 200    |
       | /secured/users                            | 200    |
       | /secured/user/1/edit                      | 200    |
+      | /secured/user/2/edit                      | 200    |
       | /secured/user/new                         | 200    |
       | /secured/cms/layouts                      | 200    |
       | /secured/cms/layout/1/preview             | 200    |
@@ -48,6 +49,7 @@ Feature: Test secured url response code
       | /secured/customer/1/edit                  | 403    |
       | /secured/users                            | 200    |
       | /secured/user/1/edit                      | 200    |
+      | /secured/user/2/edit                      | 200    |
       | /secured/user/new                         | 200    |
       | /secured/cms/layouts                      | 403    |
       | /secured/cms/layout/1/preview             | 403    |
@@ -75,6 +77,7 @@ Feature: Test secured url response code
       | /secured/customer/1/edit                  | 403    |
       | /secured/users                            | 403    |
       | /secured/user/1/edit                      | 403    |
+      | /secured/user/3/edit                      | 403    |
       | /secured/user/new                         | 403    |
       | /secured/cms/layouts                      | 200    |
       | /secured/cms/layout/1/preview             | 200    |

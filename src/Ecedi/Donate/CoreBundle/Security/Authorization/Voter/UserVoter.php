@@ -74,7 +74,7 @@ class UserVoter implements VoterInterface
 
         // make sure there is a user object (i.e. that the user is logged in)
         if (!$currentUser instanceof UserInterface) {
-            return VoterInterface::ACCESS_DENIED;
+            return VoterInterface::ACCESS_ABSTAIN;
         }
 
         switch ($attribute) {
@@ -86,9 +86,11 @@ class UserVoter implements VoterInterface
                 }
 
                 // * super admin can view any other users
-                if ($currentUser->hasRole('ROLE_ADMIN')) {
-                    return VoterInterface::ACCESS_GRANTED;
-                }
+                // if ($currentUser->hasRole('ROLE_ADMIN')) {
+                //     return VoterInterface::ACCESS_GRANTED;
+                // }
+                //
+                return VoterInterface::ACCESS_ABSTAIN;
 
                 //others cannot view others
                 break;
@@ -100,9 +102,10 @@ class UserVoter implements VoterInterface
                 }
 
                 // * super admin can edit any other users
-                if ($currentUser->hasRole('ROLE_ADMIN')) {
-                    return VoterInterface::ACCESS_GRANTED;
-                }
+                // if ($currentUser->hasRole('ROLE_ADMIN')) {
+                //     return VoterInterface::ACCESS_GRANTED;
+                // }
+                return VoterInterface::ACCESS_ABSTAIN;
 
                 break;
             case self::DELETE:
@@ -112,14 +115,15 @@ class UserVoter implements VoterInterface
                 }
 
                 // * super admin can delete any other users
-                if ($currentUser->hasRole('ROLE_ADMIN')) {
-                    return VoterInterface::ACCESS_GRANTED;
-                }
+                // if ($currentUser->hasRole('ROLE_ADMIN')) {
+                //     return VoterInterface::ACCESS_GRANTED;
+                // }
 
-                // * standard user cannot delete anyone
-                if ($currentUser->hasRole('ROLE_USER')) {
-                    return VoterInterface::ACCESS_DENIED;
-                }
+                // // * standard user cannot delete anyone
+                // if ($currentUser->hasRole('ROLE_USER')) {
+                //     return VoterInterface::ACCESS_DENIED;
+                // }
+                return VoterInterface::ACCESS_ABSTAIN;
 
                 // we assume that our data object has a method getOwner() to
                 // get the current owner user entity for this data object
@@ -129,6 +133,6 @@ class UserVoter implements VoterInterface
                 break;
         }
 
-        return VoterInterface::ACCESS_DENIED;
+        return VoterInterface::ACCESS_ABSTAIN;
     }
 }
