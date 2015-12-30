@@ -12,6 +12,7 @@ security:
             - ROLE_CMS
             - ROLE_AFFECTATION
             - ROLE_USER
+            - ROLE_DONATION_EDITOR # Edit dontation data
         #Account manager
         ROLE_ADMIN:
             - ROLE_USER

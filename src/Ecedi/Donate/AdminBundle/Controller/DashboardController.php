@@ -12,11 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DashboardController extends Controller
 {
     /**
      * @Route("/" , name="donate_admin_dashboard")
+     * @Security("has_role('ROLE_USER')")
      */
     public function indexAction()
     {

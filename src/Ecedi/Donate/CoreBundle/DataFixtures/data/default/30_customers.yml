@@ -7,5 +7,5 @@ Ecedi\Donate\CoreBundle\Entity\Customer:
         phone: <phoneNumber()>
         addressStreet: <streetAddress()>
         addressCity: <city()>
-        addressCountry: <country()>
-        addressZipcode: <postcode()>
+        addressCountry: <countryCode()>
+        addressZipcode: <numerify('#####')>
