@@ -38,7 +38,7 @@ class AffectationController extends Controller
     {
         $affectation = new Affectation();
 
-        $form = $this->createForm(new AffectationType(), $affectation);
+        $form = $this->createForm(AffectationType::class, $affectation);
 
         $form->handleRequest($request);
 
@@ -65,7 +65,7 @@ class AffectationController extends Controller
      */
     public function editAction(Request $request, Layout $layout, Affectation $affectation)
     {
-        $form = $this->createForm(new AffectationType(), $affectation);
+        $form = $this->createForm(AffectationType::class, $affectation);
 
         $form->handleRequest($request);
 

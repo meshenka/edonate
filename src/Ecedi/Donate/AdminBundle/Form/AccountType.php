@@ -29,22 +29,22 @@ class AccountType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text', array(
+            ->add('username', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label'             => 'Username',
                 'required'          => true,
             ))
-            ->add('email', 'text', array(
+            ->add('email', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label'             => "Email",
                 'required'          => true,
             ))
-            ->add('roles', 'choice', array(
+            ->add('roles', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'           => $options['roles'],
                 'required'          => true,
                 'multiple'          => true,
                 'expanded'          => true,
                 'choices_as_values' => true,
             ))
-            ->add('enabled', 'choice', array(
+            ->add('enabled', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'           => ['No' => false, 'Yes' => true],
                 'required'          => true,
                 'multiple'          => false,
@@ -52,7 +52,7 @@ class AccountType extends AbstractType
                 'label'             => 'Enabled',
                 'choices_as_values' => true,
             ))
-             ->add('submit_save', 'submit', array(
+             ->add('submit_save', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                 'label'     => 'Submit',
             ));
 
@@ -60,8 +60,8 @@ class AccountType extends AbstractType
             // @since 2.3  we use option 'action' instead of _route to dedure form fields
             if ($options['action'] == 'new') {
                 $builder
-                    ->add('password', 'repeated', array(
-                        'type'              => 'password',
+                    ->add('password', 'Symfony\Component\Form\Extension\Core\Type\RepeatedType', array(
+                        'type'              => 'Symfony\Component\Form\Extension\Core\Type\PasswordType',
                         'invalid_message'   => "Passwords don't match",
                         'first_name'        => 'Mot_de_passe',
                         'second_name'       => 'Confirmation_mot_de_passe',
@@ -72,7 +72,7 @@ class AccountType extends AbstractType
             }
 
         $builder
-                ->add('submit_delete', 'submit', array(
+                ->add('submit_delete', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                     'label'     => 'Delete',
                 ));
     }
@@ -90,15 +90,5 @@ class AccountType extends AbstractType
             'roles' => array('ROLE_USER' => 'ROLE_USER'),
             'action' => 'new', //or edit
         ));
-    }
-    /**
-     * Get name
-     *
-     * @see Symfony\Component\Form.FormTypeInterface::getName()
-     * @since 2.3  renamed to ecollect_account (instead of donate_admin_new_account)
-     */
-    public function getName()
-    {
-        return 'ecollect_account';
     }
 }

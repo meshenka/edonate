@@ -32,7 +32,7 @@ class ReportingController extends Controller
     public function intentsAction(Request $request)
     {
         $filters = array();
-        $intentForm = $this->createForm(new IntentFiltersType(), $filters, [
+        $intentForm = $this->createForm(IntentFiltersType::class, $filters, [
             'method' => 'GET',
             ]);
 
@@ -88,7 +88,7 @@ class ReportingController extends Controller
     public function customersAction(Request $request)
     {
         $filters = array();
-        $customerForm = $this->createForm(new CustomerFiltersType(), $filters, [
+        $customerForm = $this->createForm(CustomerFiltersType::class, $filters, [
             'method' => 'GET'
         ]);
 
@@ -115,37 +115,6 @@ class ReportingController extends Controller
             'pagination'    => $pagination,
             'customerForm'  => $customerForm->createView()
         ]);
-
-        /*
-        $customerForm = $this->createForm(new CustomerFiltersType());
-
-        $parameters = $request->query->get('customer_filters');// Récupération des valeures de nos filtres
-
-        if ($parameters) {
-            $customerForm->bind($request);// application des filtres sélectionnées au formulaire
-        }
-
-        $entityMgr = $this->getDoctrine()->getManager();
-        $query = $entityMgr->getRepository('DonateCoreBundle:Customer')->getCustomersListBy($parameters);
-
-        // gestion de l'export
-        if ($customerForm->isValid()) {
-            if ($customerForm->get('submit_export')->isClicked()) {
-                $exporter = $this->get('ecollect.export.customer');
-                $exporter->setExportQuery($query);
-                $content = $exporter->getCsvContent();
-
-                return $this->getCsvResponse($content, 'export_donateurs', 'ISO-8859-1');
-            }
-        }
-
-        $pagination = $this->getPagination($request, $query, 20);
-
-        return $this->render('DonateAdminBundle:Reporting:customers.html.twig', [
-            'pagination'    => $pagination,
-            'customerForm'  => $customerForm->createView()
-        ]);
-        */
     }
 
     /**
@@ -169,7 +138,7 @@ class ReportingController extends Controller
      */
     public function customerEditAction(Request $request, Customer $customer)
     {
-        $editForm = $this->createForm(new CustomerType(), $customer);
+        $editForm = $this->createForm(CustomerType::class, $customer);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {

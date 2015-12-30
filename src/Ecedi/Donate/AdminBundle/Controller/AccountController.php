@@ -43,7 +43,7 @@ class AccountController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $form = $this->createForm(new AccountType(), $user, array(
+        $form = $this->createForm(AccountType::class, $user, array(
             'roles' => $this->getAvailabledRoles(),
             'action' => 'edit',
         ));
@@ -101,7 +101,7 @@ class AccountController extends Controller
      */
     public function newAction(Request $request)
     {
-        $form = $this->createForm(new AccountType(), new User(), array(
+        $form = $this->createForm(AccountType::class, new User(), array(
             'roles' => $this->getAvailabledRoles(),
             'action' => 'new',
         ));

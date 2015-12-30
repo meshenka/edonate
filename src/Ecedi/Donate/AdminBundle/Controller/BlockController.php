@@ -71,7 +71,7 @@ class BlockController extends Controller
     {
         $request->setLocale($layout->getLanguage());
 
-        $form = $this->createForm(new DonationType($this->get('translator')), new Customer(), array(
+        $form = $this->createForm(DonationType::class, new Customer(), array(
             'civilities' => $this->getParameter('donate_front.form.civility'),
             'equivalences' => $this->get('donate_core.equivalence.factory')->getAll(),
             'payment_methods' => $this->get('donate_core.payment_method_discovery')->getEnabledMethods(),
@@ -113,7 +113,7 @@ class BlockController extends Controller
      */
     public function editLayoutAction(Request $request, Layout $layout)
     {
-        $form = $this->createForm(new LayoutType(), $layout, [
+        $form = $this->createForm(LayoutType::class, $layout, [
             'language' => $this->getParameter('donate_front.i18n'),
         ]);
 
@@ -155,7 +155,7 @@ class BlockController extends Controller
     public function newLayoutAction(Request $request)
     {
         $layout = new Layout();
-        $form = $this->createForm(new LayoutType(), $layout, [
+        $form = $this->createForm(LayoutType::class, $layout, [
             'language' => $this->getParameter('donate_front.i18n'),
         ]);
 
@@ -181,7 +181,7 @@ class BlockController extends Controller
      */
     public function editBlockAction(Request $request, Layout $layout, Block $block)
     {
-        $form = $this->createForm(new BlockType(), $block);
+        $form = $this->createForm(BlockType::class, $block);
 
         $form->handleRequest($request);
 
