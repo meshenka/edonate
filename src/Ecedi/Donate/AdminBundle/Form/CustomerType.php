@@ -21,55 +21,55 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('company', 'text', array(
+            ->add('company', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => FALSE,
                 'label'     => 'Company',
             ))
-            ->add('firstName', 'text', array(
+            ->add('firstName', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => TRUE,
                 'label'     => 'Firstname',
             ))
-            ->add('lastName', 'text', array(
+            ->add('lastName', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => TRUE,
                 'label'     => 'Lastname',
             ))
-            ->add('phone', 'text', array(
+            ->add('phone', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => FALSE,
                 'label'     => 'Phone',
             ))
-            ->add('email', 'email', array(
+            ->add('email', 'Symfony\Component\Form\Extension\Core\Type\EmailType', array(
                 'required'  => true,
                 'label'     => 'Email',
             ))
-            ->add('addressStreet', 'text', array(
+            ->add('addressStreet', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => true,
                 'label'     => 'Address',
             ))
-            ->add('addressPb', 'text', array(
+            ->add('addressPb', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => false,
                 'label'     => 'Locality, post box',
             ))
-            ->add('addressLiving', 'text', array(
+            ->add('addressLiving', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => false,
                 'label'     => 'Living with',
             ))
-            ->add('addressExtra', 'text', array(
+            ->add('addressExtra', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => false,
                 'label'     => 'Apartment, floor numbers',
             ))
-            ->add('addressZipcode', 'number', array(
+            ->add('addressZipcode', 'Symfony\Component\Form\Extension\Core\Type\NumberType', array(
                 'required'  => true,
                 'label'     => 'Zipcode',
             ))
-            ->add('addressCity', 'text', array(
+            ->add('addressCity', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'required'  => true,
                 'label'     => 'City',
             ))
-            ->add('addressCountry', 'country', array(
+            ->add('addressCountry', 'Symfony\Component\Form\Extension\Core\Type\CountryType', array(
                 'required'  => true,
                 'label'     => 'Country',
             ))
-            ->add('submit', 'submit', array(
+            ->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
                 'label'     => 'Submit',
             ));
     }
@@ -84,14 +84,5 @@ class CustomerType extends AbstractType
             'data_class'            => 'Ecedi\Donate\CoreBundle\Entity\Customer',
             'translation_domain'    => 'forms',
         ));
-    }
-    /**
-     * Get name
-     *
-     * @see Symfony\Component\Form.FormTypeInterface::getName()
-     */
-    public function getName()
-    {
-        return 'customer';
     }
 }

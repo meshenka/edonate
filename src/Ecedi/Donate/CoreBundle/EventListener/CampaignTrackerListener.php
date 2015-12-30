@@ -1,14 +1,25 @@
 <?php
+/**
+ * @author Sylvain Gogel <sgogel@ecedi.fr>
+ * @copyright Agence Ecedi (c) 2015
+ * @package eDonate
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 
 namespace Ecedi\Donate\CoreBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Ecedi\Donate\CoreBundle\Event\DonateEvents;
 use Ecedi\Donate\CoreBundle\Event\DonationRequestedEvent;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class CampaignTrackerListener extends ContainerAware implements EventSubscriberInterface
+/**
+ * @since  2.5.0 use ContainerAwareInterface and ContainerAwareTrait
+ */
+class CampaignTrackerListener implements EventSubscriberInterface
 {
+    use ContainerAwareTrait;
+
     private $key;
 
     public function __construct($queryKey)

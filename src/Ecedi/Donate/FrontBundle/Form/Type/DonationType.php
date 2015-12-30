@@ -34,7 +34,7 @@ class DonationType extends AbstractType
             }
         }
 
-        $form->add($tunnel, new AmountType($this->translator), [
+        $form->add($tunnel, AmountType::class, [
                 'mapped'        => false,
                 'label'         => false,
                 'required'      => true,
@@ -57,35 +57,35 @@ class DonationType extends AbstractType
     private function buildPersonnalDetails(FormBuilderInterface $builder, array $options)
     {
         // Info perso
-        $builder->add('civility', 'choice', [
+        $builder->add('civility', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
             'choices'   => array_flip($options['civilities']),
             'required'  => false,
             'label' => 'Civility',
             'choices_as_values' => true,
         ]);
 
-        $builder->add('company', 'text', [
+        $builder->add('company', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
             'required' => FALSE,
             'label' => 'Company'
         ]);
 
-        $builder->add('firstName', 'text', [
+        $builder->add('firstName', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
             'required' => TRUE,
             'label' => 'First name'
         ]);
 
-        $builder->add('lastName', 'text', [
+        $builder->add('lastName', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
             'required' => TRUE,
             'label' => 'Last name'
         ]);
 
-        $builder->add('phone', 'text', [
+        $builder->add('phone', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
             'required' => FALSE,
             'label' => 'Phone'
         ]);
 
-        $builder->add('email', 'repeated', [
-            'type' => 'email',
+        $builder->add('email', 'Symfony\Component\Form\Extension\Core\Type\RepeatedType', [
+            'type' => 'Symfony\Component\Form\Extension\Core\Type\EmailType',
             'invalid_message' => 'The email fields must match.',
             'required' => true,
             'first_options'  => array('label' => 'Email'),
@@ -93,37 +93,37 @@ class DonationType extends AbstractType
         ]);
 
         //Address
-        $builder->add('addressStreet', 'text', [
+        $builder->add('addressStreet', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
             'required'  => true,
             'label' => 'Address'
         ]);
 
-        $builder->add('addressPb', 'text', [
+        $builder->add('addressPb', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
             'required'  => false,
             'label' => 'Locality, post box'
         ]);
 
-        $builder->add('addressLiving', 'text', [
+        $builder->add('addressLiving', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
             'required'  => false,
             'label' => 'Living with'
         ]);
 
-        $builder->add('addressExtra', 'text', [
+        $builder->add('addressExtra', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
             'required'  => false,
             'label' => 'Apartment, floor numbers'
         ]);
 
-        $builder->add('addressZipcode', 'number', [
+        $builder->add('addressZipcode', 'Symfony\Component\Form\Extension\Core\Type\NumberType', [
             'required'  => true,
             'label' => 'Zipcode'
         ]);
 
-        $builder->add('addressCity', 'text', [
+        $builder->add('addressCity', 'Symfony\Component\Form\Extension\Core\Type\TextType', [
             'required'  => true,
             'label' => 'City'
         ]);
 
-        $builder->add('addressCountry', 'country', [
+        $builder->add('addressCountry', 'Symfony\Component\Form\Extension\Core\Type\CountryType', [
             'required'  => true,
             'preferred_choices' => array('FR'),
             'data' => 'FR',
@@ -178,7 +178,7 @@ class DonationType extends AbstractType
         }
 
         if ($affectations->count() > 1) {
-            $builder->add('affectations', 'choice', [
+            $builder->add('affectations', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
                  'choices'   => $this->getAffectationChoices($affectations),
                  'required'  => true,
                  'expanded' => true,
@@ -204,7 +204,7 @@ class DonationType extends AbstractType
         $tunnels = $this->paymentMethodsToTunnels($options['payment_methods']);
 
         // equivalences for each tunnels subform
-        $tunnelForm = $builder->create('tunnels', 'form', array('inherit_data' => true, 'label' => false));
+        $tunnelForm = $builder->create('tunnels', 'Symfony\Component\Form\Extension\Core\Type\FormType', array('inherit_data' => true, 'label' => false));
 
         foreach (array_keys($tunnels) as $key) {
             $this->buildAmountSelectorSubForm($tunnelForm, $key, $options);
@@ -215,7 +215,7 @@ class DonationType extends AbstractType
         $this->buildAffectations($builder, $options);
         $this->buildPersonnalDetails($builder, $options);
 
-        $builder->add('erf', 'choice', [
+        $builder->add('erf', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
             'choices'   => [
                 'by email' => 0,
                 'by post' => 1,
@@ -230,27 +230,22 @@ class DonationType extends AbstractType
             ]
         );
 
-        $builder->add('optin', 'checkbox', [
+        $builder->add('optin', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', [
             'required' => false,
             'label' => 'I agree to receive informations from Association XY',
         ]);
 
         // payment methods for each tunnels subform
-        $pmForm = $builder->create('payment_method', 'form', ['inherit_data' => true, 'label' => false]);
+        $pmForm = $builder->create('payment_method', 'Symfony\Component\Form\Extension\Core\Type\FormType', ['inherit_data' => true, 'label' => false]);
 
         foreach ($options['payment_methods'] as $pm) {
-            $pmForm->add($pm->getId(), 'submit', [
+            $pmForm->add($pm->getId(), 'Symfony\Component\Form\Extension\Core\Type\SubmitType', [
                     'label'         => $pm->getName(),
                     'attr'          => ['class' => 'btn btn-primary tunnel-'.$pm->getTunnel()], //used in the JS part
                 ]);
         }
 
         $builder->add($pmForm);
-    }
-
-    public function getName()
-    {
-        return 'donate';
     }
 
     /**

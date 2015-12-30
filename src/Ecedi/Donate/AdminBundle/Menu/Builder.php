@@ -9,7 +9,8 @@
 
 namespace Ecedi\Donate\AdminBundle\Menu;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\MenuItem;
 
@@ -18,9 +19,12 @@ use Knp\Menu\MenuItem;
  *
  * @since  2.4 refactor the way parameters are found from the request by using request attributes instead of request GET parameters
  * @since  2.4 refactor code to reduce complexity
+ * @since  2.5.0 use ContainerAwareInterface and ContainerAwareTrait
  */
-class Builder extends ContainerAware
+class Builder implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
+
     /**
      * adminMenu builder
      *

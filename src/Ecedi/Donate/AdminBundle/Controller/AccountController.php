@@ -22,7 +22,7 @@ class AccountController extends Controller
 {
     /**
      * @Route("/users" , name="donate_admin_users")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @since 2.4.7 we use ROLE_ADMIN as User Manager
      */
     public function indexAction(Request $request)
@@ -38,12 +38,12 @@ class AccountController extends Controller
 
     /**
      * @Route("/user/{id}/edit" , name="donate_admin_user_edit", defaults={"id" = 0})
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @since 2.4.7 we use ROLE_ADMIN as User Manager
      */
     public function editAction(Request $request, User $user)
     {
-        $form = $this->createForm(new AccountType(), $user, array(
+        $form = $this->createForm(AccountType::class, $user, array(
             'roles' => $this->getAvailabledRoles(),
             'action' => 'edit',
         ));
@@ -81,7 +81,6 @@ class AccountController extends Controller
 
         //view
         // @since 2.3 we user voters to check authorization instead of being ROLE based
-
         if (false === $this->get('security.authorization_checker')->isGranted('view', $user)) {
             throw new AccessDeniedException('Unauthorised access!');
         }
@@ -96,12 +95,12 @@ class AccountController extends Controller
      * Displays a form to create a new User.
      *
      * @Route("/user/new", name="donate_admin_user_new")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @since 2.4.7 we use ROLE_ADMIN as User Manager
      */
     public function newAction(Request $request)
     {
-        $form = $this->createForm(new AccountType(), new User(), array(
+        $form = $this->createForm(AccountType::class, new User(), array(
             'roles' => $this->getAvailabledRoles(),
             'action' => 'new',
         ));

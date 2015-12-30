@@ -12,6 +12,7 @@ security:
             - ROLE_CMS
             - ROLE_AFFECTATION
             - ROLE_USER
+            - ROLE_DONATION_EDITOR # Edit dontation data
         #Account manager
         ROLE_ADMIN:
             - ROLE_USER
@@ -54,7 +55,7 @@ security:
             pattern: ^/secured
             form_login:
                 provider:               fos_userbundle
-                csrf_provider:          security.csrf.token_manager
+                csrf_token_generator:   security.csrf.token_manager
                 login_path:             fos_user_security_login
                 check_path:             fos_user_security_check
             logout:
@@ -62,7 +63,7 @@ security:
                 target:                 /
             anonymous:    true
             remember_me:
-                key:      "%secret%"
+                secret:      "%secret%"
                 lifetime:  2592000 # 30 days in seconds
                 path:     /
                 domain:   ~ # Defaults to the current domain from $_SERVER
