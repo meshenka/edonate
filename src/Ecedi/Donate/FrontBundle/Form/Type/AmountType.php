@@ -36,7 +36,7 @@ class AmountType extends AbstractType
                 'manual',
                 'preselected',
             ]))
-            ->add('preselected', 'choice', [
+            ->add('preselected', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
                 'choices'   => $options['choices'],
                 'required'  => false,
                 'expanded'    => true,
@@ -49,7 +49,7 @@ class AmountType extends AbstractType
                     return $choice;
                 },
             ])
-            ->add('manual', 'money', [
+            ->add('manual', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', [
                 'currency'    => 'EUR',
                 'required'  => false,
                 'label'    => 'Another amount',
@@ -88,10 +88,5 @@ class AmountType extends AbstractType
             'default'        => '',
             'title'          => '',
         ]);
-    }
-
-    public function getName()
-    {
-        return 'amount_selector';
     }
 }
