@@ -1,3 +1,7 @@
+v2.5.1
+  * Update Symfony to 2.8.1
+  * configure travis-ci service
+
 v2.5.0
   * Update Symfony to 2.8.1
   * Better role management

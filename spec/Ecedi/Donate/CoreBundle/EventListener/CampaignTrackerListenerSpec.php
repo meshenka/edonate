@@ -54,15 +54,4 @@ class CampaignTrackerListenerSpec extends ObjectBehavior
 
         $this->donationRequested($ev)->shouldReturn('spec');
     }
-
-    public function it_should_not_add_campaign_when_request_query_does_not_match(DonationRequestedEvent $ev)
-    {
-        // TODO fix this test
-        // $this->trainRequest($this->request, '_ko');
-
-        // $intent = new Intent('100', 'phpspec');
-        // $ev->getIntent()->willReturn($intent);
-
-        // $this->donationRequested($ev)->shouldBeNull();
-    }
 }

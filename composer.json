@@ -47,7 +47,7 @@
         "sensio/generator-bundle": "~3.0",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "symfony/phpunit-bridge": "~2.7",
-        "phpspec/phpspec": "2.0.*@dev",
+        "phpspec/phpspec": "~2.0",
         "phpmd/phpmd" : "@stable" ,
         "henrikbjorn/phpspec-code-coverage": "~1.0",
         "behat/behat": "~3.0",
