@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4365dd7e2042df020757f7858981f260",
-    "content-hash": "51e6bb493287447a471fe276126cbacb",
+    "hash": "8712152fa2ef722e557484b493645fda",
+    "content-hash": "d216995480191dec64e9a27246e94e5f",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -5884,31 +5884,36 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.0.1",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "61712147412cb647b6cb68b19833a60bfda759a1"
+                "reference": "5528ce1e93a1efa090c9404aba3395c329b4e6ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/61712147412cb647b6cb68b19833a60bfda759a1",
-                "reference": "61712147412cb647b6cb68b19833a60bfda759a1",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/5528ce1e93a1efa090c9404aba3395c329b4e6ed",
+                "reference": "5528ce1e93a1efa090c9404aba3395c329b4e6ed",
                 "shasum": ""
             },
             "require": {
+                "doctrine/instantiator": "^1.0.1",
+                "ext-tokenizer": "*",
                 "php": ">=5.3.3",
                 "phpspec/php-diff": "~1.0.0",
-                "phpspec/prophecy": "~1.1",
-                "symfony/console": "~2.1",
-                "symfony/event-dispatcher": "~2.1",
-                "symfony/finder": "~2.1",
-                "symfony/yaml": "~2.1"
+                "phpspec/prophecy": "~1.4",
+                "sebastian/exporter": "~1.0",
+                "symfony/console": "~2.3|~3.0",
+                "symfony/event-dispatcher": "~2.1|~3.0",
+                "symfony/finder": "~2.1|~3.0",
+                "symfony/process": "^2.6|~3.0",
+                "symfony/yaml": "~2.1|~3.0"
             },
             "require-dev": {
-                "behat/behat": "~2.5",
-                "bossa/phpspec2-expect": "dev-master",
-                "symfony/filesystem": "~2.1"
+                "behat/behat": "^3.0.11",
+                "bossa/phpspec2-expect": "~1.0",
+                "phpunit/phpunit": "~4.4",
+                "symfony/filesystem": "~2.1|~3.0"
             },
             "suggest": {
                 "phpspec/nyan-formatters": "~1.0 – Adds Nyan formatters"
@@ -5919,7 +5924,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.2.x-dev"
                 }
             },
             "autoload": {
@@ -5953,7 +5958,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2014-07-01 14:09:19"
+            "time": "2016-01-01 10:17:54"
         },
         {
             "name": "phpspec/prophecy",
@@ -6655,7 +6660,6 @@
         "knplabs/knp-gaufrette-bundle": 20,
         "friendsofsymfony/jsrouting-bundle": 0,
         "lexik/paybox-bundle": 20,
-        "phpspec/phpspec": 20,
         "phpmd/phpmd": 0,
         "behatch/contexts": 20
     },
