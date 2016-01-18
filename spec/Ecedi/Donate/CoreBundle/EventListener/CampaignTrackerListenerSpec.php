@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 use Ecedi\Donate\CoreBundle\Event\DonationRequestedEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Ecedi\Donate\CoreBundle\Analytics\GoogleCookieParser;
+
 class CampaignTrackerListenerSpec extends ObjectBehavior
 {
     private $container;
@@ -43,7 +44,7 @@ class CampaignTrackerListenerSpec extends ObjectBehavior
 
     public function it_should_listen_to_new_intent_event()
     {
-        $this->beConstructedWith('_utm');
+        //$this->beConstructedWith('_utm');
         $this->getSubscribedEvents()->shouldBeArray();
     }
 
