@@ -78,6 +78,10 @@
 
     <!-- Run unit tests -->
     <target name="behat" depends="prepare">
+         <SymfonyConsole command="cache:clear">
+            <arg name="env" value="test" />
+        </SymfonyConsole>
+
         <exec command="./bin/behat  --format=pretty" output="reports/behat.log"/>
         <echo msg="run phpspec"/>
     </target>
