@@ -163,8 +163,10 @@ gulp.task('css:admin', function() {
 
    gulp.src(cssAdminPath())
         .pipe(concat('admin.css'))
+        .pipe(sourcemaps.init())
         .pipe(cssnano())
         .pipe(header(banner))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(cssDest));
 
 });
@@ -333,8 +335,10 @@ gulp.task('css:front:style', function(){
         paths: [ path.join(__dirname, cssSrc, 'donatefront/css/') ]
     }))
     .pipe(concat('style.css'))
+    .pipe(sourcemaps.init())
     .pipe(cssnano())
     .pipe(header(banner))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(cssDest));
 
 
@@ -363,8 +367,10 @@ gulp.task('css:front:ie', function() {
 
     gulp.src(cssFrontIePath())
     .pipe(concat('ie.css'))
+    .pipe(sourcemaps.init())
     .pipe(cssnano())
     .pipe(header(banner))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(cssDest));
 
 
