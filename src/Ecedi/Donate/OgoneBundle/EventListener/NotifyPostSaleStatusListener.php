@@ -105,8 +105,8 @@ class NotifyPostSaleStatusListener implements EventSubscriberInterface
     protected function sendMail(Response $response, $body)
     {
         $message = \Swift_Message::newInstance()
-            ->setSubject('[ECollecte] une post-sale Ogone require votre attention')
-            ->setFrom('ecollecte@ecedi.fr')
+            ->setSubject('[eDonate] une post-sale Ogone require votre attention')
+            ->setFrom('edonate@ecedi.fr')
             ->setTo($this->webmasterEmail)
             ->setBody(
                 $this->templating->render(

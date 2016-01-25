@@ -1,3 +1,9 @@
+v2.5.2
+  * Update Symfony to 2.8.2
+  * configure travis-ci service with php7 tests
+  * fix some wordings
+  * move to gulp-cssnano to minify css
+
 v2.5.1
   * Update Symfony to 2.8.1
   * configure travis-ci service

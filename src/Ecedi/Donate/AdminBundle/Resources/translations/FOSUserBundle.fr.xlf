@@ -40,7 +40,7 @@
       </trans-unit>
       <trans-unit id="24ef36794ef0bffa786074f748d57525" resname="resetting.email.subject">
         <source>resetting.email.subject</source>
-        <target>[eCollecte] Réinitialisation de votre mot de passe</target>
+        <target>[eDonate] Réinitialisation de votre mot de passe</target>
       </trans-unit>
       <trans-unit id="08eaada74a380d039e08e2edbd4cbee4" resname="resetting.password_already_requested">
         <source>resetting.password_already_requested</source>

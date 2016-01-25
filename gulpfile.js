@@ -18,7 +18,12 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var header = require('gulp-header');
 var less = require('gulp-less');
-var minifyCSS = require('gulp-minify-css');
+
+//var minifyCSS = require('gulp-minify-css');
+
+var cssnano = require('gulp-cssnano');
+var sourcemaps = require('gulp-sourcemaps');
+
 var LessPluginCleanCSS = require('less-plugin-clean-css');
 var cleancss = new LessPluginCleanCSS({ advanced: true });
 var livereload = require('gulp-livereload');
@@ -158,8 +163,10 @@ gulp.task('css:admin', function() {
 
    gulp.src(cssAdminPath())
         .pipe(concat('admin.css'))
-        .pipe(minifyCSS())
+        .pipe(sourcemaps.init())
+        .pipe(cssnano())
         .pipe(header(banner))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(cssDest));
 
 });
@@ -328,8 +335,10 @@ gulp.task('css:front:style', function(){
         paths: [ path.join(__dirname, cssSrc, 'donatefront/css/') ]
     }))
     .pipe(concat('style.css'))
-    .pipe(minifyCSS())
+    .pipe(sourcemaps.init())
+    .pipe(cssnano())
     .pipe(header(banner))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(cssDest));
 
 
@@ -358,8 +367,10 @@ gulp.task('css:front:ie', function() {
 
     gulp.src(cssFrontIePath())
     .pipe(concat('ie.css'))
-    .pipe(minifyCSS())
+    .pipe(sourcemaps.init())
+    .pipe(cssnano())
     .pipe(header(banner))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(cssDest));
 
 
