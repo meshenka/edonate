@@ -334,9 +334,9 @@
         <source>You are not authorized to access the user dashboard</source>
         <target>Vous n'êtes pas autorisé à accéder à la gestions des utilisateurs</target>
       </trans-unit>
-      <trans-unit id="e30ff58ce5d25674613ed10174506c19" resname="Your E-collecte application is not configured to get the Google Analytics stats">
-        <source>Your E-collecte application is not configured to get the Google Analytics stats</source>
-        <target>Votre application ECollecte n'est pas configurer pour obtenir les statistiques Google Analytics</target>
+      <trans-unit id="e30ff58ce5d25674613ed10174506c19" resname="Your eDonate application is not configured to get the Google Analytics stats">
+        <source>Your eDonate application is not configured to get the Google Analytics stats</source>
+        <target>Votre application eDonate n'est pas configurée pour obtenir les statistiques Google Analytics</target>
       </trans-unit>
       <trans-unit id="e0ed8e71dbd22a1e91cb570b52443fd5" resname="Zipcode">
         <source>Zipcode</source>
@@ -429,9 +429,9 @@
 
       <trans-unit id="test-syg-01" resname="Homepage">
         <source>Homepage</source>
-        <target>Acceuil</target>
+        <target>Accueil</target>
       </trans-unit>
-      
+
     </body>
   </file>
 </xliff>

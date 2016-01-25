@@ -252,7 +252,7 @@ class IpnData
         return $this->data['Q'];
     }
     /**
-     * Retrieve the Ecollecte Intent ID
+     * Retrieve the eDonate Intent ID
      *
      * @return string
      */
