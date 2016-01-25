@@ -1,6 +1,6 @@
 Le bundle nécessite la configuration suivante
 
-dans app/config/ecollecte.yml
+dans app/config/edonate.yml
 
 ``
 donate_cm:
