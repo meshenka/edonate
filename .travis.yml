@@ -7,8 +7,8 @@ php:
 
 before_script:
   - phpenv config-rm xdebug.ini
-  - composer self-update
-  - composer update --dev -n
+  - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - composer update --prefer-source --no-interaction
   - app/console doctrine:database:create -e test
   - app/console doctrine:schema:create -e test
   - app/console ca:cl -e test
