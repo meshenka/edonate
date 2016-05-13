@@ -85,9 +85,8 @@ class PostSaleManager
             ->setResponseCode($response->getStatus()) //status ogone
             ->setResponse($response);
 
-        $normalizer = $this->container->get('donate_ogone.status_normalizer');
 
-        $payment->setStatus($normalizer->normalize($response->getStatus()));
+        $payment->setStatus($this->normalizer->normalize($response->getStatus()));
 
         try {
             //validate response
