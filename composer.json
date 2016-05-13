@@ -1,8 +1,9 @@
 {
-    "name": "ecedi/ecollecte",
+    "name": "ecedi/edonate",
     "license": "MIT",
+    "version": "2.5.3",
     "type": "project",
-    "description": "eCollecte standard edition, by Agence Ecedi http://ecedi.fr",
+    "description": "eDonate standard edition, by Agence Ecedi http://ecedi.fr",
     "autoload": {
         "psr-4": {
             "": "src/"
