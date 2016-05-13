@@ -1,0 +1,11 @@
+#make.properties
+PHP=php
+COMPOSER=composer
+CONSOLE=app/console
+NPM=npm
+BOWER=bower
+GULP=gulp
+BEHAT=bin/behat
+PHPSPEC=bin/phpspec
+FASTEST=bin/fastest
+PHPCSFIXER=bin/php-cs-fixer
