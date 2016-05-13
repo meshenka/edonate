@@ -6,7 +6,7 @@ php:
   - 7.0
 
 before_script:
-  - composer install -n
+  - composer update -n
   - app/console doctrine:database:create -e test
   - app/console doctrine:schema:create -e test
   - app/console ca:cl -e test
