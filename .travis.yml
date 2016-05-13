@@ -7,7 +7,8 @@ php:
 
 before_script:
   - phpenv config-rm xdebug.ini
-  - composer update -n
+  - composer self-update
+  - composer update --dev -n
   - app/console doctrine:database:create -e test
   - app/console doctrine:schema:create -e test
   - app/console ca:cl -e test
