@@ -6,6 +6,7 @@ php:
   - 7.0
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - composer update -n
   - app/console doctrine:database:create -e test
   - app/console doctrine:schema:create -e test
