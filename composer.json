@@ -1,8 +1,9 @@
 {
-    "name": "ecedi/ecollecte",
+    "name": "ecedi/edonate",
     "license": "MIT",
+    "version": "2.5.3",
     "type": "project",
-    "description": "eCollecte standard edition, by Agence Ecedi http://ecedi.fr",
+    "description": "eDonate standard edition, by Agence Ecedi http://ecedi.fr",
     "autoload": {
         "psr-4": {
             "": "src/"
@@ -55,7 +56,9 @@
         "behat/mink-extension": "~2.0",
         "behat/mink-browserkit-driver": "~1.2",
         "knplabs/friendly-contexts": "0.5.*",
-        "behatch/contexts": "dev-master"
+        "behatch/contexts": "dev-master",
+        "liuggio/fastest": "^1.3",
+        "fabpot/php-cs-fixer": "^1.11"
     },
     "scripts": {
         "post-root-package-install": [

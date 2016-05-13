@@ -12,7 +12,10 @@ default:
         - Knp\FriendlyContexts\Context\AliceContext
         - Behat\MinkExtension\Context\MinkContext
 
+
   extensions:
+    Liuggio\Fastest\Behat\ListFeaturesExtension\Extension: ~
+    
     Behat\Symfony2Extension:
       kernel:
         debug: true

@@ -1,6 +1,6 @@
 {
   "name": "eDonate",
-  "version": "2.5.1",
+  "version": "2.5.3",
   "description": "Front end compiler stack",
   "main": "gulpfile.js",
   "private": true,
