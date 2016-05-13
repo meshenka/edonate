@@ -37,5 +37,4 @@ donate_front:
 
 doctrine:
     dbal:
-        path:     "/tmp/ramdisk/__DBNAME__.db"
-        dbname:   %database_name%_test
+        dbname: "%database_name%_test"
