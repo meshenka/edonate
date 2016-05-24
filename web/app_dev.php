@@ -24,6 +24,9 @@ use Symfony\Component\Debug\Debug;
  */
 $loader = require __DIR__.'/../app/autoload.php';
 Debug::enable();
+
+\Liuggio\Fastest\Environment\FastestEnvironment::setFromRequest();
+
 $kernel = new AppKernel('dev', true);
 $kernel->loadClassCache();
 $request = Request::createFromGlobals();

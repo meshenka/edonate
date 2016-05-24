@@ -1,5 +1,6 @@
 imports:
     - { resource: config_dev.yml }
+
 parameters:
     doctrine.dbal.connection_factory.class: Liuggio\Fastest\Doctrine\DBAL\ConnectionFactory
 
@@ -8,10 +9,10 @@ framework:
     session:
         storage_id: session.storage.mock_file
     profiler:
-        collect: true
+        collect: false
 
 web_profiler:
-    toolbar: true
+    toolbar: false
     intercept_redirects: false
 
 swiftmailer:
@@ -37,4 +38,6 @@ donate_front:
 
 doctrine:
     dbal:
+        #driver:   pdo_sqlite
+        #path:     "/mnt/ramdisk/__DBNAME__.db"
         dbname: "%database_name%_test"

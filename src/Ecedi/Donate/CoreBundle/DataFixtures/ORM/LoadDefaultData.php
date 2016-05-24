@@ -9,7 +9,7 @@ namespace Ecedi\Donate\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Nelmio\Alice\Fixtures;
-use Nelmio\Alice\ORM\Doctrine as FixturesORM;
+use Nelmio\Alice\Persister\Doctrine as FixturesORM;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;

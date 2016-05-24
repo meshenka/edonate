@@ -55,9 +55,9 @@
         "behat/symfony2-extension": "~2.0",
         "behat/mink-extension": "~2.0",
         "behat/mink-browserkit-driver": "~1.2",
-        "knplabs/friendly-contexts": "0.5.*",
+        "knplabs/friendly-contexts": "^0.7",
         "behatch/contexts": "dev-master",
-        "liuggio/fastest": "^1.3",
+        "liuggio/fastest": "dev-master",
         "fabpot/php-cs-fixer": "^1.11"
     },
     "scripts": {
