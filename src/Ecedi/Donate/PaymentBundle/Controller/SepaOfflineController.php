@@ -37,7 +37,7 @@ class SepaOfflineController extends Controller
         if ($session->has('intentId')) {
             $intentId = $session->get('intentId');
 
-            return $this->render('DonatePaymentBundle:SepaOffline:autorize.html.twig', [
+            return $this->render(':payment/sepa_offline:autorize.html.twig', [
                 'intent' => $intentRepo->find($intentId)
             ]);
         }
@@ -46,7 +46,7 @@ class SepaOfflineController extends Controller
         if ($this->getParameter('kernel.environment') === 'dev') {
             $intent = $intentRepo->findOneBy(['status' => Intent::STATUS_DONE, 'paymentMethod' => SepaOfflinePaymentMethod::ID]);
             if ($intent) {
-                return $this->render('DonatePaymentBundle:SepaOffline:autorize.html.twig', [
+                return $this->render(':payment/sepa_offline:autorize.html.twig', [
                     'intent' => $intent
                 ]);
             }

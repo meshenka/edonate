@@ -5,7 +5,7 @@
 #}
 {% trans_default_domain "check_promise" %}
 
-{% extends "DonateFrontBundle::layout.html.twig" %}
+{% extends ":front:layout.html.twig" %}
 {% block title%}{{'Donation completed'|trans }} | {{ parent() }} {% endblock %}
 
 {% block main_content %}
@@ -95,6 +95,6 @@
 {% block google_analytics %}
     {{ parent() }}
     {% spaceless %}
-        {% include "DonateFrontBundle::ga_ecommerce.html.twig" with {'intent': intent, 'google_analytics': google_analytics} only %}
+        {% include ":front:ga_ecommerce.html.twig" with {'intent': intent, 'google_analytics': google_analytics} only %}
     {% endspaceless %}
 {% endblock %}

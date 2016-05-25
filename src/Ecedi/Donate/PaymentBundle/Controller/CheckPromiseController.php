@@ -28,7 +28,7 @@ class CheckPromiseController extends Controller
         if ($session->has('intentId')) {
             $intentId = $session->get('intentId');
 
-            return $this->render('DonatePaymentBundle:CheckPromise:pay.html.twig', [
+            return $this->render(':payment/check_promise:pay.html.twig', [
                 'intent' => $intentRepo->find($intentId)
             ]);
         }
@@ -37,7 +37,7 @@ class CheckPromiseController extends Controller
         if ($this->getParameter('kernel.environment') === 'dev') {
             $intent = $intentRepo->findOneBy(['status' => Intent::STATUS_DONE, 'paymentMethod' => CheckPromisePaymentMethod::ID]);
             if ($intent) {
-                return $this->render('DonatePaymentBundle:CheckPromise:pay.html.twig', [
+                return $this->render(':payment/check_promise:pay.html.twig', [
                     'intent' => $intent
                 ]);
             }
