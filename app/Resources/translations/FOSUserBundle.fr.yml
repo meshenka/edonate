@@ -1,0 +1,83 @@
+# Group
+group:
+    edit:
+        submit: Mettre à jour le groupe
+    show:
+        name: Nom du groupe
+    new:
+        submit: Créer le groupe
+    flash:
+        updated: Le groupe a été mis à jour
+        created: Le groupe a été créé
+        deleted: Le groupe a été supprimé
+
+# Security
+"Bad credentials": Nom d'utilisateur ou mot de passe incorrect
+"Bad credentials.": Nom d'utilisateur ou mot de passe incorrect
+"Back to homepage" : Retour à la page d'accueil
+"Change your password": Modifier votre mot de passe
+"Your profile" : Votre profil
+
+security:
+    login:
+        username: "Login"
+        password: "Mot de passe"
+        remember_me: Se souvenir de moi
+        submit: Se connecter
+        request_reset_password: J'ai perdu mon mot de passe
+
+# Profile
+profile:
+    show:
+        username: Login
+        email: Email
+    edit:
+        submit: Valider
+    flash:
+        updated: Le profil a été mis à jour
+
+# Password change
+change_password:
+    submit: Valider
+    flash:
+        success: Le mot de passe a été modifié
+
+# Registration
+registration:
+    check_email: Un e-mail a été envoyé à l'adresse %email%. Il contient un lien d'activation sur lequel il vous faudra cliquer afin d'activer votre compte.
+    confirmed: Félicitations %username%, votre compte est maintenant activé.
+    back: Retour à la page d'origine.
+    submit: Enregistrer
+    flash:
+        user_created: L'utilisateur a été créé avec succès
+    email:
+        subject: Bienvenue %username% !
+        message: |
+            Bonjour %username% !
+
+            Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
+
+            Cordialement,
+            L'équipe.
+
+# Password resetting
+resetting:
+    password_already_requested: Un nouveau mot de passe a déjà été demandé pour cet utilisateur dans les dernières 24 heures.
+    check_email: Un e-mail a été envoyé à l'adresse %email%. Il contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe.
+    request:
+        invalid_username: Le nom d'utilisateur ou l'adresse e-mail "%username%" n'existe pas.
+        username: "Login ou adresse e-mail :"
+        submit: Réinitialiser le mot de passe
+    reset:
+        submit: Modifier le mot de passe
+    flash:
+        success: Le mot de passe a été réinitialisé avec succès
+    email:
+        subject: "[eDonate] Réinitialisation de votre mot de passe"
+        message: |
+            Bonjour %username% !
+
+            Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
+
+            Cordialement,
+            L'équipe.

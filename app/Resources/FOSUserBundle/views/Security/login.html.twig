@@ -4,7 +4,7 @@
 {% block main_content %}
 <h2>Authentification</h2>
 {% if error %}
-    <div>{{ error|trans }}</div>
+    <div class="bg-danger">{{ error|trans }}</div>
 {% endif %}
 
 <form action="{{ path('fos_user_security_check') }}" method="post" role="form">
