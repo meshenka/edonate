@@ -5,7 +5,9 @@
 /web/assetic/*
 /web/images/*
 /web/uploads/*
+!/web/uploads/.gitkeep
 /web/media/*
+!/web/media/.gitkeep
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml

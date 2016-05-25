@@ -33,6 +33,7 @@ Sur les dossiers sur web/media web/uploads app/cache app/logs
     $ rm -rf app/cache/*
     $ rm -rf app/logs/*
     $ rm -rf web/media/*
+    $ rm -rf web/uploads/*
 
     $ sudo chmod +a "www-data allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs web/uploads web/media
     $ sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs web/uploads web/media

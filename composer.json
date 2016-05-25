@@ -1,7 +1,7 @@
 {
     "name": "ecedi/edonate",
     "license": "MIT",
-    "version": "2.5.3",
+    "version": "2.5.4",
     "type": "project",
     "description": "eDonate standard edition, by Agence Ecedi http://ecedi.fr",
     "autoload": {
