@@ -35,7 +35,7 @@ class OgoneController extends Controller
             if ($intent->getStatus() == Intent::STATUS_NEW || $intent->getStatus() == Intent::STATUS_PENDING) {
                 $factory = $this->get('donate_ogone.request.factory');
 
-                return $this->render('DonateOgoneBundle:Ogone:pay.html.twig', [
+                return $this->render(':payment/ogone:pay.html.twig', [
                     'ogone' => $factory->build($intent), 'intent' => $intent
                 ]);
             }

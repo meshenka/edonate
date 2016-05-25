@@ -110,7 +110,7 @@ class NotifyPostSaleStatusListener implements EventSubscriberInterface
             ->setTo($this->webmasterEmail)
             ->setBody(
                 $this->templating->render(
-                    'DonateOgoneBundle:Mail:ogone.txt.twig',
+                    ':payment/ogone/mail:ogone.txt.twig',
                     array('response' => $response, 'message' => $body)
                 )
             );
