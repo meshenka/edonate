@@ -23,7 +23,7 @@ class ReturnController extends Controller
             $intentId = $session->get('intentId');
             $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
-            return $this->render('DonateFrontBundle:Return:completed.html.twig', [
+            return $this->render(':front/return:completed.html.twig', [
                 'intent' => $intentRepo->find($intentId)
             ]);
         }
@@ -34,7 +34,7 @@ class ReturnController extends Controller
 
             $payment = $paymentRepo->findOneBy(array('status' => Payment::STATUS_PAYED));
             if ($payment) {
-                return $this->render('DonateFrontBundle:Return:completed.html.twig', [
+                return $this->render(':front/return:completed.html.twig', [
                     'intent' => $payment->getIntent()
                 ]);
             }
@@ -54,7 +54,7 @@ class ReturnController extends Controller
      */
     public function canceledAction()
     {
-        return $this->render('DonateFrontBundle:Return:canceled.html.twig');
+        return $this->render(':front/return:canceled.html.twig');
     }
 
     /**
@@ -63,7 +63,7 @@ class ReturnController extends Controller
      */
     public function deniedAction()
     {
-        return $this->render('DonateFrontBundle:Return:denied.html.twig');
+        return $this->render(':front/return:denied.html.twig');
     }
 
     /**
@@ -72,6 +72,6 @@ class ReturnController extends Controller
      */
     public function failedAction()
     {
-        return $this->render('DonateFrontBundle:Return:failed.html.twig');
+        return $this->render(':front/return:failed.html.twig');
     }
 }

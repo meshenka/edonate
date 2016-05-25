@@ -1,0 +1,16 @@
+{% extends ":admin/dashboard:block.html.twig" %}
+{% trans_default_domain 'messages' %}
+
+{% block content %}
+<ul class="item-list">
+{% for intent in intents %}
+	<li>{{ macros.intentInfo(intent)}}</li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+{% block footer %}
+	<div class="panel-footer">
+		<a href="{{ path('donate_admin_reporting_intents') }}?&intent_filters[status][]=error" title="Voir tous les dons en erreur">{{ "See all donations error" | trans }}</a>
+	</div>
+{% endblock %}

@@ -31,7 +31,7 @@ class AccountController extends Controller
         $query = $entityMgr->getRepository('DonateCoreBundle:User')->getAllUsers();
         $pagination = $this->getPagination($request, $query, 10);
 
-        return $this->render('DonateAdminBundle:Account:index.html.twig', [
+        return $this->render(':admin/account:index.html.twig', [
             'pagination' => $pagination
         ]);
     }
@@ -85,7 +85,7 @@ class AccountController extends Controller
             throw new AccessDeniedException('Unauthorised access!');
         }
 
-        return $this->render('DonateAdminBundle:Account:edit.html.twig', [
+        return $this->render(':admin/account:edit.html.twig', [
             'form'      => $form->createView(),
             'user'      => $user,
         ]);
@@ -120,7 +120,7 @@ class AccountController extends Controller
             }
         }
 
-        return $this->render('DonateAdminBundle:Account:new.html.twig', [
+        return $this->render(':admin/account:new.html.twig', [
             'form'   => $form->createView()
         ]);
     }

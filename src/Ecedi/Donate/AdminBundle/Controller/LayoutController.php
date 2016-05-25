@@ -77,7 +77,7 @@ class LayoutController extends Controller
             'affectations' =>  $layout->getAffectations(),
         ));
 
-        return $this->render('DonateAdminBundle:Block:previewLayout.html.twig', [
+        return $this->render(':admin/layout:preview.html.twig', [
             'layout' => $layout,
             'form' => $form->createView()
         ]);
@@ -94,7 +94,7 @@ class LayoutController extends Controller
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($query, $request->query->get('page', 1), 20);
 
-        return $this->render('DonateAdminBundle:Block:listLayouts.html.twig', ['layouts' => $pagination]);
+        return $this->render(':admin/layout:list.html.twig', ['layouts' => $pagination]);
     }
 
     /**
@@ -119,7 +119,7 @@ class LayoutController extends Controller
             return $this->redirect($this->generateUrl('donate_admin_layout_list'));
         }
 
-        return $this->render('DonateAdminBundle:Block:editLayout.html.twig', [
+        return $this->render(':admin/layout:edit.html.twig', [
             'form' =>  $form->createView(),
             'layout' => $layout
         ]);
@@ -159,7 +159,7 @@ class LayoutController extends Controller
             return $this->redirect($this->generateUrl('donate_admin_block_list', ['id' => $layout->getId()]));
         }
 
-        return $this->render('DonateAdminBundle:Block:newLayout.html.twig', [
+        return $this->render(':admin/layout:new.html.twig', [
             'form' =>  $form->createView(),
             'layout' => $layout
         ]);

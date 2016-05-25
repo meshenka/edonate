@@ -69,7 +69,7 @@ class FormController extends Controller
             }
         }
 
-        return $this->render('DonateFrontBundle:Form:index.html.twig', array(
+        return $this->render(':front/form:index.html.twig', array(
             'form' => $form->createView(),
             ), $response);
     }

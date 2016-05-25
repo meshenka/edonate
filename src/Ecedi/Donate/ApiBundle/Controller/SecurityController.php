@@ -41,7 +41,7 @@ class SecurityController extends Controller
 
         $lastUsername = (null === $session) ? '' : $session->get(Security::LAST_USERNAME);
 
-        return $this->render('DonateApiBundle:Security:login.html.twig', array(
+        return $this->render(':api/security:login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
         ));

@@ -1,0 +1,16 @@
+<div id="calculator" class="block">
+	<!-- CALCULETTE FISCALE -->
+	<div>
+		{% block content %}
+		<div class="form-field isf">
+			<input type="checkbox" name="checkISF" id="checkISF">
+			<label for="checkISF">&nbsp;{{'You are subject to French wealth tax (ISF)'|trans}}</label>
+		</div>
+
+		<div class="form-field pourcentage">
+			<p>{{ "Thanks to the tax reduction of " | trans }}<span id="calc-pourcentage">75</span>%,{{ " your donation of " | trans }}<span id="calc-amount" class="mtt">100</span>&nbsp;<span class="euro">€</span>{{ " will cost you " | trans }}<span id="calc-reduced" class="mtt">25,00</span>&nbsp;<span class="euro">€</span>.
+			</p>
+		</div>
+		{% endblock %}
+	</div> <!-- /#calculette -->
+</div>

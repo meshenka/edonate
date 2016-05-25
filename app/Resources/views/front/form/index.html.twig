@@ -1,0 +1,135 @@
+{% extends ":front:layout.html.twig" %}
+{% block body_classe %}Home{% endblock %}
+{% form_theme form ':front/form:form_div_layout.html.twig' %}
+{% block main_content %}
+{{ form_start(form,  { 'attr': {'role': 'form'} }) }}
+    {{ form_errors(form) }}
+
+<div id="montant" class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">{{'I Give'|trans}} </h1>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div id="amounts" class="col-md-7 col-sm-7">
+        <div class="form-group">
+          <div class="input-group">
+            {{ form_row(form.tunnels) }}
+          </div>
+        </div>
+      </div>
+      <div id="calc" class="col-md-5 col-sm-5">
+        {% include ":front:calculator.html.twig" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{# how to not output markup when form.affections is a hidden #}
+{% if layout.affectations|length > 1 %}
+<div id="attribution" class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">{{'My donation affectation'|trans}}</h2>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-12">
+      {{ form_row(form.affectations) }}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">{{'My personal details'|trans}}</h2>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <p><span class="required" title="Required">* </span>{{'Required fields'|trans}}</p>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6 col-sm-6">
+        {{ form_row(form.civility,  { 'attr': {'class': 'form-control'} }) }}
+      </div>
+      <div class="form-group col-md-6 col-sm-6">
+        {{ form_row(form.company,  { 'attr': {'class': 'form-control'} }) }}
+      </div>
+
+      <div class="form-group col-md-6 col-sm-6">
+        {{ form_row(form.firstName,  { 'attr': {'class': 'form-control'} }) }}
+      </div>
+      <div class="form-group col-md-6 col-sm-6">
+        {{ form_row(form.lastName,  { 'attr': {'class': 'form-control'} }) }}
+      </div>
+
+      <div class="form-group col-md-6 col-sm-6">
+        {{ form_row(form.phone,  { 'attr': {'class': 'form-control', 'placeholder': '+33 (0)0 00 000 000'} }) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6 col-sm-6">
+        {{ form_row(form.email.first,  { 'attr': {'class': 'form-control', 'placeholder': 'format name@provider.com'|trans } }) }}
+      </div>
+      <div class="form-group col-md-6 col-sm-6">
+        {{ form_row(form.email.second,  { 'attr': {'class': 'form-control', 'placeholder': 'format name@provider.com'|trans } }) }}
+        {# form_row(form.email) #}
+      </div>
+      <div class="form-group col-md-6 col-sm-6">
+       {{ form_row(form.addressLiving, { 'attr': {'class': 'form-control'} }) }}
+      </div>
+      <div class="form-group col-md-6 col-sm-6">
+       {{ form_row(form.addressExtra, { 'attr': {'class': 'form-control'} }) }}
+      </div>
+      <div class="form-group col-md-6 col-sm-6">
+       {{ form_row(form.addressStreet, { 'attr': {'class': 'form-control'} }) }}
+      </div>
+
+      <div class="form-group col-md-6 col-sm-6">
+       {{ form_row(form.addressPb, { 'attr': {'class': 'form-control'} }) }}
+      </div>
+
+      <div class="form-group col-md-6 col-sm-6">
+        <div class="row col-md-7  col-sm-7">
+         {{ form_row(form.addressZipcode, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+      </div>
+
+      <div class="form-group col-md-6 col-sm-6">
+       {{ form_row(form.addressCity, { 'attr': {'class': 'form-control'} }) }}
+      </div>
+
+      <div class="form-group col-md-6 col-sm-6">
+       {{ form_row(form.addressCountry, { 'attr': {'class': 'form-control'} }) }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="reception" class="form-group col-md-12">
+  <div class="col-md-12">
+  {{ form_row(form.erf) }}
+  </div>
+</div>
+
+<div id="accept" class="form-group col-md-12">
+  <div class="checkbox col-md-12">
+     {{ form_row(form.optin) }}
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">{{'My payment method'|trans}}</h2>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+        {{ form_row(form.payment_method) }}
+    </div>
+  </div>
+</div>
+
+  {{ form_rest(form) }}
+
+  {{ form_end(form) }}
+
+{% endblock %}

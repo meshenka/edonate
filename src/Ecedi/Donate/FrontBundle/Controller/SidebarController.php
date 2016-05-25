@@ -20,7 +20,7 @@ class SidebarController extends Controller
             $response->setSharedMaxAge(600);
         }
 
-        return $this->render('DonateFrontBundle::sidebar.html.twig', array(
+        return $this->render(':front:sidebar.html.twig', array(
             'blocks' => $blocks,
             ), $response);
     }

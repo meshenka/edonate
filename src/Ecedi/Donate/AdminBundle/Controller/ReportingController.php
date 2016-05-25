@@ -58,7 +58,7 @@ class ReportingController extends Controller
 
         $pagination = $this->getPagination($request, $queryBuilder->getQuery(), 20);
 
-        return $this->render('DonateAdminBundle:Reporting:intents.html.twig', [
+        return $this->render(':admin/reporting/intent:list.html.twig', [
             'pagination'    => $pagination,
             'intentForm'    => $intentForm->createView()
         ]);
@@ -79,7 +79,7 @@ class ReportingController extends Controller
 
         $pagination = $this->getPagination($request, $paymentsQuery, 12);
 
-        return $this->render('DonateAdminBundle:Reporting:intentShow.html.twig', [
+        return $this->render(':admin/reporting/intent:show.html.twig', [
             'intent'                => $intent,
             'pagination'            => $pagination,
             'customerOtherIntents'  => $otherIntents,
@@ -116,7 +116,7 @@ class ReportingController extends Controller
 
         $pagination = $this->getPagination($request, $query, 20);
 
-        return $this->render('DonateAdminBundle:Reporting:customers.html.twig', [
+        return $this->render(':admin/reporting/customer:list.html.twig', [
             'pagination'    => $pagination,
             'customerForm'  => $customerForm->createView()
         ]);
@@ -133,7 +133,7 @@ class ReportingController extends Controller
 
         $pagination = $this->getPagination($request, $intentsQuery, 10);
 
-        return $this->render('DonateAdminBundle:Reporting:customerShow.html.twig', [
+        return $this->render(':admin/reporting/customer:show.html.twig', [
             'customer'          => $customer,
             'pagination'        => $pagination,
         ]);
@@ -159,7 +159,7 @@ class ReportingController extends Controller
             return $this->redirect($this->generateUrl('donate_admin_reporting_customer_show', array('id' => $customer->getId())));
         }
 
-        return $this->render('DonateAdminBundle:Reporting:customerEdit.html.twig', [
+        return $this->render(':admin/reporting/customer:edit.html.twig', [
             'editForm'  => $editForm->createView()
         ]);
     }
@@ -168,7 +168,7 @@ class ReportingController extends Controller
      */
     public function customerInfoAction(Customer $customer)
     {
-        return $this->render('DonateAdminBundle:Reporting:customerInfo.html.twig', [
+        return $this->render(':admin/reporting/customer:block_info.html.twig', [
             'customer'  => $customer
         ]);
     }

@@ -1,0 +1,17 @@
+{% block menu_footer %}
+    <ul>
+      <li><a href="#">{{'Contact'|trans}}</a></li>
+      <li><a href="#">{{'Help'|trans}}</a></li>
+      <li><a href="#">{{'Legal notices'|trans}}</a></li>
+    </ul>
+{% endblock %}
+
+{% block cartouche_footer %}
+  <div id="cartouche">
+    <a href="http://www.e-donate.fr/" title="ecedi (e-donate)">
+      {% image '@DonateFrontBundle/Resources/public/images/ecedi-horizontal.gif' output='images/ecedi-horizontal.gif' %}
+        <img src="{{ asset_url }}" alt="ecedi (e-donate)"/>
+      {% endimage %}
+    </a>
+  </div>
+{% endblock %}

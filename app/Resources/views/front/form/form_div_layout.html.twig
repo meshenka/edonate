@@ -1,0 +1,134 @@
+{% extends ":core/form:form_div_layout.html.twig" %}
+
+{# ajout du span.required dans le label des champs obligatoires #}
+{% block form_label %}
+{% if label is not same as(false) %}
+{% spaceless %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if form_type is defined and form_type == 'horizontal' %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+    {% endif %}
+    {% if label is not same as(false) %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        {% if original_type is defined and original_type == 'form' %}
+            <legend{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</legend>
+        {% else %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}
+
+            {% if required %}
+            <span class="required" title="{{'Required'| trans({}, translation_domain) }}">*</span>
+            {% endif %}
+
+            </label>
+        {% endif %}
+    {% endif %}
+{% endspaceless %}
+{% endif %}
+{% endblock form_label %}
+
+{# pb avec la fermeture de cette balise input#}
+{% block radio_widget %}
+{% spaceless %}
+<input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}/>
+{% endspaceless %}
+{% endblock radio_widget %}
+
+{# utilisation de |raw pour ne pas échapper le code html dans les labels #}
+{% block radio_label %}
+{% if label is not same as(false) %}
+{% spaceless %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+
+    {% if form.vars.value == 'manual' %}
+        {% set label_attr = label_attr|merge({'class': 'manual'}) %}
+    {% endif %}
+
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' radio')|trim}) %}
+    {% if attr.inline is defined and attr.inline %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' inline')|trim}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+{% endspaceless %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ form_widget(form) }} {{ label|trans({}, translation_domain)|raw }}
+    </label>
+{% endif %}
+{% endblock radio_label %}
+
+{# ajout du span euro autour de la devise #}
+{% block money_widget %}
+{% spaceless %}
+    {{ money_pattern|replace({ '{{ widget }}': block('form_widget_simple'), '€' : '<span class="euro">€</span>' })|raw }}
+{% endspaceless %}
+{% endblock money_widget %}
+
+{# ajout du aria meta aria-invalid et aria-required #}
+{% block widget_attributes %}
+{% spaceless %}
+    id="{{ id }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required" aria-required="true"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
+    {% if errors|length > 0 %} aria-invalid="true" {% endif %}
+    {% for attrname, attrvalue in attr %}{% if attrname in ['placeholder', 'title'] %}{{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% else %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
+{% endspaceless %}
+{% endblock widget_attributes %}
+
+{# ajout du aria.meta role alert pour les erreurs #}
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length == 1 %}
+    <span class="help-inline" role="alert">{{
+        errors[0].messagePluralization is null
+            ? errors[0].messageTemplate|trans(errors[0].messageParameters, 'validators')
+            : errors[0].messageTemplate|transchoice(errors[0].messagePluralization, errors[0].messageParameters, 'validators')
+    }}</span>
+    {% elseif errors|length > 0 %}
+    <ul class="help-block" role="alert">
+        {% for error in errors %}
+            <li>{{
+                error.messagePluralization is null
+                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+            }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
+
+{% block money_row %}
+    {% spaceless %}
+        {% if form_type is defined and form_type == 'inline' %}
+            {{ block('inline_row') }}
+        {% elseif form_type is defined and form_type == 'horizontal' %}
+            {{ block('horizontal_row') }}
+        {% else %}
+            <div class="control-group money{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
+            {{ form_label(form) }}
+            {{ form_widget(form) }}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{#
+custom amont_selector_widget to display title
+#}
+{% block amount_selector_widget %}
+    <h3>{{title|trans}}</h3>
+    {% spaceless %}
+         {{ block('form_widget') }}
+    {% endspaceless %}
+{% endblock %}

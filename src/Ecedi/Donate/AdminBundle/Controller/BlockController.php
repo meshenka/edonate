@@ -28,7 +28,7 @@ class BlockController extends Controller
      */
     public function listBlocksAction(Layout $layout)
     {
-        return $this->render('DonateAdminBundle:Block:listBlocks.html.twig', ['layout' => $layout]);
+        return $this->render(':admin/block:list.html.twig', ['layout' => $layout]);
     }
 
     /**
@@ -49,7 +49,7 @@ class BlockController extends Controller
             return $this->redirect($this->generateUrl('donate_admin_block_list', [ 'id' => $layout->getId()]));
         }
 
-        return $this->render('DonateAdminBundle:Block:editBlock.html.twig', [
+        return $this->render(':admin/block:edit.html.twig', [
             'form' =>  $form->createView(),
             'block' => $block
         ]);

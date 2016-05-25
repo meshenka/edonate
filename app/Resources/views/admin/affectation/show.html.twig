@@ -1,0 +1,88 @@
+{% extends ":admin:layout_2cols.html.twig" %}
+
+{% block main_content_title %}Voir les Affectations du Layout {{ layout.name }}{% endblock %}
+
+{% block sidebar %}
+ {{ include (':admin/block:_layout.html.twig' , {'layout': layout}, with_context = false) }}
+{% endblock %}
+
+{% block main_content %}
+
+<div class="main-actions">
+    <a  role="button" class="btn btn-primary" title="{{ 'New Affectation'|trans }}" href="{{ path('donate_admin_affectation_add', { layout : layout.id }) }}">
+    {{ macros.icon('plus') }} {{ macros.icon('map-marker') }} {{ 'New Affectation'|trans }}
+    </a>
+</div>
+
+{% if layout.affectations|length > 0 %}
+<div id="table" class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="affectation-code">{{ 'Machine name'| trans }}</th>
+                <th class="affectation-label">{{ 'Label' | trans }}</th>
+                <th class="affectation-actions">{{ 'Actions' | trans }}</th>
+            </tr>
+        </thead>
+        <tbody class="sortable">
+        {% for a in layout.affectations %}
+            <tr id="affectation-{{a.id}}" data-content-id="{{a.id}}">
+                <td>
+                    <a title="Editer l'affectation" href="{{ path('donate_admin_affectation_edit', { layout : layout.id, affectation: a.id }) }}">
+                        {{ macros.icon('edit') }} {{ a.code }}
+                    </a>
+                </td>
+                <td>{{ a.label }}</td>
+                <td>
+                    <a title="Editer l'affectation" href="{{ path('donate_admin_affectation_edit', { layout : layout.id, affectation: a.id }) }}">
+                        {{ macros.icon('edit') }}
+                    </a>
+
+                    <a title="Supprimer l'affectation" class="confirm" href="{{ path('donate_admin_affectation_delete', { layout : layout.id, id: a.id }) }}">
+                        {{ macros.icon('remove') }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+ </div>
+{% else %}
+    {{ 'No affectations' | trans }}
+{% endif %}
+{% endblock %}
+
+ {% block footer_js %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    <script  type="text/javascript">
+        $(document).ready(function(){
+            $('a.confirm').click(function(e) {
+
+                if(!confirm('Etes vous sur de vouloir faire cela ?')) {
+                    e.preventDefault();
+                }
+            });
+
+            $('tbody.sortable').sortable({
+                update: function(event, ui) {
+                    var newOrder = $(this).sortable('serialize');
+                    console.log(newOrder);
+                    var jqxhr = $.post(
+                        Routing.generate('donate_admin_affectation_sort', {'layout' : {{layout.id}} } ),
+                        newOrder
+                    )
+                    // .done(function(data) {
+                    //     console.log('ok');
+                    //     console.log(data);
+                    // })
+                    // .fail(function( jqXHR, textStatus, errorThrown ) {
+                    //     console.log('ko');
+                    // });
+                    ;
+                }
+            });
+        });
+    </script>
+{% endblock %}

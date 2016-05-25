@@ -1,0 +1,105 @@
+{% extends ":admin:layout_2cols.html.twig" %}
+{% form_theme form ":front/form:form_div_layout.html.twig" %}
+
+{% block main_content_title %}Editer Layout {{ layout.name }}{% endblock %}
+
+
+{% block main_content %}
+{{ form_start(form, { 'attr': {'role': 'form', 'id':'layout-edit-form'}} ) }}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+    {{ form_row(form.name, { 'attr': {'class': 'form-control'}}) }}
+    <p class="help-block">{{ macros.icon('info-sign') }} Ce champs n'apparait nul part dans le front office</p>
+    </div>
+    <div class="form-group">
+    {{ form_row(form.language, { 'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+    {{ form_row(form.skin, { 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+	{{ form_row(form.baseline, { 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+	{{ form_row(form.meta_title, { 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+	{{ form_row(form.meta_description, { 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+	{{ form_row(form.meta_keywords, { 'attr': {'class': 'form-control'}}) }}
+    <p class="help-block">{{ macros.icon('info-sign') }} Séparer les mots clés par une , (virgule)</p>
+    </div>
+    <div class="form-group">
+        {{ form_row(form.logo, { 'attr': {'class': 'form-control'}}) }}
+        <p class="help-block">{{ macros.icon('info-sign') }} Le format d'image sera retailler en 173px * 145px. Nous vous recommendons le format PNG avec fonds transparent.</p>
+
+        {% if layout.logoName is not null %}
+            <div class="preview">
+                <img  class="img-thumbnail" alt="" src="{{ layout.logoName | imagine_filter('logo') }}" />
+            </div>
+        {% endif %}
+
+        {{ form_row(form.logoAlt, { 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.logoUrl, { 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.logoTitle, { 'attr': {'class': 'form-control'}}) }}
+
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.background, { 'attr': {'class': 'form-control'}}) }}
+        <p class="help-block">{{ macros.icon('info-sign') }} Le format d'image sera retailler en 1280px * 496px. Nous vous recommendons le format Jpeg.</p>
+
+        {% if layout.backgroundName is not null %}
+            <div class="preview">
+                <img  class="img-thumbnail" alt="" src="{{ layout.backgroundName | imagine_filter('layout_background') }}" />
+            </div>
+        {% endif %}
+    </div>
+
+    {{ form_rest(form) }}
+
+
+{{ form_end(form) }}
+{% endblock %}
+
+{% block sidebar %}
+    <div class="actions">
+        <a role="button" class="btn btn-primary" title="{{ 'Edit blocks'|trans }}" href="{{ path('donate_admin_block_list', {'id': layout.id}) }}">
+        {{ macros.icon('info-sign') }} {{ 'View blocks'|trans }}
+    </a>
+
+    <a role="button"
+        class="btn btn-default"
+        title="{{ 'Edit Affectations'|trans }}"
+        href="{{ path('donate_admin_affectation_show', {'layout': layout.id}) }}">
+        {{ macros.icon('map-marker') }} {{ 'View Affectations'|trans }}
+    </a>
+
+    <a role="button" class="btn btn-default" title="Prévisualiser le layout" href="{{ path('donate_admin_layout_preview', { id : layout.id }) }}">
+        {{ macros.icon('eye-open') }} Prévisualiser
+    </a>
+</div>
+    <aside id="online-help" role="help">
+    </aside>
+{% endblock %}
+
+{% block footer_js %}
+    {{ parent() }}
+
+    <script  type="text/javascript">
+        $(function() {
+            $('p.help-block').hide();
+            $('div.form-group').hover(function() {
+                var _this= $(this);
+                _this.find('p.help-block').clone().appendTo('#online-help').show();
+            },
+            function() {
+                //var _this= $(this);
+                $('#online-help').html('');
+            })
+        });
+    </script>
+{% endblock %}

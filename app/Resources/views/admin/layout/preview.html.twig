@@ -1,0 +1,8 @@
+{% extends ":front/form:index.html.twig" %}
+
+{% block title %}PREVIEW {{ parent() }}{% endblock %}
+{% block header_extra %}<span class="label label-warning"><a title="previsualisation" href="{{path('donate_admin_layout_edit', {'id' : layout.id}) }}">preview</a></span>{% endblock %}
+
+{% block sidebar %}
+  {{ render_esi(controller('DonateFrontBundle:Sidebar:show', { 'id' : layout.id , 'cache' : false})) }}
+{% endblock %}

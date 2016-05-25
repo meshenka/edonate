@@ -1,0 +1,17 @@
+{% extends ":admin/dashboard:block.html.twig" %}
+{% trans_default_domain 'messages' %}
+
+{% block content %}
+<ul class="item-list">
+{% for result in results %}
+    {% set customerLink = macros.customerLink(result.customerId) %}
+    <li>{{ result.totalPayment/100 }} € -- <a href="{{ customerLink }}" title="Voir le détail donateur">{{ result.firstName }} {{ result.lastName }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+{% block footer %}
+    <div class="panel-footer">
+        <a href="{{ path('donate_admin_reporting_customers') }}" title="Voir la liste des donateurs">{{ "See donators's list" | trans }}</a>
+    </div>
+{% endblock %}

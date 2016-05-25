@@ -1,0 +1,4 @@
+{% extends ":admin/affectation:add.html.twig" %}
+{% form_theme form ':front/form:form_div_layout.html.twig' %}
+
+{% block main_content_title %}Editer d'affectation {{ affectation.code }} pour le layout {{ layout.name }}{% endblock %}

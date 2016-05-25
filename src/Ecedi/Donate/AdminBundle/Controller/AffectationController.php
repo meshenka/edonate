@@ -28,7 +28,7 @@ class AffectationController extends Controller
      */
     public function showAction(Layout $layout)
     {
-        return $this->render('DonateAdminBundle:Affectation:show.html.twig', [
+        return $this->render(':admin/affectation:show.html.twig', [
             'layout' => $layout
         ]);
     }
@@ -57,7 +57,7 @@ class AffectationController extends Controller
             return $this->redirect($this->generateUrl('donate_admin_affectation_show', array('layout' => $layout->getId())));
         }
 
-        return $this->render('DonateAdminBundle:Affectation:add.html.twig', [
+        return $this->render(':admin/affectation:add.html.twig', [
             'form' =>  $form->createView(),
             'layout' => $layout
         ]);
@@ -83,7 +83,7 @@ class AffectationController extends Controller
             return $this->redirect($this->generateUrl('donate_admin_affectation_show', array('layout' => $layout->getId())));
         }
 
-        return $this->render('DonateAdminBundle:Affectation:edit.html.twig', [
+        return $this->render(':admin/affectation:edit.html.twig', [
             'form' =>  $form->createView(),
             'layout' => $layout,
             'affectation' => $affectation

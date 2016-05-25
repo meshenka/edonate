@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html prefix="og: http://ogp.me/ns#" lang="{{ app.request.locale }}">
+    <head>
+        <!-- meta -->
+        <meta http-equiv="Content-Type" content="text/html; charset={{ _charset }}"/>
+        <meta name="robots" content="index, nofollow" />
+        <meta name="description" content="{{ layout.metaDescription}}" />
+        <meta name="title" content="{{ layout.metaTitle }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="{{ layout.metaTitle }}" />
+        <meta property="og:site_name" content="{{ layout.metaTitle }}" />
+        <meta property="og:image" content="{{ asset(layout.logoName | imagine_filter('logo')) }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ url('donate_front_home') }}" />
+        {% block metas %}{% endblock %}
+
+        <!-- title -->
+        <title>{% block title %}{{ layout.metaTitle }}{% endblock %}</title>
+
+        <!-- js -->
+        <script type="text/javascript" src="{{ asset('js/build/main.js') }}"></script>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="{{ asset('js/build/ie.js') }}"></script>
+        <![endif]-->
+
+        <!-- head css -->
+        <link rel="stylesheet" href="{{ asset('css/build/style.css') }}" />
+
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="{{ asset('css/build/ie.css')}}" />
+        <![endif]-->
+
+        <!-- extra head markup -->
+        {% block head %}
+            <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+        {% endblock %}
+
+        {% block google_analytics %}
+            {% include ":front:ga.html.twig" %}
+        {% endblock %}
+
+        <!-- TODO faire une css dynamique -->
+        <style>
+            body {
+                background-image:url({{ asset(layout.backgroundName | imagine_filter('layout_background')) }});
+                }
+        </style>
+
+    </head>
+    <body class="skin-{{ layout.skin }} {% block body_classe %}notHome{% endblock %}">
+        <div class="container">
+            <header class="row page-header">
+                {% block header_nav %}{% endblock %}
+                    {% block header %}
+                        {% include ":front/block:i18n.html.twig" %}
+                        {% include ":front:header.html.twig" %}
+                    {% endblock %}
+                    {% block header_extra %}{% endblock %}
+            </header>
+
+            <div class="row main-content">
+                {% block cartouche_right %}
+                    <div id="cartoucheDr">
+                      <a href="http://www.e-donate.fr/" title="ecedi (e-donate)">{% image '@DonateFrontBundle/Resources/public/images/ecedi-horizontal.gif' output='images/ecedi-horizontal.gif' %}
+                        <img src="{{ asset_url }}" alt="ecedi (e-donate)"/>
+                      {% endimage %}</a>
+                    </div>
+                {% endblock %}
+
+                <div id="breadcrumb">
+                    {% block breadcrumb %}
+                    <!--
+                    <ol class="breadcrumb">
+                      <li><a href="{{ path('donate_front_home') }}">Home</a></li>
+                      <li class="active">Donate</li>
+                    </ol>
+                    -->
+                    {% endblock %}
+                </div>
+
+                <div class="">
+
+                    {% block content_header %}
+
+                        {% block primary_nav %}
+                        {% endblock %}
+                        {% block content_header_more %}{% endblock %}
+                    {% endblock %}
+                </div>
+
+                <div id="main" class="col-md-12"><div id="main-inner">
+                    <div id="content">
+                        {% block main_content %}{% endblock %}
+                    </div>
+                    <aside id="sidebar">
+                        {% block sidebar %}
+                            {{ render_esi(controller('DonateFrontBundle:Sidebar:show', { 'id' : layout.id })) }}
+                        {% endblock %}
+                    </aside>
+                </div></div>
+            </div>
+        </div> <!-- //.container -->
+
+        <footer id="footer">
+            <div id="footerInner">
+            {% block footer %}
+                {% include ":front:footer.html.twig" %}
+            {% endblock %}
+            {% block footer_extra %}
+            {% endblock %}
+            </div>
+        </footer>
+
+
+
+        <!-- js -->
+        <script type="text/javascript" src="{{ asset('js/build/fo.js') }}"></script>
+
+        {% block end %}
+        {% endblock %}
+
+    </body>
+</html>

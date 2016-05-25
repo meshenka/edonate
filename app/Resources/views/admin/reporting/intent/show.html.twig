@@ -1,0 +1,51 @@
+{% extends ":admin:layout_2cols.html.twig" %}
+{% trans_default_domain 'messages' %}
+
+{% block main_content %}
+{% set types = intent.typesLabel  %}
+<h2>{{ "Donation of" | trans }} {{ intent.customer.civility | trans }} {{ intent.customer.LastName }} {{ intent.customer.FirstName }}</h2>
+<dl class="dl-horizontal">
+    <dt>ID</dt><dd>{{ intent.id }}</dd>
+    <dt>{{ "Amount" | trans }}</dt><dd>{{ intent.amount / 100}}  {{ macros.euro() }}</dd>
+    <dt>{{ "Status" | trans }}</dt><dd><button type="button" class="btn btn-{{ macros.intent_state_class(intent) }}">{{ intent.status | trans}}</button></dd>
+    <dt>{{ "Type" | trans }}</dt><dd>{{ types[intent.type] | trans}}</dd>
+    <dt>{{ "Payment method" | trans }}</dt><dd>{{ intent.paymentMethod | trans }}</dd>
+    <dt>{{ "Fiscal receipt " | trans }}</dt><dd>{{ macros.fiscal_receipt(intent.fiscalReceipt) }}</dd>
+    <dt>{{ "Campaign" | trans }}</dt><dd>{{ intent.campaign }}</dd>
+    <dt>{{ "Affectation" | trans }}</dt><dd>{{ intent.affectationCode }}</dd>
+
+</dl>
+<div id="table" class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="payment-id">{{ knp_pagination_sortable(pagination, '#', 'p.id') }}</th>
+                <th class="payment-date-created">{{ knp_pagination_sortable(pagination, 'Created date' | trans, 'p.createdAt') }}</th>
+                <th class="payment-status">{{ knp_pagination_sortable(pagination, 'Status' | trans, 'p.status') }}</th>
+                <th class="payment-transaction">{{ knp_pagination_sortable(pagination, 'Transaction Id' | trans, 'p.transaction') }}</th>
+                <th class="payment-autorisation">{{ knp_pagination_sortable(pagination, 'Authorization Id' | trans, 'p.autorisation') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for payment in pagination %}
+            <tr class="{{macros.payment_state_class(payment)}}">
+                <td>{{ payment.id }}</td>
+                <td>{{ payment.createdAt | date('d/m/Y')}}</td>
+                <td>{{ payment.status }}</td>
+                <td>{{ payment.transaction }}</td>
+                <td>{{ payment.autorisation }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pager">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>
+{% endblock %}
+{% block sidebar %}
+    {{ render(controller('DonateAdminBundle:Reporting:customerInfo', { 'id': intent.customer.id } )) }}
+    {% if customerOtherIntents is not empty %}
+        {% include ':admin/reporting/customer:block_intents.html.twig' with {'customerIntents': customerOtherIntents } %}
+    {% endif %}
+{% endblock %}

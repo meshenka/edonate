@@ -1,0 +1,24 @@
+{#
+@param title
+@param id
+#}
+{% spaceless %}
+{% import ":admin:macros.html.twig" as macros %}
+<div class="panel panel-info" id="{% block id %}{% if id is defined %}{{ id }}{% endif %}{% endblock %}">
+
+	{% block title %}
+		{% if title is defined %}
+  			<div class="panel-heading">
+    			<h3 class="panel-title">{{ title }}</h3>
+  			</div>
+		{% endif %}
+	{% endblock %}
+
+  	<div class="panel-body">
+		{% block content %}{% endblock %}
+  	</div>
+
+	{% block footer %}{% endblock %}
+</div>
+
+{% endspaceless %}

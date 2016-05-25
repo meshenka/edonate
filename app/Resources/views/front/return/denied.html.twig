@@ -1,0 +1,12 @@
+{% extends ":front:layout.html.twig" %}
+{#
+@param intent
+#}
+{% block title%}{{'Donation denied'|trans }} | {{ parent() }} {% endblock %}
+
+{% block main_content %}
+<h1>{{ 'Your donation was denied by your bank'|trans }}</h1>
+<p class="lead">
+{{ 'Your transaction has been refused. You will not be charged'|trans }}
+</p>
+{% endblock %}

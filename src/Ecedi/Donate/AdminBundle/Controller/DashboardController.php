@@ -22,7 +22,7 @@ class DashboardController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('DonateAdminBundle:Dashboard:index.html.twig');
+        return $this->render(':admin/dashboard:index.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $em = $this->getDoctrine()->getManager();
         $lastIntents = $em->getRepository('DonateCoreBundle:Intent')->getLastIntentsByLimit(5);
 
-        return $this->render('DonateAdminBundle:Dashboard:lastIntents.html.twig', [
+        return $this->render(':admin/dashboard:last_intents.html.twig', [
             'id'            => 'last-intents',
             'title'         => $this->get('translator')->trans('Last donations'),
             'lastIntents'   => $lastIntents,
@@ -47,7 +47,7 @@ class DashboardController extends Controller
             ['status' => Intent::STATUS_ERROR],
             ['createdAt' => 'DESC'], 5, 0);
 
-        return $this->render('DonateAdminBundle:Dashboard:errorIntents.html.twig', [
+        return $this->render(':admin/dashboard:error_intents.html.twig', [
             'id'        => 'error-intents',
             'title'     => $this->get('translator')->trans('Last donations in error'),
             'intents'   => $intents,
@@ -70,7 +70,7 @@ class DashboardController extends Controller
             $stats[$status] = $ir->getCountByStatus($status);
         }
 
-        return $this->render('DonateAdminBundle:Dashboard:statsIntents.html.twig', [
+        return $this->render(':admin/dashboard:stats_intents.html.twig', [
             'id'        => 'stats-intents',
             'title'     => $this->get('translator')->trans('Donations distributions'), //'Répartition des dons',
             'stats'     => $stats,
@@ -81,7 +81,7 @@ class DashboardController extends Controller
      */
     public function statsGaAction()
     {
-        return $this->render('DonateAdminBundle:Dashboard:statsGa.html.twig', [
+        return $this->render(':admin/dashboard:stats_ga.html.twig', [
             'id'        => 'stats-ga',
             'title'     => $this->get('translator')->trans('Visits'), //'Fréquentation',
             'apiKey'    => $this->getParameter('donate_admin.analytics.api_key'),
@@ -96,7 +96,7 @@ class DashboardController extends Controller
     {
         $results = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Intent')->getHighestSpotDonatorIntent(5);
 
-        return $this->render('DonateAdminBundle:Dashboard:highestSpotIntents.html.twig', [
+        return $this->render(':admin/dashboard:highest_spotintents.html.twig', [
             'id'        => 'highest-spot-intents',
             'title'     => $this->get('translator')->trans('Top five spot donators'), //'TOP FIVE des donateurs ponctuels',
             'results'   => $results,
@@ -109,7 +109,7 @@ class DashboardController extends Controller
     {
         $results = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Intent')->getHighestRecurringDonatorIntent(5);
 
-        return $this->render('DonateAdminBundle:Dashboard:highestRecurringIntents.html.twig', [
+        return $this->render(':admin/dashboard:highest_recurringintents.html.twig', [
             'id'        => 'highest-recurrin-intents',
             'title'     => $this->get('translator')->trans('Top five recurring donators'), //'TOP FIVE des donateurs réguliers'
             'results'   => $results,
@@ -123,7 +123,7 @@ class DashboardController extends Controller
     {
         $results = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Payment')->getHighestDonatorPayment(5);
 
-        return $this->render('DonateAdminBundle:Dashboard:bestDonators.html.twig', [
+        return $this->render(':admin/dashboard:best_donators.html.twig', [
             'id'        => 'best-donators',
             'title'     => $this->get('translator')->trans('Top five donators'), //'TOP FIVE des plus gros donateurs'
             'results'   => $results,

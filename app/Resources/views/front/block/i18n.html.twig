@@ -1,0 +1,16 @@
+{#
+ @param i18n
+#}
+{% spaceless %}
+{% if i18n is defined %}
+	{% if i18n | length > 1 %}
+	<div id="i18n" class="block pull-right">
+		<ul class="list-inline">
+			{% for lang in i18n %}
+			<li><a {% if lang ==  app.request.locale %}class="active"{% endif %} href="{{ path('donate_front_home', {'_locale': lang}) }}" title="Version {{ lang | upper }} ">{{ lang|upper }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+{% endif %}
+{% endspaceless %}
