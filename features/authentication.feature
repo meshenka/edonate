@@ -19,7 +19,7 @@ Feature: Test admin authentication
     And I press "_submit"
     Then the response status code should be 200
     And I should be on "/secured/login"
-    And I should see "Bad credentials."
+    And I should see "Nom d'utilisateur ou mot de passe incorrect"
 
   Scenario: Test to log in with correct credentials
     Given I go to "/secured"

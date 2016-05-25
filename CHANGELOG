@@ -1,3 +1,6 @@
+v2.5.4
+  * move all templates to app/Ressources (9b90e90)
+  * add missing web/media and web/uploads in versionning (c92d335)
 v2.5.3
   * Update Symfony to 2.8.6
   * replace phing by make
