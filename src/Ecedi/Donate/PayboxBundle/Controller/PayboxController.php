@@ -51,7 +51,7 @@ class PayboxController extends Controller
                     'PBX_REPONDRE_A'   => $this->generateUrl('lexik_paybox_ipn', ['time' => time()], true),
                 ));
 
-                return $this->render('DonatePayboxBundle:Paybox:pay.html.twig', [
+                return $this->render(':payment:paybox:pay.html.twig', [
                     'intent'    => $intent,
                     'url'       => $paybox->getUrl(),
                     'form'      => $paybox->getForm()->createView(),
