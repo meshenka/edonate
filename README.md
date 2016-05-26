@@ -1,5 +1,7 @@
 # eDonate Standard Edition by [Agence Ecedi](http://ecedi.fr)
 
+[![Build Status](https://travis-ci.org/ecedi/edonate.svg?branch=master)](https://travis-ci.org/ecedi/edonate)
+
 eDonate est une application Full Stack Symfony2 pour la production de formulaire de don
 
 ## Installation
