@@ -16,6 +16,7 @@ label:
   company: Société
   country: Pays
   email: E-mail
+  confirm_email: Confirmation E-mail 
   firstname: Prénom
   lastname: Nom
   phone: Téléphone
