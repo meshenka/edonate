@@ -1,9 +1,7 @@
 {#
-
 @param intent
-
 #}
-{% trans_default_domain "sepa_offline" %}
+{% trans_default_domain "messages" %}
 
 {% extends ":front:layout.html.twig" %}
 {% block title%}{{'sepa.donation.completed'|trans }} | {{ parent() }} {% endblock %}
@@ -13,76 +11,76 @@
 <h1 class="no-print">{{ 'sepa.lead.title'|trans }}</h1>
 
 <p class="lead no-print">
-	{{ 'sepa.lead.highlight.text.%amount%' | trans ({'%amount%' : intent.amount / 100 })}}
+	{{ 'sepa.lead.highlight_text' | trans ({'%amount%' : intent.amount / 100 })}}
 </p>
 
 <p class="no-print pre">
 	{{ 'sepa.lead.text'|trans }}
 </p>
 <div class="btn-link">
-	<a class="btn btn-primary btn-lg" href="{{path('donate_payment_sepa_offline_document')}}" >{{ "Get PDF" | trans }}</a>
+	<a class="btn btn-primary btn-lg" href="{{path('donate_payment_sepa_offline_document')}}" >{{ "label.get_pdf" | trans }}</a>
 </div>
 
 
 <div class="print">
 	<h2>{{ 'sepa.body.title' | trans }}</h2>
 
-	{{ 'sepa.body.text.%amount%' | trans ({'%amount%' : intent.amount / 100 }) | raw }}
+	{{ 'sepa.body.text' | trans ({'%amount%' : intent.amount / 100 }) | raw }}
 
-	<h3>{{ 'sepa.donator-details.title' | trans }}</h3>
+	<h3>{{ 'label.donator-details' | trans }}</h3>
 
 	<dl class="dl-horizontal">
 		{% if intent.customer.civility %}
-		<dt>{{ 'Civility'|trans }} :</dt>
+		<dt>{{ 'label.civility'|trans }} :</dt>
 		<dd>{{ intent.customer.civility }} </dd>
 		{% endif %}
 
-		<dt>{{ 'Firstname'|trans }} :</dt>
+		<dt>{{ 'label.firstname' |trans }} :</dt>
 		<dd>{{ intent.customer.firstName }} </dd>
 
-		<dt>{{ 'Lastname'|trans }} :</dt>
+		<dt>{{ 'label.lastname'|trans }} :</dt>
 		<dd>{{ intent.customer.lastName }} </dd>
 
-		<dt>{{ 'Amount'|trans }} :</dt>
+		<dt>{{ 'label.amount'|trans }} :</dt>
 		<dd>{{ intent.amount / 100 }} <span class="euro">€</span></dd>
 
 		{% if intent.customer.company %}
-		<dt>{{ "Company" | trans }} :</dt><dd>{{ intent.customer.company }}</dd>
+		<dt>{{ "label.company" | trans }} :</dt><dd>{{ intent.customer.company }}</dd>
 		{% endif %}
 
-		<dt>{{ "Address" | trans }} :</dt><dd>{{ intent.customer.addressNber }} {{ intent.customer.addressStreet }}</dd>
+		<dt>{{ "label.address" | trans }} :</dt><dd>{{ intent.customer.addressNber }} {{ intent.customer.addressStreet }}</dd>
 
 		{% if intent.customer.addressExtra %}
-		<dt>{{ "Address extended" | trans }} :</dt><dd>{{ intent.customer.addressExtra }}</dd>
+		<dt>{{ "label.address_extended" | trans }} :</dt><dd>{{ intent.customer.addressExtra }}</dd>
 		{% endif %}
 
 		{% if intent.customer.addressLiving %}
-		<dt>{{ "Address Living" | trans }} :</dt><dd>{{ intent.customer.addressLiving }}</dd>
+		<dt>{{ "label.address_Living" | trans }} :</dt><dd>{{ intent.customer.addressLiving }}</dd>
 		{% endif %}
 
-		<dt>{{ "Zipcode" | trans }} :</dt><dd>{{ intent.customer.addressZipcode }}</dd>
-		<dt>{{ "City" | trans }} :</dt><dd>{{ intent.customer.addressCity }}</dd>
+		<dt>{{ "label.zipcode" | trans }} :</dt><dd>{{ intent.customer.addressZipcode }}</dd>
+		<dt>{{ "label.city" | trans }} :</dt><dd>{{ intent.customer.addressCity }}</dd>
 
 		{% if intent.customer.addressPb %}
-		<dt>{{ "Postal box" | trans }} :</dt><dd>{{ intent.customer.addressPb }}</dd>
+		<dt>{{ "label.postal_box" | trans }} :</dt><dd>{{ intent.customer.addressPb }}</dd>
 		{% endif %}
 
-		<dt>{{ "Country" | trans }} :</dt><dd>{{ intent.customer.addressCountry }}</dd>
+		<dt>{{ "label.country" | trans }} :</dt><dd>{{ intent.customer.addressCountry }}</dd>
 
 		{% if intent.customer.phone %}
-		<dt>{{ "Phone" | trans }} :</dt><dd>{{ intent.customer.phone }}</dd>
+		<dt>{{ "label.phone" | trans }} :</dt><dd>{{ intent.customer.phone }}</dd>
 		{% endif %}
 
-		<dt>{{ "Email" | trans }} :</dt><dd>{{ intent.customer.email }}</dd>
+		<dt>{{ "label.email" | trans }} :</dt><dd>{{ intent.customer.email }}</dd>
 
-        {% if intent.affectationCode %}
-            <dt>{{ "Affectation" | trans }}</dt><dd>{{ intent.affectationCode }}</dd>
-        {% endif %}
+    {% if intent.affectationCode %}
+        <dt>{{ "label.affectation" | trans }}</dt><dd>{{ intent.affectationCode }}</dd>
+    {% endif %}
 
 	</dl>
 
 	<p class='separation'>
-		{{ "sepa.donator-service.contact" | trans | raw}}
+		{{ "sepa.donator-service" | trans | raw}}
 	</p>
 
 	<p class="loi">

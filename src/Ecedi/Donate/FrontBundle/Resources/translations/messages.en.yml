@@ -1,7 +1,0 @@
-block:
-    amount:
-        spot:
-            title: Donate once
-
-        recuring:
-            title: Donate every month

@@ -1,0 +1,77 @@
+block:
+    amount:
+        spot:
+            title: Donate once
+
+        recuring:
+            title: Donate every month
+
+label:
+  address: Address
+  address_living: Living
+  address_extended: Extended address
+  amount: Amount
+  city: city
+  civility: Civility
+  company: Company
+  country: Country
+  email: Email
+  firstname: Firstname
+  lastname: Lastname
+  phone: Phone
+  print: Print
+  affectation: Affectation
+  zipcode: Zipcode
+  postal_box: Postal box
+  get_pdf: Get PDF
+  affectation: Affectation
+  donator-details: Your personnal details
+  click_here: Click here
+
+sepa:
+  lead:
+    title: Thank you for your SEPA Mandat donation
+    highlight_text: Notre association vous remercie pour votre généreuse contribution de %amount% euros.
+    text: |
+      [PUT HERE THANKS TEXT]
+  donation:
+    completed: Your donation has ben registered
+  donator-service: |
+    For any extra infomation contact [SEAP-RESP-NAME] at [SEAP-RESP-EMAIL]
+  body:
+    title: Your donation
+    text: |
+      Merci d'imprimer cette page qui fait office de mandat de %amount% € <br/>
+      puis de remplir les mentions obligatoire et de nous le faire parvenir à l'adresse suivante: <br/>
+      [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+      [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+      [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+      [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+  privacy: |
+    [PUT HERE PRIVACY DETAILS]
+
+check_promise:
+  donation:
+    completed: Your donation has ben registered
+  lead:
+    title: Thank you for your donation via paycheck
+    highlight_text: Our association thanks you for your generosity.
+    text: |
+      [PUT HERE THANKS TEXT]
+  donator-service: |
+    <p>Send your mail to: </p>
+    <address>
+    [DONATOR SERVICE MAILBOX ADDRESS]
+    </address>
+  body:
+    title: Your donation
+    text: |
+      Your next step is to send us by mail your paycheck of %amount% <span class="euro">€</span>
+      order is:
+      [PUT HERE PAYCHECK ORDER]
+  privacy: |
+    [PUT HERE PRIVACY DETAILS]
+
+ogone:
+    help: In a few seconds, you will be led to the payment page.
+    alternative: If it is not the case, please

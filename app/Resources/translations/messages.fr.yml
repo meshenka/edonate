@@ -1,0 +1,79 @@
+block:
+    amount:
+        spot:
+            title: Donner une fois
+
+        recuring:
+            title: Donner tous les mois
+
+label:
+  address: Addresse
+  address_living: Habitant chez
+  address_extended: Complement d'adresse
+  amount: Montant
+  city: Ville
+  civility: Civilité
+  company: Société
+  country: Pays
+  email: E-mail
+  firstname: Prénom
+  lastname: Nom
+  phone: Téléphone
+  print: Imprimer
+  affectation: Affectation
+  zipcode: Code postale
+  postal_box: Boite Postale
+  get_pdf: Obtenir le PDF
+  affectation: Affectation
+  donator-details: Vos coordonnées
+  click_here: Cliquez ici
+sepa:
+  lead:
+    title: Merci pour votre don par mandat de prélèvement SEPA
+    highlight_text: Notre association vous remercie pour votre généreuse contribution de %amount% euros.
+    text: |
+      [METTRE ICI TEXTE DE REMERCIEMENT]
+  donation:
+    completed: Votre don a bien été enregistré
+  donator-service: |
+    <p>Envoyez votre courrier à l'adresse suivante: </p>
+    <address>
+    [METTRE ICI LES COORDONNEES SERVICE DONATEUR]
+    </address>
+  body:
+    title: Votre don
+    text: |
+      Merci d'imprimer cette page qui fait office de mandat de %amount% € <br/>
+      puis de remplir les mentions obligatoire et de nous le faire parvenir à l'adresse suivante: <br/>
+      [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+      [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+      [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+      [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]<br/>
+  privacy: |
+    [INFORMATION SUR LA CONFIDENTIALITE]
+
+check_promise:
+  donation:
+    completed: Votre don a bien été enregistré
+  lead:
+    title: Merci pour votre don par chèque
+    highlight_text: Notre association vous remercie pour votre généreuse contribution.
+    text: |
+      [METTRE ICI TEXTE DE REMERCIEMENT]
+  donator-service: |
+    <p>Envoyez votre courrier à l'adresse suivante: </p>
+    <address>
+    [METTRE ICI LES COORDONNEES SERVICE DONATEUR]
+    </address>
+  body:
+    title: Votre don
+    text: |
+      Vous vous engagez à nous envoyer par courrier un chèque de %amount% <span class="euro">€</span>
+      à l'ordre de:
+      [METTRE ICI LES COORDONNEES DE L'ASSOCIATION]
+  privacy: |
+    [INFORMATION SUR LA CONFIDENTIALITE]
+
+ogone:
+    help: Dans quelques secondes, vous serez redirigé vers la page de paiement.
+    alternative: Si ce n'est pas le cas, vous pouvez
