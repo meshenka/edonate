@@ -6,6 +6,11 @@ block:
         recuring:
             title: Donate every month
 
+footer:
+  contact: contact
+  help: Help
+  legal: Legal notice
+  
 label:
   address: Address
   address_living: Living
@@ -22,6 +27,7 @@ label:
   phone: Phone
   print: Print
   affectation: Affectation
+  affectation_title: I want to
   zipcode: Zipcode
   postal_box: Postal box
   get_pdf: Get PDF

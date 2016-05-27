@@ -194,7 +194,7 @@ class DonationType extends AbstractType
                  'required'  => true,
                  'expanded' => true,
                  'multiple' => false,
-                 'label' => 'I want to',
+                 'label' => 'labe.affectation_title',
                  'data' => $affectations[0]->getCode(),
                  'mapped' => false,
                  'choices_as_values' => true,

@@ -6,6 +6,12 @@ block:
         recuring:
             title: Donner tous les mois
 
+
+footer:
+  contact: contact
+  help: Aide
+  legal: Mentions légales
+
 label:
   address: Addresse
   address_living: Habitant chez
@@ -26,6 +32,7 @@ label:
   postal_box: Boite Postale
   get_pdf: Obtenir le PDF
   affectation: Affectation
+  affectation_title: I want to
   donator-details: Vos coordonnées
   click_here: Cliquez ici
 
