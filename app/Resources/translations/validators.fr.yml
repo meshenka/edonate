@@ -1,0 +1,5 @@
+amount:
+    min: Le montant doit être supérieur à %amount% €
+    max: Le montant doit être inférieur à %amount% €
+email:
+    matching: Ces emails doivent être identiques.

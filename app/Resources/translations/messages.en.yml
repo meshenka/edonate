@@ -29,6 +29,9 @@ label:
   donator-details: Your personnal details
   click_here: Click here
 
+amount:
+  other: Other amount
+
 sepa:
   lead:
     title: Thank you for your SEPA Mandat donation

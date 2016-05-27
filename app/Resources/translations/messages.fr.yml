@@ -16,7 +16,7 @@ label:
   company: Société
   country: Pays
   email: E-mail
-  confirm_email: Confirmation E-mail 
+  confirm_email: Confirmation E-mail
   firstname: Prénom
   lastname: Nom
   phone: Téléphone
@@ -28,6 +28,9 @@ label:
   affectation: Affectation
   donator-details: Vos coordonnées
   click_here: Cliquez ici
+
+amount:
+  other: Autre montant
 sepa:
   lead:
     title: Merci pour votre don par mandat de prélèvement SEPA

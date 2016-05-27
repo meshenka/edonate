@@ -1,0 +1,5 @@
+amount:
+    min: Amount must be greater than %amount% €
+    max: Amount must be lower than  %amount% €
+email:
+    matching: The email fields must match.

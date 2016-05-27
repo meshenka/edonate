@@ -9,6 +9,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Ecedi\Donate\FrontBundle\Form\DataTransformer\AmountChoiceToIntentAmountTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class AmountType extends AbstractType
 {
@@ -20,7 +22,6 @@ class AmountType extends AbstractType
     }
 
     //TODO find a way to remove @translator
-    //TODO move validation translations to validators
     /**
      * @since 2.4 flip keys and values and add choices_as_values option
      * @param  FormBuilderInterface $builder [description]
@@ -36,7 +37,7 @@ class AmountType extends AbstractType
                 'manual',
                 'preselected',
             ]))
-            ->add('preselected', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
+            ->add('preselected', ChoiceType::class, [
                 'choices'   => $options['choices'],
                 'required'  => false,
                 'expanded'    => true,
@@ -48,19 +49,20 @@ class AmountType extends AbstractType
                 'choice_value' => function ($choice) {
                     return $choice;
                 },
+                'choice_translation_domain' => false,
             ])
-            ->add('manual', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', [
+            ->add('manual', MoneyType::class, [
                 'currency'    => 'EUR',
                 'required'  => false,
-                'label'    => 'Another amount',
+                'label'    => 'amount.other',
                 'scale' => 0,
                 'constraints' => [
                     new Assert\Range(
                         [
                           'min'        => $options['min_amount'],
                           'max'        => $options['max_amount'],
-                          'minMessage'    => $this->translator->trans('Amount must be greater than %amount% €', ['%amount%' => $options['min_amount']], 'validation'),
-                          'maxMessage'    => $this->translator->trans('Amount must be lower than  %amount% €', [ '%amount%' => $options['max_amount']], 'validation'),
+                          'minMessage'    => $this->translator->trans('amount.min', ['%amount%' => $options['min_amount']], 'validators'),
+                          'maxMessage'    => $this->translator->trans('amount.max', [ '%amount%' => $options['max_amount']], 'validators'),
                         ]
                     ),
                 ]

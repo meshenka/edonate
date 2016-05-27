@@ -96,7 +96,7 @@ class DonationType extends AbstractType
 
         $builder->add('email', RepeatedType::class, [
             'type' => EmailType::class,
-            'invalid_message' => 'The email fields must match.',
+            'invalid_message' => 'email.matching',
             'required' => true,
             'first_options'  => array('label' => 'label.email'),
             'second_options' => array('label' => 'label.confirm_email'),
