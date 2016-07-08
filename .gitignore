@@ -1,6 +1,21 @@
+# bower assets
 /app/Resources/assets/
+
+# system files
 *~
+*.swp
+*.sql
+*.tgz
+*.gz
+*.zip
+.DS_Store
 *.[db]
+
+# node
+npm-debug.log
+/node_modules/
+
+# symfony
 /web/bundles/*
 /web/assetic/*
 /web/images/*
@@ -18,17 +33,29 @@
 /vendor/
 /bin/
 /composer.phar
+/web/css/build/*
+/web/js/build/*
+
+# versionning
 .svn
+
+# IDE
 .buildpath
 .project
+/.idea/
+.settings/
+
+*.sublime-workspace
+*.sublime-project
+
+.atom/
+
+# build
 /cov
 /build
 /docs
 /reports
 /coverage/
 build.properties
-/node_modules/
 .rules/
 .coverage_db
-/web/css/build/*
-/web/js/build/*
