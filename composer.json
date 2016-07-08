@@ -58,7 +58,7 @@
         "knplabs/friendly-contexts": "^0.7",
         "behatch/contexts": "dev-master",
         "liuggio/fastest": "dev-master",
-        "fabpot/php-cs-fixer": "^1.11"
+        "friendsofphp/php-cs-fixer": "^1.11"
     },
     "scripts": {
         "post-root-package-install": [
