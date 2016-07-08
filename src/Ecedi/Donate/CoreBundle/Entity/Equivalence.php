@@ -8,7 +8,7 @@ namespace Ecedi\Donate\CoreBundle\Entity;
  * id (serial) int(11)
  * amount int(11)
  * currency
- * label
+ * label.
  */
 class  Equivalence
 {
@@ -18,9 +18,9 @@ class  Equivalence
     private $default;
 
     /**
-     * default
+     * default.
      *
-     * @return boolean [description]
+     * @return bool [description]
      */
     public function getDefault()
     {
@@ -33,9 +33,9 @@ class  Equivalence
     }
 
     /**
-     * [Description]
+     * [Description].
      *
-     * @param Boolean $newdefautl [description]
+     * @param bool $newdefautl [description]
      */
     private function setDefault($default)
     {
@@ -45,9 +45,9 @@ class  Equivalence
     }
 
     /**
-     * amount
+     * amount.
      *
-     * @return integer amount
+     * @return int amount
      */
     public function getAmount()
     {
@@ -55,9 +55,9 @@ class  Equivalence
     }
 
     /**
-     * amount
+     * amount.
      *
-     * @param Integer $newamount Amount
+     * @param int $newamount Amount
      */
     private function setAmount($amount)
     {
@@ -67,7 +67,7 @@ class  Equivalence
     }
 
     /**
-     * Currency
+     * Currency.
      *
      * @return string currency
      */
@@ -77,9 +77,9 @@ class  Equivalence
     }
 
     /**
-     * currency
+     * currency.
      *
-     * @param String $newCurrency Currency
+     * @param string $newCurrency Currency
      */
     private function setCurrency($currency)
     {
@@ -89,7 +89,7 @@ class  Equivalence
     }
 
     /**
-     * label (en label)
+     * label (en label).
      *
      * @return string label
      */
@@ -99,9 +99,9 @@ class  Equivalence
     }
 
     /**
-     * label
+     * label.
      *
-     * @param String $newlabel Label
+     * @param string $newlabel Label
      */
     private function setLabel($label)
     {

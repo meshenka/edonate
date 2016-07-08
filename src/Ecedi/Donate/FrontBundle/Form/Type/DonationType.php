@@ -2,7 +2,6 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright 2015 Agence Ecedi
- * @package eDonate
  * @license MIT http://opensource.org/licenses/MIT
  */
 namespace Ecedi\Donate\FrontBundle\Form\Type;
@@ -22,7 +21,6 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 
 class DonationType extends AbstractType
 {
@@ -45,96 +43,98 @@ class DonationType extends AbstractType
         }
 
         $form->add($tunnel, AmountType::class, [
-                'mapped'        => false,
-                'label'         => false,
-                'required'      => true,
-                'choices'       => $this->getEquivalencesOptions($options['equivalences'], $tunnel),
-                'min_amount'    => $options['min_amount'],
-                'max_amount'    => $options['max_amount'],
-                'attr'          => ['class' => 'amount_selector tunnel-'.$tunnel], //used in the JS part
-                'default'       => $default,
-                'title'         => sprintf('block.amount.%s.title', $tunnel)
+                'mapped' => false,
+                'label' => false,
+                'required' => true,
+                'choices' => $this->getEquivalencesOptions($options['equivalences'], $tunnel),
+                'min_amount' => $options['min_amount'],
+                'max_amount' => $options['max_amount'],
+                'attr' => ['class' => 'amount_selector tunnel-'.$tunnel], //used in the JS part
+                'default' => $default,
+                'title' => sprintf('block.amount.%s.title', $tunnel),
 
             ]);
     }
 
     /**
      * @since 2.4 flip keys and values and add choices_as_values option
-     * @param  FormBuilderInterface $builder [description]
-     * @param  array                $options [description]
-     * @return [type]               [description]
+     *
+     * @param FormBuilderInterface $builder [description]
+     * @param array                $options [description]
+     *
+     * @return [type] [description]
      */
     private function buildPersonnalDetails(FormBuilderInterface $builder, array $options)
     {
         // Info perso
         $builder->add('civility', ChoiceType::class, [
-            'choices'   => array_flip($options['civilities']),
-            'required'  => false,
+            'choices' => array_flip($options['civilities']),
+            'required' => false,
             'label' => 'label.civility',
             'choices_as_values' => true,
         ]);
 
         $builder->add('company', TextType::class, [
-            'required' => FALSE,
-            'label' => 'label.company'
+            'required' => false,
+            'label' => 'label.company',
         ]);
 
         $builder->add('firstName', TextType::class, [
-            'required' => TRUE,
-            'label' => 'label.firstname'
+            'required' => true,
+            'label' => 'label.firstname',
         ]);
 
         $builder->add('lastName', TextType::class, [
-            'required' => TRUE,
-            'label' => 'label.lastname'
+            'required' => true,
+            'label' => 'label.lastname',
         ]);
 
         $builder->add('phone', TextType::class, [
-            'required' => FALSE,
-            'label' => 'label.phone'
+            'required' => false,
+            'label' => 'label.phone',
         ]);
 
         $builder->add('email', RepeatedType::class, [
             'type' => EmailType::class,
             'invalid_message' => 'email.matching',
             'required' => true,
-            'first_options'  => array('label' => 'label.email'),
+            'first_options' => array('label' => 'label.email'),
             'second_options' => array('label' => 'label.confirm_email'),
         ]);
 
         //Address
         $builder->add('addressStreet', TextType::class, [
-            'required'  => true,
-            'label' => 'label.address'
+            'required' => true,
+            'label' => 'label.address',
         ]);
 
         $builder->add('addressPb', TextType::class, [
-            'required'  => false,
-            'label' => 'label.postal_box'
+            'required' => false,
+            'label' => 'label.postal_box',
         ]);
 
         $builder->add('addressLiving', TextType::class, [
-            'required'  => false,
-            'label' => 'label.address_living'
+            'required' => false,
+            'label' => 'label.address_living',
         ]);
 
         $builder->add('addressExtra', TextType::class, [
-            'required'  => false,
-            'label' => 'Apartment, floor numbers'
+            'required' => false,
+            'label' => 'Apartment, floor numbers',
         ]);
 
         $builder->add('addressZipcode', NumberType::class, [
-            'required'  => true,
-            'label' => 'label.zipcode'
+            'required' => true,
+            'label' => 'label.zipcode',
         ]);
 
         $builder->add('addressCity', TextType::class, [
-            'required'  => true,
-            'label' => 'label.city'
+            'required' => true,
+            'label' => 'label.city',
         ]);
 
         $builder->add('addressCountry', CountryType::class, [
-            'required'  => true,
+            'required' => true,
             'preferred_choices' => array('FR'),
             'data' => 'FR',
             'label' => 'label.country',
@@ -145,8 +145,10 @@ class DonationType extends AbstractType
     /**
      * @since  2.0.0
      * @since 2.4 flip keys and values and add choices_as_values option
-     * @param  Collection $affectations [description]
-     * @return array      [description]
+     *
+     * @param Collection $affectations [description]
+     *
+     * @return array [description]
      */
     protected function getAffectationChoices(Collection $affectations)
     {
@@ -159,10 +161,11 @@ class DonationType extends AbstractType
     }
 
     /**
-     * Add affectation field according to options
+     * Add affectation field according to options.
      *
      * @since 2.0.0
      * @since 2.4 flip keys and values and add choices_as_values option
+     *
      * @param FormBuilderInterface $builder [description]
      * @param array                $options [description]
      */
@@ -190,8 +193,8 @@ class DonationType extends AbstractType
 
         if ($affectations->count() > 1) {
             $builder->add('affectations', ChoiceType::class, [
-                 'choices'   => $this->getAffectationChoices($affectations),
-                 'required'  => true,
+                 'choices' => $this->getAffectationChoices($affectations),
+                 'required' => true,
                  'expanded' => true,
                  'multiple' => false,
                  'label' => 'labe.affectation_title',
@@ -206,9 +209,11 @@ class DonationType extends AbstractType
 
     /**
      * @since 2.4 flip keys and values and add choices_as_values option
-     * @param  FormBuilderInterface $builder [description]
-     * @param  array                $options [description]
-     * @return [type]               [description]
+     *
+     * @param FormBuilderInterface $builder [description]
+     * @param array                $options [description]
+     *
+     * @return [type] [description]
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -227,11 +232,11 @@ class DonationType extends AbstractType
         $this->buildPersonnalDetails($builder, $options);
 
         $builder->add('erf', ChoiceType::class, [
-            'choices'   => [
+            'choices' => [
                 'by email' => 0,
                 'by post' => 1,
             ],
-            'required'  => true,
+            'required' => true,
             'expanded' => true,
             'multiple' => false,
             'label' => 'I prefer to receive my tax receipt',
@@ -254,8 +259,8 @@ class DonationType extends AbstractType
 
         foreach ($options['payment_methods'] as $pm) {
             $pmForm->add($pm->getId(), SubmitType::class, [
-                    'label'         => $pm->getName(),
-                    'attr'          => ['class' => 'btn btn-primary tunnel-'.$pm->getTunnel()], //used in the JS part
+                    'label' => $pm->getName(),
+                    'attr' => ['class' => 'btn btn-primary tunnel-'.$pm->getTunnel()], //used in the JS part
                 ]);
         }
 
@@ -265,8 +270,9 @@ class DonationType extends AbstractType
     /**
      * @since 2.4 flip keys and values and add choices_as_values option
      *
-     * @param  [type] $equivalences [description]
-     * @param  [type] $tunnel       [description]
+     * @param [type] $equivalences [description]
+     * @param [type] $tunnel       [description]
+     *
      * @return [type] [description]
      */
     protected function getEquivalencesOptions($equivalences, $tunnel = PaymentMethodInterface::TUNNEL_SPOT)
@@ -282,8 +288,10 @@ class DonationType extends AbstractType
     }
 
     /**
-     * transform a list of payment methods to an array with key is tunnel name
-     * @param  array  $paymentMethods a list of PaymentMethodInterface
+     * transform a list of payment methods to an array with key is tunnel name.
+     *
+     * @param array $paymentMethods a list of PaymentMethodInterface
+     *
      * @return [type] [description]
      */
     protected function paymentMethodsToTunnels($paymentMethods)
@@ -298,12 +306,13 @@ class DonationType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
      * @since 2.4 use new method signatire since sf 2.7
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'csrf_protection'   => false,
+            'csrf_protection' => false,
             'civilities' => [],
             'equivalences' => [],
             'payment_methods' => [],

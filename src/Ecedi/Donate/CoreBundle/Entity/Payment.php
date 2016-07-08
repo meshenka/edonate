@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Payment
+ * Payment.
  *
  * @ORM\Table("payment",
  *   indexes={
@@ -32,7 +32,7 @@ class Payment
     const STATUS_CANCELED = 'canceled';
     const STATUS_AUTHORIZED = 'authorized';
     const STATUS_DENIED = 'denied';
-    const STATUS_PAYED =  'payed';
+    const STATUS_PAYED = 'payed';
     const STATUS_FAILED = 'failed';
     const STATUS_NEW = 'new';
     const STATUS_REFUND = 'refund';
@@ -45,7 +45,7 @@ class Payment
     private $intent;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -74,7 +74,7 @@ class Payment
             self::STATUS_PAYED,
             self::STATUS_FAILED,
             self::STATUS_REFUND,
-            self::STATUS_UNKNOW
+            self::STATUS_UNKNOW,
         ];
     }
 
@@ -135,9 +135,9 @@ class Payment
     private $changedAt;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -145,9 +145,10 @@ class Payment
     }
 
     /**
-     * Set status
+     * Set status.
      *
-     * @param  string  $status
+     * @param string $status
+     *
      * @return Payment
      */
     public function setStatus($status)
@@ -158,7 +159,7 @@ class Payment
     }
 
     /**
-     * Get status
+     * Get status.
      *
      * @return string
      */
@@ -168,9 +169,10 @@ class Payment
     }
 
     /**
-     * Set responseCode
+     * Set responseCode.
      *
-     * @param  string  $responseCode
+     * @param string $responseCode
+     *
      * @return Payment
      */
     public function setResponseCode($responseCode)
@@ -181,7 +183,7 @@ class Payment
     }
 
     /**
-     * Get responseCode
+     * Get responseCode.
      *
      * @return string
      */
@@ -191,9 +193,10 @@ class Payment
     }
 
     /**
-     * Set transaction
+     * Set transaction.
      *
-     * @param  string  $transaction
+     * @param string $transaction
+     *
      * @return Payment
      */
     public function setTransaction($transaction)
@@ -204,7 +207,7 @@ class Payment
     }
 
     /**
-     * Get transaction
+     * Get transaction.
      *
      * @return string
      */
@@ -214,9 +217,10 @@ class Payment
     }
 
     /**
-     * Set autorisation
+     * Set autorisation.
      *
-     * @param  string  $autorisation
+     * @param string $autorisation
+     *
      * @return Payment
      */
     public function setAutorisation($autorisation)
@@ -227,7 +231,7 @@ class Payment
     }
 
     /**
-     * Get autorisation
+     * Get autorisation.
      *
      * @return string
      */
@@ -237,9 +241,10 @@ class Payment
     }
 
     /**
-     * Set response
+     * Set response.
      *
-     * @param  array   $response
+     * @param array $response
+     *
      * @return Payment
      */
     public function setResponse($response)
@@ -250,7 +255,7 @@ class Payment
     }
 
     /**
-     * Get response
+     * Get response.
      *
      * @return array
      */
@@ -260,9 +265,10 @@ class Payment
     }
 
     /**
-     * Set alias
+     * Set alias.
      *
-     * @param  string  $alias
+     * @param string $alias
+     *
      * @return Payment
      */
     public function setAlias($alias)
@@ -273,7 +279,7 @@ class Payment
     }
 
     /**
-     * Get alias
+     * Get alias.
      *
      * @return string
      */
@@ -283,9 +289,10 @@ class Payment
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
+     *
      * @return Payment
      */
     public function setCreatedAt($createdAt)
@@ -296,7 +303,7 @@ class Payment
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -306,9 +313,10 @@ class Payment
     }
 
     /**
-     * Set changedAt
+     * Set changedAt.
      *
-     * @param  \DateTime $changedAt
+     * @param \DateTime $changedAt
+     *
      * @return Payment
      */
     public function setChangedAt($changedAt)
@@ -319,7 +327,7 @@ class Payment
     }
 
     /**
-     * Get changedAt
+     * Get changedAt.
      *
      * @return \DateTime
      */
@@ -329,9 +337,10 @@ class Payment
     }
 
     /**
-     * Set intent
+     * Set intent.
      *
-     * @param  \Ecedi\Donate\CoreBundle\Entity\Intent $intent
+     * @param \Ecedi\Donate\CoreBundle\Entity\Intent $intent
+     *
      * @return Payment
      */
     public function setIntent(Intent $intent = null)
@@ -342,7 +351,7 @@ class Payment
     }
 
     /**
-     * Get intent
+     * Get intent.
      *
      * @return \Ecedi\Donate\CoreBundle\Entity\Intent
      */
@@ -352,7 +361,7 @@ class Payment
     }
 
     /**
-     * Formate la date de création en timestamp pour l'api REST
+     * Formate la date de création en timestamp pour l'api REST.
      *
      * @Serializer\VirtualProperty
      * @Serializer\SerializedName("created_at")
@@ -366,7 +375,7 @@ class Payment
     }
 
     /**
-     * Formate la date de maj en timestamp pour l'api REST
+     * Formate la date de maj en timestamp pour l'api REST.
      *
      * @Serializer\VirtualProperty
      * @Serializer\SerializedName("changed_at")

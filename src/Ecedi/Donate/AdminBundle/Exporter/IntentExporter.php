@@ -2,7 +2,6 @@
 /**
  * @author Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
 namespace Ecedi\Donate\AdminBundle\Exporter;
@@ -12,8 +11,7 @@ use Doctrine\ORM\Query;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Export
- *
+ * Export.
  */
 class IntentExporter
 {
@@ -31,9 +29,10 @@ class IntentExporter
     }
 
     /**
-     * Set name
+     * Set name.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return Contact
      */
     public function setName($name)
@@ -44,7 +43,7 @@ class IntentExporter
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -54,7 +53,7 @@ class IntentExporter
     }
 
     /**
-     * Set charset
+     * Set charset.
      *
      * @param string $charset
      */
@@ -66,7 +65,7 @@ class IntentExporter
     }
 
     /**
-     * Get charset
+     * Get charset.
      *
      * @return string
      */
@@ -76,7 +75,7 @@ class IntentExporter
     }
 
     /**
-     * Set QueryBuilder exportQb
+     * Set QueryBuilder exportQb.
      *
      * @param string exportQb
      */
@@ -88,7 +87,7 @@ class IntentExporter
     }
 
     /**
-     * Get QueryBuilder exportQb
+     * Get QueryBuilder exportQb.
      *
      * @return exportQb
      */
@@ -114,22 +113,22 @@ class IntentExporter
             utf8_decode('Reçu fiscal'),
             'Campagne',
             'Affectation',
-            utf8_decode("Civilité"),
-            "Nom",
-            utf8_decode("Prénom"),
-            "id distant(ogone ...)",
-            utf8_decode("Société"),
-            "Date de naissance",
-            "Email",
-            utf8_decode("Téléphone"),
-            utf8_decode("N°"),
-            "rue, voirie...",
+            utf8_decode('Civilité'),
+            'Nom',
+            utf8_decode('Prénom'),
+            'id distant(ogone ...)',
+            utf8_decode('Société'),
+            'Date de naissance',
+            'Email',
+            utf8_decode('Téléphone'),
+            utf8_decode('N°'),
+            'rue, voirie...',
             utf8_decode("Complément d'adresse"),
-            "Boite postale",
-            "Code postal",
-            "Ville",
-            "Pays",
-            "Site web",
+            'Boite postale',
+            'Code postal',
+            'Ville',
+            'Pays',
+            'Site web',
         );
 
         fputcsv($handle, $csvHeader, ';');
@@ -146,9 +145,9 @@ class IntentExporter
         *
         */
         $nbResultsRequested = 500;
-        $iMax = ceil($nbIntents/$nbResultsRequested); // Calcul du nombre de requêtes à réaliser
+        $iMax = ceil($nbIntents / $nbResultsRequested); // Calcul du nombre de requêtes à réaliser
 
-        for ($i = 0; $i <= $iMax; $i++) {
+        for ($i = 0; $i <= $iMax; ++$i) {
             $exportQb->select('i, c') // cf repository pour les alias, on récupère les infos des intents et des customers
                      ->setFirstResult($i * $nbResultsRequested)
                      ->setMaxResults($nbResultsRequested);
@@ -159,7 +158,7 @@ class IntentExporter
 
             foreach ($results as $intent) {
                 $status = $this->translator->trans($intent['status']);
-                $type = ($intent['type'] == 0) ? "ponctuel" : "récurrent";
+                $type = ($intent['type'] == 0) ? 'ponctuel' : 'récurrent';
                 $fiscalreceipt = ($intent['fiscal_receipt'] == 0) ? 'email' : 'courrier';
 
                 $fieldsValue = [

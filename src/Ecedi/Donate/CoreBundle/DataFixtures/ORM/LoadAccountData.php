@@ -3,10 +3,7 @@
  * @license http://opensource.org/licenses/MIT?year=2015 MIT
  * @copyright 2015 Agence Ecedi
  * @author Sylvain Gogel <sgogel@ecedi.fr>
- * @package Donate\Test
- *
  */
-
 namespace Ecedi\Donate\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -17,7 +14,7 @@ use Nelmio\Alice\Persister\Doctrine as FixturesORM;
 class LoadAccountData implements FixtureInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Ecedi\Donate\CoreBundle\Analytics;
 
 class Utm
@@ -16,9 +17,9 @@ class Utm
       private $pagesViewed;            // Pages viewed in current session
 
       /**
-       * Pages viewed in current session
+       * Pages viewed in current session.
        *
-       * @return Integer pages viewed
+       * @return int pages viewed
        */
       public function getPagesViewed()
       {
@@ -26,9 +27,9 @@ class Utm
       }
 
       /**
-       * Pages viewed
+       * Pages viewed.
        *
-       * @param Integer $newpagesViewed Pages viewed
+       * @param int $newpagesViewed Pages viewed
        */
       public function setPagesViewed($pagesViewed)
       {
@@ -37,9 +38,9 @@ class Utm
           return $this;
       }
       /**
-       * times visited
+       * times visited.
        *
-       * @return Integer times visited
+       * @return int times visited
        */
       public function getTimesVisited()
       {
@@ -47,9 +48,9 @@ class Utm
       }
 
       /**
-       * times visited
+       * times visited.
        *
-       * @param Integer $newtimesVisited Integer times visited
+       * @param int $newtimesVisited Integer times visited
        */
       public function setTimesVisited($timesVisited)
       {
@@ -59,7 +60,7 @@ class Utm
       }
 
       /**
-       * current visit started at
+       * current visit started at.
        *
        * @return \DateTime current visit started at
        */
@@ -69,8 +70,6 @@ class Utm
       }
 
       /**
-       *
-       *
        * @param \DateTime $newcurrentVisitStarted Current visit started at
        */
       public function setCurrentVisitStarted(\DateTime $currentVisitStarted)
@@ -81,7 +80,7 @@ class Utm
       }
 
       /**
-       * previous visit
+       * previous visit.
        *
        * @return \DateTime previous visit
        */
@@ -91,7 +90,7 @@ class Utm
       }
 
       /**
-       * previous visit
+       * previous visit.
        *
        * @param \DateTime $newpreviousVisit Previous visit
        */
@@ -103,7 +102,7 @@ class Utm
       }
 
       /**
-       * first visite
+       * first visite.
        *
        * @return \DateTime first visit
        */
@@ -113,7 +112,7 @@ class Utm
       }
 
       /**
-       * first visit
+       * first visit.
        *
        * @param \DateTime $newfirstVisit First visit
        */
@@ -125,7 +124,7 @@ class Utm
       }
 
       /**
-       * source
+       * source.
        *
        * @return string campaign source
        */
@@ -135,9 +134,9 @@ class Utm
       }
 
       /**
-       * source
+       * source.
        *
-       * @param String $newcampaignSource Campaign source
+       * @param string $newcampaignSource Campaign source
        */
       public function setCampaignSource($campaignSource)
       {
@@ -147,7 +146,7 @@ class Utm
       }
 
       /**
-       * name
+       * name.
        *
        * @return string name
        */
@@ -157,9 +156,9 @@ class Utm
       }
 
       /**
-       * name
+       * name.
        *
-       * @param String $newcampaignName Name
+       * @param string $newcampaignName Name
        */
       public function setCampaignName($campaignName)
       {
@@ -169,7 +168,7 @@ class Utm
       }
 
       /**
-       * medium
+       * medium.
        *
        * @return string medium
        */
@@ -179,9 +178,9 @@ class Utm
       }
 
       /**
-       * medium
+       * medium.
        *
-       * @param String $newcampaignMedium Medium
+       * @param string $newcampaignMedium Medium
        */
       public function setCampaignMedium($campaignMedium)
       {
@@ -191,7 +190,7 @@ class Utm
       }
 
       /**
-       * content
+       * content.
        *
        * @return string content
        */
@@ -201,9 +200,9 @@ class Utm
       }
 
       /**
-       * content
+       * content.
        *
-       * @param String $newcampaignContent Content
+       * @param string $newcampaignContent Content
        */
       public function setCampaignContent($campaignContent)
       {
@@ -213,7 +212,7 @@ class Utm
       }
 
       /**
-       * Term
+       * Term.
        *
        * @return string term
        */
@@ -223,9 +222,9 @@ class Utm
       }
 
       /**
-       * Term
+       * Term.
        *
-       * @param String $newcampaignTerm Term
+       * @param string $newcampaignTerm Term
        */
       public function setCampaignTerm($campaignTerm)
       {

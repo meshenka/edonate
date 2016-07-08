@@ -2,10 +2,8 @@
 /**
  * @author Alexandre Fayolle <afayolle@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\PayboxBundle\PaymentMethod\Plugin;
 
 use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\AbstractPaymentMethod;
@@ -16,6 +14,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 /**
  * A payment plugin for eCollect that plug Paybox TPE for Direct Payment
  * {@inheritdoc}
+ *
  * @since  2.2.0
  */
 class PayboxPaymentMethod extends AbstractPaymentMethod
@@ -42,7 +41,7 @@ class PayboxPaymentMethod extends AbstractPaymentMethod
     }
 
     /**
-     * return anything that can be managed as a response
+     * return anything that can be managed as a response.
      */
     public function pay(Intent $intent)
     {

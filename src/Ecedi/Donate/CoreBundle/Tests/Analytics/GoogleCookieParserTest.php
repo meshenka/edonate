@@ -1,4 +1,5 @@
 <?php
+
 namespace Ecedi\Donate\CoreBundle\Tests\Analytics;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

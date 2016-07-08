@@ -1,17 +1,14 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package eDonate
- * @subpackage SEPA
  * @copyright Agence Ecedi 2014
  */
-
 namespace Ecedi\Donate\PaymentBundle\Rum;
 
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 
 /**
- * Provide an automatic RUM number, based on Intent details
+ * Provide an automatic RUM number, based on Intent details.
  *
  * Use it when client want to pregenerate RUM in generated Mandate
  *
@@ -28,8 +25,8 @@ class PreformatedRumGenerator implements RumGeneratorInterface
     }
 
     /**
-     * @{inheritdoc}
-     * Generate RUM from a KEY + a MD5sum
+     * {@inheritdoc}
+     * Generate RUM from a KEY + a MD5sum.
      */
     public function generate(Intent $intent)
     {

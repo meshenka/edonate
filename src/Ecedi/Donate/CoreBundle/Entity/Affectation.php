@@ -2,16 +2,13 @@
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright 2015 Ecedi
- * @package eDonate
- *
  */
-
 namespace Ecedi\Donate\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Define possible affectations for a donation
+ * Define possible affectations for a donation.
  *
  * @since  2.0.0
  *
@@ -23,12 +20,11 @@ class Affectation
     /**
      * @ORM\ManyToOne(targetEntity="Layout", inversedBy="affectations")
      * @ORM\JoinColumn(name="layout_id", referencedColumnName="id")
-     *
      */
     private $layout;
 
     /**
-     * layout
+     * layout.
      *
      * @return Layout the layout
      */
@@ -38,7 +34,7 @@ class Affectation
     }
 
     /**
-     * layout
+     * layout.
      *
      * @param Layout $newlayout The layout
      */
@@ -50,7 +46,7 @@ class Affectation
     }
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -66,7 +62,7 @@ class Affectation
     private $code;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="weight", type="integer", nullable=false)
      */
@@ -80,9 +76,9 @@ class Affectation
     private $label;
 
     /**
-     * id
+     * id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -90,7 +86,7 @@ class Affectation
     }
 
     /**
-     * code
+     * code.
      *
      * @return string an affectation code
      */
@@ -100,9 +96,9 @@ class Affectation
     }
 
     /**
-     * code
+     * code.
      *
-     * @param String $newcode An affectation code
+     * @param string $newcode An affectation code
      */
     public function setCode($code)
     {
@@ -112,7 +108,7 @@ class Affectation
     }
 
     /**
-     * label (en label)
+     * label (en label).
      *
      * @return string label
      */
@@ -122,9 +118,9 @@ class Affectation
     }
 
     /**
-     * label
+     * label.
      *
-     * @param String $newlabel Label
+     * @param string $newlabel Label
      */
     public function setLabel($label)
     {
@@ -139,9 +135,9 @@ class Affectation
     }
 
     /**
-     * weight
+     * weight.
      *
-     * @return integer weight
+     * @return int weight
      */
     public function getWeight()
     {
@@ -149,9 +145,9 @@ class Affectation
     }
 
     /**
-     * weight
+     * weight.
      *
-     * @param Integer $newweight Weight
+     * @param int $newweight Weight
      */
     public function setWeight($weight)
     {

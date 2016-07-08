@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  * il y a l'ancienne api ga.js en cours de migration
  * Universal qui est la nouvelle lib (analytics.js)
  * mais cette dernière n'utilise plus les utm et ne difuse plus les info de campagne dans un cookie >_<
- *
  * @see https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage
  * Bref pas sur que ce code serve réellement
  * @TODO creuser comment faire avec Universal
@@ -20,7 +19,7 @@ class GoogleCookieParser
     private $utm;
 
   /**
-   * Utm
+   * Utm.
    *
    * @return Utm Utm
    */
@@ -30,7 +29,7 @@ class GoogleCookieParser
   }
 
   /**
-   * Utm
+   * Utm.
    *
    * @param Utm $newutm Utm
    */
@@ -65,7 +64,7 @@ class GoogleCookieParser
         list($domain_hash, $timestamp, $session_number, $campaign_numer, $campaign_data) = preg_split('[\.]', $value, 5);
 
     // Parse the campaign data
-    $campaign_data = parse_str(strtr($campaign_data, "|", "&"));
+    $campaign_data = parse_str(strtr($campaign_data, '|', '&'));
 
         $this->getUtm()->setCampaignSource($utmcsr);
         $this->getUtm()->setCampaignName($utmccn);

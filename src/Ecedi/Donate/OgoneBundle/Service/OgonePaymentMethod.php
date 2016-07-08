@@ -2,8 +2,6 @@
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package eDonate
- * @subpackage PaymentMethod
  */
 namespace Ecedi\Donate\OgoneBundle\Service;
 
@@ -13,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * A payment plugin for eCollect that plug DirectPayment with online/off-site TPE
+ * A payment plugin for eCollect that plug DirectPayment with online/off-site TPE.
+ *
  * @since  1.0.0
  */
 class OgonePaymentMethod extends AbstractPaymentMethod
@@ -40,7 +39,7 @@ class OgonePaymentMethod extends AbstractPaymentMethod
     }
 
     /**
-     * return anything that can be managed as a response
+     * return anything that can be managed as a response.
      */
     public function pay(Intent $intent)
     {

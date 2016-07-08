@@ -3,12 +3,11 @@
 namespace Ecedi\Donate\FrontBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Response;
 
 class ReturnControllerTest extends WebTestCase
 {
     /**
-     * verification du bon affichage du front office en français
+     * verification du bon affichage du front office en français.
      */
     public function testCompletedWithSession()
     {

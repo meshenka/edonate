@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -59,8 +57,8 @@ class ReportingController extends Controller
         $pagination = $this->getPagination($request, $queryBuilder->getQuery(), 20);
 
         return $this->render(':admin/reporting/intent:list.html.twig', [
-            'pagination'    => $pagination,
-            'intentForm'    => $intentForm->createView()
+            'pagination' => $pagination,
+            'intentForm' => $intentForm->createView(),
         ]);
     }
 
@@ -80,9 +78,9 @@ class ReportingController extends Controller
         $pagination = $this->getPagination($request, $paymentsQuery, 12);
 
         return $this->render(':admin/reporting/intent:show.html.twig', [
-            'intent'                => $intent,
-            'pagination'            => $pagination,
-            'customerOtherIntents'  => $otherIntents,
+            'intent' => $intent,
+            'pagination' => $pagination,
+            'customerOtherIntents' => $otherIntents,
         ]);
     }
 
@@ -94,7 +92,7 @@ class ReportingController extends Controller
     {
         $filters = array();
         $customerForm = $this->createForm(CustomerFiltersType::class, $filters, [
-            'method' => 'GET'
+            'method' => 'GET',
         ]);
 
         $customerForm->handleRequest($request);
@@ -117,8 +115,8 @@ class ReportingController extends Controller
         $pagination = $this->getPagination($request, $query, 20);
 
         return $this->render(':admin/reporting/customer:list.html.twig', [
-            'pagination'    => $pagination,
-            'customerForm'  => $customerForm->createView()
+            'pagination' => $pagination,
+            'customerForm' => $customerForm->createView(),
         ]);
     }
 
@@ -134,8 +132,8 @@ class ReportingController extends Controller
         $pagination = $this->getPagination($request, $intentsQuery, 10);
 
         return $this->render(':admin/reporting/customer:show.html.twig', [
-            'customer'          => $customer,
-            'pagination'        => $pagination,
+            'customer' => $customer,
+            'pagination' => $pagination,
         ]);
     }
 
@@ -153,14 +151,14 @@ class ReportingController extends Controller
 
             $entityMgr->persist($customer);
             $entityMgr->flush();
-            $noticeMsg = $this->get('translator')->trans("Donator has been updated");
+            $noticeMsg = $this->get('translator')->trans('Donator has been updated');
             $this->get('session')->getFlashBag()->set('notice', $noticeMsg);
 
             return $this->redirect($this->generateUrl('donate_admin_reporting_customer_show', array('id' => $customer->getId())));
         }
 
         return $this->render(':admin/reporting/customer:edit.html.twig', [
-            'editForm'  => $editForm->createView()
+            'editForm' => $editForm->createView(),
         ]);
     }
 
@@ -169,20 +167,20 @@ class ReportingController extends Controller
     public function customerInfoAction(Customer $customer)
     {
         return $this->render(':admin/reporting/customer:block_info.html.twig', [
-            'customer'  => $customer
+            'customer' => $customer,
         ]);
     }
 
     /**
-    * Fonction pour récupérer notre objet de pagination
-    *
-    * @param Request $request
-    * @param int $limit -- limit du pager
-    * @param Query $query -- la requete
-    */
+     * Fonction pour récupérer notre objet de pagination.
+     *
+     * @param Request $request
+     * @param int     $limit   -- limit du pager
+     * @param Query   $query   -- la requete
+     */
     public function getPagination(Request $request, Query $query, $limit = 10)
     {
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
 
         $pagination = $paginator->paginate(
             $query,
@@ -194,13 +192,14 @@ class ReportingController extends Controller
     }
 
     /**
-    * put your comment there...
-    *
-    * @param string $content
-    * @param string $csvName
-    * @param string $charset
-    * @return Symfony\Component\HttpFoundation\Response
-    */
+     * put your comment there...
+     *
+     * @param string $content
+     * @param string $csvName
+     * @param string $charset
+     *
+     * @return Symfony\Component\HttpFoundation\Response
+     */
     public function getCsvResponse($content, $csvName, $charset)
     {
         $response = new Response();
@@ -210,7 +209,7 @@ class ReportingController extends Controller
         $response->headers->set('Content-Transfer-Encoding', 'binary');
         $response->headers->set('Pragma', 'no-cache');
         $response->headers->set('Expires', '0');
-        $response->headers->set('Content-Disposition', 'attachment; filename='.$csvName.'_'.date("d_m_Y").'.csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename='.$csvName.'_'.date('d_m_Y').'.csv');
 
         return $response;
     }

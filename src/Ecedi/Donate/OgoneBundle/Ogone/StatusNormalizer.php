@@ -2,7 +2,6 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package eDonate
  */
 namespace Ecedi\Donate\OgoneBundle\Ogone;
 
@@ -10,17 +9,17 @@ use Ecedi\Donate\CoreBundle\Entity\Payment;
 
 /**
  * @since  2.2.0 class OgoneStatusNormalizer renamed StatusNormalizer
- *
  */
 class StatusNormalizer
 {
     /**
-     * Cette méthode convertie un code de status Ogone en un status de l'intent
+     * Cette méthode convertie un code de status Ogone en un status de l'intent.
      *
      * @see Ecedi\Donate\CoreBundle\Entity\Payment::getAllowedStatus()
      *
-     * @param  integer $status
-     * @return string  one legal value from
+     * @param int $status
+     *
+     * @return string one legal value from
      */
     public function normalize($status)
     {

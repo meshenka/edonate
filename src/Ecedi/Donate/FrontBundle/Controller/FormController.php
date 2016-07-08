@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,7 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Ecedi\Donate\CoreBundle\Entity\Customer;
-use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Ecedi\Donate\FrontBundle\Form\Type\DonationType;
 
 class FormController extends Controller
@@ -37,7 +34,7 @@ class FormController extends Controller
             'civilities' => $this->getParameter('donate_front.form.civility'),
             'equivalences' => $this->get('donate_core.equivalence.factory')->getAll(),
             'payment_methods' => $this->get('donate_core.payment_method_discovery')->getEnabledMethods(),
-            'affectations' =>  $layout->getAffectations(),
+            'affectations' => $layout->getAffectations(),
         ));
 
         $form->handleRequest($request);
@@ -62,7 +59,7 @@ class FormController extends Controller
                     $em->persist($data);
 
                     $em->flush();
-                    $response =  $intentMgr->handle($intent);
+                    $response = $intentMgr->handle($intent);
 
                     return $response;
                 }

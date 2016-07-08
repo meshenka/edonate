@@ -1,10 +1,7 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package eDonate
- * @subpackage PaymentMethod
  */
-
 namespace Ecedi\Donate\CoreBundle\PaymentMethod\Plugin;
 
 use Symfony\Component\Templating\EngineInterface;
@@ -15,10 +12,11 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
 /**
  * This class is a helper that wire some default Symfony2 dependencies.
  * It will be used in services.xml to define parent service class and avoid repetitive
- * dependencies injection
+ * dependencies injection.
  *
  * @since  1.2.0
  * @see  http://symfony.com/fr/doc/current/components/dependency_injection/parentservices.html
+ *
  * @example
  * <services>
  *
@@ -37,24 +35,26 @@ use Ecedi\Donate\CoreBundle\Entity\Intent;
  *       <tag name="donate.payment_method" />
  *   </service>
  * </services>
- *
  */
 abstract class AbstractPaymentMethod implements PaymentMethodInterface
 {
     /**
-     * Template Engine
+     * Template Engine.
+     *
      * @var Symfony\Component\Templating\EngineInterface
      */
     protected $templating;
 
     /**
-     * Persistence
+     * Persistence.
+     *
      * @var Symfony\Bridge\Doctrine\RegistryInterface
      */
     protected $doctrine;
 
     /**
-     * Router
+     * Router.
+     *
      * @var Symfony\Component\Routing\RouterInterface
      */
     protected $router;

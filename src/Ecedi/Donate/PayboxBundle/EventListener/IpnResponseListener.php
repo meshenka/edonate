@@ -3,10 +3,8 @@
  * @author Alexandre Fayolle <afayolle@ecedi.fr>
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\PayboxBundle\EventListener;
 
 use Lexik\Bundle\PayboxBundle\Event\PayboxResponseEvent;
@@ -15,8 +13,9 @@ use Ecedi\Donate\CoreBundle\Entity\Payment;
 use Ecedi\Donate\PayboxBundle\Model\IpnData;
 use Ecedi\Donate\PayboxBundle\Paybox\StatusNormalizer;
 use Psr\Log\LoggerInterface;
+
 /**
- * Listener that manage Paybox IPN response
+ * Listener that manage Paybox IPN response.
  *
  * @since 2.2.0
  */
@@ -44,7 +43,7 @@ class IpnResponseListener
         $this->logger = $logger;
     }
     /**
-     * Handle paybox Response listener
+     * Handle paybox Response listener.
      *
      * @param PayboxResponseEvent $event
      */

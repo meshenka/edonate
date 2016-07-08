@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\ApiBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\AccessToken as BaseAccessToken;
@@ -37,9 +35,9 @@ class AccessToken extends BaseAccessToken
     protected $user;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -47,9 +45,10 @@ class AccessToken extends BaseAccessToken
     }
 
     /**
-     * Set client
+     * Set client.
      *
-     * @param  FOS\OAuthServerBundle\Model\ClientInterface $client
+     * @param FOS\OAuthServerBundle\Model\ClientInterface $client
+     *
      * @return AccessToken
      */
     public function setClient(ClientInterface $client)
@@ -60,7 +59,7 @@ class AccessToken extends BaseAccessToken
     }
 
     /**
-     * Get client
+     * Get client.
      *
      * @return Client
      */
@@ -70,7 +69,8 @@ class AccessToken extends BaseAccessToken
     }
 
     /**
-     * @param  UserInterface $user
+     * @param UserInterface $user
+     *
      * @return $this|void
      */
     public function setUser(UserInterface $user = null)
@@ -81,7 +81,7 @@ class AccessToken extends BaseAccessToken
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \Ecedi\Donate\CoreBundle\Entity\User
      */

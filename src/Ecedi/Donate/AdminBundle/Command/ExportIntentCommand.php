@@ -2,7 +2,6 @@
 /**
  * @author Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
 namespace Ecedi\Donate\AdminBundle\Command;
@@ -34,11 +33,11 @@ EOF
             );
     }
     /**
-    * Exécution de la commande
-    *
-    * @param InputInterface $input
-    * @param OutputInterface $output
-    */
+     * Exécution de la commande.
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $csvFolder = 'csv_export';
@@ -48,7 +47,7 @@ EOF
             'minCreatedAt' => '01/01/2000',
             'maxCreatedAt' => date('d/m/Y'),
         );
-        $exportDate = date("d_m_Y");
+        $exportDate = date('d_m_Y');
 
         $month = $input->getArgument('month');
 

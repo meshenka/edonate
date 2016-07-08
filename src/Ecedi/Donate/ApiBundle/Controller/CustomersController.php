@@ -2,10 +2,8 @@
 /**
  * @author Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,19 +18,21 @@ use Ecedi\Donate\CoreBundle\Form\CustomerType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
-* @NamePrefix("donate_api_v1_")
-*
-* L' annotation ...View(serializerGroups={"REST"}) utilisée ci-dessous permet de retourner
-* seulement les éléments de l'entité qui appartiennent au groupe "REST" (défini dans l'entité)
-* cf: Customer Entity et l'annotation ...Groups({"REST"})
-*/
+ * @NamePrefix("donate_api_v1_")
+ *
+ * L' annotation ...View(serializerGroups={"REST"}) utilisée ci-dessous permet de retourner
+ * seulement les éléments de l'entité qui appartiennent au groupe "REST" (défini dans l'entité)
+ * cf: Customer Entity et l'annotation ...Groups({"REST"})
+ */
 class CustomersController extends Controller
 {
     /**
-    * @View(serializerGroups={"REST"})
-    * @param ParamFetcher $paramFetcher
-    * @return array
-    */
+     * @View(serializerGroups={"REST"})
+     *
+     * @param ParamFetcher $paramFetcher
+     *
+     * @return array
+     */
     public function getCustomersAction(ParamFetcher $paramFetcher)
     {
         $restParams = $paramFetcher->All();   // On récupère tous les paramètres passés en GET
@@ -45,15 +45,17 @@ class CustomersController extends Controller
 
         return [
             'nbResults' => $nbResults,
-            'customers' => $customers
+            'customers' => $customers,
         ];
     }
 
     /**
-    * @View(serializerGroups={"REST"})
-    * @param int $customerId
-    * @return Customer
-    */
+     * @View(serializerGroups={"REST"})
+     *
+     * @param int $customerId
+     *
+     * @return Customer
+     */
     public function getCustomerAction($customerId)
     {
         $em = $this->getDoctrine()->getManager();
@@ -62,17 +64,19 @@ class CustomersController extends Controller
         $this->throwNotFoundExceptionIfNotCustomer($customer);  // Contrôle sur l'existence de l'entité
 
         return [
-            'customer' => $customer
+            'customer' => $customer,
         ];
     }
 
     /**
-    * @get("customer/by-email")
-    * @QueryParam(name="email", description="Customer email")
-    * @View(serializerGroups={"REST"})
-    * @param ParamFetcher $paramFetcher
-    * @return Customer
-    */
+     * @get("customer/by-email")
+     * @QueryParam(name="email", description="Customer email")
+     * @View(serializerGroups={"REST"})
+     *
+     * @param ParamFetcher $paramFetcher
+     *
+     * @return Customer
+     */
     public function getCustomerByEmailAction(ParamFetcher $paramFetcher)
     {
         $email = $paramFetcher->get('email');
@@ -83,17 +87,19 @@ class CustomersController extends Controller
         $this->throwNotFoundExceptionIfNotCustomer($customer);  // Contrôle sur l'existence de l'entité
 
         return [
-            'customer' => $customer
+            'customer' => $customer,
         ];
     }
 
     /**
-    * @get("customer/by-remote-id")
-    * @QueryParam(name="remote_id", description="Customer remote Id")
-    * @View(serializerGroups={"REST"})
-    * @param ParamFetcher $paramFetcher
-    * @return Customer
-    */
+     * @get("customer/by-remote-id")
+     * @QueryParam(name="remote_id", description="Customer remote Id")
+     * @View(serializerGroups={"REST"})
+     *
+     * @param ParamFetcher $paramFetcher
+     *
+     * @return Customer
+     */
     public function getCustomerByRemoteIdAction(ParamFetcher $paramFetcher)
     {
         $remoteId = $paramFetcher->get('remote_id');
@@ -104,12 +110,13 @@ class CustomersController extends Controller
         $this->throwNotFoundExceptionIfNotCustomer($customer);  // Contrôle sur l'existence de l'entité
 
         return [
-            'customer' => $customer
+            'customer' => $customer,
         ];
     }
 
     /**
      * @View(statusCode=204) -- "No content" - Retourné quand l'update de l'entité a été réalisé
+     *
      * @param int $customerId
      */
     public function patchCustomerAction(Request $request, $customerId)
@@ -123,11 +130,11 @@ class CustomersController extends Controller
     }
 
     /**
-    * Processing the Customer form
-    *
-    * @param Customer $customer
-    * @param string $method -- la méthode du formulaire pour récupérer les données
-    */
+     * Processing the Customer form.
+     *
+     * @param Customer $customer
+     * @param string   $method   -- la méthode du formulaire pour récupérer les données
+     */
     private function processForm(Customer $customer, Request $request, $method = 'POST')
     {
         $form = $this->createForm(new CustomerType(), $customer, array('method' => $method));
@@ -141,14 +148,14 @@ class CustomersController extends Controller
     }
 
     /**
-    * Envoie d'une Exception (404 -- Not Found) si l'on ne retrouve pas le Customer
-    *
-    * @param $customer
-    */
+     * Envoie d'une Exception (404 -- Not Found) si l'on ne retrouve pas le Customer.
+     *
+     * @param $customer
+     */
     private function throwNotFoundExceptionIfNotCustomer($customer)
     {
         if (!$customer instanceof Customer) {
-            throw $this->createNotFoundException("Customer not found, check id or parameters.");
+            throw $this->createNotFoundException('Customer not found, check id or parameters.');
         }
     }
 }

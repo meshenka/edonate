@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\ApiBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\Client as BaseClient;
@@ -29,7 +27,7 @@ class Client extends BaseClient
     protected $name;
 
     /**
-     * name
+     * name.
      *
      * @return string name
      */
@@ -39,9 +37,9 @@ class Client extends BaseClient
     }
 
     /**
-     * name
+     * name.
      *
-     * @param String $newname Name
+     * @param string $newname Name
      */
     public function setName($name)
     {
@@ -57,9 +55,9 @@ class Client extends BaseClient
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {

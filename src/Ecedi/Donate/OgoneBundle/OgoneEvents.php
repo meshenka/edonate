@@ -1,13 +1,13 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package eDonate
  * @copyright Agence Ecedi 2015
  */
 namespace Ecedi\Donate\OgoneBundle;
 
 /**
- * Ogone Specifics Events
+ * Ogone Specifics Events.
+ *
  * @since  2.2.0
  */
 final class OgoneEvents

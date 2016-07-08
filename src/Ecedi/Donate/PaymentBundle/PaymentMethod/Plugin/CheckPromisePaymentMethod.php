@@ -1,8 +1,6 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package eDonate
- * @subpackage Check
  * @copyright Agence Ecedi 2014
  */
 namespace Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin;
@@ -13,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * Plugin to handle offlie check promises
+ * Plugin to handle offlie check promises.
+ *
  * @since  2.0.0
  */
 class CheckPromisePaymentMethod extends AbstractPaymentMethod
@@ -31,9 +30,10 @@ class CheckPromisePaymentMethod extends AbstractPaymentMethod
     }
 
     /**
-     * does not support authorisation tunnel
+     * does not support authorisation tunnel.
      *
-     * @param  Intent $intent [description]
+     * @param Intent $intent [description]
+     *
      * @return [type] [description]
      */
     public function autorize(Intent $intent)

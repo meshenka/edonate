@@ -2,14 +2,10 @@
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright 2015 Ecedi
- * @package eDonate
- *
  */
-
 namespace Ecedi\Donate\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -17,12 +13,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Layout
+ * Layout.
  *
  * @ORM\Table("layout")
  * @ORM\Entity(repositoryClass="Ecedi\Donate\CoreBundle\Repository\LayoutRepository")
  * @Vich\Uploadable
- *
  */
 class Layout
 {
@@ -43,7 +38,7 @@ class Layout
     private $blocks;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -52,7 +47,7 @@ class Layout
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="is_default", type="boolean")
      */
@@ -114,7 +109,7 @@ class Layout
      * )
      * @Vich\UploadableField(mapping="layout_logo", fileNameProperty="logoName")
      *
-     * @var UploadedFile $logo
+     * @var UploadedFile
      */
     protected $logo;
 
@@ -125,7 +120,7 @@ class Layout
      * )
      * @Vich\UploadableField(mapping="layout_background", fileNameProperty="backgroundName")
      *
-     * @var UploadedFile $background
+     * @var UploadedFile
      */
     protected $background;
 
@@ -181,9 +176,9 @@ class Layout
     private $changedAt;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -191,9 +186,10 @@ class Layout
     }
 
     /**
-     * Set name
+     * Set name.
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return Layout
      */
     public function setName($name)
@@ -204,7 +200,7 @@ class Layout
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -214,9 +210,10 @@ class Layout
     }
 
     /**
-     * Set skin
+     * Set skin.
      *
-     * @param  string $skin
+     * @param string $skin
+     *
      * @return Layout
      */
     public function setSkin($skin)
@@ -227,7 +224,7 @@ class Layout
     }
 
     /**
-     * Get skin
+     * Get skin.
      *
      * @return string
      */
@@ -237,9 +234,10 @@ class Layout
     }
 
     /**
-     * Set logoName
+     * Set logoName.
      *
-     * @param  string $logoName
+     * @param string $logoName
+     *
      * @return Layout
      */
     public function setLogoName($logoName)
@@ -250,7 +248,7 @@ class Layout
     }
 
     /**
-     * Get logoName
+     * Get logoName.
      *
      * @return string
      */
@@ -260,9 +258,10 @@ class Layout
     }
 
     /**
-     * Set baseline
+     * Set baseline.
      *
-     * @param  string $baseline
+     * @param string $baseline
+     *
      * @return Layout
      */
     public function setBaseline($baseline)
@@ -273,7 +272,7 @@ class Layout
     }
 
     /**
-     * Get baseline
+     * Get baseline.
      *
      * @return string
      */
@@ -283,9 +282,10 @@ class Layout
     }
 
     /**
-     * Set backgroundName
+     * Set backgroundName.
      *
-     * @param  string $backgroundName
+     * @param string $backgroundName
+     *
      * @return Layout
      */
     public function setBackgroundName($backgroundName)
@@ -296,7 +296,7 @@ class Layout
     }
 
     /**
-     * Get backgroundName
+     * Get backgroundName.
      *
      * @return string
      */
@@ -306,9 +306,10 @@ class Layout
     }
 
     /**
-     * Set metaDescription
+     * Set metaDescription.
      *
-     * @param  string $metaDescription
+     * @param string $metaDescription
+     *
      * @return Layout
      */
     public function setMetaDescription($metaDescription)
@@ -319,7 +320,7 @@ class Layout
     }
 
     /**
-     * Get metaDescription
+     * Get metaDescription.
      *
      * @return string
      */
@@ -329,9 +330,10 @@ class Layout
     }
 
     /**
-     * Set metaKeywords
+     * Set metaKeywords.
      *
-     * @param  string $metaKeywords
+     * @param string $metaKeywords
+     *
      * @return Layout
      */
     public function setMetaKeywords($metaKeywords)
@@ -342,7 +344,7 @@ class Layout
     }
 
     /**
-     * Get metaKeywords
+     * Get metaKeywords.
      *
      * @return string
      */
@@ -351,7 +353,7 @@ class Layout
         return $this->metaKeywords;
     }
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct($language = 'fr', $name = 'default', $skin = self::SKIN_DEFAULT)
     {
@@ -371,16 +373,17 @@ class Layout
      // utilisation d'un generator php5.5
     private function generateBlock($name = 'default')
     {
-        for ($i = 1; $i <= 4; $i++) {
-            $b = new Block("{$name}-".$i, $i*10);
+        for ($i = 1; $i <= 4; ++$i) {
+            $b = new Block("{$name}-".$i, $i * 10);
             yield $b;
         }
     }
 
     /**
-     * Add blocks
+     * Add blocks.
      *
-     * @param  \Ecedi\Donate\CoreBundle\Entity\Block $blocks
+     * @param \Ecedi\Donate\CoreBundle\Entity\Block $blocks
+     *
      * @return Layout
      */
     public function addBlock(Block $blocks)
@@ -392,7 +395,7 @@ class Layout
     }
 
     /**
-     * Remove blocks
+     * Remove blocks.
      *
      * @param \Ecedi\Donate\CoreBundle\Entity\Block $blocks
      */
@@ -402,7 +405,7 @@ class Layout
     }
 
     /**
-     * Get blocks
+     * Get blocks.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -412,9 +415,10 @@ class Layout
     }
 
     /**
-     * Set metaTitle
+     * Set metaTitle.
      *
-     * @param  string $metaTitle
+     * @param string $metaTitle
+     *
      * @return Layout
      */
     public function setMetaTitle($metaTitle)
@@ -425,7 +429,7 @@ class Layout
     }
 
     /**
-     * Get metaTitle
+     * Get metaTitle.
      *
      * @return string
      */
@@ -435,9 +439,10 @@ class Layout
     }
 
     /**
-     * Set default
+     * Set default.
      *
-     * @param  boolean $defaul
+     * @param bool $defaul
+     *
      * @return Layout
      */
     public function setDefault($default)
@@ -448,9 +453,9 @@ class Layout
     }
 
     /**
-     * Get default
+     * Get default.
      *
-     * @return boolean
+     * @return bool
      */
     public function getDefault()
     {
@@ -458,9 +463,9 @@ class Layout
     }
 
     /**
-     * Get default
+     * Get default.
      *
-     * @return boolean
+     * @return bool
      */
     public function isDefault()
     {
@@ -468,9 +473,10 @@ class Layout
     }
 
     /**
-     * Set isDefault
+     * Set isDefault.
      *
-     * @param  boolean $isDefault
+     * @param bool $isDefault
+     *
      * @return Layout
      */
     public function setIsDefault($isDefault)
@@ -481,9 +487,9 @@ class Layout
     }
 
     /**
-     * Get isDefault
+     * Get isDefault.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsDefault()
     {
@@ -537,9 +543,10 @@ class Layout
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
+     *
      * @return Layout
      */
     public function setCreatedAt($createdAt)
@@ -550,7 +557,7 @@ class Layout
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -560,9 +567,10 @@ class Layout
     }
 
     /**
-     * Set changedAt
+     * Set changedAt.
      *
-     * @param  \DateTime $changedAt
+     * @param \DateTime $changedAt
+     *
      * @return Layout
      */
     public function setChangedAt($changedAt)
@@ -573,7 +581,7 @@ class Layout
     }
 
     /**
-     * Get changedAt
+     * Get changedAt.
      *
      * @return \DateTime
      */
@@ -583,9 +591,10 @@ class Layout
     }
 
     /**
-     * Set language
+     * Set language.
      *
-     * @param  string $language
+     * @param string $language
+     *
      * @return Layout
      */
     public function setLanguage($language)
@@ -596,7 +605,7 @@ class Layout
     }
 
     /**
-     * Get language
+     * Get language.
      *
      * @return string
      */
@@ -606,9 +615,10 @@ class Layout
     }
 
     /**
-     * Set logoUrl
+     * Set logoUrl.
      *
-     * @param  string $logoUrl
+     * @param string $logoUrl
+     *
      * @return Layout
      */
     public function setLogoUrl($logoUrl)
@@ -619,7 +629,7 @@ class Layout
     }
 
     /**
-     * Get logoUrl
+     * Get logoUrl.
      *
      * @return string
      */
@@ -629,9 +639,10 @@ class Layout
     }
 
     /**
-     * Set logoAlt
+     * Set logoAlt.
      *
-     * @param  string $logoAlt
+     * @param string $logoAlt
+     *
      * @return Layout
      */
     public function setLogoAlt($logoAlt)
@@ -642,7 +653,7 @@ class Layout
     }
 
     /**
-     * Get logoAlt
+     * Get logoAlt.
      *
      * @return string
      */
@@ -652,9 +663,10 @@ class Layout
     }
 
     /**
-     * Set logoTitle
+     * Set logoTitle.
      *
-     * @param  string $logoTitle
+     * @param string $logoTitle
+     *
      * @return Layout
      */
     public function setLogoTitle($logoTitle)
@@ -665,7 +677,7 @@ class Layout
     }
 
     /**
-     * Get logoTitle
+     * Get logoTitle.
      *
      * @return string
      */
@@ -675,9 +687,10 @@ class Layout
     }
 
     /**
-     * Add affectation
+     * Add affectation.
      *
-     * @param  \Ecedi\Donate\CoreBundle\Entity\affectation $affectation
+     * @param \Ecedi\Donate\CoreBundle\Entity\affectation $affectation
+     *
      * @return Layout
      */
     public function addAffectations(Affectation $affectation)
@@ -689,7 +702,7 @@ class Layout
     }
 
     /**
-     * Remove affectation
+     * Remove affectation.
      *
      * @param \Ecedi\Donate\CoreBundle\Entity\affectation $affectation
      */
@@ -699,7 +712,7 @@ class Layout
     }
 
     /**
-     * Get affectation
+     * Get affectation.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

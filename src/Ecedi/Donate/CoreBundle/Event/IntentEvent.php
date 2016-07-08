@@ -10,7 +10,7 @@ class IntentEvent extends Event
     private $intent;
 
    /**
-    * intent
+    * intent.
     *
     * @return Intent intent
     */
@@ -20,7 +20,7 @@ class IntentEvent extends Event
    }
 
    /**
-    * intent
+    * intent.
     *
     * @param Intent $newintent Intent
     */

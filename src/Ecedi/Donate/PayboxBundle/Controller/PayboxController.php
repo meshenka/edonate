@@ -3,7 +3,6 @@
  * @author Alexandre Fayolle <afayolle@ecedi.fr>
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
 namespace Ecedi\Donate\PayboxBundle\Controller;
@@ -15,7 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * this controller display payment redirect form
+ * this controller display payment redirect form.
+ *
  * @since  2.2.0
  */
 class PayboxController extends Controller
@@ -37,24 +37,24 @@ class PayboxController extends Controller
                 //@TODO rendre le PBX_CMD configurable et adapter le code de l'IpnData
 
                 $paybox->setParameters(array(
-                    'PBX_CMD'          => 'DON-'.$intent->getId(),
-                    'PBX_DEVISE'       => '978',
-                    'PBX_PORTEUR'      => $intent->getCustomer()->getEmail(),
-                    'PBX_RETOUR'       => 'M:M;R:R;A:A;E:E;K:K;T:T;F:F;W:W;S:S;D:D;Q:Q;Y:Y',
-                    'PBX_TOTAL'        => $intent->getAmount(),
+                    'PBX_CMD' => 'DON-'.$intent->getId(),
+                    'PBX_DEVISE' => '978',
+                    'PBX_PORTEUR' => $intent->getCustomer()->getEmail(),
+                    'PBX_RETOUR' => 'M:M;R:R;A:A;E:E;K:K;T:T;F:F;W:W;S:S;D:D;Q:Q;Y:Y',
+                    'PBX_TOTAL' => $intent->getAmount(),
                     'PBX_TYPEPAIEMENT' => 'CARTE',
-                    'PBX_TYPECARTE'    => 'CB',
-                    'PBX_EFFECTUE'     => $this->generateUrl('donate_front_completed', [], true),
-                    'PBX_REFUSE'       => $this->generateUrl('donate_front_denied', [], true),
-                    'PBX_ANNULE'       => $this->generateUrl('donate_front_canceled', [], true),
-                    'PBX_RUF1'         => 'POST',
-                    'PBX_REPONDRE_A'   => $this->generateUrl('lexik_paybox_ipn', ['time' => time()], true),
+                    'PBX_TYPECARTE' => 'CB',
+                    'PBX_EFFECTUE' => $this->generateUrl('donate_front_completed', [], true),
+                    'PBX_REFUSE' => $this->generateUrl('donate_front_denied', [], true),
+                    'PBX_ANNULE' => $this->generateUrl('donate_front_canceled', [], true),
+                    'PBX_RUF1' => 'POST',
+                    'PBX_REPONDRE_A' => $this->generateUrl('lexik_paybox_ipn', ['time' => time()], true),
                 ));
 
                 return $this->render(':payment:paybox:pay.html.twig', [
-                    'intent'    => $intent,
-                    'url'       => $paybox->getUrl(),
-                    'form'      => $paybox->getForm()->createView(),
+                    'intent' => $intent,
+                    'url' => $paybox->getUrl(),
+                    'form' => $paybox->getForm()->createView(),
                 ]);
             }
         }

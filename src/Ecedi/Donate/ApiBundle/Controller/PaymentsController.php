@@ -2,10 +2,8 @@
 /**
  * @author Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,18 +15,19 @@ use FOS\RestBundle\Controller\Annotations\Patch;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 
 /**
-* @NamePrefix("donate_api_v1_")
-*
-* L' annotation ...View(serializerGroups={"REST"}) utilisée ci-dessous permet de retourner
-* seulement les éléments de l'entité qui appartiennent au groupe "REST" (défini dans l'entité)
-* cf: Payment Entity et l'annotation ...Groups({"REST"})
-*/
+ * @NamePrefix("donate_api_v1_")
+ *
+ * L' annotation ...View(serializerGroups={"REST"}) utilisée ci-dessous permet de retourner
+ * seulement les éléments de l'entité qui appartiennent au groupe "REST" (défini dans l'entité)
+ * cf: Payment Entity et l'annotation ...Groups({"REST"})
+ */
 class PaymentsController extends Controller
 {
     /**
-    * @View(serializerGroups={"REST"})
-    * @return array
-    */
+     * @View(serializerGroups={"REST"})
+     *
+     * @return array
+     */
     public function getPaymentsAction(Request $request)
     {
         $restParams = $request->query->All();   // On récupère tous les paramètres passés en GET
@@ -41,15 +40,17 @@ class PaymentsController extends Controller
 
         return [
             'nbResults' => $nbResults,
-            'payments' => $payments
+            'payments' => $payments,
         ];
     }
 
     /**
-    * @View(serializerGroups={"REST"})
-    * @param int $paymentId
-    * @return Payment
-    */
+     * @View(serializerGroups={"REST"})
+     *
+     * @param int $paymentId
+     *
+     * @return Payment
+     */
     public function getPaymentAction($paymentId)
     {
         $em = $this->getDoctrine()->getManager();
@@ -58,12 +59,13 @@ class PaymentsController extends Controller
         $this->throwNotFoundExceptionIfNotPayment($payment);  // Contrôle sur l'existence de l'entité
 
         return [
-            'payment' => $payment
+            'payment' => $payment,
         ];
     }
 
     /**
      * @View(statusCode=204) -- "No content" - Retourné quand l'update de l'entité a été réalisé
+     *
      * @param int $paymentId
      */
     public function patchPaymentAction(Request $request, $paymentId)
@@ -77,11 +79,11 @@ class PaymentsController extends Controller
     }
 
     /**
-    * Processing the Payment form
-    *
-    * @param Payment $payment
-    * @param string $method -- la méthode du formulaire pour récupérer les données
-    */
+     * Processing the Payment form.
+     *
+     * @param Payment $payment
+     * @param string  $method  -- la méthode du formulaire pour récupérer les données
+     */
     private function processForm(Payment $payment, Request $request, $method = 'POST')
     {
         $form = $this->createForm(new PaymentType(), $payment, array('method' => $method));
@@ -95,14 +97,14 @@ class PaymentsController extends Controller
     }
 
     /**
-    * Envoie d'une Exception (404 -- Not Found) si l'on ne retrouve pas le Payment
-    *
-    * @param $payment
-    */
+     * Envoie d'une Exception (404 -- Not Found) si l'on ne retrouve pas le Payment.
+     *
+     * @param $payment
+     */
     private function throwNotFoundExceptionIfNotPayment($payment)
     {
         if (!$payment instanceof Payment) {
-            throw $this->createNotFoundException("Payment not found, check id or parameters.");
+            throw $this->createNotFoundException('Payment not found, check id or parameters.');
         }
     }
 }

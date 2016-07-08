@@ -2,7 +2,6 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
 namespace Ecedi\Donate\ApiBundle\Entity;
@@ -36,9 +35,9 @@ class AuthCode extends BaseAuthCode
     protected $user;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -46,7 +45,8 @@ class AuthCode extends BaseAuthCode
     }
 
     /**
-     * @param  ClientInterface $client
+     * @param ClientInterface $client
+     *
      * @return $this|void
      */
     public function setClient(ClientInterface $client)
@@ -57,7 +57,7 @@ class AuthCode extends BaseAuthCode
     }
 
     /**
-     * Get client
+     * Get client.
      *
      * @return \Ecedi\Donate\ApiBundle\Entity\Client
      */
@@ -67,7 +67,8 @@ class AuthCode extends BaseAuthCode
     }
 
     /**
-     * @param  UserInterface $user
+     * @param UserInterface $user
+     *
      * @return $this|void
      */
     public function setUser(UserInterface $user = null)
@@ -78,7 +79,7 @@ class AuthCode extends BaseAuthCode
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \Ecedi\Donate\CoreBundle\Entity\User
      */

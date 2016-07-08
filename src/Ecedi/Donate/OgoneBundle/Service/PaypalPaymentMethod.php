@@ -6,7 +6,7 @@ use Ecedi\Donate\CoreBundle\PaymentMethod\Plugin\PaymentMethodInterface;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 
 /**
- * For test purpose
+ * For test purpose.
  */
 class PaypalPaymentMethod implements PaymentMethodInterface
 {

@@ -2,7 +2,6 @@
 /**
  * @author Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
 namespace Ecedi\Donate\AdminBundle\Command;
@@ -26,17 +25,17 @@ EOF
             );
     }
     /**
-    * Exécution de la commande
-    *
-    * @param InputInterface $input
-    * @param OutputInterface $output
-    */
+     * Exécution de la commande.
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
 
         $csvFolder = 'csv_export';
-        $exportDate = date("d_m_Y");
+        $exportDate = date('d_m_Y');
 
         $query = $em->getRepository('DonateCoreBundle:Customer')->getCustomersListBy(false);
         // Appel du service pour formater les données du csv

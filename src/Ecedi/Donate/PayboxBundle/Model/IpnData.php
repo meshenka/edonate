@@ -2,14 +2,12 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\PayboxBundle\Model;
 
 /**
- * IpnData is a simple Wrapper around Paybox Ipn response
+ * IpnData is a simple Wrapper around Paybox Ipn response.
  *
  * this class is statefull, it cannot be a service
  * It is a Value Object, immutable
@@ -21,13 +19,12 @@ class IpnData
     /**
      * Paybox Response Variables in array.
      *
-     * @var array $data
+     * @var array
      */
     private $data;
 
     /**
-     * Instanciate a reponse
-     *
+     * Instanciate a reponse.
      */
     public function __construct($data)
     {
@@ -142,7 +139,7 @@ class IpnData
         return $this->data['D'];
     }
     /**
-     * Subscription management with the PAYBOX DIRECT Plus process. Url encoded
+     * Subscription management with the PAYBOX DIRECT Plus process. Url encoded.
      *
      * @return string
      */
@@ -169,7 +166,7 @@ class IpnData
         return $this->data['K'];
     }
     /**
-     * The first 6 digits (« bin6 ») of the cardholder
+     * The first 6 digits (« bin6 ») of the cardholder.
      *
      * @return string
      */
@@ -179,7 +176,7 @@ class IpnData
     }
     /**
      * This is Digest (patch this comment if you get more informations from the
-     * doc)
+     * doc).
      *
      * @return string
      */
@@ -198,7 +195,7 @@ class IpnData
     }
     /**
      * State of the enrolment of the cardholder. Y:Authentification available,
-     * N:Cardholder not participating, U:Unable to authenticate
+     * N:Cardholder not participating, U:Unable to authenticate.
      *
      * @return string
      */
@@ -252,7 +249,7 @@ class IpnData
         return $this->data['Q'];
     }
     /**
-     * Retrieve the eDonate Intent ID
+     * Retrieve the eDonate Intent ID.
      *
      * @return string
      */

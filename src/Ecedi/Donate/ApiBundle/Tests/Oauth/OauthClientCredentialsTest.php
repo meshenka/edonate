@@ -4,6 +4,7 @@ namespace Ecedi\Donate\ApiBundle\Tests\Oauth;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+
 class OauthClientCredentialsTest extends WebTestCase
 {
     private $client;
@@ -76,7 +77,7 @@ class OauthClientCredentialsTest extends WebTestCase
 
         //try to access using this token
         $crawler = $client->request('GET', '/api/v1/customers', array(
-            'access_token' =>  $data->access_token, ),
+            'access_token' => $data->access_token, ),
              array(),
             array('HTTP_ACCEPT' => 'application/json'));
         $this->assertTrue($client->getResponse()->isSuccessful(), 'check access to endpoint with oauth token');
@@ -153,7 +154,7 @@ class OauthClientCredentialsTest extends WebTestCase
         $data = json_decode($content);
         //try to access using this token
         $crawler = $client->request('GET', '/api/v1/customers', array(
-            'access_token' =>  $data->access_token, ),
+            'access_token' => $data->access_token, ),
              array(),
             array('HTTP_ACCEPT' => 'application/json'));
         $this->assertTrue($client->getResponse()->isSuccessful(), 'check access to endpoint with oauth token');

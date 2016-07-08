@@ -2,10 +2,7 @@
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright 2015 Ecedi
- * @package eDonate
- *
  */
-
 namespace Ecedi\Donate\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -15,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Intent
+ * Intent.
  *
  * @ORM\Table("intent",
  *   indexes={
@@ -50,7 +47,7 @@ class Intent
     private $payments;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -68,18 +65,18 @@ class Intent
     private $customer;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="type", type="integer", nullable=false)
      * @Assert\NotNull()
      * @Assert\Choice(callback = "getTypes")
      * @Serializer\Groups({"REST"})
-     *
      */
     private $type;
 
     /**
      * @var string
+     *
      * @since  2.0.0
      *
      * @ORM\Column(name="affectation_code", type="string", length=12, nullable=true)
@@ -90,7 +87,8 @@ class Intent
     private $affectationCode;
 
     /**
-     * accessor to affectationCode
+     * accessor to affectationCode.
+     *
      * @since  2.0.0
      *
      * @return string affectation code
@@ -101,7 +99,8 @@ class Intent
     }
 
     /**
-     * accessor to affectationCode
+     * accessor to affectationCode.
+     *
      * @since  2.0.0
      *
      * @param string $newaffectationCode affectation code
@@ -121,15 +120,15 @@ class Intent
     public static function getTypesLabel()
     {
         return array(
-            self::TYPE_SPOT       => 'Spot',
-            self::TYPE_RECURING   => 'Recuring',
+            self::TYPE_SPOT => 'Spot',
+            self::TYPE_RECURING => 'Recuring',
             self::TYPE_SPONSORSHIP => 'Sponsorship',
         );
     }
 
     /**
-     * @var integer
-     * Montant du don entre 5 et 4000 €
+     * @var int
+     *          Montant du don entre 5 et 4000 €
      *
      * @ORM\Column(name="amount", type="integer", nullable=false)
      * @Assert\NotBlank()
@@ -177,11 +176,11 @@ class Intent
     public static function getStatusLabel()
     {
         return array(
-            Intent::STATUS_NEW      => 'new',
-            Intent::STATUS_PENDING  => 'pending',
-            Intent::STATUS_DONE     => 'done',
-            Intent::STATUS_CANCEL   => 'cancel',
-            Intent::STATUS_ERROR    => 'error',
+            self::STATUS_NEW => 'new',
+            self::STATUS_PENDING => 'pending',
+            self::STATUS_DONE => 'done',
+            self::STATUS_CANCEL => 'cancel',
+            self::STATUS_ERROR => 'error',
         );
     }
 
@@ -220,16 +219,16 @@ class Intent
     private $campaign;
 
     /**
-     * @var integer
+     * @var int
      * @ORM\Column(name="fiscal_receipt", type="integer", nullable=false)
      * @Serializer\Groups({"REST"})
      */
     private $fiscal_receipt;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -237,9 +236,10 @@ class Intent
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param  integer $type
+     * @param int $type
+     *
      * @return Intent
      */
     public function setType($type)
@@ -250,9 +250,9 @@ class Intent
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return integer
+     * @return int
      */
     public function getType()
     {
@@ -260,9 +260,10 @@ class Intent
     }
 
     /**
-     * Set amount
+     * Set amount.
      *
-     * @param  integer $amount
+     * @param int $amount
+     *
      * @return Intent
      */
     public function setAmount($amount)
@@ -273,9 +274,9 @@ class Intent
     }
 
     /**
-     * Get amount
+     * Get amount.
      *
-     * @return integer
+     * @return int
      */
     public function getAmount()
     {
@@ -283,9 +284,10 @@ class Intent
     }
 
     /**
-     * Set currency
+     * Set currency.
      *
-     * @param  string $currency
+     * @param string $currency
+     *
      * @return Intent
      */
     public function setCurrency($currency)
@@ -296,7 +298,7 @@ class Intent
     }
 
     /**
-     * Get currency
+     * Get currency.
      *
      * @return string
      */
@@ -306,9 +308,10 @@ class Intent
     }
 
     /**
-     * Set status
+     * Set status.
      *
-     * @param  string $status
+     * @param string $status
+     *
      * @return Intent
      */
     public function setStatus($status)
@@ -319,7 +322,7 @@ class Intent
     }
 
     /**
-     * Get status
+     * Get status.
      *
      * @return string
      */
@@ -329,9 +332,10 @@ class Intent
     }
 
     /**
-     * Set paymentMethod
+     * Set paymentMethod.
      *
-     * @param  string $paymentMethod
+     * @param string $paymentMethod
+     *
      * @return Intent
      */
     public function setPaymentMethod($paymentMethod)
@@ -342,7 +346,7 @@ class Intent
     }
 
     /**
-     * Get paymentMethod
+     * Get paymentMethod.
      *
      * @return string
      */
@@ -352,9 +356,10 @@ class Intent
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
+     *
      * @return Intent
      */
     public function setCreatedAt($createdAt)
@@ -365,7 +370,7 @@ class Intent
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -375,9 +380,10 @@ class Intent
     }
 
     /**
-     * Set changedAt
+     * Set changedAt.
      *
-     * @param  \DateTime $changedAt
+     * @param \DateTime $changedAt
+     *
      * @return Intent
      */
     public function setChangedAt($changedAt)
@@ -388,7 +394,7 @@ class Intent
     }
 
     /**
-     * Get changedAt
+     * Get changedAt.
      *
      * @return \DateTime
      */
@@ -398,9 +404,10 @@ class Intent
     }
 
     /**
-     * Set campaign
+     * Set campaign.
      *
-     * @param  string $campaign
+     * @param string $campaign
+     *
      * @return Intent
      */
     public function setCampaign($campaign)
@@ -411,7 +418,7 @@ class Intent
     }
 
     /**
-     * Get campaign
+     * Get campaign.
      *
      * @return string
      */
@@ -433,7 +440,7 @@ class Intent
     }
 
     /**
-     * spot pending euro par défaut
+     * spot pending euro par défaut.
      */
     public function __construct($amount, $paymentMethod, $currency = 'EUR', $campaign = null)
     {
@@ -449,9 +456,10 @@ class Intent
     }
 
     /**
-     * Set fiscal_receipt
+     * Set fiscal_receipt.
      *
-     * @param  integer $fiscalReceipt
+     * @param int $fiscalReceipt
+     *
      * @return Intent
      */
     public function setFiscalReceipt($fiscalReceipt)
@@ -462,9 +470,9 @@ class Intent
     }
 
     /**
-     * Get fiscal_receipt
+     * Get fiscal_receipt.
      *
-     * @return integer
+     * @return int
      */
     public function getFiscalReceipt()
     {
@@ -472,9 +480,10 @@ class Intent
     }
 
     /**
-     * Add payments
+     * Add payments.
      *
-     * @param  \Ecedi\Donate\CoreBundle\Entity\Payment $payments
+     * @param \Ecedi\Donate\CoreBundle\Entity\Payment $payments
+     *
      * @return Intent
      */
     public function addPayment(Payment $payments)
@@ -486,7 +495,7 @@ class Intent
     }
 
     /**
-     * Remove payments
+     * Remove payments.
      *
      * @param \Ecedi\Donate\CoreBundle\Entity\Payment $payments
      */
@@ -496,7 +505,7 @@ class Intent
     }
 
     /**
-     * Get payments
+     * Get payments.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -506,7 +515,7 @@ class Intent
     }
 
     /**
-     * Formate la date de création en timestamp pour l'api REST
+     * Formate la date de création en timestamp pour l'api REST.
      *
      * @Serializer\VirtualProperty
      * @Serializer\SerializedName("created_at")
@@ -520,7 +529,7 @@ class Intent
     }
 
     /**
-     * Formate la date de maj en timestamp pour l'api REST
+     * Formate la date de maj en timestamp pour l'api REST.
      *
      * @Serializer\VirtualProperty
      * @Serializer\SerializedName("changed_at")

@@ -2,7 +2,6 @@
 /**
  * @author Benoit Dautun <bdautun@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
 namespace Ecedi\Donate\CmBundle\Command;
@@ -27,11 +26,11 @@ EOF
             );
     }
     /**
-    * Exécution de la commande
-    *
-    * @param InputInterface $input
-    * @param OutputInterface $output
-    */
+     * Exécution de la commande.
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
@@ -79,13 +78,13 @@ EOF
                 $result = $this->subscribe($apiKey, $listId, $subscribers);
                 $response = $result->response;
                 if ($result->was_successful()) {
-                    $output->writeln("Import OK");
+                    $output->writeln('Import OK');
                     $output->writeln("TotalUniqueEmailsSubmitted: <info>{$response->TotalUniqueEmailsSubmitted}</info>");
                     $output->writeln("TotalExistingSubscribers: <info>{$response->TotalExistingSubscribers}</info>");
                     $output->writeln("TotalNewSubscribers: <info>{$response->TotalNewSubscribers}</info>");
                     $em->flush();
                 } else {
-                    $output->writeln("<error>Inscription error</error>");
+                    $output->writeln('<error>Inscription error</error>');
                     if (is_object($response)) {
                         $output->writeln("Code: <info>{$response->Code}</info>");
                         $output->writeln("Message: <info>{$response->Message}</info>");
@@ -95,7 +94,7 @@ EOF
                 }
             } catch (Exception $e) {
                 $msgException = "\nException : ".$e->getMessage()."\ngetTraceAsString():\n".$e->getTraceAsString();
-                $output->writeln("<error>Exception</error>");
+                $output->writeln('<error>Exception</error>');
                 $output->writeln("\t".$e->getMessage());
                 $output->writeln("\t".$e->getTraceAsString());
             }
@@ -107,9 +106,11 @@ EOF
     }
 
     /**
-     * find customers created after a specific id
-     * @param  Integer   $lastId a customerId
-     * @param  integer   $limit  Nombre de résultats max
+     * find customers created after a specific id.
+     *
+     * @param int $lastId a customerId
+     * @param int $limit  Nombre de résultats max
+     *
      * @return \Iterable
      */
     protected function nextCustomers($limit)
@@ -122,13 +123,15 @@ EOF
     }
 
     /**
-     * Subscribe
+     * Subscribe.
      *
      * @see  https://github.com/campaignmonitor/createsend-php
      * @see  http://www.campaignmonitor.com/api/
-     * @param  string                 $apiKey
-     * @param  string                 $listId
-     * @param  array                  $subscribers
+     *
+     * @param string $apiKey
+     * @param string $listId
+     * @param array  $subscribers
+     *
      * @return CS_REST_Wrapper_Result
      */
     protected function subscribe($apiKey, $listId, $subscribers)

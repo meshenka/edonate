@@ -1,4 +1,5 @@
 <?php
+
 namespace Ecedi\Donate\FrontBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
@@ -31,10 +32,11 @@ class AmountChoiceToIntentAmountTransformer implements DataTransformerInterface
         return $result;
     }
 
-     /**
-     * Extrait le montant de don de notre champ custom AmountType
+    /**
+     * Extrait le montant de don de notre champ custom AmountType.
      *
-     * @param  array $array
+     * @param array $array
+     *
      * @return mixed The value
      */
     public function reverseTransform($array)

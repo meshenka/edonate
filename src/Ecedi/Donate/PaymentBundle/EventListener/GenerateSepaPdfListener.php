@@ -1,8 +1,6 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package eDonate
- * @subpackage SEPA
  * @copyright Agence Ecedi 2014
  */
 namespace Ecedi\Donate\PaymentBundle\EventListener;
@@ -11,12 +9,12 @@ use Ecedi\Donate\PaymentBundle\Event\IntentDocumentGeneratedEvent;
 use Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin\SepaOfflinePaymentMethod;
 use Ecedi\Donate\PaymentBundle\Rum\RumGeneratorInterface;
 use ZendPdf as Pdf;
-use ZendPdf\Resource\Image;
-use ZendPdf\Resource\Font;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+
 /**
  * This listener listen to PaymentEvents::INTENT_DOCUMENT_GENERATED to generate
- * a PDF Mandate
+ * a PDF Mandate.
+ *
  * @since  2.0.0
  */
 class GenerateSepaPdfListener
@@ -32,7 +30,8 @@ class GenerateSepaPdfListener
     private $kernel;
 
     /**
-     * constructor
+     * constructor.
+     *
      * @param RumGeneratorInterface $rumGenerator A RUM Generator
      * @param HttpKernelInterface   $kernel       the kernel, needed to locate files
      */
@@ -42,9 +41,12 @@ class GenerateSepaPdfListener
         $this->kernel = $kernel;
     }
     /**
-     * Generate the Pdf
+     * Generate the Pdf.
+     *
      * @param IntentDocumentGeneratedEvent $event the event
+     *
      * @see http://stackoverflow.com/questions/7585474/accessing-files-relative-to-bundle-in-symfony2
+     *
      * @todo finaliser l'inscrition de toutes les info dynamiques
      * @todo  avoir une sepa-template neutre
      * @todo  insérer le logo du layout courant dans le pdf
@@ -53,7 +55,7 @@ class GenerateSepaPdfListener
      */
     public function generate(IntentDocumentGeneratedEvent $event)
     {
-        /**
+        /*
          * @var Ecedi\Donate\CoreBundle\Entity\Intent
          */
         $intent = $event->getIntent();

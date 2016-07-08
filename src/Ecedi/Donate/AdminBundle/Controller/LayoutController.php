@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,7 +18,8 @@ use Ecedi\Donate\FrontBundle\Form\Type\DonationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
- * Routing for layout, block and affectations
+ * Routing for layout, block and affectations.
+ *
  * @since  2.5.0 new Controller refactor from previous BlockController
  */
 class LayoutController extends Controller
@@ -46,8 +45,8 @@ class LayoutController extends Controller
             $data = array(
                 'result' => 'ok',
                 'state' => [
-                    [ 'id'  => $layouts[0]->getId(), 'value' => $layouts[0]->getIsDefault()],
-                    [ 'id'  => $layouts[1]->getId(), 'value' => $layouts[1]->getIsDefault()],
+                    ['id' => $layouts[0]->getId(), 'value' => $layouts[0]->getIsDefault()],
+                    ['id' => $layouts[1]->getId(), 'value' => $layouts[1]->getIsDefault()],
                 ],
             );
 
@@ -74,12 +73,12 @@ class LayoutController extends Controller
             'civilities' => $this->getParameter('donate_front.form.civility'),
             'equivalences' => $this->get('donate_core.equivalence.factory')->getAll(),
             'payment_methods' => $this->get('donate_core.payment_method_discovery')->getEnabledMethods(),
-            'affectations' =>  $layout->getAffectations(),
+            'affectations' => $layout->getAffectations(),
         ));
 
         return $this->render(':admin/layout:preview.html.twig', [
             'layout' => $layout,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -91,7 +90,7 @@ class LayoutController extends Controller
     {
         $repo = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Layout');
         $query = $repo->getFindAllQuery();
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($query, $request->query->get('page', 1), 20);
 
         return $this->render(':admin/layout:list.html.twig', ['layouts' => $pagination]);
@@ -120,8 +119,8 @@ class LayoutController extends Controller
         }
 
         return $this->render(':admin/layout:edit.html.twig', [
-            'form' =>  $form->createView(),
-            'layout' => $layout
+            'form' => $form->createView(),
+            'layout' => $layout,
         ]);
     }
 
@@ -160,8 +159,8 @@ class LayoutController extends Controller
         }
 
         return $this->render(':admin/layout:new.html.twig', [
-            'form' =>  $form->createView(),
-            'layout' => $layout
+            'form' => $form->createView(),
+            'layout' => $layout,
         ]);
     }
 }

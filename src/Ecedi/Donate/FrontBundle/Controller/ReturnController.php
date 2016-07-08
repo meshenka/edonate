@@ -24,7 +24,7 @@ class ReturnController extends Controller
             $intentRepo = $this->getDoctrine()->getRepository('DonateCoreBundle:Intent');
 
             return $this->render(':front/return:completed.html.twig', [
-                'intent' => $intentRepo->find($intentId)
+                'intent' => $intentRepo->find($intentId),
             ]);
         }
 
@@ -35,7 +35,7 @@ class ReturnController extends Controller
             $payment = $paymentRepo->findOneBy(array('status' => Payment::STATUS_PAYED));
             if ($payment) {
                 return $this->render(':front/return:completed.html.twig', [
-                    'intent' => $payment->getIntent()
+                    'intent' => $payment->getIntent(),
                 ]);
             }
         }

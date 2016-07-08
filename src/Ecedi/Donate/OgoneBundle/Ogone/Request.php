@@ -2,9 +2,7 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package eDonate
  */
-
 namespace Ecedi\Donate\OgoneBundle\Ogone;
 
 class Request implements \JsonSerializable
@@ -37,7 +35,8 @@ class Request implements \JsonSerializable
     private $aliasoperation; //optionnel comment est généré l'alias (BYOGONE)
 
     /**
-     * Sérialisation en tableau pour faciliter le json_encode
+     * Sérialisation en tableau pour faciliter le json_encode.
+     *
      * @see http://php.net/manual/en/class.jsonserializable.php
      *
      * Penser à ajouter touts nouvel attribut de la classe dans cette méthode car elle
@@ -69,7 +68,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * address
+     * address.
      *
      * @return string address
      */
@@ -79,9 +78,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * address
+     * address.
      *
-     * @param String $newownerAddress Address
+     * @param string $newownerAddress Address
      */
     public function setOwnerAddress($ownerAddress)
     {
@@ -90,7 +89,7 @@ class Request implements \JsonSerializable
         return $this;
     }
     /**
-     * method
+     * method.
      *
      * @return string form method
      */
@@ -100,9 +99,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * method
+     * method.
      *
-     * @param String $newmethod Form method
+     * @param string $newmethod Form method
      */
     public function setMethod($method)
     {
@@ -112,7 +111,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * action
+     * action.
      *
      * @return string form action url
      */
@@ -122,9 +121,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * action
+     * action.
      *
-     * @param String $newaction Form action url
+     * @param string $newaction Form action url
      */
     public function setAction($action)
     {
@@ -133,7 +132,7 @@ class Request implements \JsonSerializable
         return $this;
     }
     /**
-     * operation
+     * operation.
      *
      * @return string operation
      */
@@ -143,9 +142,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * operation
+     * operation.
      *
-     * @param String $newoperation Operation
+     * @param string $newoperation Operation
      */
     public function setOperation($operation)
     {
@@ -155,7 +154,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * amount in cents
+     * amount in cents.
      *
      * @return string montant en centimes
      */
@@ -165,9 +164,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * amount in cents
+     * amount in cents.
      *
-     * @param String $newamount Montant en centimes
+     * @param string $newamount Montant en centimes
      */
     public function setAmount($amount)
     {
@@ -177,7 +176,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * template
+     * template.
      *
      * @return string url https d'une template
      */
@@ -187,9 +186,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * template
+     * template.
      *
-     * @param String $newtp Url https d'une template
+     * @param string $newtp Url https d'une template
      */
     public function setTp($tp)
     {
@@ -199,7 +198,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * logo
+     * logo.
      *
      * @return string url https du logo
      */
@@ -209,9 +208,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * logo
+     * logo.
      *
-     * @param String $newlogo Url https du logo
+     * @param string $newlogo Url https du logo
      */
     public function setLogo($logo)
     {
@@ -221,7 +220,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * back URL
+     * back URL.
      *
      * @return string URL
      */
@@ -231,7 +230,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * back URL
+     * back URL.
      *
      * @param string $newbackUrl [description]
      */
@@ -243,7 +242,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * decline url
+     * decline url.
      *
      * @return string decline url
      */
@@ -253,9 +252,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * decline url
+     * decline url.
      *
-     * @param String $newdeclineUrl Decline url
+     * @param string $newdeclineUrl Decline url
      */
     public function setDeclineUrl($declineUrl)
     {
@@ -265,7 +264,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * cancel url
+     * cancel url.
      *
      * @return string cancel url
      */
@@ -275,9 +274,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * cancel url
+     * cancel url.
      *
-     * @param String $newcancelUrl Cancel url
+     * @param string $newcancelUrl Cancel url
      */
     public function setCancelUrl($cancelUrl)
     {
@@ -287,7 +286,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * acceptUrl
+     * acceptUrl.
      *
      * @return string url
      */
@@ -297,9 +296,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * accept URL
+     * accept URL.
      *
-     * @param String $newacceptUrl Url
+     * @param string $newacceptUrl Url
      */
     public function setAcceptUrl($acceptUrl)
     {
@@ -309,7 +308,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * complus
+     * complus.
      *
      * @return string libre
      */
@@ -319,9 +318,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * complus
+     * complus.
      *
-     * @param String $newcomplus Libre
+     * @param string $newcomplus Libre
      */
     public function setComplus($complus)
     {
@@ -331,7 +330,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * language
+     * language.
      *
      * @return string langue de l'écran ogone
      */
@@ -341,9 +340,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * language
+     * language.
      *
-     * @param String $newlanguage Langue de l'écran ogone
+     * @param string $newlanguage Langue de l'écran ogone
      */
     public function setLanguage($language)
     {
@@ -353,7 +352,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * ville
+     * ville.
      *
      * @return string ville
      */
@@ -363,9 +362,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * ville
+     * ville.
      *
-     * @param String $newownerTown Ville
+     * @param string $newownerTown Ville
      */
     public function setOwnerTown($ownerTown)
     {
@@ -375,7 +374,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * country
+     * country.
      *
      * @return string country
      */
@@ -385,9 +384,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * country
+     * country.
      *
-     * @param String $newownerCty Country
+     * @param string $newownerCty Country
      */
     public function setOwnerCty($ownerCty)
     {
@@ -397,7 +396,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * orderId
+     * orderId.
      *
      * @return string orderid
      */
@@ -407,9 +406,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * orderid
+     * orderid.
      *
-     * @param String $neworderId Orderid
+     * @param string $neworderId Orderid
      */
     public function setOrderId($orderId)
     {
@@ -419,7 +418,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * sha1in
+     * sha1in.
      *
      * @return string clef sha1
      */
@@ -429,9 +428,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * sha1in
+     * sha1in.
      *
-     * @param String $newsha1in Clef sha1
+     * @param string $newsha1in Clef sha1
      */
     public function setSha1in($sha1in)
     {
@@ -441,7 +440,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * pspid
+     * pspid.
      *
      * @return string pspid du marchant
      */
@@ -451,9 +450,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * pspis
+     * pspis.
      *
-     * @param String $newpspid Pspid du marchant
+     * @param string $newpspid Pspid du marchant
      */
     public function setPspid($pspid)
     {
@@ -463,7 +462,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * pm
+     * pm.
      *
      * @return string payment method
      */
@@ -473,9 +472,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * [pm
+     * [pm.
      *
-     * @param String $newpm Paymen
+     * @param string $newpm Paymen
      */
     public function setPm($pm)
     {
@@ -485,7 +484,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * currency
+     * currency.
      *
      * @return string currenct
      */
@@ -495,9 +494,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * currency
+     * currency.
      *
-     * @param String $newcurrency Currenct
+     * @param string $newcurrency Currenct
      */
     public function setCurrency($currency)
     {
@@ -507,7 +506,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * card name
+     * card name.
      *
      * @return string CN
      */
@@ -517,9 +516,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * [Description]
+     * [Description].
      *
-     * @param String $newcn CN
+     * @param string $newcn CN
      */
     public function setCn($cn)
     {
@@ -529,7 +528,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * email
+     * email.
      *
      * @return string email
      */
@@ -539,9 +538,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * email
+     * email.
      *
-     * @param String $newemail Email
+     * @param string $newemail Email
      */
     public function setEmail($email)
     {
@@ -551,7 +550,7 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * ownerZip
+     * ownerZip.
      *
      * @return string zipcode
      */
@@ -561,9 +560,9 @@ class Request implements \JsonSerializable
     }
 
     /**
-     * [Description]
+     * [Description].
      *
-     * @param String $newownerZip Zipcode
+     * @param string $newownerZip Zipcode
      */
     public function setOwnerZip($ownerZip)
     {

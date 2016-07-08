@@ -2,9 +2,7 @@
 /**
  * @license http://opensource.org/licenses/MIT?year=2015 MIT
  * @copyright 2015 Agence Ecedi
- * @package Donate\Test
  */
-
 namespace Ecedi\Donate\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -15,16 +13,17 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
+
 /**
  * Génère des données de base pour les tests
- * pour les customers, themes et questions
+ * pour les customers, themes et questions.
  */
 class LoadDefaultData implements FixtureInterface, ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {

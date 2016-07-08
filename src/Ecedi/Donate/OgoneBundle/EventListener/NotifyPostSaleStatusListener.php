@@ -2,7 +2,6 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package eDonate
  */
 namespace Ecedi\Donate\OgoneBundle\EventListener;
 
@@ -12,30 +11,29 @@ use Ecedi\Donate\OgoneBundle\OgoneEvents;
 use Ecedi\Donate\OgoneBundle\Event\PostSaleEvent;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Templating\EngineInterface;
+
 /**
  * Ce Subscriber envoi des emails lors de la réception de post-sale quand le code status de la réponse Ogone
  * Indique qu'une action humaine est nécessaire.
  *
  * @since  2.2.0 listen to OgoneEvents::POSTSALE
  * @since  2.3.0 no more extends Symfony\Component\DependencyInjection\ContainerAware
- *
  */
 class NotifyPostSaleStatusListener implements EventSubscriberInterface
 {
     /**
-     *
      * @var \Swift_Mailer
      */
     private $mailer;
 
     /**
-     *
      * @var string
      */
     private $webmasterEmail;
 
     /**
-     * Template Engine
+     * Template Engine.
+     *
      * @var Symfony\Component\Templating\EngineInterface
      */
     protected $templating;
@@ -47,6 +45,7 @@ class NotifyPostSaleStatusListener implements EventSubscriberInterface
 
     /**
      * @since  2.3 use constructor arguments instead of ContainerAware
+     *
      * @param LoggerInterface $logger [description]
      */
     public function __construct(EngineInterface $templating, $webmasterEmail, \Swift_Mailer $mailer, LoggerInterface $logger)
@@ -67,9 +66,10 @@ class NotifyPostSaleStatusListener implements EventSubscriberInterface
 
     /**
      * Réaction à la post-sale, on vérifie que le code de retour est sur 2 digits et on test le dernier pour
-     * définir le message à envoyer
+     * définir le message à envoyer.
      *
      * @param PostSaleEvent $event the post sale Event
+     *
      * @since  2.2.0 it listen to OgoneEvents::POSTSALE instead of DonateEvents::PAYMENT_RECEIVED as it is Ogone Specific
      */
     public function onPostSale(PostSaleEvent $event)

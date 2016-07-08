@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\ApiBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\RefreshToken as BaseRefreshToken;
@@ -37,9 +35,9 @@ class RefreshToken extends BaseRefreshToken
     protected $user;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -47,7 +45,8 @@ class RefreshToken extends BaseRefreshToken
     }
 
     /**
-     * @param  ClientInterface $client
+     * @param ClientInterface $client
+     *
      * @return $this|void
      */
     public function setClient(ClientInterface $client)
@@ -58,7 +57,7 @@ class RefreshToken extends BaseRefreshToken
     }
 
     /**
-     * Get client
+     * Get client.
      *
      * @return \Ecedi\Donate\ApiBundle\Entity\Client
      */
@@ -68,7 +67,8 @@ class RefreshToken extends BaseRefreshToken
     }
 
     /**
-     * @param  UserInterface $user
+     * @param UserInterface $user
+     *
      * @return $this|void
      */
     public function setUser(UserInterface $user = null)
@@ -79,7 +79,7 @@ class RefreshToken extends BaseRefreshToken
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \Ecedi\Donate\CoreBundle\Entity\User
      */

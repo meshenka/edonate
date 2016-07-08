@@ -1,8 +1,6 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package eDonate
- * @subpackage SEPA
  */
 namespace Ecedi\Donate\PaymentBundle\PaymentMethod\Plugin;
 
@@ -13,7 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * an offline payment method that allow user to print a mandat to send by postal mail
- * to the association
+ * to the association.
  *
  * We call it offline to mark it different than online SEPA Mandate with direct numeric signature
  *
@@ -34,11 +32,12 @@ class SepaOfflinePaymentMethod extends AbstractPaymentMethod
     }
 
     /**
-     * We use the autorize tunnel as it is for a recurring payment
+     * We use the autorize tunnel as it is for a recurring payment.
      *
      * payment won't be tracked
      *
-     * @param  Intent $intent [description]
+     * @param Intent $intent [description]
+     *
      * @return [type] [description]
      */
     public function autorize(Intent $intent)
@@ -62,9 +61,10 @@ class SepaOfflinePaymentMethod extends AbstractPaymentMethod
         return $response;
     }
     /**
-     * does not support direct payment
+     * does not support direct payment.
      *
-     * @param  Intent $intent [description]
+     * @param Intent $intent [description]
+     *
      * @return [type] [description]
      */
     public function pay(Intent $intent)

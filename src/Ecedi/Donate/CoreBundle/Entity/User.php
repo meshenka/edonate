@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate\Model
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table("user_account")
  * @ORM\Entity(repositoryClass="Ecedi\Donate\CoreBundle\Repository\UserRepository")
@@ -21,7 +19,7 @@ use FOS\UserBundle\Entity\User as BaseUser;
 class User extends BaseUser
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -52,9 +50,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -62,7 +60,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -72,9 +70,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
+     *
      * @return User
      */
     public function setCreatedAt($createdAt)
@@ -85,7 +84,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -95,9 +94,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
+     *
      * @return User
      */
     public function setUpdatedAt($updatedAt)

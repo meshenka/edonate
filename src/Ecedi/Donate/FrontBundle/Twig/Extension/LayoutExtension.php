@@ -5,6 +5,7 @@ namespace Ecedi\Donate\FrontBundle\Twig\Extension;
 use Symfony\Component\DependencyInjection\Container;
 use Ecedi\Donate\CoreBundle\Layout\LayoutManager;
 use Symfony\Component\DependencyInjection\Exception\InactiveScopeException;
+
 /**
  * Cette extension très simple exporte en global la configuration i18n du front.
  */

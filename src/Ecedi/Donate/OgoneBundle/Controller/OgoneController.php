@@ -2,7 +2,6 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package eDonate
  */
 namespace Ecedi\Donate\OgoneBundle\Controller;
 
@@ -36,7 +35,7 @@ class OgoneController extends Controller
                 $factory = $this->get('donate_ogone.request.factory');
 
                 return $this->render(':payment/ogone:pay.html.twig', [
-                    'ogone' => $factory->build($intent), 'intent' => $intent
+                    'ogone' => $factory->build($intent), 'intent' => $intent,
                 ]);
             }
         }
@@ -47,13 +46,14 @@ class OgoneController extends Controller
 
     /**
      * @Route("/api/postsale",  name="donate_ogone_postsale")
+     *
      * @since  2.2.0 this router delegate all business logic to PostSaleManager via a OgoneEvents::POSTSALE event
      */
     public function postsaleAction(Request $request)
     {
         $response = OgoneResponse::createFromRequest($request);
 
-        $postSaleEvent =  new PostSaleEvent($response);
+        $postSaleEvent = new PostSaleEvent($response);
 
         $this->get('event_dispatcher')->dispatch(OgoneEvents::POSTSALE, $postSaleEvent);
 

@@ -3,19 +3,16 @@
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @author Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\AdminBundle\Menu;
 
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Knp\Menu\FactoryInterface;
-use Knp\Menu\MenuItem;
 
 /**
- * Build menu for Admin
+ * Build menu for Admin.
  *
  * @since  2.4 refactor the way parameters are found from the request by using request attributes instead of request GET parameters
  * @since  2.4 refactor code to reduce complexity
@@ -26,13 +23,13 @@ class Builder implements ContainerAwareInterface
     use ContainerAwareTrait;
 
     /**
-     * adminMenu builder
+     * adminMenu builder.
      *
      * @param FactoryInterface $factory
      * @param array            $options
      *
      * @return \Knp\Menu\MenuItem
-    */
+     */
     public function adminMenu(FactoryInterface $factory)
     {
         $trans = $this->container->get('translator');
@@ -72,11 +69,12 @@ class Builder implements ContainerAwareInterface
     }
 
     /**
-     * extract a value from the current route in the request
+     * extract a value from the current route in the request.
      *
-     * @param  string $param   name of the route param
-     * @param  mixed  $default default value if param is not found
-     * @return mixed  the value
+     * @param string $param   name of the route param
+     * @param mixed  $default default value if param is not found
+     *
+     * @return mixed the value
      */
     protected function getRouteParam($param, $default = false)
     {
@@ -136,11 +134,11 @@ class Builder implements ContainerAwareInterface
             ->setAttribute('data-icon', 'glyphicon glyphicon-map-marker');
     }
 
-   /**
-    * Ajout des éléments du menu relatif au CMS
-    *
-    * @param $menu \Knp\Menu\MenuItem
-    */
+    /**
+     * Ajout des éléments du menu relatif au CMS.
+     *
+     * @param $menu \Knp\Menu\MenuItem
+     */
     private function addCmsMenuItems($menu)
     {
         $id = $this->getRouteParam('id', 0);
@@ -166,10 +164,10 @@ class Builder implements ContainerAwareInterface
     }
 
     /**
-    * Ajout des éléments du menu relatif au don
-    *
-    * @param $menu \Knp\Menu\MenuItem
-    */
+     * Ajout des éléments du menu relatif au don.
+     *
+     * @param $menu \Knp\Menu\MenuItem
+     */
     private function addIntentMenuItems($menu)
     {
         $menu->addChild('Dons', array('route' => 'donate_admin_reporting_intents'))
@@ -180,13 +178,13 @@ class Builder implements ContainerAwareInterface
     }
 
     /**
-    * Ajout des éléments du menu relatif au donateur
-    *
-    * @param $menu \Knp\Menu\MenuItem
-    */
+     * Ajout des éléments du menu relatif au donateur.
+     *
+     * @param $menu \Knp\Menu\MenuItem
+     */
     private function addCustomerMenuItems($menu)
     {
-        $customerId =  $this->getRouteParam('id', 0);
+        $customerId = $this->getRouteParam('id', 0);
 
         $menu->addChild('Donateurs', array('route' => 'donate_admin_reporting_customers'))
              ->setAttribute('data-icon', 'glyphicon glyphicon-info-sign') // Permet l'ajout d'une icone (via un span) dans le lien
@@ -194,17 +192,17 @@ class Builder implements ContainerAwareInterface
         // Enfants N2 -> N3
         $menu['Donateurs']
             ->addChild('Détail du donateur', array(
-                'route'           => 'donate_admin_reporting_customer_show',
+                'route' => 'donate_admin_reporting_customer_show',
                 'routeParameters' => array('id' => $customerId),
             ))
-                ->addChild("Editer", array('route' => 'donate_admin_reporting_customer_edit')); // N3
+                ->addChild('Editer', array('route' => 'donate_admin_reporting_customer_edit')); // N3
     }
 
     /**
-    * Ajout des éléments de gestions des utilisateurs
-    *
-    * @param $menu \Knp\Menu\MenuItem
-    */
+     * Ajout des éléments de gestions des utilisateurs.
+     *
+     * @param $menu \Knp\Menu\MenuItem
+     */
     private function addUserMenuItems($menu)
     {
         $menu->addChild('Utilisateurs', array('route' => 'donate_admin_users'))
@@ -216,10 +214,10 @@ class Builder implements ContainerAwareInterface
     }
 
     /**
-    * Ajout des éléments du menu relatif  au compte du current user
-    *
-    * @param $menu \Knp\Menu\MenuItem
-    */
+     * Ajout des éléments du menu relatif  au compte du current user.
+     *
+     * @param $menu \Knp\Menu\MenuItem
+     */
     private function addMyAccountMenuItems($menu)
     {
         $menu->addChild('Mon compte', array('route' => 'fos_user_profile_edit'))

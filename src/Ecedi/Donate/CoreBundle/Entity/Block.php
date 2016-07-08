@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Block
+ * Block.
  *
  * @ORM\Table(
  *  "block",
@@ -35,12 +33,11 @@ class Block
     /**
      * @ORM\ManyToOne(targetEntity="Layout", inversedBy="blocks")
      * @ORM\JoinColumn(name="layout_id", referencedColumnName="id")
-     *
      */
     private $layout;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -56,7 +53,7 @@ class Block
     private $name;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="position", type="integer", nullable=false)
      */
@@ -70,7 +67,7 @@ class Block
     private $type;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=false)
      */
@@ -115,6 +112,7 @@ class Block
     /**
      * @ORM\Column(name="format", type="string", length=6, nullable=false)
      * @Assert\Choice(callback="getFormats")
+     *
      * @var string
      */
     private $format;
@@ -128,8 +126,9 @@ class Block
     }
 
     /**
-     * @param  string $titleUrl
-     * @return Block  $this
+     * @param string $titleUrl
+     *
+     * @return Block $this
      */
     public function setTitleUrl($titleUrl)
     {
@@ -147,8 +146,9 @@ class Block
     }
 
     /**
-     * @param  string $titleUrlTitle
-     * @return Block  $this
+     * @param string $titleUrlTitle
+     *
+     * @return Block $this
      */
     public function setTitleUrlTitle($titleUrlTitle)
     {
@@ -172,9 +172,9 @@ class Block
     private $titleUrlTitle;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -182,9 +182,10 @@ class Block
     }
 
     /**
-     * Set name
+     * Set name.
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return Block
      */
     public function setName($name)
@@ -195,7 +196,7 @@ class Block
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -205,9 +206,10 @@ class Block
     }
 
     /**
-     * Set position
+     * Set position.
      *
-     * @param  integer $position
+     * @param int $position
+     *
      * @return Block
      */
     public function setPosition($position)
@@ -218,9 +220,9 @@ class Block
     }
 
     /**
-     * Get position
+     * Get position.
      *
-     * @return integer
+     * @return int
      */
     public function getPosition()
     {
@@ -228,9 +230,10 @@ class Block
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param  string $type
+     * @param string $type
+     *
      * @return Block
      */
     public function setType($type)
@@ -241,7 +244,7 @@ class Block
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return string
      */
@@ -251,9 +254,10 @@ class Block
     }
 
     /**
-     * Set enabled
+     * Set enabled.
      *
-     * @param  boolean $enabled
+     * @param bool $enabled
+     *
      * @return Block
      */
     public function setEnabled($enabled)
@@ -264,9 +268,9 @@ class Block
     }
 
     /**
-     * Get enabled
+     * Get enabled.
      *
-     * @return boolean
+     * @return bool
      */
     public function getEnabled()
     {
@@ -274,9 +278,10 @@ class Block
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
+     *
      * @return Block
      */
     public function setCreatedAt($createdAt)
@@ -287,7 +292,7 @@ class Block
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -297,9 +302,10 @@ class Block
     }
 
     /**
-     * Set changedAt
+     * Set changedAt.
      *
-     * @param  \DateTime $changedAt
+     * @param \DateTime $changedAt
+     *
      * @return Block
      */
     public function setChangedAt($changedAt)
@@ -310,7 +316,7 @@ class Block
     }
 
     /**
-     * Get changedAt
+     * Get changedAt.
      *
      * @return \DateTime
      */
@@ -320,9 +326,10 @@ class Block
     }
 
     /**
-     * Set title
+     * Set title.
      *
-     * @param  string $title
+     * @param string $title
+     *
      * @return Block
      */
     public function setTitle($title)
@@ -333,7 +340,7 @@ class Block
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -343,9 +350,10 @@ class Block
     }
 
     /**
-     * Set body
+     * Set body.
      *
-     * @param  string $body
+     * @param string $body
+     *
      * @return Block
      */
     public function setBody($body)
@@ -356,7 +364,7 @@ class Block
     }
 
     /**
-     * Get body
+     * Get body.
      *
      * @return string
      */
@@ -375,9 +383,10 @@ class Block
     }
 
     /**
-     * Set format
+     * Set format.
      *
-     * @param  string $format
+     * @param string $format
+     *
      * @return Block
      */
     public function setFormat($format)
@@ -388,7 +397,7 @@ class Block
     }
 
     /**
-     * Get format
+     * Get format.
      *
      * @return string
      */
@@ -398,9 +407,10 @@ class Block
     }
 
     /**
-     * Set layout
+     * Set layout.
      *
-     * @param  \Ecedi\Donate\CoreBundle\Entity\Layout $layout
+     * @param \Ecedi\Donate\CoreBundle\Entity\Layout $layout
+     *
      * @return Block
      */
     public function setLayout(\Ecedi\Donate\CoreBundle\Entity\Layout $layout = null)
@@ -411,7 +421,7 @@ class Block
     }
 
     /**
-     * Get layout
+     * Get layout.
      *
      * @return \Ecedi\Donate\CoreBundle\Entity\Layout
      */

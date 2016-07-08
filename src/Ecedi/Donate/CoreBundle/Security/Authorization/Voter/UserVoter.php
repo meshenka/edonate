@@ -2,16 +2,16 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  */
-
 namespace Ecedi\Donate\CoreBundle\Security\Authorization\Voter;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Ecedi\Donate\CoreBundle\Entity\User;
+
 /**
- * Voter for view / edit / delete of an existing user
+ * Voter for view / edit / delete of an existing user.
+ *
  * @since  2.3
  */
 class UserVoter extends Voter

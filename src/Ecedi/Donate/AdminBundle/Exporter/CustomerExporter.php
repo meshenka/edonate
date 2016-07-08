@@ -2,15 +2,12 @@
 /**
  * @author Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\AdminBundle\Exporter;
 
 /**
- * Export
- *
+ * Export.
  */
 class CustomerExporter
 {
@@ -21,9 +18,10 @@ class CustomerExporter
     protected $exportQuery;
 
     /**
-     * Set name
+     * Set name.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return Contact
      */
     public function setName($name)
@@ -34,7 +32,7 @@ class CustomerExporter
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -44,7 +42,7 @@ class CustomerExporter
     }
 
     /**
-     * Set charset
+     * Set charset.
      *
      * @param string $charset
      */
@@ -56,7 +54,7 @@ class CustomerExporter
     }
 
     /**
-     * Get charset
+     * Get charset.
      *
      * @return string
      */
@@ -66,7 +64,7 @@ class CustomerExporter
     }
 
     /**
-     * Set query
+     * Set query.
      *
      * @param string exportQuery
      */
@@ -78,7 +76,7 @@ class CustomerExporter
     }
 
     /**
-     * Get exportQuery
+     * Get exportQuery.
      *
      * @return exportQuery
      */
@@ -94,12 +92,12 @@ class CustomerExporter
         $threeMBs = 3 * 1024 * 1024;
         $handle = fopen("php://temp/maxmemory:$threeMBs", 'r+');
 
-        $csvHeader = array(utf8_decode("Civilité"),"Nom",utf8_decode("Prénom"),"id distant(ogone ...)",utf8_decode("Société"),"Date de naissance","Email",utf8_decode("Téléphone"),utf8_decode("N°"),"rue, voirie...",utf8_decode("Complément d'adresse"),"Boite postale","Code postal","Ville","Pays","Site web");
+        $csvHeader = array(utf8_decode('Civilité'), 'Nom', utf8_decode('Prénom'), 'id distant(ogone ...)', utf8_decode('Société'), 'Date de naissance', 'Email', utf8_decode('Téléphone'), utf8_decode('N°'), 'rue, voirie...', utf8_decode("Complément d'adresse"), 'Boite postale', 'Code postal', 'Ville', 'Pays', 'Site web');
 
         fputcsv($handle, $csvHeader, ';');
 
         while (false !== ($row = $iterableResult->next())) {
-            $birthDay = "";
+            $birthDay = '';
             if (!empty($row[0]->getBirthday())) {
                 $birthDay = $row[0]->getBirthday()->format('d/m/Y');
             }

@@ -3,7 +3,6 @@
 namespace Ecedi\Donate\OgoneBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Response;
 
 class OgoneControllerTest extends WebTestCase
 {
@@ -19,7 +18,7 @@ class OgoneControllerTest extends WebTestCase
     }
 
     /**
-     * verification du bon affichage du front office en français
+     * verification du bon affichage du front office en français.
      */
     public function testPayWithValidSession()
     {

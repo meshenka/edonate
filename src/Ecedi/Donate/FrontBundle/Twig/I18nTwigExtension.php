@@ -3,6 +3,7 @@
 namespace Ecedi\Donate\FrontBundle\Twig;
 
 use Symfony\Component\DependencyInjection\Container;
+
 /**
  * Cette extension très simple exporte en global la configuration i18n du front.
  */

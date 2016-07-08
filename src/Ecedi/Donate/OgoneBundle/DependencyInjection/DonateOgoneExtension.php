@@ -2,7 +2,6 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package eDonate
  */
 namespace Ecedi\Donate\OgoneBundle\DependencyInjection;
 
@@ -12,14 +11,15 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * This is the class that loads and manages your bundle configuration
+ * This is the class that loads and manages your bundle configuration.
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
 class DonateOgoneExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @since  2.2.0 async_postsale has been removed
      */
     public function load(array $configs, ContainerBuilder $container)

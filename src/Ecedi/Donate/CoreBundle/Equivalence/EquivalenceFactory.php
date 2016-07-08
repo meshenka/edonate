@@ -2,7 +2,6 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * EquivalenceFactory generate Equivalence
- *
  */
 namespace Ecedi\Donate\CoreBundle\Equivalence;
 
@@ -24,7 +23,8 @@ class EquivalenceFactory
     }
 
     /**
-     * get all equivalences for all tunnels
+     * get all equivalences for all tunnels.
+     *
      * @return array key is the tunnel constant, value is an array of Equivalence Entities
      *               TODO refactore this to use Event and Listener (which will allow to have different way to gather equivalences)
      */

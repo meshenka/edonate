@@ -2,7 +2,6 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
 namespace Ecedi\Donate\AdminBundle\Command;
@@ -30,12 +29,12 @@ EOF
             );
     }
     /**
-    * Exécution de la commande
-    *
-    *
-    * @param InputInterface $input
-    * @param OutputInterface $output
-    */
+     * Exécution de la commande.
+     *
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');

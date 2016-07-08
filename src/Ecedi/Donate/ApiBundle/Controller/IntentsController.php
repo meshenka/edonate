@@ -2,10 +2,8 @@
 /**
  * @author Alexandre Fayolle <alf@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,18 +13,18 @@ use FOS\RestBundle\Controller\Annotations\View;
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 
 /**
-* @NamePrefix("donate_api_v1_")
-*
-* L' annotation ...View(serializerGroups={"REST"}) utilisée ci-dessous permet de retourner
-* seulement les éléments de l'entité qui appartiennent au groupe "REST" (défini dans l'entité)
-* cf: intent Entity et l'annotation ...Groups({"REST"})
-*/
+ * @NamePrefix("donate_api_v1_")
+ *
+ * L' annotation ...View(serializerGroups={"REST"}) utilisée ci-dessous permet de retourner
+ * seulement les éléments de l'entité qui appartiennent au groupe "REST" (défini dans l'entité)
+ * cf: intent Entity et l'annotation ...Groups({"REST"})
+ */
 class IntentsController extends Controller
 {
     /**
-    * @return array
-    * @View(serializerGroups={"REST"})
-    */
+     * @return array
+     * @View(serializerGroups={"REST"})
+     */
     public function getIntentsAction()
     {
         $request = Request::createFromGlobals();
@@ -40,22 +38,23 @@ class IntentsController extends Controller
 
         return [
             'nbResults' => $nbResults,
-            'intents' => $intents
+            'intents' => $intents,
         ];
     }
 
     /**
-    * @param int $intentId
-    * @return Intent
-    * @View(serializerGroups={"REST"})
-    */
+     * @param int $intentId
+     *
+     * @return Intent
+     * @View(serializerGroups={"REST"})
+     */
     public function getIntentAction($intentId)
     {
         $em = $this->getDoctrine()->getManager();
         $intent = $em->getRepository('DonateCoreBundle:Intent')->find($intentId);
 
         return [
-            'intent' => $intent
+            'intent' => $intent,
         ];
     }
 }

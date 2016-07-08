@@ -2,16 +2,13 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package eDonate
  */
-
 namespace Ecedi\Donate\OgoneBundle\Ogone;
 
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * @author syg
- *
  */
 class Response implements \JsonSerializable
 {
@@ -35,7 +32,8 @@ class Response implements \JsonSerializable
     private $complus;
 
     /**
-     * Sérialisation en tableau pour faciliter le json_encode
+     * Sérialisation en tableau pour faciliter le json_encode.
+     *
      * @see http://php.net/manual/en/class.jsonserializable.php
      *
      * @return array an array version of the instance
@@ -65,7 +63,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * ALIAS
+     * ALIAS.
      *
      * @return string alias
      */
@@ -75,9 +73,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * alias
+     * alias.
      *
-     * @param String $newalias Alias
+     * @param string $newalias Alias
      */
     public function setAlias($alias)
     {
@@ -87,7 +85,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * IP address
+     * IP address.
      *
      * @return string ip address
      */
@@ -97,9 +95,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * IP
+     * IP.
      *
-     * @param String $newip Ip address
+     * @param string $newip Ip address
      */
     public function setIp($ip)
     {
@@ -109,7 +107,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * complus
+     * complus.
      *
      * @return string complus
      */
@@ -119,9 +117,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * [Description]
+     * [Description].
      *
-     * @param String $newcomplus Complus
+     * @param string $newcomplus Complus
      */
     public function setComplus($complus)
     {
@@ -131,7 +129,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * ECI
+     * ECI.
      *
      * @return string ECI
      */
@@ -141,9 +139,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * ECI
+     * ECI.
      *
-     * @param String $neweci ECI
+     * @param string $neweci ECI
      */
     public function setEci($eci)
     {
@@ -152,7 +150,7 @@ class Response implements \JsonSerializable
         return $this;
     }
     /**
-     * orderId
+     * orderId.
      *
      * @return string orderId
      */
@@ -162,9 +160,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * orderId
+     * orderId.
      *
-     * @param String $neworderId OrderId
+     * @param string $neworderId OrderId
      */
     protected function setOrderId($orderId)
     {
@@ -174,7 +172,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * amount
+     * amount.
      *
      * @return int amount
      */
@@ -184,9 +182,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * amounnt
+     * amounnt.
      *
-     * @param Int $newamount [description]
+     * @param int $newamount [description]
      */
     protected function setAmount($amount)
     {
@@ -196,7 +194,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * Currency
+     * Currency.
      *
      * @return string currency
      */
@@ -206,9 +204,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * currency
+     * currency.
      *
-     * @param String $newcurrency Currency
+     * @param string $newcurrency Currency
      */
     protected function setCurrency($currency)
     {
@@ -218,7 +216,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * PaymentMethod
+     * PaymentMethod.
      *
      * @return string payment method
      */
@@ -228,9 +226,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * pm
+     * pm.
      *
-     * @param String $newpm Payment method
+     * @param string $newpm Payment method
      */
     protected function setPm($pm)
     {
@@ -240,7 +238,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * acceptance
+     * acceptance.
      *
      * @return string numéro d'autorisation
      */
@@ -250,9 +248,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * acceptance
+     * acceptance.
      *
-     * @param String $newacceptance Numéro d'autorisation
+     * @param string $newacceptance Numéro d'autorisation
      */
     protected function setAcceptance($acceptance)
     {
@@ -262,7 +260,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * status
+     * status.
      *
      * @return string status
      */
@@ -272,9 +270,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * status
+     * status.
      *
-     * @param String $newstatus Status
+     * @param string $newstatus Status
      */
     protected function setStatus($status)
     {
@@ -284,7 +282,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * CardNo
+     * CardNo.
      *
      * @return string Card Number
      */
@@ -294,9 +292,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * CardNo
+     * CardNo.
      *
-     * @param String $newcardNo Card Number
+     * @param string $newcardNo Card Number
      */
     protected function setCardNo($cardNo)
     {
@@ -306,7 +304,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * PayId
+     * PayId.
      *
      * @return string payid
      */
@@ -316,9 +314,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * payid
+     * payid.
      *
-     * @param String $newpayId Payid
+     * @param string $newpayId Payid
      */
     protected function setPayId($payId)
     {
@@ -328,7 +326,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * NCERROR
+     * NCERROR.
      *
      * @return string NCERROR
      */
@@ -338,9 +336,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * NCERROR
+     * NCERROR.
      *
-     * @param String $newncError NCERROR
+     * @param string $newncError NCERROR
      */
     protected function setNcError($ncError)
     {
@@ -350,7 +348,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * card brand
+     * card brand.
      *
      * @return string brand
      */
@@ -360,9 +358,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * card brand
+     * card brand.
      *
-     * @param String $newbrand Brand
+     * @param string $newbrand Brand
      */
     protected function setBrand($brand)
     {
@@ -372,7 +370,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * expiration date
+     * expiration date.
      *
      * @return string ed
      */
@@ -382,9 +380,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * expiration date
+     * expiration date.
      *
-     * @param String $newed Ed
+     * @param string $newed Ed
      */
     protected function setEd($ed)
     {
@@ -394,9 +392,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * Transaction Date
+     * Transaction Date.
      *
-     * @return String trxdate
+     * @return string trxdate
      */
     public function getTrxDate()
     {
@@ -404,9 +402,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * transaction date
+     * transaction date.
      *
-     * @param String $newtrxDate Trxdate
+     * @param string $newtrxDate Trxdate
      */
     protected function setTrxDate($trxDate)
     {
@@ -416,7 +414,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * Cardholder name
+     * Cardholder name.
      *
      * @return string cn
      */
@@ -426,9 +424,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * cardholder name
+     * cardholder name.
      *
-     * @param String $newcn Cn
+     * @param string $newcn Cn
      */
     protected function setCn($cn)
     {
@@ -438,7 +436,7 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * SHA sign
+     * SHA sign.
      *
      * @return string shasign
      */
@@ -448,9 +446,9 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * SHA sign
+     * SHA sign.
      *
-     * @param String $newshasign Shasign
+     * @param string $newshasign Shasign
      */
     protected function setShasign($shasign)
     {
@@ -479,14 +477,15 @@ class Response implements \JsonSerializable
     //COMPLUS
 
     /**
-     * Création d'une Réponse à partir d'une Http Request
+     * Création d'une Réponse à partir d'une Http Request.
      *
-     * @param  Symfony\Component\HttpFoundation\Request $request
+     * @param Symfony\Component\HttpFoundation\Request $request
+     *
      * @return Response
      */
     public static function createFromRequest(HttpRequest $request)
     {
-        $response = new Response();
+        $response = new self();
         $response
             ->setOrderId($request->get('orderID'))
             ->setAmount($request->get('amount'))
@@ -512,14 +511,15 @@ class Response implements \JsonSerializable
     }
 
     /**
-     * Création d'une Réponse à partir d'un tableau
+     * Création d'une Réponse à partir d'un tableau.
      *
-     * @param  array    $data
+     * @param array $data
+     *
      * @return Response
      */
     public static function createFromArray(array $data)
     {
-        $response = new Response();
+        $response = new self();
 
         $response
             ->setOrderId($data['ORDERID'])

@@ -10,7 +10,7 @@ class PaymentEvent extends Event
     private $payment;
 
    /**
-    * intent
+    * intent.
     *
     * @return Intent intent
     */
@@ -20,7 +20,7 @@ class PaymentEvent extends Event
    }
 
    /**
-    * intent
+    * intent.
     *
     * @param Intent $newintent Intent
     */

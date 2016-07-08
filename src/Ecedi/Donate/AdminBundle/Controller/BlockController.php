@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,7 +15,8 @@ use Ecedi\Donate\AdminBundle\Form\BlockType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
- * Routing for layout, block and affectations
+ * Routing for layout, block and affectations.
+ *
  * @since  2.5.0 BlockController only serve block related routes
  */
 class BlockController extends Controller
@@ -46,12 +45,12 @@ class BlockController extends Controller
             $entityMgr->persist($block);
             $entityMgr->flush();
 
-            return $this->redirect($this->generateUrl('donate_admin_block_list', [ 'id' => $layout->getId()]));
+            return $this->redirect($this->generateUrl('donate_admin_block_list', ['id' => $layout->getId()]));
         }
 
         return $this->render(':admin/block:edit.html.twig', [
-            'form' =>  $form->createView(),
-            'block' => $block
+            'form' => $form->createView(),
+            'block' => $block,
         ]);
     }
 }

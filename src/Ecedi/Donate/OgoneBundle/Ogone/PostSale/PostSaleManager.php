@@ -2,9 +2,7 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package eDonate
  */
-
 namespace Ecedi\Donate\OgoneBundle\Ogone\PostSale;
 
 use Ecedi\Donate\OgoneBundle\Ogone\Response;
@@ -14,9 +12,9 @@ use Ecedi\Donate\CoreBundle\Entity\Payment;
 use Psr\Log\LoggerInterface;
 use Ecedi\Donate\OgoneBundle\Ogone\StatusNormalizer;
 use Ecedi\Donate\CoreBundle\IntentManager\IntentManagerInterface;
+
 /**
- * This mange post-sale calls and make Entity model consistent
- *
+ * This mange post-sale calls and make Entity model consistent.
  */
 class PostSaleManager
 {
@@ -46,22 +44,26 @@ class PostSaleManager
     private $intentManager;
 
     /**
-     * constructor
+     * constructor.
+     *
      * @since  2.2.0 PostSaleHandler is no more ContainerAware and receive all dependencies via contructor
      */
     public function __construct(IntentManagerInterface $intentManager, StatusNormalizer $normalizer, $sha1Out, $prefix, LoggerInterface $logger)
     {
         $this->intentManager = $intentManager;
         $this->normalizer = $normalizer;
-        $this->sha1Out =  $sha1Out;
-        $this->prefix =  $prefix;
+        $this->sha1Out = $sha1Out;
+        $this->prefix = $prefix;
         $this->logger = $logger;
     }
 
     /**
-     * [handle description]
-     * @param  Ecedi\Donate\OgoneBundle\Ogone\Response $response the OgoneResponse
-     * @return Payment                                 [description]
+     * [handle description].
+     *
+     * @param Ecedi\Donate\OgoneBundle\Ogone\Response $response the OgoneResponse
+     *
+     * @return Payment [description]
+     *
      * @since  2.2.0 use a Ecedi\Donate\OgoneBundle\Ogone\Response object are argument
      * @since  2.2.0 return a Payment instance instead of this
      */
@@ -71,10 +73,11 @@ class PostSaleManager
     }
 
     /**
-     * traitement réel du paiement
+     * traitement réel du paiement.
      *
-     * @param  Ecedi\Donate\OgoneBundle\Ogone\Response $response
-     * @return Payment                                 the payment instance
+     * @param Ecedi\Donate\OgoneBundle\Ogone\Response $response
+     *
+     * @return Payment the payment instance
      */
     protected function doHandle(Response $response)
     {
@@ -84,7 +87,6 @@ class PostSaleManager
             ->setTransaction($response->getPayId()) //no transaction
             ->setResponseCode($response->getStatus()) //status ogone
             ->setResponse($response);
-
 
         $payment->setStatus($this->normalizer->normalize($response->getStatus()));
 
@@ -99,7 +101,7 @@ class PostSaleManager
 
         //add payment to intent
         try {
-            $intentId  = $this->getIntentId($response);
+            $intentId = $this->getIntentId($response);
             $this->logger->debug('found intent id '.$intentId);
         } catch (CannotDetermineOrderIdException $e) {
             $this->logger->warning('CannotDetermineOrderIdException');
@@ -113,14 +115,17 @@ class PostSaleManager
     }
 
     /**
-     * validation de la signature de la post-sale reçu
-     * @param  Response                      $response
-     * @return boolean                       true when signatire is valid
+     * validation de la signature de la post-sale reçu.
+     *
+     * @param Response $response
+     *
+     * @return bool true when signatire is valid
+     *
      * @throws UnauthorizedPostSaleException If signature is not valid
      */
     protected function validate(Response $response)
     {
-        $sha1outkey =  $this->sha1Out;
+        $sha1outkey = $this->sha1Out;
 
         $keys = $response->jsonSerialize();
 
@@ -144,16 +149,18 @@ class PostSaleManager
     }
 
     /**
-     * Extract Intent Id from post-sale orderId
+     * Extract Intent Id from post-sale orderId.
      *
-     * @param  Response                        $response
-     * @return integer                         the intent Id
+     * @param Response $response
+     *
+     * @return int the intent Id
+     *
      * @throws CannotDetermineOrderIdException If post-sale orderId does not match expected format
      */
     protected function getIntentId(Response $response)
     {
         $orderId = $response->getOrderId();
-        $prefix =  $this->prefix;
+        $prefix = $this->prefix;
 
         if (strpos($orderId, $prefix.'-') === 0) {
             return (int) str_replace($prefix.'-', '', $orderId);

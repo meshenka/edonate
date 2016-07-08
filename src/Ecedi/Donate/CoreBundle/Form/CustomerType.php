@@ -37,13 +37,14 @@ class CustomerType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
      * @since 2.4 use new method signatire since sf 2.7
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'        => 'Ecedi\Donate\CoreBundle\Entity\Customer',
-            'csrf_protection'   => false,   // Redondant avec la sécurisation de l'API REST
+            'data_class' => 'Ecedi\Donate\CoreBundle\Entity\Customer',
+            'csrf_protection' => false,   // Redondant avec la sécurisation de l'API REST
         ));
     }
 

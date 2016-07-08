@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,7 +27,7 @@ class AffectationController extends Controller
     public function showAction(Layout $layout)
     {
         return $this->render(':admin/affectation:show.html.twig', [
-            'layout' => $layout
+            'layout' => $layout,
         ]);
     }
 
@@ -58,8 +56,8 @@ class AffectationController extends Controller
         }
 
         return $this->render(':admin/affectation:add.html.twig', [
-            'form' =>  $form->createView(),
-            'layout' => $layout
+            'form' => $form->createView(),
+            'layout' => $layout,
         ]);
     }
 
@@ -84,9 +82,9 @@ class AffectationController extends Controller
         }
 
         return $this->render(':admin/affectation:edit.html.twig', [
-            'form' =>  $form->createView(),
+            'form' => $form->createView(),
             'layout' => $layout,
-            'affectation' => $affectation
+            'affectation' => $affectation,
         ]);
     }
 

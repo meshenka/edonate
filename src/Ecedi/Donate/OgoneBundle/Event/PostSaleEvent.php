@@ -2,7 +2,6 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  */
 namespace Ecedi\Donate\OgoneBundle\Event;
 
@@ -11,26 +10,24 @@ use Ecedi\Donate\OgoneBundle\Ogone\Response;
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 
 /**
- * Ogone Post Sale Hook event
+ * Ogone Post Sale Hook event.
  *
  * @since  2.2.0 new class
  */
 class PostSaleEvent extends Event
 {
     /**
-     *
      * @var Response
      */
     private $response;
 
     /**
-     *
      * @var Payment
      */
     private $payment;
 
     /**
-     * get payment
+     * get payment.
      *
      * @return Payment the payment entity
      */
@@ -40,7 +37,7 @@ class PostSaleEvent extends Event
     }
 
     /**
-     * set payment
+     * set payment.
      *
      * @param Payment $newpayment The payment entity
      */
@@ -52,10 +49,10 @@ class PostSaleEvent extends Event
     }
 
     /**
-     * intent
+     * intent.
      *
      *  @return Intent intent
-    */
+     */
     public function getResponse()
     {
         return $this->response;

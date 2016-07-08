@@ -16,7 +16,7 @@ class Discovery
     private $config;
 
     /**
-     * config
+     * config.
      *
      * @return array list of enabled methods
      */
@@ -26,9 +26,9 @@ class Discovery
     }
 
     /**
-     * config
+     * config.
      *
-     * @param Array $newconfig List of enabled methods
+     * @param array $newconfig List of enabled methods
      */
     public function setConfig($config)
     {
@@ -38,7 +38,7 @@ class Discovery
     }
 
     /**
-     * translator
+     * translator.
      *
      * @return TranslatorInterface translator service
      */
@@ -48,7 +48,7 @@ class Discovery
     }
 
     /**
-     * translator
+     * translator.
      *
      * @param TranslatorInterface $newtranslator Translator service
      */
@@ -60,7 +60,7 @@ class Discovery
     }
 
     /**
-     * methods
+     * methods.
      *
      * @return array PaymentMethodInterface
      */
@@ -70,7 +70,7 @@ class Discovery
     }
 
     /**
-     * methods
+     * methods.
      *
      * @param [type] $newmethods PaymentMethodInterface
      */
@@ -96,7 +96,8 @@ class Discovery
     }
 
     /**
-     * compare available services and enabled one
+     * compare available services and enabled one.
+     *
      * @return array key is serviceId, value is Name
      */
     public function getEnabledMethods()
@@ -114,7 +115,9 @@ class Discovery
 
     /**
      * @param string a method identifier
+     *
      * @return PaymentMethodInterface instance
+     *
      * @throws \Exception
      */
     public function getMethod($methodId)

@@ -1,8 +1,6 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package eDonate
- * @subpackage Check
  * @copyright Agence Ecedi 2014
  */
 namespace Ecedi\Donate\PaymentBundle\Controller;
@@ -29,7 +27,7 @@ class CheckPromiseController extends Controller
             $intentId = $session->get('intentId');
 
             return $this->render(':payment/check_promise:pay.html.twig', [
-                'intent' => $intentRepo->find($intentId)
+                'intent' => $intentRepo->find($intentId),
             ]);
         }
 
@@ -38,7 +36,7 @@ class CheckPromiseController extends Controller
             $intent = $intentRepo->findOneBy(['status' => Intent::STATUS_DONE, 'paymentMethod' => CheckPromisePaymentMethod::ID]);
             if ($intent) {
                 return $this->render(':payment/check_promise:pay.html.twig', [
-                    'intent' => $intent
+                    'intent' => $intent,
                 ]);
             }
         }

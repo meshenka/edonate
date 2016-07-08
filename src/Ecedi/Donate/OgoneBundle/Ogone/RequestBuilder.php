@@ -2,18 +2,12 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2014
- * @package eDonate
- *
- *  Le RequestBuilder est un service type "Factory"
- * qui génère des Ogone\Request à partir d'un Intent et de la configuration du bundle
- *
  */
 namespace Ecedi\Donate\OgoneBundle\Ogone;
 
 use Ecedi\Donate\CoreBundle\Entity\Intent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Ecedi\Donate\OgoneBundle\Ogone\Request as OgoneRequest;
-use Ecedi\Donate\OgoneBundle\Exception\CannotSignRequestException;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
@@ -23,9 +17,10 @@ class RequestBuilder
 {
     use ContainerAwareTrait;
     /**
-     * On gènère une Ecedi\Donate\OgoneBundle\Ogone\Request à partir d'un Intent
+     * On gènère une Ecedi\Donate\OgoneBundle\Ogone\Request à partir d'un Intent.
      *
-     * @param  Ecedi\Donate\CoreBundle\Entity\Intent  $intent
+     * @param Ecedi\Donate\CoreBundle\Entity\Intent $intent
+     *
      * @return Ecedi\Donate\OgoneBundle\Ogone\Request
      */
     public function build(Intent $intent)
@@ -68,8 +63,10 @@ class RequestBuilder
     }
 
     /**
-     * Génération de la langue de l'interface ogone en fonction de la locale de la Request
+     * Génération de la langue de l'interface ogone en fonction de la locale de la Request.
+     *
      * @param string le http locale value
+     *
      * @return string Le code langue ISO639-1,  un « underscore » (_), et ensuite le code pays ISO3166 Alpha-2
      *
      * Le terme locale désigne en gros la langue et le pays de l'utilisateur.
@@ -88,20 +85,21 @@ class RequestBuilder
     }
 
     /**
-     * Génération de la signature de la Requête
+     * Génération de la signature de la Requête.
      *
-     * @param  Ecedi\Donate\OgoneBundle\Ogone\Request                        $r
+     * @param Ecedi\Donate\OgoneBundle\Ogone\Request $r
+     *
      * @return Ecedi\Donate\OgoneBundle\Ogone\Request
+     *
      * @throws Ecedi\Donate\OgoneBundle\Exception\CannotSignRequestException
      *
      * Tous les Params du formulaire sont à indiquer en MAJUSCULE dans la clé sha et
      * à ordoner dans l'ordre alphabétique
-     *
      */
     protected function sha1sign(OgoneRequest $r)
     {
-        $sha1inkey =  $this->container->getParameter('donate_ogone.security.sha1_in');
-        $hashKey =  '';
+        $sha1inkey = $this->container->getParameter('donate_ogone.security.sha1_in');
+        $hashKey = '';
 
         $shaParams = $r->jsonSerialize(); //on recupère toutes les valeurs de la Ogone\Request
         ksort($shaParams);
@@ -121,8 +119,10 @@ class RequestBuilder
     }
 
     /**
-     * Génère un numéro de commande Ogone à partir de l'IntentId
-     * @param  Ecedi\Donate\CoreBundle\Entity\Intent $intent
+     * Génère un numéro de commande Ogone à partir de l'IntentId.
+     *
+     * @param Ecedi\Donate\CoreBundle\Entity\Intent $intent
+     *
      * @return string
      */
     protected function orderId(Intent $intent)
@@ -131,9 +131,11 @@ class RequestBuilder
     }
 
     /**
-     * Génération d'une URL absolue
-     * @param  string $route      le nom de la route
-     * @param  array  $parameters parametres de la route
+     * Génération d'une URL absolue.
+     *
+     * @param string $route      le nom de la route
+     * @param array  $parameters parametres de la route
+     *
      * @return string url absolue
      */
     protected function absoluteUrl($route, $parameters = array())

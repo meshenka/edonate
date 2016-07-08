@@ -1,8 +1,6 @@
 <?php
 /**
  * @author  Sylvain Gogel <sgogel@ecedi.fr>
- * @package eDonate
- * @subpackage SEPA
  * @copyright Agence Ecedi 2014
  */
 namespace Ecedi\Donate\PaymentBundle\Controller;
@@ -18,14 +16,17 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Controller for display of SEPA Offline return pages
+ * Controller for display of SEPA Offline return pages.
+ *
  * @since  2.0.0
  */
 class SepaOfflineController extends Controller
 {
     /**
      * @Route("/sepa-offline/completed", name="donate_payment_sepa_offline_completed")
+     *
      * @since  2.0.0
+     *
      * @return mixed array of twig variables, or a manual Symfony\Component\HttpFoundation\Response
      */
     public function autorizeAction(Request $request)
@@ -38,7 +39,7 @@ class SepaOfflineController extends Controller
             $intentId = $session->get('intentId');
 
             return $this->render(':payment/sepa_offline:autorize.html.twig', [
-                'intent' => $intentRepo->find($intentId)
+                'intent' => $intentRepo->find($intentId),
             ]);
         }
 
@@ -47,7 +48,7 @@ class SepaOfflineController extends Controller
             $intent = $intentRepo->findOneBy(['status' => Intent::STATUS_DONE, 'paymentMethod' => SepaOfflinePaymentMethod::ID]);
             if ($intent) {
                 return $this->render(':payment/sepa_offline:autorize.html.twig', [
-                    'intent' => $intent
+                    'intent' => $intent,
                 ]);
             }
         }
@@ -61,20 +62,23 @@ class SepaOfflineController extends Controller
     }
 
     /**
-     *
      * This route generate a PDF version of the SEPA Mandate
      * To make it work you must implement a listener on PaymentEvents::INTENT_DOCUMENT_GENERATED and produce a ZendPdf\PdfDocument instance
      * in your own bundle (do not hack the core)
      * the listener should use a RumGeneratorInterface.
      * 2 services are enabled by default, and you can create your own
      *   * donate_payment.sepa_offline.rum.empty
-     *   * donate_payment.sepa_offline.rum.preformated
+     *   * donate_payment.sepa_offline.rum.preformated.
      *
      *
      * @Route("/sepa-offline/mandate/pdf", name="donate_payment_sepa_offline_document")
+     *
      * @since  2.0.0
+     *
      * @todo  Faire un lien avec un token unique ?
+     *
      * @see  http://symfony.com/fr/doc/current/components/http_foundation/introduction.html#retourner-des-fichiers
+     *
      * @return Symfony\Component\HttpFoundation\Response an HTTP response with the file, or an HTTP 403 Response
      */
     public function generatePdf(Request $request)

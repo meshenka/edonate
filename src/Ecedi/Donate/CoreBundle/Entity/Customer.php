@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Customer
+ * Customer.
  *
  * @ORM\Table(
  *  "customer",
@@ -25,7 +25,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *   })
  * })
  * @ORM\Entity(repositoryClass="Ecedi\Donate\CoreBundle\Repository\CustomerRepository")
- *
  */
 class Customer
 {
@@ -40,7 +39,7 @@ class Customer
     private $intents;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -50,7 +49,7 @@ class Customer
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="remote_id", type="integer", nullable=true)
      * @Serializer\Groups({"REST"})
@@ -223,7 +222,7 @@ class Customer
     private $changedAt;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="optin", type="boolean", nullable=true)
      * @Serializer\Groups({"REST"})
@@ -231,7 +230,7 @@ class Customer
     private $optin;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="optinSynchronized", type="boolean", nullable=true)
      * @Serializer\Groups({"REST"})
@@ -239,9 +238,9 @@ class Customer
     private $optinSynchronized;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -249,9 +248,10 @@ class Customer
     }
 
     /**
-     * Set remoteId
+     * Set remoteId.
      *
-     * @param  integer  $remoteId
+     * @param int $remoteId
+     *
      * @return Customer
      */
     public function setRemoteId($remoteId)
@@ -262,9 +262,9 @@ class Customer
     }
 
     /**
-     * Get remoteId
+     * Get remoteId.
      *
-     * @return integer
+     * @return int
      */
     public function getRemoteId()
     {
@@ -272,9 +272,10 @@ class Customer
     }
 
     /**
-     * Set civility
+     * Set civility.
      *
-     * @param  string   $civility
+     * @param string $civility
+     *
      * @return Customer
      */
     public function setCivility($civility)
@@ -285,7 +286,7 @@ class Customer
     }
 
     /**
-     * Get civility
+     * Get civility.
      *
      * @return string
      */
@@ -295,9 +296,10 @@ class Customer
     }
 
     /**
-     * Set firstName
+     * Set firstName.
      *
-     * @param  string   $firstName
+     * @param string $firstName
+     *
      * @return Customer
      */
     public function setFirstName($firstName)
@@ -308,7 +310,7 @@ class Customer
     }
 
     /**
-     * Get firstName
+     * Get firstName.
      *
      * @return string
      */
@@ -318,9 +320,10 @@ class Customer
     }
 
     /**
-     * Set lastName
+     * Set lastName.
      *
-     * @param  string   $lastName
+     * @param string $lastName
+     *
      * @return Customer
      */
     public function setLastName($lastName)
@@ -331,7 +334,7 @@ class Customer
     }
 
     /**
-     * Get lastName
+     * Get lastName.
      *
      * @return string
      */
@@ -341,9 +344,10 @@ class Customer
     }
 
     /**
-     * Set middleName
+     * Set middleName.
      *
-     * @param  string   $middleName
+     * @param string $middleName
+     *
      * @return Customer
      */
     public function setMiddleName($middleName)
@@ -354,7 +358,7 @@ class Customer
     }
 
     /**
-     * Get middleName
+     * Get middleName.
      *
      * @return string
      */
@@ -364,9 +368,10 @@ class Customer
     }
 
     /**
-     * Set email
+     * Set email.
      *
-     * @param  string   $email
+     * @param string $email
+     *
      * @return Customer
      */
     public function setEmail($email)
@@ -377,7 +382,7 @@ class Customer
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -387,9 +392,10 @@ class Customer
     }
 
     /**
-     * Set birthday
+     * Set birthday.
      *
-     * @param  \DateTime $birthday
+     * @param \DateTime $birthday
+     *
      * @return Customer
      */
     public function setBirthday($birthday)
@@ -400,7 +406,7 @@ class Customer
     }
 
     /**
-     * Get dateOfBirth
+     * Get dateOfBirth.
      *
      * @return \DateTime
      */
@@ -410,9 +416,10 @@ class Customer
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
-     * @param  string   $phone
+     * @param string $phone
+     *
      * @return Customer
      */
     public function setPhone($phone)
@@ -423,7 +430,7 @@ class Customer
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
      * @return string
      */
@@ -433,9 +440,10 @@ class Customer
     }
 
     /**
-     * Set company
+     * Set company.
      *
-     * @param  string   $company
+     * @param string $company
+     *
      * @return Customer
      */
     public function setCompany($company)
@@ -446,7 +454,7 @@ class Customer
     }
 
     /**
-     * Get company
+     * Get company.
      *
      * @return string
      */
@@ -456,9 +464,10 @@ class Customer
     }
 
     /**
-     * Set website
+     * Set website.
      *
-     * @param  string   $website
+     * @param string $website
+     *
      * @return Customer
      */
     public function setWebsite($website)
@@ -469,7 +478,7 @@ class Customer
     }
 
     /**
-     * Get website
+     * Get website.
      *
      * @return string
      */
@@ -479,9 +488,10 @@ class Customer
     }
 
     /**
-     * Set addressNber
+     * Set addressNber.
      *
-     * @param  string   $addressNber
+     * @param string $addressNber
+     *
      * @return Customer
      */
     public function setAddressNber($addressNber)
@@ -492,7 +502,7 @@ class Customer
     }
 
     /**
-     * Get addressNber
+     * Get addressNber.
      *
      * @return string
      */
@@ -502,9 +512,10 @@ class Customer
     }
 
     /**
-     * Set addressStreet
+     * Set addressStreet.
      *
-     * @param  string   $addressStreet
+     * @param string $addressStreet
+     *
      * @return Customer
      */
     public function setAddressStreet($addressStreet)
@@ -515,7 +526,7 @@ class Customer
     }
 
     /**
-     * Get addressStreet
+     * Get addressStreet.
      *
      * @return string
      */
@@ -525,9 +536,10 @@ class Customer
     }
 
     /**
-     * Set addressExtra
+     * Set addressExtra.
      *
-     * @param  string   $addressExtra
+     * @param string $addressExtra
+     *
      * @return Customer
      */
     public function setAddressExtra($addressExtra)
@@ -538,7 +550,7 @@ class Customer
     }
 
     /**
-     * Get addressExtra
+     * Get addressExtra.
      *
      * @return string
      */
@@ -548,9 +560,10 @@ class Customer
     }
 
     /**
-     * Set addressPb
+     * Set addressPb.
      *
-     * @param  string   $addressPb
+     * @param string $addressPb
+     *
      * @return Customer
      */
     public function setAddressPb($addressPb)
@@ -561,7 +574,7 @@ class Customer
     }
 
     /**
-     * Get addressPp
+     * Get addressPp.
      *
      * @return string
      */
@@ -571,9 +584,10 @@ class Customer
     }
 
     /**
-     * Set addressZipcode
+     * Set addressZipcode.
      *
-     * @param  string   $addressZipcode
+     * @param string $addressZipcode
+     *
      * @return Customer
      */
     public function setAddressZipcode($addressZipcode)
@@ -584,7 +598,7 @@ class Customer
     }
 
     /**
-     * Get addressZipcode
+     * Get addressZipcode.
      *
      * @return string
      */
@@ -594,9 +608,10 @@ class Customer
     }
 
     /**
-     * Set addressCity
+     * Set addressCity.
      *
-     * @param  string   $addressCity
+     * @param string $addressCity
+     *
      * @return Customer
      */
     public function setAddressCity($addressCity)
@@ -607,7 +622,7 @@ class Customer
     }
 
     /**
-     * Get addressCity
+     * Get addressCity.
      *
      * @return string
      */
@@ -617,9 +632,10 @@ class Customer
     }
 
     /**
-     * Set addressLiving
+     * Set addressLiving.
      *
-     * @param  string   $addressLiving
+     * @param string $addressLiving
+     *
      * @return Customer
      */
     public function setAddressLiving($addressLiving)
@@ -630,7 +646,7 @@ class Customer
     }
 
     /**
-     * Get addressLiving
+     * Get addressLiving.
      *
      * @return string
      */
@@ -640,9 +656,10 @@ class Customer
     }
 
     /**
-     * Set addressCountry
+     * Set addressCountry.
      *
-     * @param  string   $addressCountry
+     * @param string $addressCountry
+     *
      * @return Customer
      */
     public function setAddressCountry($addressCountry)
@@ -653,7 +670,7 @@ class Customer
     }
 
     /**
-     * Get addressCountry
+     * Get addressCountry.
      *
      * @return string
      */
@@ -663,9 +680,10 @@ class Customer
     }
 
     /**
-     * Set optin
+     * Set optin.
      *
-     * @param  string   $optin
+     * @param string $optin
+     *
      * @return Customer
      */
     public function setOptin($optin)
@@ -676,7 +694,7 @@ class Customer
     }
 
     /**
-     * Get optin
+     * Get optin.
      *
      * @return string
      */
@@ -686,9 +704,10 @@ class Customer
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
+     *
      * @return Customer
      */
     public function setCreatedAt($createdAt)
@@ -699,7 +718,7 @@ class Customer
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -709,9 +728,10 @@ class Customer
     }
 
     /**
-     * Set changedAt
+     * Set changedAt.
      *
-     * @param  \DateTime $changedAt
+     * @param \DateTime $changedAt
+     *
      * @return Customer
      */
     public function setChangedAt($changedAt)
@@ -722,7 +742,7 @@ class Customer
     }
 
     /**
-     * Get changedAt
+     * Get changedAt.
      *
      * @return \DateTime
      */
@@ -732,7 +752,7 @@ class Customer
     }
 
     /**
-     * intents
+     * intents.
      *
      * @return Intent intent
      */
@@ -750,7 +770,7 @@ class Customer
     }
 
     /**
-     * Remove intents
+     * Remove intents.
      *
      * @param \Ecedi\Donate\CoreBundle\Entity\Intent $intents
      */
@@ -760,7 +780,7 @@ class Customer
     }
 
     /**
-     * Formate la date de création en timestamp pour l'api REST
+     * Formate la date de création en timestamp pour l'api REST.
      *
      * @Serializer\VirtualProperty
      * @Serializer\SerializedName("created_at")
@@ -774,7 +794,7 @@ class Customer
     }
 
     /**
-     * Formate la date de maj en timestamp pour l'api REST
+     * Formate la date de maj en timestamp pour l'api REST.
      *
      * @Serializer\VirtualProperty
      * @Serializer\SerializedName("changed_at")
@@ -788,9 +808,10 @@ class Customer
     }
 
     /**
-     * Set optinSynchronized
+     * Set optinSynchronized.
      *
-     * @param  boolean  $optinSynchronized
+     * @param bool $optinSynchronized
+     *
      * @return Customer
      */
     public function setOptinSynchronized($optinSynchronized)
@@ -801,9 +822,9 @@ class Customer
     }
 
     /**
-     * Get optinSynchronized
+     * Get optinSynchronized.
      *
-     * @return boolean
+     * @return bool
      */
     public function getOptinSynchronized()
     {

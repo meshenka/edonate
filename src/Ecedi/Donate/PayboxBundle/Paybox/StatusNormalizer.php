@@ -2,31 +2,30 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\PayboxBundle\Paybox;
 
 use Ecedi\Donate\CoreBundle\Entity\Payment;
 
 /**
- * Paybox StatusNormalizer
+ * Paybox StatusNormalizer.
  *
  * Pour plus d'informations sur les valeures retournées par Paybox
- * @see : http://www1.paybox.com/espace-integrateur-documentation/dictionnaire-des-donnees/paybox-system/
  *
+ * @see : http://www1.paybox.com/espace-integrateur-documentation/dictionnaire-des-donnees/paybox-system/
  * @since 2.2.0
  */
 class StatusNormalizer
 {
     /**
-     * Cette méthode convertie un code de status Paybox en un status de Payment
+     * Cette méthode convertie un code de status Paybox en un status de Payment.
      *
      * @see Ecedi\Donate\CoreBundle\Entity\Payment::getAllowedStatus()
      *
-     * @param  integer $status a Paybox Status
-     * @return string  one legal value from Ecedi\Donate\CoreBundle\Entity\Payment::getAllowedStatus()
+     * @param int $status a Paybox Status
+     *
+     * @return string one legal value from Ecedi\Donate\CoreBundle\Entity\Payment::getAllowedStatus()
      */
     public function normalize($status)
     {

@@ -2,10 +2,8 @@
 /**
  * @author Sylvain Gogel <sgogel@ecedi.fr>
  * @copyright Agence Ecedi (c) 2015
- * @package eDonate
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace Ecedi\Donate\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,9 +31,9 @@ class DashboardController extends Controller
         $lastIntents = $em->getRepository('DonateCoreBundle:Intent')->getLastIntentsByLimit(5);
 
         return $this->render(':admin/dashboard:last_intents.html.twig', [
-            'id'            => 'last-intents',
-            'title'         => $this->get('translator')->trans('Last donations'),
-            'lastIntents'   => $lastIntents,
+            'id' => 'last-intents',
+            'title' => $this->get('translator')->trans('Last donations'),
+            'lastIntents' => $lastIntents,
         ]);
     }
 
@@ -48,14 +46,14 @@ class DashboardController extends Controller
             ['createdAt' => 'DESC'], 5, 0);
 
         return $this->render(':admin/dashboard:error_intents.html.twig', [
-            'id'        => 'error-intents',
-            'title'     => $this->get('translator')->trans('Last donations in error'),
-            'intents'   => $intents,
+            'id' => 'error-intents',
+            'title' => $this->get('translator')->trans('Last donations in error'),
+            'intents' => $intents,
         ]);
     }
 
     /**
-     * En cache pour 1h
+     * En cache pour 1h.
      */
     public function statsIntentsAction()
     {
@@ -71,9 +69,9 @@ class DashboardController extends Controller
         }
 
         return $this->render(':admin/dashboard:stats_intents.html.twig', [
-            'id'        => 'stats-intents',
-            'title'     => $this->get('translator')->trans('Donations distributions'), //'Répartition des dons',
-            'stats'     => $stats,
+            'id' => 'stats-intents',
+            'title' => $this->get('translator')->trans('Donations distributions'), //'Répartition des dons',
+            'stats' => $stats,
         ], $response);
     }
 
@@ -82,11 +80,11 @@ class DashboardController extends Controller
     public function statsGaAction()
     {
         return $this->render(':admin/dashboard:stats_ga.html.twig', [
-            'id'        => 'stats-ga',
-            'title'     => $this->get('translator')->trans('Visits'), //'Fréquentation',
-            'apiKey'    => $this->getParameter('donate_admin.analytics.api_key'),
-            'dataIds'   => $this->getParameter('donate_admin.analytics.data_ids'),
-            'clientId'  => $this->getParameter('donate_admin.analytics.client_id'),
+            'id' => 'stats-ga',
+            'title' => $this->get('translator')->trans('Visits'), //'Fréquentation',
+            'apiKey' => $this->getParameter('donate_admin.analytics.api_key'),
+            'dataIds' => $this->getParameter('donate_admin.analytics.data_ids'),
+            'clientId' => $this->getParameter('donate_admin.analytics.client_id'),
         ]);
     }
 
@@ -97,9 +95,9 @@ class DashboardController extends Controller
         $results = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Intent')->getHighestSpotDonatorIntent(5);
 
         return $this->render(':admin/dashboard:highest_spotintents.html.twig', [
-            'id'        => 'highest-spot-intents',
-            'title'     => $this->get('translator')->trans('Top five spot donators'), //'TOP FIVE des donateurs ponctuels',
-            'results'   => $results,
+            'id' => 'highest-spot-intents',
+            'title' => $this->get('translator')->trans('Top five spot donators'), //'TOP FIVE des donateurs ponctuels',
+            'results' => $results,
         ]);
     }
 
@@ -110,9 +108,9 @@ class DashboardController extends Controller
         $results = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Intent')->getHighestRecurringDonatorIntent(5);
 
         return $this->render(':admin/dashboard:highest_recurringintents.html.twig', [
-            'id'        => 'highest-recurrin-intents',
-            'title'     => $this->get('translator')->trans('Top five recurring donators'), //'TOP FIVE des donateurs réguliers'
-            'results'   => $results,
+            'id' => 'highest-recurrin-intents',
+            'title' => $this->get('translator')->trans('Top five recurring donators'), //'TOP FIVE des donateurs réguliers'
+            'results' => $results,
         ]);
     }
 
@@ -124,9 +122,9 @@ class DashboardController extends Controller
         $results = $this->getDoctrine()->getManager()->getRepository('DonateCoreBundle:Payment')->getHighestDonatorPayment(5);
 
         return $this->render(':admin/dashboard:best_donators.html.twig', [
-            'id'        => 'best-donators',
-            'title'     => $this->get('translator')->trans('Top five donators'), //'TOP FIVE des plus gros donateurs'
-            'results'   => $results,
+            'id' => 'best-donators',
+            'title' => $this->get('translator')->trans('Top five donators'), //'TOP FIVE des plus gros donateurs'
+            'results' => $results,
         ]);
     }
 }

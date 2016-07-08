@@ -3,14 +3,14 @@
 namespace Ecedi\Donate\FrontBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\BrowserKit\Cookie;
+
 //use Symfony\Component\BrowserKit\CookieJar;
 
 class FrontControllerTest extends WebTestCase
 {
     /**
-     * verification du bon affichage du front office en français
+     * verification du bon affichage du front office en français.
      */
     public function testIndexInFrench()
     {
@@ -28,7 +28,7 @@ class FrontControllerTest extends WebTestCase
     }
 
     /**
-     * verification du bon affichage du front office en anglais
+     * verification du bon affichage du front office en anglais.
      */
     public function testIndexInEnglish()
     {
@@ -45,9 +45,8 @@ class FrontControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('input[type=submit]')->count() == 1);
     }
 
-   /**
-     * Soumission du formulaire, on va vers la page Ogone
-     *
+    /**
+     * Soumission du formulaire, on va vers la page Ogone.
      */
     public function testSubmitValidData()
     {
@@ -83,7 +82,7 @@ class FrontControllerTest extends WebTestCase
     }
 
     /**
-     * Soumission du formulaire avec à la fois un montant manuel et un montant auto sélectionné
+     * Soumission du formulaire avec à la fois un montant manuel et un montant auto sélectionné.
      */
     public function testSubmitInconsistentAmount()
     {
@@ -124,7 +123,7 @@ class FrontControllerTest extends WebTestCase
     }
 
     /**
-     * Soumission du formulaire avec à la fois un montant manuel et un montant auto sélectionné
+     * Soumission du formulaire avec à la fois un montant manuel et un montant auto sélectionné.
      */
     public function testSubmitPrelectedAmount()
     {
@@ -164,7 +163,7 @@ class FrontControllerTest extends WebTestCase
     }
 
     /**
-     * Soumission du formulaire avec à la fois un montant manuel et un montant auto sélectionné
+     * Soumission du formulaire avec à la fois un montant manuel et un montant auto sélectionné.
      */
     public function testSubmitManualAmount()
     {
@@ -205,7 +204,7 @@ class FrontControllerTest extends WebTestCase
     }
 
     /**
-     * verification que le formualire ne passe qu'avec les champs requis
+     * verification que le formualire ne passe qu'avec les champs requis.
      */
     public function testSubmitWithoutRequiredInputs()
     {
@@ -247,7 +246,7 @@ class FrontControllerTest extends WebTestCase
     }
 
     /**
-     * Soumission du formulaire avec le tracker de campagne
+     * Soumission du formulaire avec le tracker de campagne.
      */
     public function testSubmitCampaignTrackerByCookie()
     {
@@ -281,7 +280,7 @@ class FrontControllerTest extends WebTestCase
 
         $orderId = $crawler->filter('input[name="ORDERID"]')->attr('value');
 
-        $prefix =  $container->getParameter('donate_ogone.prefix');
+        $prefix = $container->getParameter('donate_ogone.prefix');
 
         if (strpos($orderId, $prefix.'-') === 0) {
             $intentId = (int) str_replace($prefix.'-', '', $orderId);
@@ -302,7 +301,7 @@ class FrontControllerTest extends WebTestCase
         $client = static::createClient();
 
         $container = $client->getContainer();
-        $campaign =  $container->getParameter('donate_front.campaign');
+        $campaign = $container->getParameter('donate_front.campaign');
         $crawler = $client->request('GET', '/', [$campaign => 'phpunit']);
 
         $form = $crawler->selectButton('Donner')->form();
@@ -327,7 +326,7 @@ class FrontControllerTest extends WebTestCase
 
         $orderId = $crawler->filter('input[name="ORDERID"]')->attr('value');
 
-        $prefix =  $container->getParameter('donate_ogone.prefix');
+        $prefix = $container->getParameter('donate_ogone.prefix');
 
         if (strpos($orderId, $prefix.'-') === 0) {
             $intentId = (int) str_replace($prefix.'-', '', $orderId);
