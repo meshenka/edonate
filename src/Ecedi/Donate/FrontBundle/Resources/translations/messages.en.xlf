@@ -38,11 +38,6 @@
         <target>Autorisation Id</target>
         <jms:reference-file line="26">views/Return/completed.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="b37456c4530be810dc040f50da72eda09addfb0a" resname="Contact">
-        <source>Contact</source>
-        <target>Contact</target>
-        <jms:reference-file line="3">Resources/views/footer.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="eb9a4bc1c0c153e4e4b042a79113b815b7e3021d" resname="Date">
         <source>Date</source>
         <target>Date</target>
@@ -52,11 +47,6 @@
         <source>Donate</source>
         <target>Donate</target>
         <jms:reference-file line="132">views/Form/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="3bf316b705ed05e8bd2b3e446c1c3c18b3d5694f" resname="Donate to Ecedi">
-        <source>Donate to Ecedi</source>
-        <target>Donate to Ecedi</target>
-        <jms:reference-file line="13">Resources/views/layout.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="04805292da5ae6dff47a698ffbed519b1ec82d82" resname="Donation canceled">
         <source>Donation canceled</source>
@@ -79,11 +69,6 @@
         <jms:reference-file line="5">views/Return/failed.html.twig</jms:reference-file>
       </trans-unit>
 
-      <trans-unit id="c47ae15370cfe1ed2781eedc1dc2547d12d9e972" resname="Help">
-        <source>Help</source>
-        <target>Help</target>
-        <jms:reference-file line="4">Resources/views/footer.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="dc84040161c4de6d8165c63b3b7b6eed09a505a8" resname="I Give">
         <source>I Give</source>
         <target>I Give</target>
@@ -98,11 +83,6 @@
         <source>I prefer to receive my tax receipt</source>
         <target>I prefer to receive my tax receipt</target>
         <jms:reference-file line="169">FrontBundle/Form/DonationType.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="d86792e787adb392d9bfca979ad9a73a541ece45" resname="Legal notices">
-        <source>Legal notices</source>
-        <target>Legal notices</target>
-        <jms:reference-file line="5">Resources/views/footer.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="639fa4cb21ce791a9d177d0e6419e73518126c9f" resname="My payment method">
         <source>My payment method</source>
