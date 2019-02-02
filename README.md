@@ -2,6 +2,8 @@
 
 eDonate est une application Full Stack Symfony2 pour la production de formulaire de don
 
+[![Build Status](https://travis-ci.org/ecedi/edonate.svg?branch=master)](https://travis-ci.org/ecedi/edonate)
+
 ## Installation
 
 ### prerequis
